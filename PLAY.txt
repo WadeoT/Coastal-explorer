@@ -1,10 +1,10 @@
-COASTAL EXPLORER — VERSION 2 / OFFLINE SUNSHINE COAST
+COASTAL EXPLORER — VERSION 3 / DRIVING CRASH FIX + LIGHTER GRAPHICS
 
 1. Extract the ZIP into a NEW folder.
-2. Open index.html in Chrome or Edge.
+2. Open index.html in Chrome (recommended on Mac) or Edge.
 3. Wait for OFFLINE MAP READY, then choose a vehicle.
 
-The new menu says OFFLINE MAP INCLUDED and shows 15 / 15 road sections.
+The new menu says V3 / OFFLINE MAP INCLUDED and shows 15 / 15 road sections.
 The real map is already inside this file. No internet or Google key is
 needed. If it says it is downloading roads, you opened the old version.
 
@@ -24,3 +24,12 @@ The optional Google photorealistic mode needs internet and your own key.
 
 The LandCruiser uses a 3D 79 Series single-cab model with alloy tray,
 snorkel, bullbar and a revised right-hand-drive cockpit.
+
+V3 fixes the traffic-reset simulation error while driving.
+Balanced graphics starts automatically, with shadows off and a capped
+render resolution. For extra speed: H -> Visual quality -> Fast / low
+resolution. All graphics settings retain the full real coast map.
+
+To host it on GitHub: repository Settings -> Pages -> Deploy from a branch.
+Choose codex/sunshine-coast-game, / (root), Save, and wait for deployment.
+The site will be https://wadeot.github.io/Coastal-explorer/

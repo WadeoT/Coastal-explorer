@@ -1,26 +1,26 @@
-COASTAL EXPLORER — SUNSHINE COAST
+COASTAL EXPLORER — VERSION 2 / OFFLINE SUNSHINE COAST
 
-1. Extract the entire ZIP into a folder.
-2. Try opening index.html in Chrome or Edge.
-   If your browser blocks local pages, use Start Windows.bat or
-   Start Mac.command. Those launchers need Python 3 (python.org).
-   Linux: run python3 serve.py inside the extracted folder.
-3. Keep your internet connection on. Wait for the real map to load,
-   then choose a vehicle. No Google key is required.
+1. Extract the ZIP into a NEW folder.
+2. Open index.html in Chrome or Edge.
+3. Wait for OFFLINE MAP READY, then choose a vehicle.
+
+The new menu says OFFLINE MAP INCLUDED and shows 15 / 15 road sections.
+The real map is already inside this file. No internet or Google key is
+needed. If it says it is downloading roads, you opened the old version.
+
+If local HTML is blocked by your browser, use Start Windows.bat or
+Start Mac.command. Those launchers need Python 3 from python.org.
+Linux: run python3 serve.py. Keep the launcher window open while playing.
 
 WASD / arrows: drive. S: brake / reverse. Space: handbrake.
 Helicopter: W/S ascend/descend, A/D yaw, arrows tilt and move.
 M: map and travel between 12 towns. G: garage. R: recover.
-Escape: pause. H: settings. Enable sound using the speaker button.
+Escape: pause. H: settings. Speaker button: enable sound.
 
 The region covers Caloundra to Noosa and the Sunshine Coast hinterland.
-Roads and footprints use OpenStreetMap; hills use measured elevation.
-Buildings, road paint and vehicles are simplified. Missing building
-heights, facade details and road markings are estimates.
+Real OSM streets, building footprints and measured hills are included.
+Buildings, missing heights and surface details use simplified estimates.
+The optional Google photorealistic mode needs internet and your own key.
 
-If you see "map providers could not be reached", use Retry in the game.
-Public map services can be unavailable or blocked on some networks.
-This game does not substitute a fake map when real downloads fail.
-
-The HTML includes the engine and fonts. Maps still need internet access.
-Settings > DOWNLOAD GAME FILE saves another copy from a running game.
+The LandCruiser uses a 3D 79 Series single-cab model with alloy tray,
+snorkel, bullbar and a revised right-hand-drive cockpit.

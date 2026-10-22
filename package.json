@@ -1,10 +1,11 @@
 {
   "name": "coastal-explorer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Single-file Sunshine Coast driving game; optional browser verification",
   "scripts": {
-    "test": "node tests/browser.cjs"
+    "test": "node tests/browser.cjs",
+    "build": "python3 scripts/build.py"
   },
   "devDependencies": {
     "playwright": "1.62.1"

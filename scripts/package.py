@@ -4,7 +4,7 @@ from pathlib import Path
 import zipfile
 
 root = Path(__file__).resolve().parents[1]
-output = root / "downloads/Coastal-Explorer-Offline-v4.zip"
+output = root / "downloads/Coastal-Explorer-Offline-v5.zip"
 output.parent.mkdir(exist_ok=True)
 files = [".nojekyll", "index.html", "PLAY.txt", "README.md", "serve.py", "Start Windows.bat", "Start Mac.command", "data/README.md", "data/provenance.json", "data/whole-coast.overpass", "data/relations.overpass", "data/tracks.overpass", "data/LICENSE-ODbL-1.0.txt"]
 extractor = '''from pathlib import Path

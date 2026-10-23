@@ -1,6 +1,6 @@
 # Coastal Explorer — Sunshine Coast, offline edition
 
-**Version 4 fixes the coast and road surfaces and expands suburb coverage.** The included map has **250 searchable towns, suburbs and localities**, **28,596 mapped building outlines**, 38,541 drivable roads/tracks and 108 measured elevation tiles. It covers Caloundra–Noosa, smaller coastal suburbs and the wider hinterland, including Conondale, Kenilworth, Kin Kin and Cootharaba.
+**Version 5 adds a saved vehicle garage, money, upgrades, ten additional vehicles and a switchable third-person camera.** The included map has **250 searchable towns, suburbs and localities**, **28,596 mapped building outlines**, 38,541 drivable roads/tracks and 108 measured elevation tiles. It covers Caloundra–Noosa, smaller coastal suburbs and the wider hinterland, including Conondale, Kenilworth, Kin Kin and Cootharaba.
 
 The sea is clipped against actual OSM coastlines. Lake and estuary islands retain their holes, shore edges are sealed, and adjoining DEM tiles share border heights. Roads, sidewalks and paint are split on the same terrain triangles so hills cannot poke through the surface. Mapped bridges get a continuous raised deck; unsealed roads and vehicle tracks use dirt colouring. Clipped shore vertices inherit the surrounding terrain colours, and roofs and lakes face upward for daylight lighting. Forest and beach colours belong to the terrain, eliminating floating cover polygons that previously crossed roads and buildings.
 
@@ -14,7 +14,7 @@ The default Balanced preset caps rendering at 1280 × 800 and disables shadows. 
 2. Open **index.html** in Chrome (recommended on Mac) or Edge.
 3. Wait for **OFFLINE MAP READY**, then choose a vehicle.
 
-The new garage says **V4 · FULL REGION MAP INCLUDED** and shows **30 / 30 regional road sections** once opened. If you see a message about downloading real roads, you opened the older version.
+The new garage says **V5 · 14 VEHICLES + GARAGE** and shows **30 / 30 regional road sections** once opened. If you see a message about downloading real roads, you opened the older version.
 
 If your browser or administrator prohibits local HTML pages, use **Start Windows.bat** or **Start Mac.command** with Python 3 installed. Linux: `python3 serve.py`. The launcher opens a local browser tab and binds only to `127.0.0.1`; keep its window open while playing. The packaged map still works without internet.
 
@@ -59,11 +59,19 @@ This is a simplified 3D rendering of real geography. Building roofs, missing hei
 
 Data attribution: **© OpenStreetMap contributors** (ODbL 1.0); Australian terrain **© Commonwealth of Australia (Geoscience Australia) 2017** (CC BY 4.0); Mapzen/Terrarium and global USGS terrain sources. Attribution stays visible while playing. See [OpenStreetMap copyright](https://www.openstreetmap.org/copyright) and [terrain attribution](https://github.com/tilezen/joerd/blob/master/docs/attribution.md).
 
+## Garage, money and cameras
+
+Press **C** or the camera button to switch between the right-hand cockpit and a following third-person view. Both modes work on road vehicles, the bicycle, helicopter and boat. Cabin graphics include live instruments, door controls, seats, vents and steering; exterior geometry is batched to keep draw calls low.
+
+Start with **$65,000** and the original four vehicles owned. Earn **$100 per 100 m** of horizontal travel. Recovery, town travel and idling do not pay. Press **G** and use the dropdown to inspect, purchase or customise a vehicle. Engine, brake, tyre and suspension upgrades have three levels, with compatibility shown per vehicle. A respray costs $750. Cash, ownership, upgrades and paint save automatically to browser local storage. Hosted and downloaded copies have separate browser saves.
+
+Ten additions: Toyota HiLux SR5, Ford Ranger Wildtrak, Nissan Patrol Y62, Suzuki Jimny, Holden Commodore SS, Ford Falcon XR6 Turbo, Ford Mustang GT, Nissan GT-R R35, Subaru WRX STI and a Quintrex 590 runabout. The boat launches at nearby mapped water, floats at its mapped level and stops at shorelines. W/S throttle, brake and reverse; A/D steers; Space slows for docking; R recovers to open water. These are simplified, original low-poly models and gameplay approximations.
+
 ## Vehicles
 
 The LandCruiser menu illustration has been replaced with a rendered, metre-scale **79 Series single-cab model**: long bonnet, alloy tray and headboard, snorkel, bullbar, rectangular lights, steel rims, tyre tread, ladder chassis and leaf springs. The driving view uses the same model with a right-hand dashboard, analog instruments, steering wheel, manual gear stick and transfer lever. Its driver eye height is 1.72 m above the road. It is a simplified model, not a scanned manufacturer asset.
 
-All four profiles retain their distinct handling. Steering responds quickly, suspension is firmer, wheel force is limited by power and traction, and drag slows the car. The i20 handbrake produces lateral slip, tyre marks and filtered tyre noise. Vehicle parameters are gameplay approximations. Traffic uses mapped roads and speed limits, starts with clearance from the player and brakes for vehicles ahead. Police pursuit, collisions and damage remain active.
+All fourteen profiles have distinct dimensions, performance and handling. Steering responds quickly, suspension is firmer, wheel force is limited by power and traction, and drag slows the car. The i20 handbrake produces lateral slip, tyre marks and filtered tyre noise. Vehicle parameters are gameplay approximations. Traffic uses mapped roads and speed limits, starts with clearance from the player and brakes for vehicles ahead. Police pursuit, collisions and damage remain active.
 
 ## Optional Google 3D Tiles
 
@@ -77,7 +85,7 @@ This mode uses `tile.googleapis.com`, `maps.gstatic.com` and a pinned Draco deco
 
 ## Build and verify
 
-No build or package installation is needed to play. Readable sources are in `src`; geographic rendering is in `src/geography.js`, and the shared vehicle model is `src/vehicle-models.js`. The runtime, fonts and licences are vendored. Rebuild with Python's standard library:
+No build or package installation is needed to play. Readable sources are in `src`; geographic rendering is in `src/geography.js`, and the shared vehicle model is `src/vehicle-models.js`; fleet, career and camera code is in `src/fleet.js`. The runtime, fonts and licences are vendored. Rebuild with Python's standard library:
 
 ```bash
 python3 scripts/build.py
@@ -97,3 +105,5 @@ The managed cloud browser prohibits `file://` navigation, so its verification us
 
 
 Bundled runtime: Babylon.js 9.31.3, 3DTilesRendererJS 0.5.3, earcut 3.0.2, fflate, DM Sans and Space Grotesk. Dependency licences are embedded in the HTML and retained in `vendor/LICENSES.txt`.
+
+Fleet and career checks: `npm run test:fleet`. These exercise all 14 vehicles in both views, purchase boundaries, upgrade caps, saved progress after a real reload, actual mapped water navigation, shore blocking and responsive shop access.

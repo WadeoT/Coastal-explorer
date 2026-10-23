@@ -1,10 +1,10 @@
-COASTAL EXPLORER — VERSION 4 / SHORELINES, ROADS + ALL MAPPED LOCALITIES
+COASTAL EXPLORER — VERSION 5 / VEHICLE GARAGE + MONEY + CHASE CAMERA
 
 1. Extract the ZIP into a NEW folder.
 2. Open index.html in Chrome (recommended on Mac) or Edge.
 3. Wait for OFFLINE MAP READY, then choose a vehicle.
 
-The new menu says V4 / FULL REGION MAP INCLUDED and shows 30 / 30 road sections.
+The new menu says V5 / 14 VEHICLES + GARAGE and shows 30 / 30 road sections.
 The real map is already inside this file. No internet or Google key is
 needed. If it says it is downloading roads, you opened the old version.
 
@@ -14,7 +14,7 @@ Linux: run python3 serve.py. Keep the launcher window open while playing.
 
 WASD / arrows: drive. S: brake / reverse. Space: handbrake.
 Helicopter: W/S ascend/descend, A/D yaw, arrows tilt and move.
-M: map and search 250 towns, suburbs and localities. G: garage. R: recover.
+M: map and search 250 towns, suburbs and localities. G: garage and shop. C: cockpit / third person. R: recover.
 Escape: pause. H: settings. Speaker button: enable sound.
 
 The region covers Caloundra to Noosa and the Sunshine Coast hinterland.
@@ -36,3 +36,20 @@ resolution. All graphics settings retain the full real coast map.
 To host it on GitHub: repository Settings -> Pages -> Deploy from a branch.
 Choose codex/sunshine-coast-game, / (root), Save, and wait for deployment.
 The site will be https://wadeot.github.io/Coastal-explorer/
+
+V5 GARAGE / CAREER
+Start with $65,000 and the original four vehicles already owned. Earn $100
+for every 100 metres actually travelled (teleporting does not pay). Cash,
+owned vehicles, upgrades and resprays save automatically in this browser.
+Use the garage dropdown to inspect any vehicle, buy it, or modify one you
+own. Upgrades have three levels. Resprays cost $750.
+
+New: HiLux SR5, Ranger Wildtrak, Patrol Y62, Jimny, Commodore SS, Falcon
+XR6 Turbo, Mustang GT, GT-R R35, WRX STI and Quintrex 590 runabout.
+The boat launches on nearby real mapped water. W accelerates; S brakes
+and reverses; A/D steers. Space slows for docking. R finds open water.
+C or the camera button changes between cockpit and third-person views.
+
+Saved progress belongs to this browser and origin. The downloaded game
+and hosted website have separate saves; private browsing may not retain
+progress after closing.

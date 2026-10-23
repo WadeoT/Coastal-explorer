@@ -3,8 +3,8 @@ function buildLandCruiser79(scene,parent,inside=false){
  const {MeshBuilder:MB,TransformNode:Node,StandardMaterial,Color3,Vector3:V,Mesh,VertexData}=Coastal;
  const root=new Node('landcruiser-79-single-cab',scene);root.parent=parent||null;
  function material(name,hex,shine=.1,alpha=1){const m=new StandardMaterial('79-'+name,scene);m.diffuseColor=Color3.FromHexString(hex).toLinearSpace();m.specularColor=new Color3(shine,shine,shine);m.alpha=alpha;return m;}
- const paint=material('sandstone-paint','#c1b595',.35),black=material('rubber-and-trim','#16191c',.05),dark=material('dashboard','#282a2d',.08),steel=material('alloy-tray','#aab1b5',.6),chrome=material('steel-rims','#d4d7d8',.7),glass=material('windows','#385568',.8,inside?.11:.64),headlight=material('headlamps','#e5e8dc',.7),amber=material('indicators','#c98525',.25),red=material('tail-lamps','#922b27',.4),seat=material('cloth-seats','#3a3c3c',.04);
- glass.backFaceCulling=false;
+ const paint=material('sandstone-paint','#c1b595',.35),black=material('rubber-and-trim','#16191c',.05),dark=material('dashboard','#414448',.08),steel=material('alloy-tray','#aab1b5',.6),chrome=material('steel-rims','#d4d7d8',.7),glass=material('windows','#385568',.8,inside?.11:.64),headlight=material('headlamps','#e5e8dc',.7),amber=material('indicators','#c98525',.25),red=material('tail-lamps','#922b27',.4),seat=material('cloth-seats','#3a3c3c',.04);
+ dark.diffuseColor=Color3.FromHexString('#42484b');seat.diffuseColor=Color3.FromHexString('#555a59');dark.emissiveColor=new Color3(.025,.028,.03);glass.backFaceCulling=false;
  function box(name,w,h,d,x,y,z,m=paint,p=root){const b=MB.CreateBox('79-'+name,{width:w,height:h,depth:d},scene);b.position.set(x,y,z);b.material=m;b.parent=p;b.isPickable=false;b.receiveShadows=true;return b;}
  function cylinder(name,d,h,x,y,z,m=black,p=root,segments=24){const b=MB.CreateCylinder('79-'+name,{diameter:d,height:h,tessellation:segments},scene);b.position.set(x,y,z);b.material=m;b.parent=p;b.isPickable=false;return b;}
  function tube(name,points,r,m=black,p=root){const b=MB.CreateTube('79-'+name,{path:points.map(a=>new V(...a)),radius:r,tessellation:8},scene);b.material=m;b.parent=p;b.isPickable=false;return b;}
@@ -39,7 +39,7 @@ function buildLandCruiser79(scene,parent,inside=false){
   box('front-mudflap',.24,.32,.03,side*.87,.40,-1.06,black);
  }
  box('front-bumper',1.94,.19,.22,0,.72,-2.46,black);tube('bullbar-hoop',[[-.89,.78,-2.54],[-.89,1.18,-2.54],[-.49,1.18,-2.54],[-.40,.85,-2.54],[.40,.85,-2.54],[.49,1.18,-2.54],[.89,1.18,-2.54],[.89,.78,-2.54]],.038,black);
- box('cab-roof',1.80,.075,1.30,0,2.02,.07);box('roof-gutter',1.86,.025,1.34,0,1.991,.07,black);
+ box('cab-roof',1.80,.075,inside?.80:1.30,0,2.02,inside?.32:.07);if(!inside)box('roof-gutter',1.86,.025,1.34,0,1.991,.07,black);
  for(const side of [-1,1]){
   tube('windscreen-pillar',[[side*.83,1.34,-.94],[side*.79,1.99,-.57]],.035,paint);tube('rear-cab-pillar',[[side*.85,1.30,.72],[side*.81,1.99,.72]],.041,paint);
   box('door-skin',.028,.57,1.26,side*.881,1.03,.01);box('door-gap',.011,.53,.016,side*.901,1.05,.638,black);box('door-handle',.028,.048,.16,side*.909,1.30,.38,black);
@@ -49,7 +49,7 @@ function buildLandCruiser79(scene,parent,inside=false){
  }
  box('cab-back-panel',1.72,.36,.08,0,1.50,.74);box('rear-cab-window',1.34,.37,.016,0,1.79,.79,glass);
  if(!inside)panel('front-windscreen',[[-.795,1.37,-.925],[.795,1.37,-.925],[-.758,1.98,-.576],[.758,1.98,-.576]],glass);
- box('windscreen-header',1.64,.055,.07,0,1.98,-.57,paint);
+ if(!inside)box('windscreen-header',1.64,.055,.07,0,1.98,-.57,paint);
  for(const x of [-.45,.35])tube('windscreen-wiper',[[x,1.36,-.969],[x+.24,1.39,-.972]],.008,black);
  tube('snorkel',[[.91,1.18,-1.33],[.94,1.36,-.93],[.91,1.98,-.60]],.055,black);box('snorkel-intake',.17,.13,.19,.91,2.055,-.63,black);
  // Alloy drop-side tray and full-height headboard behind the cab.
@@ -73,9 +73,16 @@ function buildLandCruiser79(scene,parent,inside=false){
  const rim=MB.CreateTorus('79-steering-rim',{diameter:.40,thickness:.027,tessellation:36},scene);rim.rotation.x=Math.PI/2;rim.material=black;rim.parent=steering;rim.isPickable=false;
  for(const side of [-1,1])box('wheel-spoke',.135,.034,.026,side*.11,-.006,0,dark,steering);box('wheel-spoke-lower',.04,.15,.025,0,-.09,0,dark,steering);box('horn-pad',.13,.075,.045,0,0,.014,black,steering);
  tube('gear-stick',[[-.16,.80,-.05],[-.16,1.11,-.13],[-.16,1.22,-.23]],.015,black);const knob=MB.CreateSphere('79-manual-gear-knob',{diameter:.064,segments:12},scene);knob.position.set(-.16,1.235,-.23);knob.material=black;knob.parent=root;knob.isPickable=false;tube('transfer-stick',[[-.31,.80,-.06],[-.31,1.01,-.18]],.012,black);cylinder('transfer-knob',.042,.042,-.31,1.026,-.18,black);
- box('roof-interior',1.68,.04,1.17,0,1.966,.10,dark);box('rearview-mirror',.23,.07,.035,0,1.845,-.51,black);box('rearview-glass',.205,.047,.01,0,1.845,-.486,chrome);box('driver-sun-visor',.42,.022,.23,.48,1.94,-.40,dark);
+ box('roof-interior',1.68,.025,inside?.72:1.17,0,1.98,inside?.36:.10,seat);box('rearview-mirror',.23,.07,.035,0,1.845,-.51,black);box('rearview-glass',.205,.047,.01,0,1.845,-.486,chrome);if(!inside)box('driver-sun-visor',.36,.018,.12,.48,1.965,-.33,seat);
+ for(const side of [-1,1]){box('door-card',.025,.36,1.02,side*.858,1.08,.01,seat);box('door-armrest',.065,.055,.44,side*.82,1.16,.12,dark);box('interior-door-release',.026,.035,.12,side*.832,1.27,-.24,chrome);box('window-switch',.03,.012,.055,side*.805,1.198,-.02,black);tube('seat-stitch',[[side*.47-.22,1.03,.05],[side*.47-.22,1.03,.43]],.003,steel);}
+ label('radio-display','FM  101.3',.18,.038,-.10,1.21,-.56,'#adcfba','#151d20');
+ const savedParent=root.parent;root.parent=null;root.computeWorldMatrix(true);
+ // Merge wheel details too; steering remains independent.
+ for(const wheel of wheels){const savedPosition=wheel.position.clone();wheel.parent=null;wheel.position.set(0,0,0);wheel.computeWorldMatrix(true);for(const m of wheel.getChildMeshes())m.computeWorldMatrix(true);const wheelGroups=new Map();for(const mesh of wheel.getChildMeshes()){if(!wheelGroups.has(mesh.material))wheelGroups.set(mesh.material,[]);wheelGroups.get(mesh.material).push(mesh);}for(const [m,parts] of wheelGroups)if(parts.length>1){const merged=Mesh.MergeMeshes(parts,true,true,undefined,false,false);if(merged){merged.parent=wheel;merged.material=m;merged.isPickable=false;}}wheel.parent=root;wheel.position.copyFrom(savedPosition);wheel.computeWorldMatrix(true);}
  // Merge static parts by material to keep the driving scene inexpensive.
+ for(const mesh of root.getChildMeshes())mesh.computeWorldMatrix(true);
  const groups=new Map();for(const mesh of root.getChildMeshes()){if(mesh.parent!==root||!mesh.material)continue;const key=mesh.material;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(mesh);}
  for(const [m,parts] of groups){if(parts.length<2)continue;const merged=Mesh.MergeMeshes(parts,true,true,undefined,false,false);if(merged){merged.name='79-batched-'+m.name;merged.parent=root;merged.material=m;merged.isPickable=false;merged.receiveShadows=true;}}
+ root.parent=savedParent;root.computeWorldMatrix(true);
  root.metadata={vehicle:'LandCruiser 79 Series',wheelbase:3.18,bodyStyle:'single cab alloy tray',eyeHeight:1.72};return{root,steering,wheels};
 }

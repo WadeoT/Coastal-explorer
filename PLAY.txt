@@ -1,10 +1,10 @@
-COASTAL EXPLORER — VERSION 3 / DRIVING CRASH FIX + LIGHTER GRAPHICS
+COASTAL EXPLORER — VERSION 4 / SHORELINES, ROADS + ALL MAPPED LOCALITIES
 
 1. Extract the ZIP into a NEW folder.
 2. Open index.html in Chrome (recommended on Mac) or Edge.
 3. Wait for OFFLINE MAP READY, then choose a vehicle.
 
-The new menu says V3 / OFFLINE MAP INCLUDED and shows 15 / 15 road sections.
+The new menu says V4 / FULL REGION MAP INCLUDED and shows 30 / 30 road sections.
 The real map is already inside this file. No internet or Google key is
 needed. If it says it is downloading roads, you opened the old version.
 
@@ -14,7 +14,7 @@ Linux: run python3 serve.py. Keep the launcher window open while playing.
 
 WASD / arrows: drive. S: brake / reverse. Space: handbrake.
 Helicopter: W/S ascend/descend, A/D yaw, arrows tilt and move.
-M: map and travel between 12 towns. G: garage. R: recover.
+M: map and search 250 towns, suburbs and localities. G: garage. R: recover.
 Escape: pause. H: settings. Speaker button: enable sound.
 
 The region covers Caloundra to Noosa and the Sunshine Coast hinterland.
@@ -25,7 +25,10 @@ The optional Google photorealistic mode needs internet and your own key.
 The LandCruiser uses a 3D 79 Series single-cab model with alloy tray,
 snorkel, bullbar and a revised right-hand-drive cockpit.
 
-V3 fixes the traffic-reset simulation error while driving.
+V4 fixes overlapping ocean/land surfaces, floating cover polygons, road
+clipping on hills and mismatched elevation-tile borders. All 28,596
+available mapped building footprints remain included across the region.
+OSM does not contain every real building; missing houses are not invented.
 Balanced graphics starts automatically, with shadows off and a capped
 render resolution. For extra speed: H -> Visual quality -> Fast / low
 resolution. All graphics settings retain the full real coast map.

@@ -1,10 +1,10 @@
 [out:json][timeout:180][maxsize:536870912];(
-way[highway~"^(motorway|trunk|primary|secondary|tertiary|residential|unclassified|service|living_street|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link|footway|pedestrian|cycleway|path|steps)$"](-26.97,152.72,-26.28,153.20);
-way[building](-26.97,152.72,-26.28,153.20);
-way[natural~"^(coastline|water|wood|wetland|scrub|beach)$"](-26.97,152.72,-26.28,153.20);
-way[landuse~"^(forest|recreation_ground|grass|park|residential|retail|industrial|commercial)$"](-26.97,152.72,-26.28,153.20);
-way[waterway](-26.97,152.72,-26.28,153.20);
-node[natural=tree](-26.97,152.72,-26.28,153.20);
-node[highway~"^(traffic_signals|stop|give_way|crossing|street_lamp)$"](-26.97,152.72,-26.28,153.20);
-node[place~"^(suburb|town|city|village)$"](-26.97,152.72,-26.28,153.20);
+way[highway~"^(motorway|trunk|primary|secondary|tertiary|residential|unclassified|service|living_street|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link|footway|pedestrian|cycleway|path|steps)$"](-26.98,152.50,-26.10,153.22);
+way[building](-26.98,152.50,-26.10,153.22);
+way[natural~"^(coastline|water|wood|wetland|scrub|beach)$"](-26.98,152.50,-26.10,153.22);
+way[landuse~"^(forest|recreation_ground|grass|park|residential|retail|industrial|commercial)$"](-26.98,152.50,-26.10,153.22);
+way[waterway](-26.98,152.50,-26.10,153.22);
+node[natural=tree](-26.98,152.50,-26.10,153.22);
+node[highway~"^(traffic_signals|stop|give_way|crossing|street_lamp)$"](-26.98,152.50,-26.10,153.22);
+node[place~"^(suburb|town|city|village|hamlet|locality|neighbourhood)$"](-26.98,152.50,-26.10,153.22);
 );out tags geom;

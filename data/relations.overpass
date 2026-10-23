@@ -1,0 +1,1 @@
+[out:json][timeout:180];(relation[building](-26.98,152.50,-26.10,153.22);way["building:part"](-26.98,152.50,-26.10,153.22);relation[natural=water](-26.98,152.50,-26.10,153.22););out geom;

@@ -1,18 +1,19 @@
 {
   "bounds": [
-    -26.97,
-    152.72,
-    -26.28,
-    153.2
+    -26.98,
+    152.5,
+    -26.1,
+    153.22
   ],
-  "osmTimestamp": "2026-10-22T05:12:48Z",
+  "osmTimestamp": "2026-10-22T23:10:04Z",
   "downloaded": "2026-10-22",
-  "ways": 85086,
-  "nodes": 9328,
-  "terrainTiles": 63,
+  "ways": 98042,
+  "nodes": 10227,
+  "terrainTiles": 108,
   "counts": {
-    "highwayWays": 50508,
-    "buildings": 25292
+    "highwayWays": 58577,
+    "buildings": 28596,
+    "namedPlaces": 251
   },
   "roadSource": "https://overpass-api.de/api/interpreter",
   "terrainSource": "https://elevation-tiles-prod.s3.amazonaws.com/terrarium/12/{x}/{y}.png",
@@ -212,5 +213,14 @@
       "original": -256.0,
       "replacement": 1.125
     }
-  ]
+  ],
+  "surfaceModel": {
+    "shorelineWays": 110,
+    "waterBodies": 2408,
+    "clippedTriangles": 307691,
+    "waterRelations": 47,
+    "buildingRelations": 108,
+    "demEdges": "shared border samples blended from neighbouring source pixels; original raw measurements retained",
+    "precision": "original OSM coordinates; extra clipped vertices rounded to 1 cm; original measured heights unchanged"
+  }
 }

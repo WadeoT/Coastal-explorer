@@ -1,23 +1,38 @@
 # Included Sunshine Coast map
 
-The map snapshot in `sunshine-coast.json.gz` is distributed inside the game, so the default map makes no network requests. This is actual downloaded geographic data, not test fixtures or generated street layouts.
+The gzip database is also embedded in `index.html`; the default game never downloads a map at runtime.
 
-- Bounds: −26.97° to −26.28° latitude; 152.72° to 153.20° longitude.
-- OpenStreetMap snapshot: **22 October 2026, 05:12:48 UTC**. The exact export query is in `whole-coast.overpass`.
-- 85,086 ways and 9,328 nodes: 94,414 geographic features. There are 25,292 mapped building footprints and 50,508 highway ways, including pedestrian paths. After filtering short ways and separating walking routes, the game has 31,706 drivable road ways.
-- Terrain: 63 downloaded Mapzen/Terrarium z12 tiles, 256 × 256 samples each. Required Australian attribution: **© Commonwealth of Australia (Geoscience Australia) 2017**. See [Mapzen/Terrarium attribution](https://github.com/tilezen/joerd/blob/master/docs/attribution.md) and [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Global source credits include Mapzen / USGS.
+- Expanded bounds: −26.98° to −26.10° latitude; 152.50° to 153.22° longitude.
+- Base OSM export timestamp: `2026-10-22T23:10:04Z` (23 October 2026 in Brisbane). The separate building/water relation and vehicle-track queries were retrieved during the same update.
+- 98,042 ways and 10,227 nodes; 38,541 drivable road/track ways after filtering, plus walking/cycling paths.
+- 28,596 normalised real building outlines, including 108 building relations and 29 outlines with courtyards. Overlapping building parts inside complete outlines are not duplicated.
+- 251 named OSM place points. The UI exposes 250 unique towns/suburbs/localities; the aggregate “Sunshine Coast” city label is represented by the region itself.
+- 108 Terrarium z12 DEM tiles, each with 256 × 256 measured heights. The runtime displays a shared 128 × 128 triangle grid per tile, with adjacent border samples blended from the neighbouring source pixels.
+- Coast clipping uses 110 real coastline ways and 47 water relations. There are 2,408 connected water bodies, preserving mapped islands. The renderer contains additional clipped shoreline triangles and vertical edge skirts. Inland water levels and bridge deck heights without surveyed tags are estimates.
 
-OSM data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), distributed under the [Open Database Licence 1.0](LICENSE-ODbL-1.0.txt). The OSM portion of this derived database is available under that licence. That database licence does not change the separate licences of the terrain or game runtime. Attribution remains visible in the game. The compressed database is provided here in full for inspection and reuse.
+Source queries are `whole-coast.overpass`, `relations.overpass` and `tracks.overpass`. Numeric provenance is in `provenance.json`. Database attribution: **© OpenStreetMap contributors**, ODbL 1.0; Australian measured elevation **© Commonwealth of Australia (Geoscience Australia) 2017**, CC BY 4.0; Mapzen/Terrarium and USGS sources. See [OSM copyright](https://www.openstreetmap.org/copyright) and [terrain attribution](https://github.com/tilezen/joerd/blob/master/docs/attribution.md).
 
-The gzip JSON contains `meta`, `ways`, `points` and `terrain`. Way rows are `[OSM id, tags, flat coordinates]`; coordinates alternate latitude/longitude as integer millionths of a degree. Node rows are `[OSM id, tags, latitude, longitude]`. Terrain rows contain `[tile x, tile y, width, base64 heights]`; heights are little-endian signed 16-bit integers in quarter-metres. Terrain heights are interpolated on the same triangle grid used to render the surface, keeping roads and wheels on the visible ground.
+**Coverage limits:** this is every available footprint in the included OSM export, not every real-world building. Other satellite-footprint data hosts were blocked during this update. No random houses, roads or locality positions are generated. Heights, colours, windows and road furniture dimensions are visual estimates where untagged.
 
-Coordinates retain source geometry with rounding to approximately 0.1 metre. Terrain measurements are quantised to 0.25 metre. Sixteen extreme source pixels outside −100 to 1,200 metres were replaced with local median measurements. Every correction, original value and replacement is recorded in `provenance.json`. Roofs, missing heights, facade openings, road paint, furniture dimensions and some bridge geometry remain simplified estimates. No randomly placed streets or buildings are added.
+## Database format
 
-To inspect the snapshot using Python's standard library:
+- `ways`: `[OSM id, tags, flat coordinates]`; coordinates alternate latitude/longitude as integer millionths of a degree (approximately 0.1 m).
+- `points`: `[OSM id, tags, latitude, longitude]` with the same coordinate units.
+- `terrain`: `[tile x, tile y, width, base64 heights]`; original heights are little-endian signed 16-bit integers in quarter-metres. Source outlier repairs are listed in `provenance.json`.
+- `buildings`: `[stable source id, tags, rings]`; the first ring is the exterior and subsequent rings are courtyards. Coordinates use the same integer microdegrees.
+- `surfaces.tiles`: triangle classification bytes (water, land, clipped), extra terrain/shoreline vertices in little-endian int32 centimetres, and actual forest/beach class bytes. Original raster measurements remain in `terrain`.
+- `surfaces.waterCells`: 512 m contact-query cells, with level water surfaces and polygon holes.
+- `surfaces.waterMesh` / `mapWater`: real water rings for 3D elevated lakes and 2D maps. Render coordinates are local metres/centimetres around −26.68°, 153.05°.
 
-```python
-import gzip, json
-with gzip.open("data/sunshine-coast.json.gz", "rt") as source:
-    snapshot = json.load(source)
-print(snapshot["meta"])
+All derived OSM geometry remains available in this database under the [ODbL](LICENSE-ODbL-1.0.txt). The terrain and runtime retain their separate licences.
+
+## Rebuild geographic preparation
+
+The ordinary HTML build uses only Python's standard library (`python3 scripts/build.py`). Updating the map preparation additionally needs NumPy, Pillow and Shapely >= 2.1. Export the public queries, gzip the full `whole-coast` JSON response, then run from the repository:
+
+```sh
+python3 scripts/prepare_geography.py --osm whole-coast.osm.json.gz --supplement relations.json --extra tracks.json
+python3 scripts/build.py
 ```
+
+The preparer reuses the included measured DEM samples and fetches any newly required tiles. It computes the coastline/water masks and normalises real building outlines once, so the browser has no GIS library or live-data dependency.

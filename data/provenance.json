@@ -217,10 +217,11 @@
   "surfaceModel": {
     "shorelineWays": 110,
     "waterBodies": 2408,
-    "clippedTriangles": 307691,
+    "clippedTriangles": 400295,
     "waterRelations": 47,
     "buildingRelations": 108,
     "demEdges": "shared border samples blended from neighbouring source pixels; original raw measurements retained",
-    "precision": "original OSM coordinates; extra clipped vertices rounded to 1 cm; original measured heights unchanged"
+    "precision": "Original map features and water masks retained; original 256x256 measured DEM resampled on shared 256-step grid",
+    "renderGrid": 256
   }
 }

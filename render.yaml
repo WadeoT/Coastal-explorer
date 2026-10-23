@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: coastal-explorer-multiplayer
+    runtime: node
+    plan: free
+    buildCommand: node --check server/relay.cjs
+    startCommand: node server/relay.cjs
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0

@@ -36,3 +36,7 @@ python3 scripts/build.py
 ```
 
 The preparer reuses the included measured DEM samples and fetches any newly required tiles. It computes the coastline/water masks and normalises real building outlines once, so the browser has no GIS library or live-data dependency.
+
+## V6 native elevation refinement
+
+The 256-step terrain surface uses the original 256×256 measured DEM samples, including shared border interpolation. `scripts/refine_elevation.py --source-pack <original-pack>` refines terrain clipping from the existing verified water masks and retains all original `ways`, `points`, `buildings` and raw `terrain` rows byte-for-byte at the JSON-value level. No newly guessed building is inserted into this geographic database. Additional in-game houses are explicitly estimated frontage infill on mapped residential landuse and can be disabled.

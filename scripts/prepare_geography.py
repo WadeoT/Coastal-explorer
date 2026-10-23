@@ -12,7 +12,7 @@ from shapely.ops import unary_union, polygonize, linemerge
 ROOT=Path(__file__).resolve().parents[1]
 SOUTH,WEST,NORTH,EAST=-26.98,152.50,-26.10,153.22
 LAT0,LON0=-26.68,153.05
-MLAT=111320; MLON=MLAT*math.cos(math.radians(LAT0)); N=128
+MLAT=111320; MLON=MLAT*math.cos(math.radians(LAT0)); N=256
 
 def local(lon,lat):return ((lon-LON0)*MLON,(LAT0-lat)*MLAT)
 def tile_at(lat,lon):return ((lon+180)/360*4096,(1-math.asinh(math.tan(math.radians(lat)))/math.pi)/2*4096)
@@ -221,8 +221,8 @@ for e in elements.values():
  if e['type']=='way' and len(e.get('geometry',[]))>1:ways.append([e['id'],tags,[v for p in e['geometry'] for v in (round(p['lat']*1e6),round(p['lon']*1e6))]])
  elif e['type']=='node' and 'lat' in e:nodes.append([e['id'],tags,round(e['lat']*1e6),round(e['lon']*1e6)])
 places=[r for r in nodes if r[1].get('place') and r[1].get('name')]
-meta=dict(old['meta'],bounds=[SOUTH,WEST,NORTH,EAST],osmTimestamp=source['osm3s']['timestamp_osm_base'],downloaded='2026-10-22',ways=len(ways),nodes=len(nodes),terrainTiles=len(terrain),counts={'highwayWays':sum('highway'in w[1] for w in ways),'buildings':len(buildings),'namedPlaces':len(places)},terrainOutlierRepairs=repairs,surfaceModel={'shorelineWays':len(coast),'waterBodies':len(water_parts),'clippedTriangles':total_clipped,'waterRelations':len(water_relations),'buildingRelations':len(building_relations),'demEdges':'shared border samples blended from neighbouring source pixels; original raw measurements retained','precision':'original OSM coordinates; extra clipped vertices rounded to 1 cm; original measured heights unchanged'})
-payload={'meta':meta,'ways':ways,'points':nodes,'terrain':terrain,'buildings':buildings,'surfaces':{'tiles':surfaces,'waterCells':cells,'waterMesh':water_mesh,'mapWater':[[[v for x,z in ring.coords for v in (round(x*100),round(z*100))] for ring in [g.exterior,*g.interiors]] for g in water_parts]}}
+meta=dict(old['meta'],bounds=[SOUTH,WEST,NORTH,EAST],osmTimestamp=source['osm3s']['timestamp_osm_base'],downloaded='2026-10-22',ways=len(ways),nodes=len(nodes),terrainTiles=len(terrain),counts={'highwayWays':sum('highway'in w[1] for w in ways),'buildings':len(buildings),'namedPlaces':len(places)},terrainOutlierRepairs=repairs,surfaceModel={'shorelineWays':len(coast),'waterBodies':len(water_parts),'clippedTriangles':total_clipped,'waterRelations':len(water_relations),'buildingRelations':len(building_relations),'renderGrid':N,'demEdges':'shared border samples blended from neighbouring source pixels; original raw measurements retained','precision':'original OSM coordinates; extra clipped vertices rounded to 1 cm; original measured heights unchanged'})
+payload={'meta':meta,'ways':ways,'points':nodes,'terrain':terrain,'buildings':buildings,'surfaces':{'gridResolution':N,'tiles':surfaces,'waterCells':cells,'waterMesh':water_mesh,'mapWater':[[[v for x,z in ring.coords for v in (round(x*100),round(z*100))] for ring in [g.exterior,*g.interiors]] for g in water_parts]}}
 raw=json.dumps(payload,separators=(',',':'),ensure_ascii=False).encode();packed=gzip.compress(raw,compresslevel=9,mtime=0)
 (ROOT/'data/sunshine-coast.json.gz').write_bytes(packed);(ROOT/'data/provenance.json').write_text(json.dumps(meta,indent=2)+'\n')
 print('Pack written:',len(packed),'bytes;',len(buildings),'real buildings;',len(places),'named places;',len(terrain),'DEM tiles',flush=True)

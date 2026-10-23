@@ -1,109 +1,67 @@
-# Coastal Explorer — Sunshine Coast, offline edition
+# Coastal Explorer — Coast & Crew (V6)
 
-**Version 5 adds a saved vehicle garage, money, upgrades, ten additional vehicles and a switchable third-person camera.** The included map has **250 searchable towns, suburbs and localities**, **28,596 mapped building outlines**, 38,541 drivable roads/tracks and 108 measured elevation tiles. It covers Caloundra–Noosa, smaller coastal suburbs and the wider hinterland, including Conondale, Kenilworth, Kin Kin and Cootharaba.
+[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=6) · [Complete feature notes and limitations](docs/V6-RELEASE.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
 
-The sea is clipped against actual OSM coastlines. Lake and estuary islands retain their holes, shore edges are sealed, and adjoining DEM tiles share border heights. Roads, sidewalks and paint are split on the same terrain triangles so hills cannot poke through the surface. Mapped bridges get a continuous raised deck; unsealed roads and vehicle tracks use dirt colouring. Clipped shore vertices inherit the surrounding terrain colours, and roofs and lakes face upward for daylight lighting. Forest and beach colours belong to the terrain, eliminating floating cover polygons that previously crossed roads and buildings.
+A single-file Sunshine Coast driving/flying/boating sandbox with 16 original, simplified vehicle models, first-person and third-person views, a 3D showroom, saved purchases/modifications, deliveries and checkpoint races, a five-star police response, crash collisions, day/night, weather, lights and multiplayer support. The game is not a recreation using GTA V assets.
 
-Every available building footprint in the visible area is rendered, including relation outlines and courtyards. The loaded building area extends beyond the camera's visible distance and refreshes as you move. There is no nearby building-count cap. **OSM building coverage is incomplete: these 28,596 outlines are the available mapped structures, not a claim that every real-world house is present.** Additional satellite-footprint providers could not be reached from the development environment. Missing buildings are not replaced with randomly positioned houses.
+## Play and controls
 
-The default Balanced preset caps rendering at 1280 × 800 and disables shadows. Ground checks and road searches stay local, scenery builds yield to gameplay, and at most nine nearby elevation meshes are kept on the GPU. All map data is included; the default game makes **zero external requests**. No Google key is required.
+Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. The complete approximately 31 MB HTML includes the runtime, fonts, model geometry and real map. No key is needed. The showroom says **V6 · COAST + CREW**.
 
-## Play
+Offline: extract `downloads/Coastal-Explorer-Offline-v6.zip` and open `index.html` in Chrome or Edge. If local HTML is blocked, the Mac/Windows launchers or `python3 serve.py` provide a localhost server. Detailed instructions are in [PLAY.txt](PLAY.txt).
 
-1. Extract the ZIP into a new folder.
-2. Open **index.html** in Chrome (recommended on Mac) or Edge.
-3. Wait for **OFFLINE MAP READY**, then choose a vehicle.
+WASD/arrows drive; C switches camera, G opens the showroom, M opens the map, H settings, R recovery and Escape pauses. The LandCruiser is manual: hold Shift for clutch and Q/E to change gear. L headlights, [ / ] indicators, V hazards, F counterattack. Extra controls are shown in the game for helicopter, fighter and boat. Use Activities for deliveries and races; movement alone no longer awards money. A fresh career has $65,000 and the original four vehicles owned. Cash, purchases, upgrades and resprays persist in browser storage. Private browsing may not retain progress.
 
-The new garage says **V5 · 14 VEHICLES + GARAGE** and shows **30 / 30 regional road sections** once opened. If you see a message about downloading real roads, you opened the older version.
+The top-bar Admin console provides solo/host commands, including `help`, `give jet`, `cash 250000`, `repair`, `wanted 0`, `time 21`, `weather rain`, `tp -26.6145 153.0993`, `noclip off`, `players` and `kick <peer-id>`. Host commands do not grant guests control of other players or server environment settings.
 
-If your browser or administrator prohibits local HTML pages, use **Start Windows.bat** or **Start Mac.command** with Python 3 installed. Linux: `python3 serve.py`. The launcher opens a local browser tab and binds only to `127.0.0.1`; keep its window open while playing. The packaged map still works without internet.
+## Geography and visual accuracy
 
-The entire playable game is `index.html`. Engine, fonts, model geometry, audio and real map data are embedded. Its approximately 29.8 MB size includes the coast-wide map. Initial startup unpacks it and builds the nearby scenery. Help → **DOWNLOAD GAME FILE** saves the complete HTML from a running game.
+The region spans −26.98° to −26.10° latitude and 152.50° to 153.22° longitude, Caloundra–Noosa and the hinterland. The snapshot retains **250 searchable named places**, **28,596 real mapped building outlines**, **38,541 drivable roads/tracks**, **98,042 ways**, **10,227 nodes** and **108 measured elevation tiles**. Every original raw feature and elevation sample is retained. The terrain now uses a 256-step grid, roughly 30–40 m spacing in this region, with exact shared tile borders and road contact on matching triangles.
 
-| Action | Driving / e-bike | AS350 helicopter |
-| --- | --- | --- |
-| Accelerate / brake / reverse | W / S or up / down | — |
-| Steer | A / D or left / right | — |
-| Handbrake | Space | — |
-| Ascend / descend | — | W / S |
-| Yaw | — | A / D |
-| Tilt forward / back / sideways | — | Arrow keys |
-| Recover to a road | R | R |
-| Map / garage | M / G | M / G |
-| Pause / help | Escape / H | Escape / H |
+The sea no longer has an unlimited plane beneath the land. Actual sea/lake/estuary water-cell polygons define both appearance and water contact, retaining islands and courtyards. Measured terrain, road strips, bridges and paint share contact rules. Nearby geography streams as you move. Balanced graphics caps the internal resolution and disables expensive shadows; changing quality retains the same map coverage.
 
-Touch controls appear on touch devices. Enable audio using the sound button. Balanced is the default graphics setting. For a slower computer, choose Help → Visual quality → **Fast / low resolution**. **High / shadows** restores full viewport resolution and dynamic shadows. The map database is identical in every preset. Losing browser focus pauses the simulation. Recovery preserves health and pursuit; selecting a new vehicle starts a fresh run.
+**OSM does not map every real house.** Known outlines are preserved. To avoid empty residential streets, estimated frontage-aligned houses fill gaps **inside actual mapped residential landuse**, avoiding water, roads, woodland and known footprints. These houses are explicitly estimated and can be disabled in settings. Heights, pitched roofs, windows, doors, garden vegetation, road markings, street furniture and some bridge profiles remain estimates. This is not satellite imagery or a survey of every building.
 
-## Host on GitHub Pages
+Map tools provide click-to-travel, drag panning, zoom, suburb/street search and known mapped addresses. Online full-address search is optional; missing house numbers are not invented. Current street/suburb/coordinates are approximate. Road vehicles cannot teleport into water; boats need water; a point inside a known building gets a safe nearby offset.
 
-The single HTML also works as a normal static website. After these changes are on the repository branch:
+Attribution: © OpenStreetMap contributors (ODbL 1.0); terrain © Commonwealth of Australia (Geoscience Australia) 2017 (CC BY 4.0), Mapzen/Terrarium and USGS. See [data documentation](data/README.md), [provenance](data/provenance.json) and [licence](data/LICENSE-ODbL-1.0.txt).
 
-1. Open [this repository's Pages settings](https://github.com/WadeoT/Coastal-explorer/settings/pages).
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Choose **codex/sunshine-coast-game** and **/ (root)**, then **Save**. If you merge the game into `main`, select `main` instead.
-4. Wait for the Pages deployment to finish. The site address will be **https://wadeot.github.io/Coastal-explorer/**.
+## Multiplayer and hosting
 
-Visitors open the website, wait for the included map to unpack, and choose a vehicle. No server, API key, Python installation or download is needed to play the hosted game. The first visit downloads the approximately 29.8 MB HTML, including the whole map. The `.nojekyll` file keeps Pages deployment static.
+GitHub Pages hosts the game at the link above. Repository Settings → Pages should use branch `codex/sunshine-coast-game`, `/ (root)`. The default branch is already configured; `.nojekyll` keeps deployment static.
 
-## Region and map data
+**GitHub Pages cannot run the multiplayer relay.** [server/relay.cjs](server/relay.cjs) is a dependency-free Node HTTP/WebSocket server, and [render.yaml](render.yaml) is a deployable Render blueprint. [Deploy to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer), then copy the allocated HTTPS URL into Multiplayer → Relay server URL. Host a room and share the generated invite. The relay also serves the game itself and automatically fills its URL on `*.onrender.com`. A Render account is required; no deployment to a user's account is claimed without access.
 
-The region spans −26.98° to −26.10° latitude and 152.50° to 153.22° longitude. Mooloolaba is the initial destination. Press **M**, then use **Find any mapped suburb or locality** to search all 250 places. The original twelve centres remain labelled on the regional map; smaller places also have markers and searchable travel buttons. Examples include Wurtulla, Sippy Downs, Marcoola, Diddillibah, Doonan, Verrierdale, Eudlo, Palmwoods and Mooloolah Valley.
+Local run: `node server/relay.cjs`, then `http://localhost:8080` with the relay field set to `http://localhost:8080`. `PORT` and optional comma-separated `ALLOWED_ORIGINS` are supported. Rooms support eight players, position updates, interpolation, collisions, host-controlled time/weather and cleanup when players leave. The relay verifies host authority for environment and kick packets. It is a cooperative free-roam relay, not a server-authoritative competitive economy or shared police simulation.
 
-Travel starts on the closest mapped vehicle road. A rural locality's centre can be in bushland or water, so its road approach may be a few kilometres from that label; the game reports longer approaches. Travel is disabled during a pursuit.
+Optional public PeerJS rooms and manual WebRTC invite/reply exchange are provided for compatible networks. Some managed browsers produce no usable ICE candidates; some NATs require TURN. The relay avoids those restrictions. Public signalling could not be verified from the cloud. The two-browser test uses actual WebSocket connections and remote vehicle collisions against the supplied relay.
 
-The snapshot contains 98,042 ways and 10,227 nodes, plus derived building relation outlines, water polygons and terrain clipping. All source coordinates are retained, with numerical rounding described in [data](data/README.md). All 28,596 normalised building footprints remain in the database across the region; only scenery outside the visible/streaming radius is unloaded. Optional higher graphics settings change resolution and shadows, retaining the same local geographic coverage.
+**Engine recordings:** a licensed authentic LandCruiser recording was not supplied or found. Default engine sound is synthesised and labelled accordingly. Settings accepts an audio recording the user owns and loops it with RPM-linked playback for the selected vehicle in the current tab. No generic clip is labelled as a LandCruiser recording.
 
-Street detail includes mapped asphalt and unsealed tracks, paint, tagged sidewalks, trees, signals, lamps and facade estimates. Terrain contact samples shared DEM triangles and nearby raised road/footpath meshes. Water prevents cars from driving across open ocean; mapped bridge decks remain driveable.
+Google photorealistic terrain remains optional and online, requiring the user's Maps browser key with Map Tiles API/billing. The key stays in page memory and is sent to Google; it is not persisted. This optional mode is not validated with a real key.
 
-This is a simplified 3D rendering of real geography. Building roofs, missing heights, windows, lane patterns, furniture dimensions and some bridges are estimates. It does not reproduce satellite imagery, every structure, or surveyed road engineering.
+## Build and verification
 
-Data attribution: **© OpenStreetMap contributors** (ODbL 1.0); Australian terrain **© Commonwealth of Australia (Geoscience Australia) 2017** (CC BY 4.0); Mapzen/Terrarium and global USGS terrain sources. Attribution stays visible while playing. See [OpenStreetMap copyright](https://www.openstreetmap.org/copyright) and [terrain attribution](https://github.com/tilezen/joerd/blob/master/docs/attribution.md).
-
-## Garage, money and cameras
-
-Press **C** or the camera button to switch between the right-hand cockpit and a following third-person view. Both modes work on road vehicles, the bicycle, helicopter and boat. Cabin graphics include live instruments, door controls, seats, vents and steering; exterior geometry is batched to keep draw calls low.
-
-Start with **$65,000** and the original four vehicles owned. Earn **$100 per 100 m** of horizontal travel. Recovery, town travel and idling do not pay. Press **G** and use the dropdown to inspect, purchase or customise a vehicle. Engine, brake, tyre and suspension upgrades have three levels, with compatibility shown per vehicle. A respray costs $750. Cash, ownership, upgrades and paint save automatically to browser local storage. Hosted and downloaded copies have separate browser saves.
-
-Ten additions: Toyota HiLux SR5, Ford Ranger Wildtrak, Nissan Patrol Y62, Suzuki Jimny, Holden Commodore SS, Ford Falcon XR6 Turbo, Ford Mustang GT, Nissan GT-R R35, Subaru WRX STI and a Quintrex 590 runabout. The boat launches at nearby mapped water, floats at its mapped level and stops at shorelines. W/S throttle, brake and reverse; A/D steers; Space slows for docking; R recovers to open water. These are simplified, original low-poly models and gameplay approximations.
-
-## Vehicles
-
-The LandCruiser menu illustration has been replaced with a rendered, metre-scale **79 Series single-cab model**: long bonnet, alloy tray and headboard, snorkel, bullbar, rectangular lights, steel rims, tyre tread, ladder chassis and leaf springs. The driving view uses the same model with a right-hand dashboard, analog instruments, steering wheel, manual gear stick and transfer lever. Its driver eye height is 1.72 m above the road. It is a simplified model, not a scanned manufacturer asset.
-
-All fourteen profiles have distinct dimensions, performance and handling. Steering responds quickly, suspension is firmer, wheel force is limited by power and traction, and drag slows the car. The i20 handbrake produces lateral slip, tyre marks and filtered tyre noise. Vehicle parameters are gameplay approximations. Traffic uses mapped roads and speed limits, starts with clearance from the player and brakes for vehicles ahead. Police pursuit, collisions and damage remain active.
-
-## Optional Google 3D Tiles
-
-Google photorealistic terrain is an optional **online** mode in Help. It requires a Maps browser key with Map Tiles API and billing enabled. The supplied key stays in page memory and is sent to Google. It is not saved to browser storage. The first script also retains:
-
-```js
-const GOOGLE_API_KEY = "PASTE_YOUR_KEY_HERE";
-```
-
-This mode uses `tile.googleapis.com`, `maps.gstatic.com` and a pinned Draco decoder from `cdn.jsdelivr.net`. It has not been validated with a real user key. Returning to the included map works without those services. Town travel selects the included map.
-
-## Build and verify
-
-No build or package installation is needed to play. Readable sources are in `src`; geographic rendering is in `src/geography.js`, and the shared vehicle model is `src/vehicle-models.js`; fleet, career and camera code is in `src/fleet.js`. The runtime, fonts and licences are vendored. Rebuild with Python's standard library:
+Rebuild the standalone HTML and offline ZIP with Python's standard library:
 
 ```bash
 python3 scripts/build.py
+python3 scripts/package.py
 ```
 
-Optional browser checks:
+Runtime, fonts, PeerJS and licences are vendored. Readable source modules are in `src`. If changing runtime exports, install the pinned dev dependencies and run `npm run build:runtime` before rebuilding HTML. Native elevation refinement uses `scripts/refine_elevation.py --source-pack <original-pack>` with numpy, Pillow and shapely ≥ 2.1; it explicitly retains all original roads, places, building outlines and raw elevation measurements.
+
+Browser tests are optional development dependencies:
 
 ```bash
 npm ci
 npx playwright install chromium
-npm test
+npm run test:geography
+npm run test:fleet
 ```
 
-Set `CHROMIUM_EXECUTABLE_PATH` to use an existing Chromium; `/usr/bin/chromium` is detected automatically. Tests start their own local HTTP server, block **every external request** and use the **actual shipped map**, without geographic fixtures. They verify startup, known real roads, the 79 Series preview and cockpit, the occupied-traffic crash regression, five simulated minutes of driving/traffic, police pursuit, exhaustive road-search comparisons, ocean/terrain separation, terrain-plane road alignment, every shared DEM edge, travel access for all 250 places, nearby building inclusion and roof-ray checks in twelve centres, sixteen smaller suburbs/localities, bounded terrain meshes, asynchronous scenery cancellation, recovery, all vehicles, helicopter flight, mobile layout, large-display resolution limits and the complete browser download. Screenshots go to the system temporary directory.
+`CHROMIUM_EXECUTABLE_PATH` selects an existing Chromium; `/usr/bin/chromium` is detected automatically. Tests use localhost, block external requests and load the actual shipped Sunshine Coast snapshot. Geographic checks cover known roads, every locality's access, matched native DEM edges, shore/land separation, bridge decks, actual roof rays and nearby building inclusion across major centres and smaller localities, traffic/crash regressions, a five-minute simulation soak, actual keyboard rendering, responsive UI and offline download. V6 checks exercise the shop, manual gear/clutch, no movement payments, five-star identities/range, day/night/weather/lights, new vehicles, map street lookup, mission rewards, building crashes, two real relay clients, remote collision, host authority and cleanup.
 
-The managed cloud browser prohibits `file://` navigation, so its verification uses localhost HTTP with external traffic blocked. Direct-file navigation cannot be tested in that managed browser.
+The cloud browser blocks direct `file://` navigation and usable WebRTC candidates. Verification therefore uses localhost HTTP and the relay rather than claiming those blocked paths were tested.
 
-
-Bundled runtime: Babylon.js 9.31.3, 3DTilesRendererJS 0.5.3, earcut 3.0.2, fflate, DM Sans and Space Grotesk. Dependency licences are embedded in the HTML and retained in `vendor/LICENSES.txt`.
-
-Fleet and career checks: `npm run test:fleet`. These exercise all 14 vehicles in both views, purchase boundaries, upgrade caps, saved progress after a real reload, actual mapped water navigation, shore blocking and responsive shop access.
+Bundled dependencies: Babylon.js 9.31.3, 3DTilesRendererJS 0.5.3, earcut 3.0.2, fflate, PeerJS 1.5.5, DM Sans and Space Grotesk. Licences remain embedded in HTML and in `vendor`.

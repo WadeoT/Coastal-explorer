@@ -1,55 +1,62 @@
-COASTAL EXPLORER — VERSION 5 / VEHICLE GARAGE + MONEY + CHASE CAMERA
+COASTAL EXPLORER — VERSION 6 / COAST & CREW
 
-1. Extract the ZIP into a NEW folder.
-2. Open index.html in Chrome (recommended on Mac) or Edge.
-3. Wait for OFFLINE MAP READY, then choose a vehicle.
+PLAY ONLINE
+https://wadeot.github.io/Coastal-explorer/index.html?v=6
+You should see V6 / COAST + CREW in the showroom.
 
-The new menu says V5 / 14 VEHICLES + GARAGE and shows 30 / 30 road sections.
-The real map is already inside this file. No internet or Google key is
-needed. If it says it is downloading roads, you opened the old version.
+OFFLINE
+Extract this ZIP into a new folder. Open index.html in Chrome or Edge.
+Wait for the included real map to unpack, then select a vehicle and use
+DRIVE / LAUNCH. If local HTML is blocked, use the included Mac/Windows
+launchers with Python 3, or run python3 serve.py.
 
-If local HTML is blocked by your browser, use Start Windows.bat or
-Start Mac.command. Those launchers need Python 3 from python.org.
-Linux: run python3 serve.py. Keep the launcher window open while playing.
-
+CONTROLS
 WASD / arrows: drive. S: brake / reverse. Space: handbrake.
-Helicopter: W/S ascend/descend, A/D yaw, arrows tilt and move.
-M: map and search 250 towns, suburbs and localities. G: garage and shop. C: cockpit / third person. R: recover.
-Escape: pause. H: settings. Speaker button: enable sound.
+C: cockpit / third person. G: showroom, purchases and upgrades. M: map.
+R: recover. H: settings. Esc: pause. L: headlights. [ / ]: indicators.
+V: hazards. F: arcade counterattack. Speaker button: sound.
+LandCruiser: hold Shift for clutch; Q downshift / E upshift. Starts in 1st.
+Helicopter: W/S ascend/descend; A/D yaw; arrows cyclic.
+Fighter: W/S throttle; arrows pitch/roll; A/D yaw; Shift boost; Space cannon.
+Boat: W/S throttle/brake/reverse; A/D steering; Space slows for docking.
 
-The region covers Caloundra to Noosa and the Sunshine Coast hinterland.
-Real OSM streets, building footprints and measured hills are included.
-Buildings, missing heights and surface details use simplified estimates.
-The optional Google photorealistic mode needs internet and your own key.
+MONEY AND SHOP
+The original four vehicles are owned. Fresh careers start at $65,000.
+Movement DOES NOT PAY. Start delivery jobs or checkpoint races from
+ACTIVITIES. Reach the ordered targets to earn the displayed reward.
+Teleporting or changing vehicles cancels the job. Cash, ownership and
+mods save automatically in this browser. Hosted and downloaded copies
+have separate saves. Click a showroom card or dropdown, then BUY or
+DRIVE / LAUNCH. Paint costs $750; compatible upgrades have three levels.
 
-The LandCruiser uses a 3D 79 Series single-cab model with alloy tray,
-snorkel, bullbar and a revised right-hand-drive cockpit.
+MAP
+Click to place a pin; TRAVEL TO PIN teleports there. Drag to pan; scroll
+or + / - zooms. Search suburbs, streets or known mapped addresses.
+Full address lookup is optional and online. Approximate location is
+shown below the map; exact house numbers are not invented.
 
-V4 fixes overlapping ocean/land surfaces, floating cover polygons, road
-clipping on hills and mismatched elevation-tile borders. All 28,596
-available mapped building footprints remain included across the region.
-OSM does not contain every real building; missing houses are not invented.
-Balanced graphics starts automatically, with shadows off and a capped
-render resolution. For extra speed: H -> Visual quality -> Fast / low
-resolution. All graphics settings retain the full real coast map.
+MULTIPLAYER
+GitHub Pages hosts the game; a relay server is needed for reliable
+internet room play. The ZIP includes server/relay.cjs and render.yaml.
+See docs/V6-RELEASE.md for the Render deployment link and setup.
+After deployment, enter its HTTPS URL in Multiplayer, host a room and
+share the generated link. Guests join using that link. The relay-hosted
+site fills the server URL automatically. Eight players per room.
+Local server: node server/relay.cjs -> http://localhost:8080 .
+Optional PeerJS/direct WebRTC can work without a relay on compatible
+networks. If the browser cannot gather candidates, use the relay.
 
-To host it on GitHub: repository Settings -> Pages -> Deploy from a branch.
-Choose codex/sunshine-coast-game, / (root), Save, and wait for deployment.
-The site will be https://wadeot.github.io/Coastal-explorer/
+ADMIN
+Use the ADMIN button; type help. Solo players and room hosts have admin.
+Examples: give jet | cash 250000 | repair | wanted 0 | weather rain
+          time 21 | tp -26.6145 153.0993 | noclip off | players
 
-V5 GARAGE / CAREER
-Start with $65,000 and the original four vehicles already owned. Earn $100
-for every 100 metres actually travelled (teleporting does not pay). Cash,
-owned vehicles, upgrades and resprays save automatically in this browser.
-Use the garage dropdown to inspect any vehicle, buy it, or modify one you
-own. Upgrades have three levels. Resprays cost $750.
-
-New: HiLux SR5, Ranger Wildtrak, Patrol Y62, Jimny, Commodore SS, Falcon
-XR6 Turbo, Mustang GT, GT-R R35, WRX STI and Quintrex 590 runabout.
-The boat launches on nearby real mapped water. W accelerates; S brakes
-and reverses; A/D steers. Space slows for docking. R finds open water.
-C or the camera button changes between cockpit and third-person views.
-
-Saved progress belongs to this browser and origin. The downloaded game
-and hosted website have separate saves; private browsing may not retain
-progress after closing.
+MAP AND SOUND ACCURACY
+All 250 mapped places, 28,596 known building outlines and the original
+measured elevations remain. Terrain uses the full 256-step grid.
+Additional houses in unmapped residential blocks are estimated, not
+surveyed footprints. They can be disabled in settings. Geographic
+coverage is incomplete; not every real-world house is mapped.
+A genuine licensed LandCruiser engine recording is NOT bundled. Sound
+is synthesised by default. Settings accepts an engine audio recording
+you own, for RPM-linked playback on the selected vehicle in this tab.

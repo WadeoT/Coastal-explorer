@@ -1,7 +1,7 @@
 COASTAL EXPLORER — VERSION 6 / COAST & CREW
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=6
+https://wadeot.github.io/Coastal-explorer/index.html?v=6-v8
 You should see V6 / COAST + CREW in the showroom.
 
 OFFLINE
@@ -58,5 +58,7 @@ Additional houses in unmapped residential blocks are estimated, not
 surveyed footprints. They can be disabled in settings. Geographic
 coverage is incomplete; not every real-world house is mapped.
 A genuine licensed LandCruiser engine recording is NOT bundled. Sound
-is synthesised by default. Settings accepts an engine audio recording
+is synthesised by default: the 4.5 L turbo-diesel V8 has eight firing
+pulses per cycle and gradual turbo spool. This is NOT a real recording.
+Settings accepts an engine audio recording
 you own, for RPM-linked playback on the selected vehicle in this tab.

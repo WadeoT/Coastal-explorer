@@ -1,6 +1,6 @@
 # Coastal Explorer — Coast & Crew (V6)
 
-[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=6) · [Complete feature notes and limitations](docs/V6-RELEASE.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
+[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=6-v8) · [Complete feature notes and limitations](docs/V6-RELEASE.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
 
 A single-file Sunshine Coast driving/flying/boating sandbox with 16 original, simplified vehicle models, first-person and third-person views, a 3D showroom, saved purchases/modifications, deliveries and checkpoint races, a five-star police response, crash collisions, day/night, weather, lights and multiplayer support. The game is not a recreation using GTA V assets.
 
@@ -36,7 +36,7 @@ Local run: `node server/relay.cjs`, then `http://localhost:8080` with the relay 
 
 Optional public PeerJS rooms and manual WebRTC invite/reply exchange are provided for compatible networks. Some managed browsers produce no usable ICE candidates; some NATs require TURN. The relay avoids those restrictions. Public signalling could not be verified from the cloud. The two-browser test uses actual WebSocket connections and remote vehicle collisions against the supplied relay.
 
-**Engine recordings:** a licensed authentic LandCruiser recording was not supplied or found. Default engine sound is synthesised and labelled accordingly. Settings accepts an audio recording the user owns and loops it with RPM-linked playback for the selected vehicle in the current tab. No generic clip is labelled as a LandCruiser recording.
+**Engine recordings:** a licensed authentic LandCruiser recording was not supplied or found. The LandCruiser now uses a synthesised turbo-diesel V8 with eight firing pulses per cycle and gradual, load-dependent turbo spool. It targets the 4.5 L 1VD-FTV; it is not a genuine recording. Settings accepts an audio recording the user owns and loops it with RPM-linked playback for the selected vehicle in the current tab. No generic clip is labelled as a LandCruiser recording. See [audio source status and verification](docs/ENGINE-AUDIO.md).
 
 Google photorealistic terrain remains optional and online, requiring the user's Maps browser key with Map Tiles API/billing. The key stays in page memory and is sent to Google; it is not persisted. This optional mode is not validated with a real key.
 
@@ -56,6 +56,7 @@ Browser tests are optional development dependencies:
 ```bash
 npm ci
 npx playwright install chromium
+npm run test:audio
 npm run test:geography
 npm run test:fleet
 ```

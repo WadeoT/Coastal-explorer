@@ -4,7 +4,8 @@
   "private": true,
   "description": "Single-file Sunshine Coast driving game; optional browser verification",
   "scripts": {
-    "test": "node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs",
+    "test:audio": "node tests/engine-audio.cjs",
+    "test": "node tests/engine-audio.cjs && node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs",
     "test:fleet": "node tests/v6.cjs",
     "test:relay": "node tests/relay.cjs",
     "test:geography": "node tests/browser.cjs",

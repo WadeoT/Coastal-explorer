@@ -1,11 +1,11 @@
 {
   "name": "coastal-explorer",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "private": true,
   "description": "Single-file Sunshine Coast driving game; optional browser verification",
   "scripts": {
     "test:audio": "node tests/engine-audio.cjs",
-    "test": "node tests/damage-model.cjs && node tests/engine-audio.cjs && node tests/rewards.cjs && node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs && node tests/damage-browser.cjs && node tests/v8.cjs && node tests/v9.cjs && node tests/v10.cjs && node tests/v11.cjs && node tests/thermal.cjs && node tests/v12.cjs && node tests/repair-pads.cjs && node tests/v13.cjs && npm run test:public-relay",
+    "test": "node tests/damage-model.cjs && node tests/engine-audio.cjs && node tests/rewards.cjs && node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs && node tests/damage-browser.cjs && node tests/v8.cjs && node tests/v9.cjs && node tests/v10.cjs && node tests/v11.cjs && node tests/thermal.cjs && node tests/v12.cjs && node tests/repair-pads.cjs && node tests/v13.cjs && npm run test:public-relay && npm run test:tutorial",
     "test:fleet": "node tests/v6.cjs",
     "test:relay": "node tests/relay.cjs",
     "test:geography": "node tests/browser.cjs",
@@ -22,7 +22,8 @@
     "test:v12": "node tests/v12.cjs",
     "test:pads": "node tests/repair-pads.cjs",
     "test:public-relay": "node tests/mqtt-codec.cjs && node tests/public-relay.cjs",
-    "test:v13": "node tests/v13.cjs"
+    "test:v13": "node tests/v13.cjs",
+    "test:tutorial": "node tests/tutorial.cjs"
   },
   "devDependencies": {
     "@babylonjs/core": "9.31.3",

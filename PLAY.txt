@@ -1,3 +1,11 @@
+NEW PLAYER TUTORIAL (V15)
+After the map loads, choose START TUTORIAL in the welcome card.
+Follow the tasks or use NEXT / SKIP STEP to continue at your own pace.
+BACK repeats the previous lesson. SKIP TOUR closes it and remembers that choice.
+Progress is saved separately from your money and owned vehicles.
+Replay anytime: H (Controls & settings) > NEW PLAYER TUTORIAL / REPLAY.
+The tour never pauses the world. Stop or land before using menus or the map.
+
 PUBLIC MULTIPLAYER (V14)
 Open the game; public relay connection runs automatically. Leave the optional
 server URL blank. You and your mate can simply open the same game link.
@@ -8,11 +16,11 @@ Public test brokers have no uptime guarantee and some networks block them.
 Use nicknames; room traffic is public. Shared server admin needs a dedicated
 relay. Local admin and your career remain available. ?network=off is local-only.
 
-COASTAL EXPLORER — VERSION 14 / PUBLIC MULTIPLAYER
+COASTAL EXPLORER — VERSION 15 / LEARN TO PLAY
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=14
-You should see V14 / PUBLIC MULTIPLAYER in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=15
+You should see V15 / LEARN TO PLAY in the showroom.
 
 DOWNLOAD / BUNDLED MAP
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.

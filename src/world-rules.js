@@ -5,7 +5,7 @@ function objectContact(o,position,p){
  const radius=Math.max(.2,p.width*.47-(state.sideCrush||0)),reach=p.length*.36,fx=Math.sin(motion.yaw),fz=-Math.cos(motion.yaw);
  if(position.y-p.clearance>o.baseY+o.height+.12||position.y+Math.max(.7,p.eye-p.clearance)<o.baseY)return false;
  for(const side of [-1,0,1]){const length=Math.max(.2,reach-(side>0?state.frontCrush||0:state.rearCrush||0)),x=position.x+fx*length*side,z=position.z+fz*length*side;
-  if(o.polygon){if(nearPolygon(x,z,o.polygon,radius)&&!(o.holes||[]).some(h=>pointInPolygon(x,z,h)&&polygonEdgeDistance(x,z,h)>radius))return true;}
+  if(o.polygon){if(nearPolygon(x,z,o.polygon,radius)&&![...(o.holes||[]),...(o.garageBay&&position.y+Math.max(.7,p.eye-p.clearance)<o.bayCeiling?[o.garageBay]:[])].some(h=>pointInPolygon(x,z,h)&&polygonEdgeDistance(x,z,h)>radius))return true;}
   else if(Math.hypot(x-o.x,z-o.z)<radius+(o.radius||.2))return true;
  }return false;
 }
@@ -39,6 +39,7 @@ function collideMappedWorld(prevX,prevZ){
 }
 function indexRestrictedGround(){restrictedCells.clear();for(const area of landFeatures){const t=area.tags,restricted=['private','no','permit'].includes(t.access)||['military','industrial','construction'].includes(t.landuse)||['park','nature_reserve','playground','pitch','golf_course'].includes(t.leisure)||t.landuse==='residential';if(!restricted)continue;for(let x=Math.floor(area.bounds.minX/512);x<=Math.floor(area.bounds.maxX/512);x++)for(let z=Math.floor(area.bounds.minZ/512);z<=Math.floor(area.bounds.maxZ/512);z++){const k=x+','+z;if(!restrictedCells.has(k))restrictedCells.set(k,[]);restrictedCells.get(k).push(area);}}}
 function groundAccessAt(position){
+ if(workshopAccessAt(position))return null;
  const road=nearestRoad(position.x,position.z);if(road&&road.dist<=road.path.width/2+4&&!['private','no','permit'].includes(road.path.tags?.access))return null;
  for(const a of restrictedCells.get(Math.floor(position.x/512)+','+Math.floor(position.z/512))||[])if(pointInPolygon(position.x,position.z,a.points))return {name:a.tags.name||({residential:'PRIVATE GROUNDS',industrial:'RESTRICTED INDUSTRIAL YARD',military:'MILITARY AREA',construction:'CONSTRUCTION SITE'}[a.tags.landuse])||'PROTECTED GROUNDS',source:a.tags.access?'mapped access restriction':'gameplay off-road restriction'};
  return null;

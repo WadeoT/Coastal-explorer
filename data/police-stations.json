@@ -1,0 +1,79 @@
+{
+  "source": "OpenStreetMap snapshot",
+  "timestamp": "2026-10-22T23:10:04Z",
+  "licence": "ODbL 1.0",
+  "stations": [
+    {
+      "osmId": 162948730,
+      "name": "Police Beat",
+      "lat": -26.3871915,
+      "lon": 153.09121014
+    },
+    {
+      "osmId": 320605938,
+      "name": "Sippy Downs Police Station",
+      "lat": -26.713027333333333,
+      "lon": 153.06978092666668
+    },
+    {
+      "osmId": 329631217,
+      "name": "Nambour Station",
+      "lat": -26.6293682,
+      "lon": 152.95904164
+    },
+    {
+      "osmId": 439422737,
+      "name": "Palmwoods Police Station",
+      "lat": -26.687385485714287,
+      "lon": 152.95758607142855
+    },
+    {
+      "osmId": 465970936,
+      "name": "Woodford Police Station",
+      "lat": -26.953337599999998,
+      "lon": 152.77695910909094
+    },
+    {
+      "osmId": 675830191,
+      "name": "Maroochydore Police",
+      "lat": -26.654708414285714,
+      "lon": 153.0917995
+    },
+    {
+      "osmId": 962098119,
+      "name": "Nambour Police Station",
+      "lat": -26.629784277777777,
+      "lon": 152.95924334444445
+    },
+    {
+      "osmId": 998030124,
+      "name": "Mapped police station",
+      "lat": -26.18750344,
+      "lon": 152.65885450000002
+    },
+    {
+      "osmId": 998030179,
+      "name": "Gympie Police Station",
+      "lat": -26.186536907142855,
+      "lon": 152.65964445714286
+    },
+    {
+      "osmId": 1130583319,
+      "name": "Kilcoy Station",
+      "lat": -26.94556593333333,
+      "lon": 152.562828
+    },
+    {
+      "osmId": 1343900075,
+      "name": "Coolum Beach Police Station",
+      "lat": -26.540045510526316,
+      "lon": 153.0771727
+    },
+    {
+      "osmId": 1426958664,
+      "name": "Caloundra South Police Station",
+      "lat": -26.827274270588234,
+      "lon": 153.07117202941177
+    }
+  ]
+}

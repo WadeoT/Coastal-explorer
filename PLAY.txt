@@ -1,8 +1,8 @@
-COASTAL EXPLORER — VERSION 10 / AIR CONTROL
+COASTAL EXPLORER — VERSION 11 / COASTAL MOTORSPORT
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=10
-You should see V10 / AIR CONTROL in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=11
+You should see V11 / COASTAL MOTORSPORT in the showroom.
 
 DOWNLOAD / BUNDLED MAP
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.
@@ -117,3 +117,33 @@ players, terrain/shore contact and aircraft roof strikes. Fast movement
 uses swept contact checks. Critical damage raises visible warning cards
 with a vehicle/component marker. This remains arcade crash deformation.
 See docs/V10-RELEASE.md and docs/V10-VERIFICATION.md.
+
+V11 MODELS, WORKSHOPS AND INTERFACE
+Y hides/shows driving information while keeping maps. Hold left mouse to
+look around the cab or orbit in third person; release to recenter.
+M opens the live map without pausing. Click then SET PRIVATE WAYPOINT;
+only you see it. Existing click-to-teleport remains available.
+
+Gold + and H markers show 32 OSM mechanic locations. Drive into the
+marked bay and stop, or land gently on one of nine suitable rooftop H
+pads with gear down. Click REPAIR and remain stopped for 5-6 seconds.
+The displayed fee is charged once on completion. Moving cancels service.
+Entrances/pads are game additions, not claims of real-world helipads.
+Search a workshop name or workshop/repair/mechanic to find locations.
+
+Use the small ATC corner button or T to request landing at your map pin.
+An approved site is marked in the scene and both maps. Landing without
+ATC or mission clearance immediately raises wanted levels. You cannot
+enter the vehicle garage while airborne. Entering it after landing
+clears damage and fire from that run. Physical workshops preserve jobs.
+
+Police patrols redistribute around your district and higher stars bring
+more dedicated units, including dispatch from mapped police stations.
+Civilian vehicles keep their identity. Rescue dispatch grants airport
+and low-urban-flight clearance; military exclusions and deliberate
+weapon offences still apply. Medical pickup scenes show a crashed car;
+hoist rescues show a capsized boat on mapped water.
+
+Models are original simplified geometry. All 18 previews are actual
+renders of the same meshes used in play and by network players.
+See docs/V11-RELEASE.md and docs/V11-VERIFICATION.md.

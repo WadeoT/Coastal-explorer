@@ -1,5 +1,5 @@
 let damageGraphics=null;
-function resetVehicleDamage(){disposeDamageGraphics();state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.solidCrash=null;state.frontCrush=state.rearCrush=state.sideCrush=0;state.lastImpact=null;state.wreckSurface=null;state.damageOutcome='';if(typeof dangerState!=='undefined'){dangerState.active.clear();dangerState.last.clear();renderDangerAlerts();}}
+function resetVehicleDamage(){state.lastLanding=null;state.wasAirborne=false;disposeDamageGraphics();state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.solidCrash=null;state.frontCrush=state.rearCrush=state.sideCrush=0;state.lastImpact=null;state.wreckSurface=null;state.damageOutcome='';if(typeof dangerState!=='undefined'){dangerState.active.clear();dangerState.last.clear();renderDangerAlerts();}}
 function vehiclePowerFactor(){return VehicleDamageModel.power(state.damage);}
 function bodyPoint(world){player.computeWorldMatrix(true);return V.TransformCoordinates(world,Matrix.Invert(player.getWorldMatrix()));}
 function worldBodyPoint(local){player.computeWorldMatrix(true);return V.TransformCoordinates(new V(local.x,local.y,local.z),player.getWorldMatrix());}

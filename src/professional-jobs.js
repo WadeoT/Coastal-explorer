@@ -8,7 +8,7 @@ function jobPlace(name,mode='road'){
  if(!point)return null;point={x:point.x,z:point.z,name};jobTargetCache.set(key,point);return point;
 }
 function professionalContract({id,name,description,vehicleIds,places,mode='road',passengers=0,reward=6000,clearance=[],flyThrough=false,hoist=false}){
- const points=places.map(n=>jobPlace(n,mode));if(points.some(p=>!p))return null;const distance=points.slice(1).reduce((n,p,i)=>n+Math.hypot(p.x-points[i].x,p.z-points[i].z),0);
+ const points=places.map((n,i)=>jobPlace(n,hoist&&i===0?'water':mode));if(points.some(p=>!p))return null;const distance=points.slice(1).reduce((n,p,i)=>n+Math.hypot(p.x-points[i].x,p.z-points[i].z),0);
  const checkpoints=points.map((p,i)=>({...p,boarding:i===0?'pickup':'dropoff',dwell:flyThrough?0:mode==='landing'?6:4,altitudeAGL:flyThrough?200+(i%2)*100:0,flyThrough,hoist:hoist&&i===0}));
  return {id,name,description,vehicleIds,profession:true,kind:'profession',mode,passengers,checkpoints,minimum:distance*.60,timeLimit:mode==='landing'?1800:1200,reward:Math.min(60000,Math.round(reward+distance*(mode==='landing'?1.4:.7))),clearance};
 }
@@ -39,7 +39,7 @@ function updateProfessionalActivity(before,dt){
  $('activityStatus').textContent=a.name+' · '+c.name+' · '+Math.ceil(distance)+'m · '+instruction+(a.hold>0?' · '+a.hold.toFixed(1)+'/'+c.dwell+'s':'')+(a.loaded?' · '+(a.passengers?a.passengers+' ABOARD':'CARGO LOADED'):'');
  if(valid&&(c.flyThrough||a.hold>=c.dwell)&&(a.index===0||a.legTravelled>=a.legMinimum)){
   if(a.index===a.checkpoints.length-1){if(a.travelled>=a.minimum)completeActivity();return;}
-  if(a.index===0){a.loaded=true;loadJobCargo(a);toast(a.passengers?a.passengers+' passenger(s) aboard. Follow the next marker.':'Cargo loaded. Follow the next marker.');}
+  if(a.index===0){a.loaded=true;if(a.incident){disposeFlightActor(a.incident);a.incident=null;}loadJobCargo(a);toast(a.passengers?a.passengers+' passenger(s) aboard. Follow the next marker.':'Cargo loaded. Follow the next marker.');}
   const previous=c;a.index++;a.legTravelled=0;a.hold=0;a.legMinimum=Math.hypot(a.checkpoints[a.index].x-previous.x,a.checkpoints[a.index].z-previous.z)*.60;makeActivityMarker();
  }
 }
@@ -47,5 +47,5 @@ function loadJobCargo(a){if(!a.passengers&&['ute','hilux','ranger'].includes(a.v
 function makeProfessionalMarker(){
  const a=activities.active,c=a.checkpoints[a.index],h=mappedWaterAt(c.x,c.z)??terrainHeight(c.x,c.z)??0,root=new Node('professional-job-target',scene);root.position.set(c.x,h+(c.flyThrough?c.altitudeAGL:.2),c.z);activities.marker=root;
  if(!activities.material)activities.material=mat('activity-gold','#f0c548',.6,.8);const ring=MB.CreateTorus('job-landing-ring',{diameter:c.flyThrough?110:28,thickness:c.flyThrough?1.1:.3,tessellation:32},scene);ring.parent=root;ring.material=activities.material;ring.isPickable=false;if(c.flyThrough)ring.rotation.x=Math.PI/2;
- if(a.passengers&&!c.flyThrough){for(let i=0;i<Math.min(3,a.passengers);i++){const person=new Node('waiting-passenger-'+i,scene);person.parent=root;person.position.set(11,0,i*1.2-1.2);cylinder('passenger-body',.40,1.0,0,.70,0,materials.dark,person,8);const head=MB.CreateSphere('passenger-head',{diameter:.33,segments:8},scene);head.parent=person;head.position.y=1.42;head.material=materials.light;head.isPickable=false;}}
+ if(a.index===0&&!a.loaded)makeRescueIncident(a);if(a.passengers&&!c.flyThrough){for(let i=0;i<Math.min(3,a.passengers);i++){const person=new Node('waiting-passenger-'+i,scene);person.parent=root;person.position.set(11,0,i*1.2-1.2);cylinder('passenger-body',.40,1.0,0,.70,0,materials.dark,person,8);const head=MB.CreateSphere('passenger-head',{diameter:.33,segments:8},scene);head.parent=person;head.position.y=1.42;head.material=materials.light;head.isPickable=false;}}
 }

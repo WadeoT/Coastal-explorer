@@ -1,0 +1,447 @@
+{
+  "revision": "11.1",
+  "sourceSha256": "6f00de60e8b7858dc80bc62ee2d460c1feaf85ee551e6a23a17ab4b92663a989",
+  "models": [
+    {
+      "id": "ute",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.234999976158142,
+          0.01200000119209288,
+          -2.578000068664551
+        ],
+        "max": [
+          1.234999976158142,
+          2.120000066757202,
+          2.9949999046325684
+        ]
+      },
+      "meshes": 29,
+      "vertices": 12854,
+      "metadata": {
+        "modelId": "ute",
+        "revision": "11.1",
+        "body": "79 Series single-cab trayback",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "bike",
+      "kind": "bike",
+      "bounds": {
+        "min": [
+          -0.35388612747192383,
+          -0.017499974966049214,
+          -1.027499965429306
+        ],
+        "max": [
+          0.3538612425327301,
+          1.1378880739212036,
+          1.027499965429306
+        ]
+      },
+      "meshes": 4,
+      "vertices": 1863,
+      "metadata": {
+        "modelId": "bike",
+        "revision": "11.1",
+        "body": "electric bicycle",
+        "wheelCount": 2
+      }
+    },
+    {
+      "id": "drift",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1399999570846557,
+          -0.03200000715255741,
+          -2.1099999656677246
+        ],
+        "max": [
+          1.1399999570846557,
+          1.537499990463257,
+          2.1599999332427977
+        ]
+      },
+      "meshes": 48,
+      "vertices": 3820,
+      "metadata": {
+        "modelId": "drift",
+        "revision": "11.1",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "heli",
+      "kind": "heli",
+      "bounds": {
+        "min": [
+          -4.6864058037102225,
+          0.055005162954330444,
+          -5.285000190734864
+        ],
+        "max": [
+          4.6864058037102225,
+          3.49,
+          7.69
+        ]
+      },
+      "meshes": 33,
+      "vertices": 2425,
+      "metadata": {
+        "modelId": "heli",
+        "revision": "11.1",
+        "body": "rounded AS350 rotorcraft",
+        "wheelCount": 0,
+        "rotorDiameter": 10.69,
+        "mainBlades": 3,
+        "tailBlades": 2
+      }
+    },
+    {
+      "id": "hilux",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.185000033378601,
+          -0.03800000476837162,
+          -2.7349999656677246
+        ],
+        "max": [
+          1.185000033378601,
+          1.8259999752044678,
+          2.7849999332427977
+        ]
+      },
+      "meshes": 48,
+      "vertices": 3888,
+      "metadata": {
+        "modelId": "hilux",
+        "revision": "11.1",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "ranger",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2150000047683716,
+          -0.039000014305114794,
+          -2.7669999599456787
+        ],
+        "max": [
+          1.2150000047683716,
+          1.8860000371932983,
+          2.8100000286102294
+        ]
+      },
+      "meshes": 48,
+      "vertices": 3952,
+      "metadata": {
+        "modelId": "ranger",
+        "revision": "11.1",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "patrol",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.254999966621399,
+          -0.03999999403953558,
+          -2.659999917984009
+        ],
+        "max": [
+          1.254999966621399,
+          2.0269999504089355,
+          2.709999885559082
+        ]
+      },
+      "meshes": 48,
+      "vertices": 3784,
+      "metadata": {
+        "modelId": "patrol",
+        "revision": "11.1",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "jimny",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.0800000143051147,
+          -0.035000005960464486,
+          -1.9000000467300415
+        ],
+        "max": [
+          1.0800000143051147,
+          1.8070000410079956,
+          2.115000104904175
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4284,
+      "metadata": {
+        "modelId": "jimny",
+        "revision": "11.1",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "commodore",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2050000143051147,
+          -0.03399999642372137,
+          -2.5549998989105225
+        ],
+        "max": [
+          1.2050000143051147,
+          1.4573899507522583,
+          2.6050001049041747
+        ]
+      },
+      "meshes": 48,
+      "vertices": 3748,
+      "metadata": {
+        "modelId": "commodore",
+        "revision": "11.1",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "falcon",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1900000286102295,
+          -0.03399999642372137,
+          -2.5500000228881836
+        ],
+        "max": [
+          1.1900000286102295,
+          1.4572330713272095,
+          2.5999999904632567
+        ]
+      },
+      "meshes": 48,
+      "vertices": 3748,
+      "metadata": {
+        "modelId": "falcon",
+        "revision": "11.1",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "mustang",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2150000047683716,
+          -0.035000005960464486,
+          -2.4724999656677245
+        ],
+        "max": [
+          1.2150000047683716,
+          1.3936307430267334,
+          2.520000066757202
+        ]
+      },
+      "meshes": 45,
+      "vertices": 3688,
+      "metadata": {
+        "modelId": "mustang",
+        "revision": "11.1",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "gtr",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2050000143051147,
+          -0.035000005960464486,
+          -2.4299998989105225
+        ],
+        "max": [
+          1.2050000143051147,
+          1.3818942308425903,
+          2.4800001049041747
+        ]
+      },
+      "meshes": 64,
+      "vertices": 4176,
+      "metadata": {
+        "modelId": "gtr",
+        "revision": "11.1",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "wrx",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.154999942779541,
+          -0.03399999642372137,
+          -2.3699999561309815
+        ],
+        "max": [
+          1.154999942779541,
+          1.6675000190734863,
+          2.4199999237060545
+        ]
+      },
+      "meshes": 48,
+      "vertices": 3868,
+      "metadata": {
+        "modelId": "wrx",
+        "revision": "11.1",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "boat",
+      "kind": "boat",
+      "bounds": {
+        "min": [
+          -1.1949387788772583,
+          -0.440801277756691,
+          -2.971281051635742
+        ],
+        "max": [
+          1.1949387788772583,
+          1.48,
+          3.2850000858306885
+        ]
+      },
+      "meshes": 9,
+      "vertices": 1125,
+      "metadata": {
+        "modelId": "boat",
+        "revision": "11.1",
+        "body": "vee-hull outboard runabout",
+        "wheelCount": 0
+      }
+    },
+    {
+      "id": "kart",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -0.7124999880790711,
+          5.960464455334602e-9,
+          -1.059999942779541
+        ],
+        "max": [
+          0.7398529052734375,
+          0.7599999809265137,
+          0.8692609667778015
+        ]
+      },
+      "meshes": 4,
+      "vertices": 1529,
+      "metadata": {
+        "modelId": "kart",
+        "revision": "11.1",
+        "body": "open tubular go-kart",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "jet",
+      "kind": "jet",
+      "bounds": {
+        "min": [
+          -5.45,
+          2.622604372559678e-8,
+          -8.5
+        ],
+        "max": [
+          5.45,
+          4.33,
+          8.342500038146973
+        ]
+      },
+      "meshes": 14,
+      "vertices": 1830,
+      "metadata": {
+        "modelId": "jet",
+        "revision": "11.1",
+        "body": "F/A-18-inspired twin-engine twin-tail fighter",
+        "wheelCount": 3
+      }
+    },
+    {
+      "id": "lifeflight",
+      "kind": "heli",
+      "bounds": {
+        "min": [
+          -6.597826987504959,
+          0,
+          -6.520000171661377
+        ],
+        "max": [
+          6.597826987504959,
+          4.5,
+          9.709999885559082
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4789,
+      "metadata": {
+        "modelId": "lifeflight",
+        "revision": "11.1",
+        "body": "AW139-inspired rescue rotorcraft",
+        "wheelCount": 3,
+        "rotorDiameter": 13.8,
+        "mainBlades": 5,
+        "tailBlades": 4
+      }
+    },
+    {
+      "id": "racq",
+      "kind": "heli",
+      "bounds": {
+        "min": [
+          -6.597826987504959,
+          0,
+          -6.520000171661377
+        ],
+        "max": [
+          6.597826987504959,
+          4.5,
+          9.709999885559082
+        ]
+      },
+      "meshes": 56,
+      "vertices": 4789,
+      "metadata": {
+        "modelId": "racq",
+        "revision": "11.1",
+        "body": "AW139-inspired rescue rotorcraft",
+        "wheelCount": 3,
+        "rotorDiameter": 13.8,
+        "mainBlades": 5,
+        "tailBlades": 4
+      }
+    }
+  ]
+}

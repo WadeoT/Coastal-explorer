@@ -1,0 +1,425 @@
+{
+  "source": "OpenStreetMap workshop tags retained in the original full-map download",
+  "timestamp": "2026-10-22T23:10:04Z",
+  "licence": "ODbL 1.0",
+  "query": "way[building] from data/whole-coast.overpass, filtered shop=car_repair or craft=car_repair",
+  "garages": [
+    {
+      "osmId": 192185078,
+      "osmType": "way",
+      "name": "Woodford Garage",
+      "lat": -26.9528282,
+      "lon": 152.7767567,
+      "buildingId": "w192185078:0",
+      "tags": {
+        "name": "Woodford Garage",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 550192659,
+      "osmType": "way",
+      "name": "Wagner Smash Repairs",
+      "lat": -26.6236628,
+      "lon": 152.958015,
+      "buildingId": "w550192659:0",
+      "tags": {
+        "name": "Wagner Smash Repairs",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 550225713,
+      "osmType": "way",
+      "name": "Just Autos Mechanical",
+      "lat": -26.631578,
+      "lon": 152.9524159,
+      "buildingId": "w550225713:0",
+      "tags": {
+        "addr:housenumber": "11",
+        "addr:street": "Windsor Road",
+        "name": "Just Autos Mechanical",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 550225716,
+      "osmType": "way",
+      "name": "Nambour Brake & Service Centre",
+      "lat": -26.6310028,
+      "lon": 152.9537611,
+      "buildingId": "w550225716:0",
+      "tags": {
+        "addr:housenumber": "14",
+        "addr:street": "Perwillowen Road",
+        "name": "Nambour Brake & Service Centre",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 550363296,
+      "osmType": "way",
+      "name": "Wayne Morrison Automotive",
+      "lat": -26.6256902,
+      "lon": 152.9668384,
+      "buildingId": "w550363296:0",
+      "tags": {
+        "addr:housenumber": "141",
+        "addr:street": "Howard Street",
+        "addr:suburb": "Nambour",
+        "name": "Wayne Morrison Automotive",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 551039710,
+      "osmType": "way",
+      "name": "Mapped motor workshop",
+      "lat": -26.5620688,
+      "lon": 152.9544626,
+      "buildingId": "w551039710:0",
+      "tags": {
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 551039711,
+      "osmType": "way",
+      "name": "Mapped motor workshop",
+      "lat": -26.5621313,
+      "lon": 152.9546756,
+      "buildingId": "w551039711:0",
+      "tags": {
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 551041569,
+      "osmType": "way",
+      "name": "Yandina Automotive Repairs",
+      "lat": -26.562456,
+      "lon": 152.955806,
+      "buildingId": "w551041569:0",
+      "tags": {
+        "name": "Yandina Automotive Repairs",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 553192048,
+      "osmType": "way",
+      "name": "Nambour Auto Electrical",
+      "lat": -26.6253495,
+      "lon": 152.9569237,
+      "buildingId": "w553192048:0",
+      "tags": {
+        "addr:housenumber": "41",
+        "addr:street": "Price Street",
+        "addr:suburb": "Nambour",
+        "name": "Nambour Auto Electrical",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 553192051,
+      "osmType": "way",
+      "name": "Quick Speed",
+      "lat": -26.6247611,
+      "lon": 152.9569693,
+      "buildingId": "w553192051:0",
+      "tags": {
+        "name": "Quick Speed",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 553192053,
+      "osmType": "way",
+      "name": "Suncoast Mechanical",
+      "lat": -26.6260349,
+      "lon": 152.9560582,
+      "buildingId": "w553192053:0",
+      "tags": {
+        "name": "Suncoast Mechanical",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 553192054,
+      "osmType": "way",
+      "name": "Eastcoast Auto Electrics",
+      "lat": -26.6264349,
+      "lon": 152.9561679,
+      "buildingId": "w553192054:0",
+      "tags": {
+        "name": "Eastcoast Auto Electrics",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 553192055,
+      "osmType": "way",
+      "name": "Sun Auto Repairs",
+      "lat": -26.6260736,
+      "lon": 152.9565398,
+      "buildingId": "w553192055:0",
+      "tags": {
+        "name": "Sun Auto Repairs",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 722838064,
+      "osmType": "way",
+      "name": "Mycar",
+      "lat": -26.7047713,
+      "lon": 153.1301021,
+      "buildingId": "w722838064:0",
+      "tags": {
+        "brand": "mycar Tyre & Auto",
+        "name": "Mycar",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 790623451,
+      "osmType": "way",
+      "name": "NCR Mechanical",
+      "lat": -26.6314306,
+      "lon": 152.9514026,
+      "buildingId": "w790623451:0",
+      "tags": {
+        "name": "NCR Mechanical",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 790623457,
+      "osmType": "way",
+      "name": "Creative Body Works",
+      "lat": -26.6316969,
+      "lon": 152.9532426,
+      "buildingId": "w790623457:0",
+      "tags": {
+        "name": "Creative Body Works",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 790623458,
+      "osmType": "way",
+      "name": "Burnside Motors",
+      "lat": -26.6317967,
+      "lon": 152.9533566,
+      "buildingId": "w790623458:0",
+      "tags": {
+        "addr:housenumber": "1",
+        "addr:street": "Windsor Road",
+        "name": "Burnside Motors",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 791189056,
+      "osmType": "way",
+      "name": "Suncoast Mechanical",
+      "lat": -26.6291279,
+      "lon": 152.9573738,
+      "buildingId": "w791189056:0",
+      "tags": {
+        "name": "Suncoast Mechanical",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 791194945,
+      "osmType": "way",
+      "name": "Nambour Car Service Centre",
+      "lat": -26.6307419,
+      "lon": 152.9581911,
+      "buildingId": "w791194945:0",
+      "tags": {
+        "addr:housenumber": "3",
+        "addr:street": "Jose Street",
+        "addr:suburb": "Nambour",
+        "name": "Nambour Car Service Centre",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 882197636,
+      "osmType": "way",
+      "name": "BYD",
+      "lat": -26.6534013,
+      "lon": 153.0866955,
+      "buildingId": "w882197636:0",
+      "tags": {
+        "brand": "BYD",
+        "name": "BYD",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1007824963,
+      "osmType": "way",
+      "name": "Nissan",
+      "lat": -26.6716872,
+      "lon": 153.0915913,
+      "buildingId": "w1007824963:0",
+      "tags": {
+        "brand": "Nissan",
+        "name": "Nissan",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1008202415,
+      "osmType": "way",
+      "name": "Mycar",
+      "lat": -26.8022857,
+      "lon": 153.126054,
+      "buildingId": "w1008202415:0",
+      "tags": {
+        "brand": "mycar Tyre & Auto",
+        "name": "Mycar",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1053023022,
+      "osmType": "way",
+      "name": "GR Fleet Services",
+      "lat": -26.6829121,
+      "lon": 152.9713163,
+      "buildingId": "w1053023022:0",
+      "tags": {
+        "addr:housenumber": "169",
+        "addr:street": "Nicklin Road",
+        "addr:suburb": "Palmwoods",
+        "name": "GR Fleet Services",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1060943366,
+      "osmType": "way",
+      "name": "GP Mechanical Repairs & Maintenance",
+      "lat": -26.6993046,
+      "lon": 152.9738652,
+      "buildingId": "w1060943366:0",
+      "tags": {
+        "addr:housenumber": "81",
+        "addr:street": "Cheviot Road",
+        "name": "GP Mechanical Repairs & Maintenance",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1062533024,
+      "osmType": "way",
+      "name": "Sunshine Toyota Service",
+      "lat": -26.7666935,
+      "lon": 153.1225343,
+      "buildingId": "w1062533024:0",
+      "tags": {
+        "addr:housenumber": "689",
+        "addr:street": "Nicklin Way",
+        "addr:suburb": "Currimundi",
+        "brand": "Toyota",
+        "name": "Sunshine Toyota Service",
+        "operator": "Sunshine Toyota",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1268428602,
+      "osmType": "way",
+      "name": "Mapped motor workshop",
+      "lat": -26.4591622,
+      "lon": 152.680875,
+      "buildingId": "w1268428602:0",
+      "tags": {
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1344493328,
+      "osmType": "way",
+      "name": "ENZED Sunshine Coast",
+      "lat": -26.6628782,
+      "lon": 153.0415224,
+      "buildingId": "w1344493328:0",
+      "tags": {
+        "addr:housenumber": "2",
+        "addr:street": "Conara Road",
+        "addr:suburb": "Kunda Park",
+        "name": "ENZED Sunshine Coast",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1499006896,
+      "osmType": "way",
+      "name": "Goodyear",
+      "lat": -26.6713732,
+      "lon": 153.0875917,
+      "buildingId": "w1499006896:0",
+      "tags": {
+        "brand": "Goodyear",
+        "name": "Goodyear",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1501679537,
+      "osmType": "way",
+      "name": "Auto Masters",
+      "lat": -26.8083731,
+      "lon": 153.0692921,
+      "buildingId": "w1501679537:0",
+      "tags": {
+        "name": "Auto Masters",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1502365459,
+      "osmType": "way",
+      "name": "Ultra Tune",
+      "lat": -26.7948748,
+      "lon": 153.1046457,
+      "buildingId": "w1502365459:0",
+      "tags": {
+        "brand": "Ultra Tune",
+        "name": "Ultra Tune",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1502377405,
+      "osmType": "way",
+      "name": "Kia",
+      "lat": -26.7949336,
+      "lon": 153.1083611,
+      "buildingId": "w1502377405:0",
+      "tags": {
+        "brand": "Kia",
+        "name": "Kia",
+        "shop": "car_repair"
+      }
+    },
+    {
+      "osmId": 1561654414,
+      "osmType": "way",
+      "name": "Ultra Tune",
+      "lat": -26.2211016,
+      "lon": 152.6891123,
+      "buildingId": "w1561654414:0",
+      "tags": {
+        "brand": "Ultra Tune",
+        "name": "Ultra Tune",
+        "shop": "car_repair"
+      }
+    }
+  ]
+}

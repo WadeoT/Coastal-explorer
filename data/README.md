@@ -40,3 +40,9 @@ The preparer reuses the included measured DEM samples and fetches any newly requ
 ## V6 native elevation refinement
 
 The 256-step terrain surface uses the original 256×256 measured DEM samples, including shared border interpolation. `scripts/refine_elevation.py --source-pack <original-pack>` refines terrain clipping from the existing verified water masks and retains all original `ways`, `points`, `buildings` and raw `terrain` rows byte-for-byte at the JSON-value level. No newly guessed building is inserted into this geographic database. Additional in-game houses are explicitly estimated frontage infill on mapped residential landuse and can be disabled.
+
+## V11 workshops and police stations
+
+`repair-garages.json` retains 32 building-tagged OSM car-repair workshops and `police-stations.json` retains 12 mapped police station/beat buildings from the original full-map response dated 2026-10-22T23:10:04Z. Source IDs, tags and coordinates remain available under ODbL. Workshop records match existing building footprints; no footprint was moved. These are incomplete mapped lists, not complete business or station directories.
+
+Game drive-in entrances, workshop props, estimated roof heights and nine suitable rooftop helipads are fictional additions at those business locations. An H does not mean that a real mechanic has a helipad. The main compressed geographic archive is unchanged.

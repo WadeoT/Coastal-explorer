@@ -14,10 +14,11 @@ function releaseRelayLease(){try{const key=relaySessionKey(),lease=JSON.parse(lo
 function refreshAutomaticLobby(){
  const status=$('publicLobbyStatus');if(!status)return;
  status.textContent=Multiplayer.status;
- $('connectionBadge').textContent=Multiplayer.connected?(Multiplayer.publicRoom?'PUBLIC LOBBY · ':'PRIVATE ROOM · ')+(Multiplayer.roster?.length||1)+' ONLINE':lobbyAutoWanted?'LOCAL PLAY · CONNECTING ONLINE':'LOCAL PLAY';
+ $('connectionBadge').textContent=Multiplayer.connected?(Multiplayer.publicTransport?publicServerName(Multiplayer.roomId):Multiplayer.publicRoom?'PUBLIC SERVER':'FRIENDS ROOM')+' · '+(Multiplayer.roster?.length||1)+' ONLINE'+((Multiplayer.roster?.length||1)===1?' (YOU)':''):lobbyAutoWanted?(Multiplayer.publicTransport?.links.some(l=>l.attempt)?'OFFLINE · RETRYING PUBLIC SERVER':'LOCAL PLAY · CONNECTING ONLINE'):'OFFLINE · LOCAL PLAY';
  $('connectionBadge').classList.toggle('connected',Multiplayer.connected);
  $('publicLobbySetup').hidden=!!$('relayInput').value.trim()&&!lobbyServerEdit;
  $('publicLobbyAttempts').textContent=Multiplayer.connected?'Connected · '+(Multiplayer.roomId||'room'):lobbyAttempts?'Connection attempt '+lobbyAttempts+' · retries automatically':'';
+ refreshPublicServerUI();
  const list=$('publicLobbyPlayers');list.replaceChildren();
  for(const p of Multiplayer.roster||[]){const row=document.createElement('li');row.textContent=(p.id===Multiplayer.id?'YOU · ':'')+(p.name||'Driver')+' · '+(profiles[p.vehicle]?.short||'Choosing a vehicle');list.append(row);}
 }
@@ -48,6 +49,7 @@ function queueLobbyReconnect(){
 }
 function initialiseAutomaticLobby(){
  const badge=document.createElement('button');badge.id='connectionBadge';badge.className='connection-badge';badge.textContent='LOBBY · NOT CONNECTED';badge.onclick=()=>{Multiplayer.renderLobby();openModal('lobbyModal');};document.body.append(badge);
+ initialisePublicServerUI();
  const publicButton=document.createElement('button');publicButton.className='source-btn';publicButton.textContent='USE PUBLIC RELAYS';publicButton.onclick=()=>{joinPublicBrokerRoom();saveRelayPreference();};$('roomInput').after(publicButton);
  const copyButton=document.createElement('button');copyButton.className='source-btn';copyButton.textContent='COPY INVITE LINK';copyButton.onclick=async()=>{try{await navigator.clipboard.writeText($('roomInput').value);Multiplayer.setStatus('Invite copied · send it to your mate');}catch{$('roomInput').focus();$('roomInput').select();Multiplayer.setStatus('Select and copy the invite link');}};$('roomInput').after(copyButton);
  const legend=document.createElement('p');legend.className='map-contacts-legend';legend.innerHTML='<span class="players">● Players</span> · <span class="police">◆ Police / interceptors</span> · Edge arrows show bearing and distance';$('mapModal').querySelector('.dialog').append(legend);

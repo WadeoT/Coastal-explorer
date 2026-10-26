@@ -49,6 +49,7 @@ let materials={};
 /*__MULTIPLAYER__*/
 /*__LOBBY_UI__*/
 /*__TUTORIAL__*/
+/*__SERVER_BROWSER__*/
 /*__MAP_MARKERS__*/
 /*__RUNTIME_ERRORS__*/
 /*__WORLD_RULES__*/

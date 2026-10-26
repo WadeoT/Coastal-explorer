@@ -1,3 +1,13 @@
+SIMPLE PUBLIC SERVER (V16)
+You and your mate: open MULTIPLAYER > JOIN PUBLIC SERVER under Sunshine Coast
+Public. No codes, hosting accounts or server URLs needed. Joining runs
+automatically; this button returns you from a friends room to the common server.
+The badge shows the server and online count. The player list includes people
+in the garage; a spawned player has a FIND ON MAP button and distance.
+Nearby vehicles have floating player-name tags. If a connection fails, the
+count is unknown, not zero: Local Play continues while the game retries.
+Friends/custom/direct connections remain under Advanced if you need them.
+
 NEW PLAYER TUTORIAL (V15)
 After the map loads, choose START TUTORIAL in the welcome card.
 Follow the tasks or use NEXT / SKIP STEP to continue at your own pace.
@@ -16,11 +26,11 @@ Public test brokers have no uptime guarantee and some networks block them.
 Use nicknames; room traffic is public. Shared server admin needs a dedicated
 relay. Local admin and your career remain available. ?network=off is local-only.
 
-COASTAL EXPLORER — VERSION 15 / LEARN TO PLAY
+COASTAL EXPLORER — VERSION 16 / PUBLIC SERVER
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=15
-You should see V15 / LEARN TO PLAY in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=16
+You should see V16 / PUBLIC SERVER in the showroom.
 
 DOWNLOAD / BUNDLED MAP
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.

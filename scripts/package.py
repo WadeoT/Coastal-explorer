@@ -4,9 +4,9 @@ from pathlib import Path
 import zipfile
 
 root = Path(__file__).resolve().parents[1]
-output = root / "downloads/Coastal-Explorer-Offline-v7.zip"
+output = root / "downloads/Coastal-Explorer-Offline-v8.zip"
 output.parent.mkdir(exist_ok=True)
-files = ["docs/V7-RELEASE.md", "docs/V7-VERIFICATION.md", "docs/ENGINE-AUDIO.md", "server/relay.cjs", "render.yaml", "docs/V6-RELEASE.md", "docs/V6-VERIFICATION.md", "vendor/PEERJS-LICENSE.txt", ".nojekyll", "index.html", "PLAY.txt", "README.md", "serve.py", "Start Windows.bat", "Start Mac.command", "data/README.md", "data/provenance.json", "data/whole-coast.overpass", "data/relations.overpass", "data/tracks.overpass", "data/LICENSE-ODbL-1.0.txt"]
+files = ["docs/V8-RELEASE.md", "docs/V8-VERIFICATION.md", "docs/NETLIFY-MULTIPLAYER.md", "server/owner-store.cjs", "scripts/create-owner-key.cjs", "netlify.toml", "docs/V7-RELEASE.md", "docs/V7-VERIFICATION.md", "docs/ENGINE-AUDIO.md", "server/relay.cjs", "render.yaml", "docs/V6-RELEASE.md", "docs/V6-VERIFICATION.md", "vendor/PEERJS-LICENSE.txt", ".nojekyll", "index.html", "PLAY.txt", "README.md", "serve.py", "Start Windows.bat", "Start Mac.command", "data/README.md", "data/provenance.json", "data/whole-coast.overpass", "data/relations.overpass", "data/tracks.overpass", "data/LICENSE-ODbL-1.0.txt"]
 extractor = '''from pathlib import Path
 import base64, re
 root = Path(__file__).resolve().parents[1]

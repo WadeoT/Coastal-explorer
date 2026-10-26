@@ -1,5 +1,5 @@
 let damageGraphics=null;
-function resetVehicleDamage(){disposeDamageGraphics();state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.damageOutcome='';}
+function resetVehicleDamage(){disposeDamageGraphics();state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.solidCrash=null;state.frontCrush=state.rearCrush=state.sideCrush=0;state.lastImpact=null;state.damageOutcome='';}
 function vehiclePowerFactor(){return VehicleDamageModel.power(state.damage);}
 function bodyPoint(world){player.computeWorldMatrix(true);return V.TransformCoordinates(world,Matrix.Invert(player.getWorldMatrix()));}
 function worldBodyPoint(local){player.computeWorldMatrix(true);return V.TransformCoordinates(new V(local.x,local.y,local.z),player.getWorldMatrix());}
@@ -48,12 +48,12 @@ function damageComponent(part,amount,cause='bullet',local=null){
  finishDamageState();return true;
 }
 function traceVehicleBullet(p,root,from,direction,range){root.computeWorldMatrix(true);const inv=Matrix.Invert(root.getWorldMatrix()),origin=V.TransformCoordinates(from,inv),dir=V.TransformNormal(direction,inv).normalize();return {hits:VehicleDamageModel.trace(p,origin,dir,range),origin,dir};}
-function playerBulletHit(from,direction,range=100,surface=null){
+function playerBulletHit(from,direction,range=100,surface=null,damageScale=1){
  if(state.mode!=='playing')return false;
  const trace=traceVehicleBullet(state.profile,player,from,direction,range),hit=trace.hits[0],part=hit?.part||'body',point=surface?bodyPoint(surface):trace.origin.add(trace.dir.scale(hit?.t||0)),amount={engine:42,radiator:70,oil:70,fuel:65,driver:100,body:9}[part];
- damageComponent(part,amount,'bullet',point);
+ damageComponent(part,amount*clamp(damageScale,.1,1),'bullet',point);
  // A frontal radiator hit can also penetrate into the engine behind it.
- if(part==='radiator'&&trace.hits.some(h=>h.part==='engine'))damageComponent('engine',14,'bullet');
+ if(part==='radiator'&&trace.hits.some(h=>h.part==='engine'))damageComponent('engine',14*clamp(damageScale,.1,1),'bullet');
  return part;
 }
 function trafficBulletHit(ai,from,direction,range,surface){
@@ -65,16 +65,16 @@ function trafficBulletHit(ai,from,direction,range,surface){
 function syncDamageHealth(){const d=state.damage;if(!d)return;state.health=d.exploded?0:d.components.body;state.driverHealth=d.components.driver;state.bodyDamage=clamp((100-d.components.body)/100,0,1);}
 function endDamagedRun(title,detail){
  if(!['playing','wrecked'].includes(state.mode))return;const alreadyWrecked=state.mode==='wrecked';if(alreadyWrecked&&state.damageOutcome===detail)return;if(!alreadyWrecked){cancelActivity(detail);state.mode='wrecked';state.bustedTime=0;keys.clear();AudioSystem.stop();}state.damageOutcome=detail;
- const el=$('busted');el.querySelector('strong').textContent=title;el.querySelector('p').textContent=detail+' · Returning to garage';el.classList.remove('hidden');if(cameraMode!=='third-person')setCameraMode('third-person');
+ const el=$('busted');el.querySelector('strong').textContent=title;el.querySelector('p').textContent=(state.lastImpact?.solid?state.lastImpact.kph+' KM/H · '+state.lastImpact.energyKJ+' KJ · ':'')+detail+' · Returning to garage';el.classList.remove('hidden');if(cameraMode!=='third-person')setCameraMode('third-person');
 }
 function finishDamageState(){const d=state.damage;if(!d)return;syncDamageHealth();if(d.driverDead)endDamagedRun(d.exploded?'DESTROYED':'WASTED',d.reason||'Driver killed');else if(d.components.body<=0)endDamagedRun('WRECKED',d.reason||'Vehicle destroyed');}
-function recordVehicleCrash(speed,worldPoint=null){
+function recordVehicleCrash(speed,worldPoint=null,impact=null){
  if(!state.damage||state.mode!=='playing'||speed<3||!Number.isFinite(speed))return;
  let local=worldPoint?bodyPoint(worldPoint):new V(0,.45-state.profile.clearance,-state.profile.length*.42);
  local=new V(clamp(local.x,-state.profile.width*.53,state.profile.width*.53),clamp(local.y,-state.profile.clearance,state.profile.eye),clamp(local.z,-state.profile.length*.52,state.profile.length*.52));
- const severity=VehicleDamageModel.crash(state.damage,state.profile,speed,local);state.lastCrashSpeed=speed;state.damageFlash=.6;
+ resetDrivingRewards();const severity=VehicleDamageModel.crash(state.damage,state.profile,speed,local);state.lastCrashSpeed=speed;state.damageFlash=.6;
  dentVehicle(local,Math.min(.5,speed*.014),1.0+speed*.025);addImpactMark(local,true);spawnCrashDebris(worldBodyPoint(local),speed);
- if(speed>17&&state.profile.kind==='car'){
+ if(impact?.solid&&impact.normal&&speed>17&&state.profile.kind==='car'){const depth=crushVehicleAgainstSurface(local,impact.normal,speed);player.position.x-=impact.normal.x*depth;player.position.z-=impact.normal.z*depth;state.solidCrash=state.damage.components.body<=0||state.damage.driverDead?{x:player.position.x,z:player.position.z}:null;state.crashFlight=null;motion.vx=motion.vz=motion.vy=0;motion.suspensionVelocity=0;}else if(speed>17&&state.profile.kind==='car'){
   const side=local.x/(state.profile.width/2),glancing=Math.abs(side)>.65;
   state.crashFlight={time:0,vy:Math.min(4,speed*.10),roll:motion.roll,pitch:motion.pitch,rollSpeed:glancing?Math.sign(side)*Math.min(4,speed*.10):0,pitchSpeed:glancing?0:-Math.min(1.2,speed*.025)};
   motion.vx*=.65;motion.vz*=.65;motion.yaw+=side*Math.min(.5,speed*.009);
@@ -83,7 +83,7 @@ function recordVehicleCrash(speed,worldPoint=null){
 }
 function spawnCrashDebris(origin,speed){if(!damageGraphics)return;for(const [i,p] of damageGraphics.debris.entries()){p.mesh.position.copyFrom(origin);p.mesh.isVisible=true;p.life=3;const a=(i+.3)*2.399;p.velocity.set(Math.cos(a)*Math.min(7,speed*.18),2+i*.4,Math.sin(a)*Math.min(7,speed*.18));}}
 function stepCrashPhysics(dt){
- const flight=state.crashFlight,p=state.profile,prevX=player.position.x,prevZ=player.position.z;
+ const flight=state.crashFlight,p=state.profile,prevX=player.position.x,prevZ=player.position.z;if(state.solidCrash){player.position.x=state.solidCrash.x;player.position.z=state.solidCrash.z;motion.vx=motion.vz=motion.vy=0;state.speed=0;return;}
  motion.vx*=Math.exp(-.8*dt);motion.vz*=Math.exp(-.8*dt);player.position.x=clamp(prevX+motion.vx*dt,BOUNDS.minX+5,BOUNDS.maxX-5);player.position.z=clamp(prevZ+motion.vz*dt,BOUNDS.minZ+5,BOUNDS.maxZ-5);
  if(flight){flight.time+=dt;flight.vy-=9.81*dt;player.position.y+=flight.vy*dt;flight.roll+=flight.rollSpeed*dt;flight.pitch+=flight.pitchSpeed*dt;flight.rollSpeed*=Math.exp(-1.2*dt);flight.pitchSpeed*=Math.exp(-1.6*dt);
   const h=groundAt(player.position.x,player.position.z,player.position.y,true)??motion.lastSurface;motion.lastSurface=h;const clearance=p.clearance+Math.abs(Math.sin(flight.roll))*p.width*.25;
@@ -97,7 +97,7 @@ function updateVehicleDamage(dt){
  const d=state.damage;if(!d)return;const failed=d.engineFailed,throttle=keys.has('KeyW')||keys.has('ArrowUp');
  VehicleDamageModel.step(d,dt,{rpm:state.rpm,load:throttle?1:0,ambient:worldUpgrade.weather==='rain'?23:27});
  if(d.engineFailed){state.rpm=0;if(!failed)toast(d.reason+' · Engine stopped. Visit the garage or use admin repair.',6500);}
- if(d.exploded&&damageGraphics&&!damageGraphics.explosionShown){damageGraphics.explosionShown=true;damageGraphics.blastAge=0;damageGraphics.blast.position.copyFrom(player.position).addInPlace(new V(0,.5,0));spawnCrashDebris(player.position,30);motion.vx+=2;motion.vz-=2;for(const root of [cockpit,exterior])for(const m of root?.getChildMeshes()||[]){const mat=m.material;if(!mat||Object.values(materials).includes(mat)||damageGraphics.originalColours.has(mat))continue;damageGraphics.originalColours.set(mat,mat.diffuseColor.clone());mat.diffuseColor.scaleInPlace(.24);}}
+ if(d.exploded&&damageGraphics&&!damageGraphics.explosionShown){damageGraphics.explosionShown=true;damageGraphics.blastAge=0;damageGraphics.blast.position.copyFrom(player.position).addInPlace(new V(0,.5,0));spawnCrashDebris(player.position,30);if(!state.solidCrash){motion.vx+=2;motion.vz-=2;}for(const root of [cockpit,exterior])for(const m of root?.getChildMeshes()||[]){const mat=m.material;if(!mat||Object.values(materials).includes(mat)||damageGraphics.originalColours.has(mat))continue;damageGraphics.originalColours.set(mat,mat.diffuseColor.clone());mat.diffuseColor.scaleInPlace(.24);}}
  finishDamageState();
 }
 function updateDamageEffects(dt){
@@ -123,6 +123,6 @@ function updateDamageGauges(){
 function repairVehicleDamage(){
  if(!state.profile)return false;
  if(damageGraphics){for(const [mesh,positions] of damageGraphics.original)if(!mesh.isDisposed()){const normals=[];VertexData.ComputeNormals(positions,mesh.getIndices(),normals);mesh.setVerticesData('position',positions,true);mesh.setVerticesData('normal',normals,true);mesh.refreshBoundingInfo();}for(const [mat,color] of damageGraphics.originalColours)if(mat.diffuseColor)mat.diffuseColor.copyFrom(color);}
- state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.rpm=state.profile.kind==='bike'?0:state.vehicleId==='ute'?750:900;if(exterior)exterior.scaling.setAll(1);createDamageGraphics();updateDamageGauges();
+ state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.solidCrash=null;state.frontCrush=state.rearCrush=state.sideCrush=0;state.rpm=state.profile.kind==='bike'?0:state.vehicleId==='ute'?750:900;if(exterior)exterior.scaling.setAll(1);createDamageGraphics();updateDamageGauges();
 }
 function initialiseDamageUI(){const panel=document.createElement('div');panel.className='damage-readout';panel.innerHTML='<strong id="damageStatus">SYSTEMS NORMAL</strong><span id="damageNumbers">OIL · COOLANT · FUEL</span>';$('hud').append(panel);const info=document.createElement('p');info.textContent='Component damage: engine hits reduce power, radiator/coolant leaks cause overheating, oil leaks lose pressure and can seize the engine, fuel damage can cause fire/explosion, and a direct driver hit can be fatal. Severe crashes leave dents, debris and burning wrecks. Watch the cockpit fluid gauges. Garage vehicle selection respawns; admin repair restores components and fluids.';$('helpModal').querySelector('.dialog').append(info);}

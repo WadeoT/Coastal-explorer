@@ -1,17 +1,19 @@
 {
   "name": "coastal-explorer",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "private": true,
   "description": "Single-file Sunshine Coast driving game; optional browser verification",
   "scripts": {
     "test:audio": "node tests/engine-audio.cjs",
-    "test": "node tests/damage-model.cjs && node tests/engine-audio.cjs && node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs && node tests/damage-browser.cjs",
+    "test": "node tests/damage-model.cjs && node tests/engine-audio.cjs && node tests/rewards.cjs && node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs && node tests/damage-browser.cjs && node tests/v8.cjs",
     "test:fleet": "node tests/v6.cjs",
     "test:relay": "node tests/relay.cjs",
     "test:geography": "node tests/browser.cjs",
     "build:runtime": "node scripts/build-runtime.cjs",
     "build": "python3 scripts/build.py",
-    "test:damage": "node tests/damage-model.cjs && node tests/damage-browser.cjs"
+    "test:damage": "node tests/damage-model.cjs && node tests/damage-browser.cjs",
+    "test:rewards": "node tests/rewards.cjs",
+    "test:v8": "node tests/v8.cjs"
   },
   "devDependencies": {
     "@babylonjs/core": "9.31.3",

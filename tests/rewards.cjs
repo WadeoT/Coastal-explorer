@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm'),path=require('path'),assert=require('assert/strict'),ctx=vm.createContext({});vm.runInContext(fs.readFileSync(path.join(__dirname,'../src/driving-rewards.js'),'utf8')+';this.model=DrivingRewardModel;',ctx);const m=ctx.model;
+const base={active:true,validMovement:true,crashed:false,road:true,grounded:true,kph:80,angle:0,side:1,canDrift:true,stars:0,pursued:false};
+function run(r,seconds,input){const awards=[];for(let i=0;i<seconds*60;i++)awards.push(...m.step(r,1/60,{...base,...input}));return awards;}
+let r=m.fresh();assert.equal(run(r,60,{}).length,0);console.log('PASS Ordinary driving/standing does not create distance money');
+r=m.fresh();run(r,3,{angle:30});run(r,3,{angle:30,side:-1});assert(r.drift.combo>=2);const drift=run(r,2,{});assert(drift.some(a=>a.kind==='drift'&&a.amount>100));assert.equal(run(r,3,{}).length,0);console.log('PASS Linked left/right slides build a multiplier and bank money once after straightening');
+r=m.fresh();run(r,5,{angle:35});m.step(r,1/60,{...base,crashed:true});assert.equal(run(r,3,{}).length,0);console.log('PASS Crashing loses an unbanked drift combo');
+r=m.fresh();run(r,10,{kph:145});const speed=run(r,2.1,{kph:80});assert(speed.some(a=>a.kind==='speed'&&a.amount>=250));assert.equal(run(r,3,{}).length,0);console.log('PASS Sustained 120+ road driving earns a single banked time reward');
+for(const input of [{road:false},{grounded:false},{validMovement:false},{active:false}]){r=m.fresh();run(r,15,{kph:180,...input});assert.equal(run(r,3,{}).length,0);}console.log('PASS Off-road, airborne, teleported and inactive movement cannot farm speed rewards');
+r=m.fresh();const chase=run(r,31,{stars:5,pursued:true,kph:80});assert.equal(chase.filter(a=>a.kind==='pursuit').length,2);assert(chase[1].amount>chase[0].amount);r=m.fresh();assert.equal(run(r,60,{stars:5,pursued:false}).length,0);console.log('PASS Active five-star survival pays in escalating intervals; hiding idle earns nothing');
+console.log('RESULT 6 reward checks passed');

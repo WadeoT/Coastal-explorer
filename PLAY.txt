@@ -1,8 +1,8 @@
-COASTAL EXPLORER — VERSION 7 / DAMAGE + DRIVE
+COASTAL EXPLORER — VERSION 8 / COASTAL PURSUIT
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=7
-You should see V7 / DAMAGE + DRIVE in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=8
+You should see V8 / COASTAL PURSUIT in the showroom.
 
 OFFLINE
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.
@@ -22,8 +22,9 @@ Boat: W/S throttle/brake/reverse; A/D steering; Space slows for docking.
 
 MONEY AND SHOP
 The original four vehicles are owned. Fresh careers start at $65,000.
-Movement DOES NOT PAY. Start delivery jobs or checkpoint races from
-ACTIVITIES. Reach the ordered targets to earn the displayed reward.
+Ordinary movement does not pay. Link road drifts, sustain road speed over
+120 km/h or survive active five-star chases for skill rewards. Start
+vehicle-specific jobs and checkpoint races from ACTIVITIES.
 Teleporting or changing vehicles cancels the job. Cash, ownership and
 mods save automatically in this browser. Hosted and downloaded copies
 have separate saves. Click a showroom card or dropdown, then BUY or
@@ -35,21 +36,37 @@ or + / - zooms. Search suburbs, streets or known mapped addresses.
 Full address lookup is optional and online. Approximate location is
 shown below the map; exact house numbers are not invented.
 
-MULTIPLAYER
-GitHub Pages hosts the game; a relay server is needed for reliable
-internet room play. The ZIP includes server/relay.cjs and render.yaml.
-See docs/V6-RELEASE.md for the Render deployment link and setup.
-After deployment, enter its HTTPS URL in Multiplayer, host a room and
-share the generated link. Guests join using that link. The relay-hosted
-site fills the server URL automatically. Eight players per room.
-Local server: node server/relay.cjs -> http://localhost:8080 .
-Optional PeerJS/direct WebRTC can work without a relay on compatible
-networks. If the browser cannot gather candidates, use the relay.
+MULTIPLAYER AND NETLIFY
+See docs/NETLIFY-MULTIPLAYER.md. Netlify imports the GitHub repo using
+netlify.toml. Its static client needs a separately hosted Node relay.
+Set public COASTAL_RELAY_URL in the Netlify build environment and redeploy.
+With that URL configured, DRIVE / LAUNCH joins a public room automatically.
+Send friends the configured site link. Without a relay, play is solo.
+The relay can also serve the game itself: node server/relay.cjs.
+No Netlify site or internet relay was created in your account here.
 
-ADMIN
-Use the ADMIN button; type help. Solo players and room hosts have admin.
-Examples: give jet | cash 250000 | repair | wanted 0 | weather rain
-          time 21 | tp -26.6145 153.0993 | noclip off | players
+OWNER ADMIN
+Only the private OWNER_ADMIN_TOKEN on the relay grants access. First
+players and room hosts do not gain admin. Generate your key on YOUR
+computer with node scripts/create-owner-key.cjs. Keep it private; enter
+it in ADMIN -> owner login. The target selector supports you, another
+player or everyone. Set money, wanted stars, damage, fire, repair,
+freeze, interceptors and more. Type help for supported commands.
+Examples: cash 5000000 | gift me 100000 | action all wanted 0
+          action me vehicle lifeflight | action me interceptors
+          settings rewardMultiplier 2 | settings policeEnabled off
+          settings autoWeather off | weather clear | time 14
+          players | ban PLAYER_ID reason | unban PLAYER_ID
+Use durable relay storage for bans/settings/gifts across redeploys.
+Anonymous bans apply to a browser identity, not a verified person.
+
+AIRCRAFT SYSTEMS
+J gear; I engine master; K searchlight; O hover hold; B rescue hoist;
+N navigation lights; P rotor brake (landed, engine off). FPV switches
+are clickable. LifeFlight/RACQ-inspired models have retractable gear;
+AS350 skids are fixed. Maps turn red for game airspace violations and
+show AGL/limits. These are fictional game rules, not aviation charts.
+Oil/temperature gauges and corner readout appear only in FPV.
 
 MAP AND SOUND ACCURACY
 All 250 mapped places, 28,596 known building outlines and the original
@@ -63,7 +80,7 @@ pulses per cycle and gradual turbo spool. This is NOT a real recording.
 Settings accepts an engine audio recording
 you own, for RPM-linked playback on the selected vehicle in this tab.
 
-V7 DAMAGE AND COCKPIT GAUGES
+DAMAGE AND COCKPIT GAUGES
 Bullets damage the component they strike: engine, driver, radiator, oil
 system, fuel tank or body. Engine failure removes powered acceleration.
 Oil/coolant leaks can cause delayed seizure; critical fuel damage can
@@ -75,4 +92,5 @@ A fatal run shows WASTED/WRECKED/DESTROYED and returns to the garage
 after about eight seconds. Choose a vehicle to respawn. Recovery alone
 does not repair components. Admin repair restores fluids and damage.
 Fuel explosions and crash deformation are arcade approximations.
-See docs/V7-RELEASE.md and docs/V7-VERIFICATION.md.
+V8 wall hits directionally crush the mesh and keep a fatal wreck at the
+wall instead of bouncing away. See docs/V8-RELEASE.md and verification.

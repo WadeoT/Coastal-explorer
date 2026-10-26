@@ -1,0 +1,22 @@
+[build]
+  command = "python3 scripts/build.py && python3 scripts/site.py"
+  publish = "site"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--omit=dev"
+
+[[redirects]]
+  from = "/play"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/Coastal-explorer/index.html"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"

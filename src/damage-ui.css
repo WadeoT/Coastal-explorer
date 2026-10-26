@@ -56,3 +56,11 @@ input::placeholder,textarea::placeholder{color:#8895aa}
 .damage-readout strong.critical{color:#ff986b}.damage-readout:has(.critical){border-left-color:#ff7659}
 .damage-readout span{font:10px/1.6 monospace;color:#b9c4d6;letter-spacing:.2px}
 @media(max-width:700px){.damage-readout{top:207px;right:12px;width:214px;padding:8px 10px}.damage-readout span{font-size:8px}.damage-readout strong{font-size:9px}}
+
+.skill-readout{position:absolute;left:35px;top:263px;display:grid;gap:7px;width:270px;padding:12px 14px;background:#0b1019e8;border:1px solid #45506470;border-left:3px solid #e6af50;border-radius:4px}.skill-readout strong{font:700 10px sans-serif;letter-spacing:1.4px;color:#e6b768}.skill-readout span{font:10px/1.4 monospace;color:#d1dbea}@media(max-width:700px){.skill-readout{top:263px;left:12px;width:195px;padding:8px}.skill-readout span{font-size:8px}}
+
+.third-person .damage-readout{display:none}.aircraft-controls{position:absolute;left:50%;bottom:165px;transform:translateX(-50%);display:flex;gap:5px;flex-wrap:wrap;justify-content:center;max-width:500px;pointer-events:auto}.aircraft-controls button{background:#0b101be8;border:1px solid #53627a;color:#bfcbdc;padding:7px 9px;font:9px monospace;border-radius:3px}.aircraft-controls button[aria-pressed=true]{border-color:#dfb55b;color:#f1cb7c}.third-person .aircraft-controls{display:none}.airspace-readout{position:absolute;right:35px;top:329px;background:#0b1019eb;border:1px solid #49576f;padding:10px 12px;max-width:290px;font:10px/1.6 monospace;color:#d2def0}.airspace-readout.violation{border-color:#fd6e56;color:#ffb7a4}.aircraft-controls[hidden],.airspace-readout[hidden]{display:none}
+
+.owner-tools{border:1px solid #46516b;background:#0c121e;padding:13px;margin:12px 0}.owner-tools h3{font:700 14px sans-serif;color:#f3c56b;margin-bottom:12px}.owner-tools .shop-actions{flex-wrap:wrap}.owner-tools .source-btn{font-size:9px;padding:8px}.owner-tools button:disabled{opacity:.4;cursor:not-allowed}
+
+.aircraft-controls{display:none}@media(pointer:coarse){.aircraft-controls:not([hidden]){display:flex}}

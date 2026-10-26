@@ -9,21 +9,17 @@ The repository includes Netlify configuration. You do not need to upload the 31 
 3. Keep the repository settings: build command `python3 scripts/build.py && python3 scripts/site.py`, publish directory `site`.
 4. Deploy. The site opens at the actual `https://your-assigned-name.netlify.app` URL Netlify gives you. You can rename it in Netlify.
 
-[Open Netlify import](https://app.netlify.com/start/deploy?repository=https://github.com/WadeoT/Coastal-explorer). Check the branch if the import screen asks. V9 waits in the setup lobby until its relay is configured.
+[Open Netlify import](https://app.netlify.com/start/deploy?repository=https://github.com/WadeoT/Coastal-explorer). Check the branch if the import screen asks. V10 plays locally immediately; a configured relay joins automatically in the background.
 
 ## 2. Deploy the multiplayer relay
 
 [Deploy the included Render blueprint](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer). Select branch `codex/sunshine-coast-game` if asked. A Render account is separate from Netlify. Another Node host supporting long-lived WebSockets can run the same service.
 
-The blueprint runs `node server/relay.cjs` with Node 22. Its `/health` response should show protocol 2 and `ownerConfigured: true` after the next step. The service also serves the game at its own HTTPS root, automatically using itself as relay.
+The blueprint runs `node server/relay.cjs` with Node 22. Its `/health` response should show protocol 2 and `ownerConfigured: true` with the default code or a configured override. The service also serves the game at its own HTTPS root, automatically using itself as relay.
 
-Generate a private owner key on **your own computer**, inside the checkout:
+The requested admin code is **`Iamsteve`**. Open ADMIN and enter it. Local controls work without a relay; the default relay accepts the same code for server administration. Anyone who knows it can unlock it.
 
-```sh
-node scripts/create-owner-key.cjs
-```
-
-Copy the generated value into the relay host's **private environment variable** `OWNER_ADMIN_TOKEN`. Store it privately; enter it in ADMIN → owner login when you play. Do not paste it into chat, a shared URL, GitHub, or the public Netlify build variables. Keys need at least 24 characters. Changing the key and restarting revokes old owner login access.
+For an optional different shared-server code, generate a private value on your own computer with `node scripts/create-owner-key.cjs`, then set the relay's private `OWNER_ADMIN_TOKEN` environment variable. Overrides need at least eight characters. Do not put a private override in Netlify's public build settings or shared links. The local game code remains `Iamsteve`; the override controls shared-player/server privileges. The Render blueprint no longer requires you to invent a key merely to create the service.
 
 Optional relay variables:
 
@@ -40,13 +36,13 @@ The free Render blueprint has no persistent disk. A process restart can preserve
 1. Copy the relay's actual HTTPS root URL from its hosting dashboard.
 2. In the Netlify site's environment variables, add **`COASTAL_RELAY_URL`** with that URL. This URL is public; it is not the owner key.
 3. Trigger a new production deploy. This embeds the public URL into the standalone HTML.
-4. Open the Netlify site, choose a vehicle and **DRIVE / LAUNCH**. Multiplayer should report a public room. A second browser on the same site joins an available room automatically. Disconnects pause driving while the client reconnects.
+4. Open the Netlify site, choose a vehicle and **DRIVE / LAUNCH**. Multiplayer should report a public room. A second browser on the same site joins an available room automatically. Disconnects retry in the background and do not pause driving.
 
-Share your actual Netlify site URL with friends. If you are using GitHub Pages instead, enter the HTTPS relay URL in Multiplayer and share the generated relay-configured invite. Sending the GitHub link alone, without any configured relay, does not create a server; V9 stays at the connection gate.
+Share your actual Netlify site URL with friends. If you are using GitHub Pages instead, enter the HTTPS relay URL in Multiplayer and share the generated relay-configured invite. Sending the GitHub link alone, without any configured relay, does not create a server; V10 continues in clearly labelled local play.
 
 ## Owner testing
 
-Use ADMIN, enter the private key, and select **My player**, **All connected players** or a player in the target dropdown. The panel has wanted stars, set money, component damage, fire, explosion, repair and freeze controls. Examples in the typed console:
+Use ADMIN, enter the admin code, and select **My player**, **All connected players** or a player in the target dropdown. The panel has wanted stars, set money, component damage, fire, explosion, repair and freeze controls. Examples in the typed console:
 
 ```text
 cash 5000000
@@ -67,4 +63,4 @@ ban PLAYER_ID reason
 unban PLAYER_ID
 ```
 
-`players` lists IDs across connected rooms. Keys are verified on the server, not embedded in JavaScript. Owner login requires HTTPS/WSS except localhost. Anonymous identities are not account authentication; a new browser identity can bypass a ban. Normal career money and physics remain client-side, so do not treat the relay as competitive anticheat.
+`players` lists IDs across connected rooms. Keys are verified on the server, not embedded in JavaScript. Shared-server admin login requires HTTPS/WSS except localhost. Anonymous identities are not account authentication; a new browser identity can bypass a ban. Normal career money and physics remain client-side, so do not treat the relay as competitive anticheat.

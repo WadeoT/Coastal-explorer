@@ -1,15 +1,15 @@
-COASTAL EXPLORER — VERSION 9 / ONLINE LOBBY
+COASTAL EXPLORER — VERSION 10 / AIR CONTROL
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=9
-You should see V9 / ONLINE LOBBY in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=10
+You should see V10 / AIR CONTROL in the showroom.
 
 DOWNLOAD / BUNDLED MAP
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.
 Wait for the included real map to unpack, then select a vehicle and use
-DRIVE / LAUNCH. V9 waits for a multiplayer server connection before play.
+DRIVE / LAUNCH. Local play starts immediately without any server.
 Run node server/relay.cjs to serve the game with its local relay, or use
-your hosted relay. Missing server settings show a lobby setup panel. If local HTML is blocked, use the included Mac/Windows
+your hosted relay. Missing server settings never block Play. If local HTML is blocked, use the included Mac/Windows
 launchers with Python 3, or run python3 serve.py.
 
 CONTROLS
@@ -43,25 +43,20 @@ See docs/NETLIFY-MULTIPLAYER.md. Netlify imports the GitHub repo using
 netlify.toml. Its static client needs a separately hosted Node relay.
 Set public COASTAL_RELAY_URL in the Netlify build environment and redeploy.
 With that URL configured, loading joins a public room automatically.
-DRIVE / LAUNCH waits for connection. Disconnects pause and auto-reconnect.
-Send friends the configured site link. Without a relay, V9 waits in its setup lobby.
+DRIVE / LAUNCH works immediately. Disconnects retry in the background.
+Send friends the configured site link. Without a relay, local play continues.
 The relay can also serve the game itself: node server/relay.cjs.
 No Netlify site or internet relay was created in your account here.
 
-OWNER ADMIN
-Only the private OWNER_ADMIN_TOKEN on the relay grants access. First
-players and room hosts do not gain admin. Generate your key on YOUR
-computer with node scripts/create-owner-key.cjs. Keep it private; enter
-it in ADMIN -> owner login. The target selector supports you, another
-player or everyone. Set money, wanted stars, damage, fire, repair,
-freeze, interceptors and more. Type help for supported commands.
-Examples: cash 5000000 | gift me 100000 | action all wanted 0
-          action me vehicle lifeflight | action me interceptors
-          settings rewardMultiplier 2 | settings policeEnabled off
-          settings autoWeather off | weather clear | time 14
-          players | ban PLAYER_ID reason | unban PLAYER_ID
-Use durable relay storage for bans/settings/gifts across redeploys.
-Anonymous bans apply to a browser identity, not a verified person.
+ADMIN
+Open ADMIN, enter Iamsteve and click UNLOCK ADMIN. Your own player
+controls work locally without a server: set/gift money, wanted levels,
+vehicles, repair, damage, jobs and time/weather through buttons.
+A new relay uses the same code by default. Anyone knowing the code can
+unlock it; it is not private owner identity. The optional relay-only
+OWNER_ADMIN_TOKEN overrides shared-server administration. Remote-player
+moderation needs an authenticated server connection. The advanced typed
+console is optional. Code input is cleared after use.
 
 AIRCRAFT SYSTEMS
 J gear; I engine master; K searchlight; O hover hold; B rescue hoist;
@@ -106,3 +101,19 @@ Cyan players and red police appear on both maps; distant minimap contacts
 have edge bearings/distances. Rendering/simulation errors pause safely
 with Copy Error Report, Return to Garage and Reload buttons.
 See docs/V9-RELEASE.md and docs/V9-VERIFICATION.md.
+
+V10 AIRSPACE, COLLISIONS AND ATC
+Unauthorized flight raises stars faster. Police air support and airport
+radar make helicopter escape harder. Fighters fire only through a narrow
+nose cone, along their actual forward axis, with line-of-sight checks.
+ATC REQUEST LANDING uses a selected map pin or the ground below you.
+Acknowledgement -> site/weather/access/traffic review -> clear, hold or
+refuse. Clearances last 120 seconds within 220 m of the approved site.
+Water, unapproved roofs, private grounds, severe weather and active
+high-priority pursuit can cause refusal. These are game rules, not real
+aviation clearances or a property-boundary survey.
+Scenery collisions include buildings, generated trees, poles, vehicles,
+players, terrain/shore contact and aircraft roof strikes. Fast movement
+uses swept contact checks. Critical damage raises visible warning cards
+with a vehicle/component marker. This remains arcade crash deformation.
+See docs/V10-RELEASE.md and docs/V10-VERIFICATION.md.

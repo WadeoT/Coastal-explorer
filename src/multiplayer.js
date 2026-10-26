@@ -57,7 +57,7 @@ const Multiplayer={isOwner:false,pendingAdmins:new Map(),relayOrigin:'',serverSe
  requestAdmin(command,args=[]){if(!this.isOwner||!this.relayMode)return Promise.resolve('Owner authentication required.');const requestId=crypto.randomUUID();return new Promise(resolve=>{const timeout=setTimeout(()=>{this.pendingAdmins.delete(requestId);resolve('Server command timed out.');},10000);this.pendingAdmins.set(requestId,{resolve,timeout});this.send(this.connections.get('relay'),{type:'admin',requestId,command,args});});},
  autoJoin(forcePublic=false){
   if(this.connected||this.relaySocket?.readyState===WebSocket.CONNECTING)return;
-  const relay=$('relayInput')?.value.trim();if(!relay){this.setStatus('Public lobby needs its hosted server connected.');return;}
+  const relay=$('relayInput')?.value.trim();if(!relay){this.setStatus('Playing locally · multiplayer server not configured.');return;}
   clearTimeout(lobbyRetry);lobbyRetry=null;lobbyAutoWanted=true;lobbyAttempts++;
   const invite=forcePublic?'':new URL(location.href).searchParams.get('room')||'',isPublic=!invite||invite.startsWith('PUBLIC-');
   this.connectRelay(isPublic?'public':false,invite).catch(e=>{this.setStatus(e.message);queueLobbyReconnect();});

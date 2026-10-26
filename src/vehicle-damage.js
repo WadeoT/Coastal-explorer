@@ -1,5 +1,5 @@
 let damageGraphics=null;
-function resetVehicleDamage(){disposeDamageGraphics();state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.solidCrash=null;state.frontCrush=state.rearCrush=state.sideCrush=0;state.lastImpact=null;state.damageOutcome='';}
+function resetVehicleDamage(){disposeDamageGraphics();state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.solidCrash=null;state.frontCrush=state.rearCrush=state.sideCrush=0;state.lastImpact=null;state.wreckSurface=null;state.damageOutcome='';if(typeof dangerState!=='undefined'){dangerState.active.clear();dangerState.last.clear();renderDangerAlerts();}}
 function vehiclePowerFactor(){return VehicleDamageModel.power(state.damage);}
 function bodyPoint(world){player.computeWorldMatrix(true);return V.TransformCoordinates(world,Matrix.Invert(player.getWorldMatrix()));}
 function worldBodyPoint(local){player.computeWorldMatrix(true);return V.TransformCoordinates(new V(local.x,local.y,local.z),player.getWorldMatrix());}
@@ -40,7 +40,7 @@ function addImpactMark(local,large=false){
  if(large){const a=normal.z?new V(1,0,0):new V(0,0,1),points=[];for(let i=0;i<5;i++){const angle=i*TAU/5;points.push(local.add(a.scale(Math.cos(angle)*.27)).add(new V(0,Math.sin(angle)*.20,0)),local);}const crack=MB.CreateLines('impact-scratched-glass',{points},scene);crack.parent=player;crack.color=new C(.75,.77,.73);crack.isPickable=false;damageGraphics.marks.push(crack);}
 }
 function damageComponent(part,amount,cause='bullet',local=null){
- if(state.mode!=='playing'||!state.damage)return false;
+ if(!['playing','paused'].includes(state.mode)||!state.damage)return false;
  if(!VehicleDamageModel.hit(state.damage,part,amount,cause))return false;
  state.damageFlash=.5;
  if(local){addImpactMark(local,part==='driver');dentVehicle(local,cause==='bullet'?.045:.16,cause==='bullet'?.38:1.1);}
@@ -64,7 +64,7 @@ function trafficBulletHit(ai,from,direction,range,surface){
 }
 function syncDamageHealth(){const d=state.damage;if(!d)return;state.health=d.exploded?0:d.components.body;state.driverHealth=d.components.driver;state.bodyDamage=clamp((100-d.components.body)/100,0,1);}
 function endDamagedRun(title,detail){
- if(!['playing','wrecked'].includes(state.mode))return;const alreadyWrecked=state.mode==='wrecked';if(alreadyWrecked&&state.damageOutcome===detail)return;if(!alreadyWrecked){cancelActivity(detail);state.mode='wrecked';state.bustedTime=0;keys.clear();AudioSystem.stop();}state.damageOutcome=detail;
+ if(!['playing','paused','wrecked'].includes(state.mode))return;const alreadyWrecked=state.mode==='wrecked';if(alreadyWrecked&&state.damageOutcome===detail)return;if(!alreadyWrecked){cancelActivity(detail);state.mode='wrecked';state.bustedTime=0;keys.clear();AudioSystem.stop();}state.damageOutcome=detail;
  const el=$('busted');el.querySelector('strong').textContent=title;el.querySelector('p').textContent=(state.lastImpact?.solid?state.lastImpact.kph+' KM/H · '+state.lastImpact.energyKJ+' KJ · ':'')+detail+' · Returning to garage';el.classList.remove('hidden');if(cameraMode!=='third-person')setCameraMode('third-person');
 }
 function finishDamageState(){const d=state.damage;if(!d)return;syncDamageHealth();if(d.driverDead)endDamagedRun(d.exploded?'DESTROYED':'WASTED',d.reason||'Driver killed');else if(d.components.body<=0)endDamagedRun('WRECKED',d.reason||'Vehicle destroyed');}
@@ -74,11 +74,12 @@ function recordVehicleCrash(speed,worldPoint=null,impact=null){
  local=new V(clamp(local.x,-state.profile.width*.53,state.profile.width*.53),clamp(local.y,-state.profile.clearance,state.profile.eye),clamp(local.z,-state.profile.length*.52,state.profile.length*.52));
  resetDrivingRewards();const severity=VehicleDamageModel.crash(state.damage,state.profile,speed,local);state.lastCrashSpeed=speed;state.damageFlash=.6;
  dentVehicle(local,Math.min(.5,speed*.014),1.0+speed*.025);addImpactMark(local,true);spawnCrashDebris(worldBodyPoint(local),speed);
- if(impact?.solid&&impact.normal&&speed>17&&state.profile.kind==='car'){const depth=crushVehicleAgainstSurface(local,impact.normal,speed);player.position.x-=impact.normal.x*depth;player.position.z-=impact.normal.z*depth;state.solidCrash=state.damage.components.body<=0||state.damage.driverDead?{x:player.position.x,z:player.position.z}:null;state.crashFlight=null;motion.vx=motion.vz=motion.vy=0;motion.suspensionVelocity=0;}else if(speed>17&&state.profile.kind==='car'){
+ if(impact?.solid&&impact.normal&&speed>17&&['car','boat','heli','jet'].includes(state.profile.kind)){const depth=crushVehicleAgainstSurface(local,impact.normal,speed);player.position.x-=impact.normal.x*depth;player.position.z-=impact.normal.z*depth;state.solidCrash=state.damage.components.body<=0||state.damage.driverDead?{x:player.position.x,z:player.position.z}:null;state.crashFlight=null;motion.vx=motion.vz=motion.vy=0;motion.suspensionVelocity=0;if(['heli','jet'].includes(state.profile.kind)){state.solidCrash=null;state.crashFlight={time:0,vy:-2,roll:motion.roll,pitch:motion.pitch,rollSpeed:.5,pitchSpeed:.3};}}else if(speed>17&&['car','heli','jet'].includes(state.profile.kind)){
   const side=local.x/(state.profile.width/2),glancing=Math.abs(side)>.65;
   state.crashFlight={time:0,vy:Math.min(4,speed*.10),roll:motion.roll,pitch:motion.pitch,rollSpeed:glancing?Math.sign(side)*Math.min(4,speed*.10):0,pitchSpeed:glancing?0:-Math.min(1.2,speed*.025)};
   motion.vx*=.65;motion.vz*=.65;motion.yaw+=side*Math.min(.5,speed*.009);
  }
+ dangerAlert('crash','IMPACT · '+Math.round(speed*3.6)+' KM/H',impact?.solid?'Solid collision · body and components damaged.':'Vehicle impact · inspect damage before continuing.','critical','body');
  if(severity>45&&state.damage.engineFailed)toast('ENGINE FAILURE · '+state.damage.reason,4000);finishDamageState();
 }
 function spawnCrashDebris(origin,speed){if(!damageGraphics)return;for(const [i,p] of damageGraphics.debris.entries()){p.mesh.position.copyFrom(origin);p.mesh.isVisible=true;p.life=3;const a=(i+.3)*2.399;p.velocity.set(Math.cos(a)*Math.min(7,speed*.18),2+i*.4,Math.sin(a)*Math.min(7,speed*.18));}}
@@ -86,11 +87,11 @@ function stepCrashPhysics(dt){
  const flight=state.crashFlight,p=state.profile,prevX=player.position.x,prevZ=player.position.z;if(state.solidCrash){player.position.x=state.solidCrash.x;player.position.z=state.solidCrash.z;motion.vx=motion.vz=motion.vy=0;state.speed=0;return;}
  motion.vx*=Math.exp(-.8*dt);motion.vz*=Math.exp(-.8*dt);player.position.x=clamp(prevX+motion.vx*dt,BOUNDS.minX+5,BOUNDS.maxX-5);player.position.z=clamp(prevZ+motion.vz*dt,BOUNDS.minZ+5,BOUNDS.maxZ-5);
  if(flight){flight.time+=dt;flight.vy-=9.81*dt;player.position.y+=flight.vy*dt;flight.roll+=flight.rollSpeed*dt;flight.pitch+=flight.pitchSpeed*dt;flight.rollSpeed*=Math.exp(-1.2*dt);flight.pitchSpeed*=Math.exp(-1.6*dt);
-  const h=groundAt(player.position.x,player.position.z,player.position.y,true)??motion.lastSurface;motion.lastSurface=h;const clearance=p.clearance+Math.abs(Math.sin(flight.roll))*p.width*.25;
+  const ground=groundAt(player.position.x,player.position.z,player.position.y,true)??motion.lastSurface,h=state.wreckSurface&&pointInPolygon(player.position.x,player.position.z,state.wreckSurface.polygon)?Math.max(ground,state.wreckSurface.height):ground;motion.lastSurface=h;const clearance=p.clearance+Math.abs(Math.sin(flight.roll))*p.width*.25;
   if(player.position.y<h+clearance){player.position.y=h+clearance;flight.vy=flight.vy<-1?-flight.vy*.18:0;motion.vx*=.96;motion.vz*=.96;}
   motion.roll=flight.roll;motion.pitch=flight.pitch;player.rotation.set(flight.pitch,-motion.yaw,flight.roll);
   if(flight.time>2.5){state.crashFlight=null;if(Math.abs(Math.sin(flight.roll))>.8&&state.mode==='playing'){VehicleDamageModel.hit(state.damage,'body',100,'rollover');finishDamageState();}else if(state.mode==='playing'){motion.roll=motion.pitch=0;motion.suspensionVelocity=0;}}
- }else{const h=groundAt(player.position.x,player.position.z,player.position.y,true);if(h!==null){player.position.y=h+p.clearance;motion.lastSurface=h;}}
+ }else{const raw=groundAt(player.position.x,player.position.z,player.position.y,true),h=state.wreckSurface&&pointInPolygon(player.position.x,player.position.z,state.wreckSurface.polygon)?Math.max(raw??-10000,state.wreckSurface.height):raw;if(h!==null){player.position.y=h+p.clearance;motion.lastSurface=h;}}
  state.speed=Math.hypot(motion.vx,motion.vz);state.distance+=Math.hypot(player.position.x-prevX,player.position.z-prevZ);
 }
 function updateVehicleDamage(dt){
@@ -123,6 +124,6 @@ function updateDamageGauges(){
 function repairVehicleDamage(){
  if(!state.profile)return false;
  if(damageGraphics){for(const [mesh,positions] of damageGraphics.original)if(!mesh.isDisposed()){const normals=[];VertexData.ComputeNormals(positions,mesh.getIndices(),normals);mesh.setVerticesData('position',positions,true);mesh.setVerticesData('normal',normals,true);mesh.refreshBoundingInfo();}for(const [mat,color] of damageGraphics.originalColours)if(mat.diffuseColor)mat.diffuseColor.copyFrom(color);}
- state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.solidCrash=null;state.frontCrush=state.rearCrush=state.sideCrush=0;state.rpm=state.profile.kind==='bike'?0:state.vehicleId==='ute'?750:900;if(exterior)exterior.scaling.setAll(1);createDamageGraphics();updateDamageGauges();
+ state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.solidCrash=null;state.frontCrush=state.rearCrush=state.sideCrush=0;dangerState.active.clear();dangerState.last.clear();renderDangerAlerts();state.wreckSurface=null;state.rpm=state.profile.kind==='bike'?0:state.vehicleId==='ute'?750:900;if(exterior)exterior.scaling.setAll(1);createDamageGraphics();updateDamageGauges();
 }
 function initialiseDamageUI(){const panel=document.createElement('div');panel.className='damage-readout';panel.innerHTML='<strong id="damageStatus">SYSTEMS NORMAL</strong><span id="damageNumbers">OIL · COOLANT · FUEL</span>';$('hud').append(panel);const info=document.createElement('p');info.textContent='Component damage: engine hits reduce power, radiator/coolant leaks cause overheating, oil leaks lose pressure and can seize the engine, fuel damage can cause fire/explosion, and a direct driver hit can be fatal. Severe crashes leave dents, debris and burning wrecks. Watch the cockpit fluid gauges. Garage vehicle selection respawns; admin repair restores components and fluids.';$('helpModal').querySelector('.dialog').append(info);}

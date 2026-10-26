@@ -9,5 +9,3 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 22.16.0
-      - key: OWNER_ADMIN_TOKEN
-        sync: false

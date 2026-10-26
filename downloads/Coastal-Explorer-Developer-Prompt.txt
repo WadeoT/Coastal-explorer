@@ -433,4 +433,18 @@ Apply the following requirements in addition to every section above:
 
 The V8 repository implements these features with a cooperative relay and client-side simulation. Tests must still verify the actual shipped HTML, two independent browsers, server permission denial and map preservation. External Netlify/relay deployment, competitive server authority, exact surveyed houses, a licensed LandCruiser recording and native Mac performance remain separate acceptance items until proven.
 
+### 22. V10 overrides: playable fallback, chosen code, collisions and ATC
+
+The latest user instructions override any older requirement that blocks playing until a server connects. Launch local play immediately when no relay is available. Autojoin/reconnect in the background when a real relay is configured, and accurately label local versus connected play. Never claim a public server was provisioned without an actual deployment.
+
+Use the user's chosen admin code `Iamsteve` for local controls without requiring a server. A default relay accepts the same code, while an explicitly configured server override governs shared-player moderation. Explain that anyone knowing a public code can unlock it; it is not account identity. Buttons must affect the owner's paused vehicle as well as other authorized players. Retain backend authorization for real remote-player/server actions.
+
+Enforce game airspace faster, with lower wanted thresholds, police helicopter support, airport gameplay radar, longer aircraft escape timers and actual five-star interceptors. Cannon shots must originate at the fighter nose and follow its forward model axis through a tight firing cone. Do not aim an independent ray sideways/backward at a player alongside it. Use real collision/line-of-sight results for damage.
+
+Use swept scenery collision rather than endpoint-only overlap. Include the actual generated buildings, trees, canopies, poles, vehicles and players; preserve terrain/road/bridge/shore contact. Severe vehicle impacts deform the model. Aircraft roof strikes must damage the aircraft and keep a roof wreck on its struck surface, not teleport it to the terrain below. Keep the distinction between arcade crash motion/deformation and a genuine soft-body solver explicit.
+
+Warn and penalize driving into gameplay private/protected grounds outside public road corridors. Use retained map landuse/access information and disclose gaps: the snapshot is not a cadastral ownership map. Add high-priority damage alert cards with a component/location marker, actual reason and dangerous condition; repair clears resolved alerts.
+
+Provide an ATC REQUEST LANDING button with acknowledged, reviewing, holding, approved/refused and expired states. Evaluate the selected map landing pin or ground below the aircraft against water/buildings/slope, area permission, weather, pursuit and aircraft conflicts. Do not grant every request. Clearance is local and time-limited, and exempts only the relevant gameplay restrictions. This is game ATC, not real aviation permission.
+
 ## END PROMPT

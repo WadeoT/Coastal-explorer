@@ -1,7 +1,28 @@
+let localAdminUnlocked=false;
+function adminPanelUnlocked(){return localAdminUnlocked||Multiplayer.isOwner;}
+function unlockGameAdmin(code){
+ if(code==='Iamsteve'){localAdminUnlocked=true;$('ownerStatus').textContent='Code accepted · local controls unlocked.';refreshOwnerAdminUI();if(Multiplayer.connected&&Multiplayer.relayMode)Multiplayer.authenticateOwner(code);return true;}
+ if(Multiplayer.connected&&Multiplayer.relayMode)return Multiplayer.authenticateOwner(code);
+ $('ownerStatus').textContent='Incorrect admin code.';return false;
+}
+async function runLocalAdmin(cmd,args){
+ if(cmd==='action'){
+  const [target,action,...values]=args;if(!['me','all',Multiplayer.id].includes(target))return 'A shared-player action requires server owner authentication.';
+  await applyOwnerAction({actionId:crypto.randomUUID(),action,args:values},true);return 'Applied '+action+' to your player.';
+ }
+ if(cmd==='gift'){if(!['me','all',Multiplayer.id].includes(args[0]))return 'Connect as server owner to gift another player.';const amount=Number(args[1]);if(!Number.isInteger(amount)||amount<1||amount>50000000)return 'Gift must be 1–50,000,000.';economy.balance=Math.min(1e10,economy.balance+amount);saveCareer();updateWallet();return 'Gifted '+dollars(amount);}
+ if(cmd==='time'){const value=Number(args[0]);if(!Number.isFinite(value)||value<0||value>=24)return 'Time must be 0–23.99.';worldUpgrade.time=value/24;return 'Local time updated.';}
+ if(cmd==='weather')return setWeather(args[0])?'Local weather updated.':'Unknown weather.';
+ if(cmd==='settings'){const [key,value]=args;if(['policeEnabled','autoWeather'].includes(key))Multiplayer.serverSettings[key]=['true','on'].includes(value);else if(key==='rewardMultiplier'&&Number(value)>=.25&&Number(value)<=5)Multiplayer.serverSettings[key]=Number(value);else if(key==='maxPlayers')return 'Room capacity applies to a hosted server.';else return 'Invalid setting.';return 'Local setting updated.';}
+ if(cmd==='players')return 'You · local player';if(cmd==='bans'){Multiplayer.bannedPlayers=[];refreshOwnerBans();return 'Bans require a connected server.';}
+ if(['ban','unban','kick'].includes(cmd))return 'Connect as server owner to moderate other players.';
+ if(['cash','repair','give','vehicle','wanted','tp','noclip'].includes(cmd))return executeOwnerLocal([cmd,...args].join(' '));
+ return 'Unknown command.';
+}
 function runAdmin(command){
  const parts=String(command).trim().split(/\s+/),cmd=(parts.shift()||'help').toLowerCase();
  if(cmd==='help')return 'Owner login is required. Player actions: action <me|all|player ID> wanted <0–5> | money <amount> | repair | damage <component> <1–100> | fire | explode | freeze | unfreeze | tp <lat> <lon> | vehicle <ID> | job <ID> | canceljob | interceptors. Commands: gift <player ID|me> <amount> | ban <player ID> [reason] | unban <ID> | kick <ID> | players | time <0–24> | weather clear/cloudy/rain/storm/fog | settings maxPlayers <2–16> | settings rewardMultiplier <0.25–5> | settings policeEnabled on/off | settings autoWeather on/off | cash <amount> | repair | give <vehicle ID> | vehicle <ID> | wanted <0–5> | tp <lat> <lon> | noclip on/off';
- if(!Multiplayer.connected||!Multiplayer.relayMode||!Multiplayer.isOwner)return 'Owner authentication required. Connect to your relay and unlock with your private owner key.';
+ if(!Multiplayer.isOwner){if(!localAdminUnlocked)return 'Owner authentication required. Enter the admin code to unlock.';return runLocalAdmin(cmd,parts);}
  if(cmd==='wanted'&&parts.length>=2)return Multiplayer.requestAdmin('action',[parts[0],'wanted',parts[1]]);if(['money','cash'].includes(cmd)&&parts.length>=2)return Multiplayer.requestAdmin('action',[parts[0],'money',parts[1]]);
  if(['action','gift','ban','unban','bans','kick','players','time','weather','settings'].includes(cmd))return Multiplayer.requestAdmin(cmd,parts);
  if(['cash','repair','give','vehicle','wanted','tp','noclip'].includes(cmd))return Multiplayer.requestAdmin('client-action',[cmd,...parts]);
@@ -15,11 +36,11 @@ function receiveOwnerGift(gift){
 }
 
 const appliedOwnerActions=new Set();
-async function applyOwnerAction(data){
- if(!data||typeof data.actionId!=='string'||appliedOwnerActions.has(data.actionId)||!Multiplayer.relayMode)return;appliedOwnerActions.add(data.actionId);if(appliedOwnerActions.size>1000)appliedOwnerActions.delete(appliedOwnerActions.values().next().value);const args=data.args||[];resetDrivingRewards();
+async function applyOwnerAction(data,local=false){
+ if(!data||typeof data.actionId!=='string'||appliedOwnerActions.has(data.actionId)||!(local?localAdminUnlocked:Multiplayer.relayMode))return;appliedOwnerActions.add(data.actionId);if(appliedOwnerActions.size>1000)appliedOwnerActions.delete(appliedOwnerActions.values().next().value);const args=data.args||[];resetDrivingRewards();
  switch(data.action){
- case 'money':economy.balance=Number(args[0]);saveCareer();updateWallet();break;
- case 'wanted':state.wanted=Number(args[0]);state.heat=state.wanted?WANTED_THRESHOLDS[state.wanted-1]:0;state.fiveStarPressure=0;state.evade=0;state.adminTest=true;updatePoliceDeployment();break;
+ case 'money':if(!Number.isInteger(Number(args[0]))||Number(args[0])<0||Number(args[0])>100000000)return;economy.balance=Number(args[0]);saveCareer();updateWallet();break;
+ case 'wanted':if(!Number.isInteger(Number(args[0]))||Number(args[0])<0||Number(args[0])>5)return;state.wanted=Number(args[0]);state.heat=state.wanted?WANTED_THRESHOLDS[state.wanted-1]:0;state.fiveStarPressure=0;state.evade=0;state.adminTest=true;updatePoliceDeployment();break;
  case 'repair':if(state.profile)repairVehicleDamage();break;
  case 'damage':if(state.profile)damageComponent(args[0],Number(args[1]),'owner test');break;
  case 'fire':if(state.damage){state.damage.burning=true;state.damage.fireTime=0;}break;
@@ -41,8 +62,8 @@ function refreshOwnerAdminUI(){
  for(const [id,r] of Multiplayer.remotes)players.set(id,r.target.name);
  const options=[['me','My player'],['all','All connected players'],...[...players].map(([id,name])=>[id,name+' · '+id.slice(0,8)])],signature=JSON.stringify(options);
  if(select.dataset.options!==signature){select.dataset.options=signature;select.replaceChildren(...options.map(([id,label])=>{const o=document.createElement('option');o.value=id;o.textContent=label;return o;}));if(options.some(o=>o[0]===value))select.value=value;}
- for(const b of $('adminModal').querySelectorAll('[data-owner]'))b.disabled=!Multiplayer.isOwner;
- $('ownerAccessHint').textContent=Multiplayer.isOwner?'Owner verified · choose a target, then use the buttons.':!Multiplayer.connected?'Connect to the multiplayer server to unlock owner controls.':'Connected · enter your private server owner key above to unlock.';
+ for(const b of $('adminModal').querySelectorAll('[data-owner]'))b.disabled=!adminPanelUnlocked();
+ $('ownerAccessHint').textContent=adminPanelUnlocked()?'Admin unlocked · choose a target and use the buttons.':'Enter the admin code above to unlock. No server is needed for your own player.';
  if($('ownerVehicle').options.length===0)for(const [id,p] of Object.entries(profiles)){const o=document.createElement('option');o.value=id;o.textContent=p.name;$('ownerVehicle').append(o);}
  const jobKey=state.vehicleId+':'+Math.floor(player.position.x/1000)+':'+Math.floor(player.position.z/1000);if($('ownerJob').dataset.jobCache!==jobKey){$('ownerJob').dataset.jobCache=jobKey;const jobs=availableContracts();$('ownerJob').replaceChildren(...jobs.map(j=>{const o=document.createElement('option');o.value=j.id;o.textContent=j.title||j.name||j.id;return o;}));}
 }

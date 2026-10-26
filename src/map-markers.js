@@ -3,7 +3,7 @@ function mapContacts(){
  for(const [id,r] of Multiplayer.remotes){const s=r.target;if(!Multiplayer.validSnapshot(s))continue;contacts.push({id,type:'player',name:s.name||'Player',x:s.x,y:s.y,z:s.z,yaw:s.yaw});}
  for(const ai of trafficPool)if(ai.police&&ai.health>0&&ai.root.isEnabled()){const p=ai.root.position;contacts.push({id:'police-'+ai.index,type:'police',name:'POLICE',x:p.x,y:p.y,z:p.z,yaw:ai.yaw,pursuing:ai.pursuing});}
  for(const [i,a] of gameAirspace.interceptors.entries())if(a.active){const p=a.root.position;contacts.push({id:'interceptor-'+i,type:'interceptor',name:'INTERCEPTOR',x:p.x,y:p.y,z:p.z,yaw:a.yaw});}
- return contacts;
+ if(policeAirUnit){const p=policeAirUnit.root.position;contacts.push({id:'police-air-support',type:'police',name:'POLICE HELICOPTER',x:p.x,y:p.y,z:p.z,yaw:policeAirUnit.yaw});}return contacts;
 }
 function drawMapContacts(ctx,project,mini=false){
  const w=ctx.canvas.width,h=ctx.canvas.height,drawn=[];ctx.save();

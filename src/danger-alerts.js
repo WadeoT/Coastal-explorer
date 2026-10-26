@@ -1,0 +1,17 @@
+const dangerState={active:new Map(),last:new Map()};
+function dangerAlert(id,title,detail,severity='critical',part='body'){
+ const now=state.elapsed||0,previous=dangerState.last.get(id);if(previous!==undefined&&now-previous<8)return;
+ dangerState.last.set(id,now);dangerState.active.set(id,{id,title,detail,severity,part,until:now+8});renderDangerAlerts();
+}
+function renderDangerAlerts(){const box=$('dangerAlerts');if(!box)return;const now=state.elapsed||0;for(const [id,a] of dangerState.active)if(a.until<now)dangerState.active.delete(id);const alerts=[...dangerState.active.values()].sort((a,b)=>(a.severity==='critical'?-1:1)-(b.severity==='critical'?-1:1)||b.until-a.until).slice(0,3),signature=JSON.stringify(alerts);if(box.dataset.signature===signature)return;box.dataset.signature=signature;box.replaceChildren();for(const a of alerts){const card=document.createElement('article');card.className='danger-alert '+a.severity;card.setAttribute('role',a.severity==='critical'?'alert':'status');const icon=document.createElement('span');icon.className='danger-icon';icon.textContent='⚠';if(['body','engine','oil','coolant','fuel','driver'].includes(a.part)){const pos={engine:[24,22],oil:[24,34],coolant:[24,14],fuel:[24,68],driver:[34,43],body:[13,50]}[a.part];icon.innerHTML='<svg viewBox="0 0 48 88" width="40" height="72" aria-hidden="true"><rect x="8" y="5" width="32" height="78" rx="8" fill="#141a23" stroke="#c9d2e1" stroke-width="2"/><path d="M10 31h28v25H10z" fill="#546276"/><circle cx="'+pos[0]+'" cy="'+pos[1]+'" r="7" fill="#ff6559" stroke="#fff" stroke-width="2"/></svg>';}const text=document.createElement('div'),title=document.createElement('strong'),detail=document.createElement('p'),part=document.createElement('span');title.textContent=a.title;detail.textContent=a.detail;part.className='danger-part';part.textContent=a.part.toUpperCase();text.append(title,detail,part);card.append(icon,text);box.append(card);}}
+function updateDangerAlerts(){const d=state.damage;if(!d)return;
+ if(d.components.driver<45&&d.components.driver>0)dangerAlert('driver','DRIVER CRITICALLY INJURED','Health below 45% · further hits may be fatal.','critical','driver');
+ if(d.burning)dangerAlert('fire','FIRE · EVACUATE','Fuel system burning. Stop and leave the vehicle.','critical','fuel');
+ if(d.engineFailed)dangerAlert('engine','ENGINE FAILURE',d.reason||'Powered acceleration unavailable.','critical','engine');
+ if(d.oilPressure<.7&&state.rpm>300)dangerAlert('oil-pressure','STOP ENGINE · LOW OIL PRESSURE',d.oilPressure.toFixed(1)+' bar · lubrication failure risks engine seizure.','critical','oil');
+ if(d.coolantTemp>110)dangerAlert('overheat','ENGINE OVERHEATING',Math.round(d.coolantTemp)+' °C · reduce load and stop safely.','critical','coolant');
+ if(d.components.radiator<80)dangerAlert('coolant-leak','COOLANT LEAK','Radiator damage · coolant is escaping.','warning','coolant');
+ if(d.components.oil<80)dangerAlert('oil-leak','OIL SYSTEM DAMAGE','Oil loss can seize the engine.','warning','oil');
+ renderDangerAlerts();
+}
+function initialiseDangerAlerts(){const box=document.createElement('section');box.id='dangerAlerts';box.setAttribute('aria-live','assertive');document.body.append(box);}

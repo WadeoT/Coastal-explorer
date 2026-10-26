@@ -38,7 +38,7 @@ function launchFromLobby(type){
  if(!state.worldReady||!profiles[type]||!economy.owned.includes(type))return;
  lobbyLaunch=null;lobbyResume=false;$('publicLobby').classList.add('hidden');selectVehicle(type);
  if($('relayInput').value.trim()){lobbyAutoWanted=true;Multiplayer.autoJoin();}
- else Multiplayer.setStatus('Playing locally · a hosted server enables shared multiplayer.');
+ else Multiplayer.autoJoin();
 }
 function queueLobbyReconnect(){
  clearTimeout(lobbyHandshake);lobbyHandshake=null;if(!lobbyAutoWanted)return;
@@ -48,6 +48,8 @@ function queueLobbyReconnect(){
 }
 function initialiseAutomaticLobby(){
  const badge=document.createElement('button');badge.id='connectionBadge';badge.className='connection-badge';badge.textContent='LOBBY · NOT CONNECTED';badge.onclick=()=>{Multiplayer.renderLobby();openModal('lobbyModal');};document.body.append(badge);
+ const publicButton=document.createElement('button');publicButton.className='source-btn';publicButton.textContent='USE PUBLIC RELAYS';publicButton.onclick=()=>{joinPublicBrokerRoom();saveRelayPreference();};$('roomInput').after(publicButton);
+ const copyButton=document.createElement('button');copyButton.className='source-btn';copyButton.textContent='COPY INVITE LINK';copyButton.onclick=async()=>{try{await navigator.clipboard.writeText($('roomInput').value);Multiplayer.setStatus('Invite copied · send it to your mate');}catch{$('roomInput').focus();$('roomInput').select();Multiplayer.setStatus('Select and copy the invite link');}};$('roomInput').after(copyButton);
  const legend=document.createElement('p');legend.className='map-contacts-legend';legend.innerHTML='<span class="players">● Players</span> · <span class="police">◆ Police / interceptors</span> · Edge arrows show bearing and distance';$('mapModal').querySelector('.dialog').append(legend);
  const gate=document.createElement('section');gate.id='publicLobby';gate.className='public-lobby hidden';gate.setAttribute('role','dialog');gate.setAttribute('aria-modal','true');gate.setAttribute('aria-labelledby','publicLobbyTitle');
  gate.innerHTML='<div class="public-lobby-card"><small>COASTAL EXPLORER · ONLINE</small><h2 id="publicLobbyTitle">Joining the public lobby</h2><p id="publicLobbyStatus" role="status"></p><p id="publicLobbyAttempts"></p><ul id="publicLobbyPlayers"></ul><div id="publicLobbySetup"><p>Connect a hosted server for shared multiplayer. Local Play remains available. The site owner can configure the server once when hosting.</p><label>Multiplayer server URL<input id="publicLobbyRelay" class="maps-key-input" type="url" placeholder="https://your-hosted-relay.example"></label><button id="publicLobbyConnect" class="source-btn">SAVE SERVER & CONNECT</button><a href="https://github.com/WadeoT/Coastal-explorer/blob/codex/sunshine-coast-game/docs/NETLIFY-MULTIPLAYER.md" target="_blank" rel="noopener">Hosting setup guide</a></div><div class="shop-actions"><button id="publicLobbyRetry" class="source-btn">RETRY NOW</button><button id="publicLobbyChangeServer" class="source-btn">CHANGE SERVER</button><button id="publicLobbyGarage" class="source-btn">BACK TO GARAGE</button></div></div>';
@@ -60,6 +62,6 @@ function initialiseAutomaticLobby(){
  $('leaveRoom').textContent='REJOIN PUBLIC LOBBY';$('leaveRoom').onclick=()=>{Multiplayer.leave();lobbyAutoWanted=true;Multiplayer.autoJoin(true);};
  setInterval(()=>{if(Multiplayer.connected&&Multiplayer.relayMode){const token=getRelaySession(Multiplayer.relayOrigin);if(token)retainRelaySession(token);}},5000);
  if($('relayInput').value.trim()){lobbyAutoWanted=true;Multiplayer.autoJoin();}
- else Multiplayer.setStatus('Playing locally · multiplayer server not configured.');
+ else Multiplayer.autoJoin();
 }
 function saveRelayPreference(){try{localStorage.setItem('coastal-relay-url',$('relayInput').value.trim());}catch{}}

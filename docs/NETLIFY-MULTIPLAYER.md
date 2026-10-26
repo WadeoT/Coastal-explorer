@@ -1,3 +1,9 @@
+> V14: public free roam now automatically uses public MQTT test relays when
+> no dedicated server URL is configured. You do not need this hosting setup
+> to try playing with a mate. Use MULTIPLAYER → CREATE FRIENDS ROOM and share
+> the invite. Public brokers are best effort; shared moderation still requires
+> the optional dedicated server described below. See [V14](V14-RELEASE.md).
+
 # Host the game on Netlify with public multiplayer
 
 The repository includes Netlify configuration. You do not need to upload the 32 MB HTML manually. Netlify serves the browser game; a separate Node service maintains persistent WebSocket rooms. No site or relay has been deployed to your accounts from this workspace.

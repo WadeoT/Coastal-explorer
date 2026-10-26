@@ -45,6 +45,7 @@ let materials={};
 /*__ACTIVITIES__*/
 /*__PROFESSIONAL_JOBS__*/
 /*__OWNER_ADMIN__*/
+/*__PUBLIC_RELAY__*/
 /*__MULTIPLAYER__*/
 /*__LOBBY_UI__*/
 /*__MAP_MARKERS__*/

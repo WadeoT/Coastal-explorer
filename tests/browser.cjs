@@ -13,7 +13,7 @@ const executablePath=process.env.CHROMIUM_EXECUTABLE_PATH||(fs.existsSync('/usr/
  page.on('console',m=>{if(m.type()==='error'){errors.push(m.text());console.error('CONSOLE ERROR',m.text())}});
  page.on('pageerror',e=>{errors.push(e.message);console.error('PAGE ERROR',e.message)});
  await page.route('**/*',r=>{if(r.request().url().startsWith(origin+'/'))return r.continue();external.push(r.request().url());return r.abort();});
- const start=Date.now();await page.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:90000});
+ const start=Date.now();await page.goto(origin+'/?network=off',{waitUntil:'domcontentloaded',timeout:90000});
  await page.waitForFunction(()=>window.coastalExplorer?.state.worldReady,{timeout:90000});
  await page.waitForFunction(()=>document.getElementById('loading').classList.contains('hidden'),{timeout:30000});
  await page.evaluate(()=>{const e=coastalExplorer.scene.getEngine();window.__renderLoops=e._activeRenderLoops.slice();e.stopRenderLoop();});

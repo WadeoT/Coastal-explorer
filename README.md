@@ -1,20 +1,20 @@
-# Coastal Explorer — Coastal Pursuit (V8)
+# Coastal Explorer — Online Lobby (V9)
 
-[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=8) · [V8 release notes](docs/V8-RELEASE.md) · [Netlify + public multiplayer setup](docs/NETLIFY-MULTIPLAYER.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
+[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=9) · [V9 release notes](docs/V9-RELEASE.md) · [Netlify + public multiplayer setup](docs/NETLIFY-MULTIPLAYER.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
 
 A single-file Sunshine Coast driving/flying/boating sandbox with 18 original, simplified vehicle models, first-person and third-person views, a 3D showroom, saved purchases/modifications, deliveries and checkpoint races, a five-star police response, crash collisions, day/night, weather, lights and multiplayer support. The game is not a recreation using GTA V assets.
 
-V8 adds smooth interpolated flight, two original rescue helicopters, cockpit switches, game airspace warnings and five-star interceptors; stable nearby building generation; drift/speed/chase rewards; vehicle-specific jobs; directional wall-crash deformation; and private owner controls. V7 component damage and black UI remain. See [release behaviour](docs/V8-RELEASE.md) and [verification](docs/V8-VERIFICATION.md).
+V9 adds automatic public-lobby connection with a real connection gate and reconnection, a button-driven owner panel, larger FPV gauges, physical dashboard switches with hover labels, police/player map contacts and safe rendering-error recovery. V8 flight, jobs, skill rewards, stable buildings and wall deformation remain. See [release behaviour](docs/V9-RELEASE.md) and [verification](docs/V9-VERIFICATION.md).
 
 ## Play and controls
 
-Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. The complete approximately 31 MB HTML includes the runtime, fonts, model geometry and real map. No key is needed. The showroom says **V8 · COASTAL PURSUIT**.
+Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. V9 waits for an actual multiplayer server connection before launching. A site without its relay configured shows the setup lobby; it does not silently start solo. The complete approximately 31 MB HTML includes the runtime, fonts, model geometry and real map. No map API key is needed. The showroom says **V9 · ONLINE LOBBY**.
 
-Offline: extract `downloads/Coastal-Explorer-Offline-v8.zip` and open `index.html` in Chrome or Edge. If local HTML is blocked, the Mac/Windows launchers or `python3 serve.py` provide a localhost server. Detailed instructions are in [PLAY.txt](PLAY.txt).
+Download: extract `downloads/Coastal-Explorer-v9.zip` and open the game via the included launcher/local server, or run `node server/relay.cjs` to serve the client and relay together. The map/runtime are bundled; V9 normal Play still requires a relay connection. Detailed instructions are in [PLAY.txt](PLAY.txt).
 
 WASD/arrows drive; C switches camera, G opens the showroom, M opens the map, H settings, R recovery and Escape pauses. The LandCruiser is manual: hold Shift for clutch and Q/E to change gear. L headlights, [ / ] indicators, V hazards, F counterattack. Extra controls are shown in the game for helicopter, fighter and boat. Use Activities for vehicle-specific jobs and races, or earn skill money through drifts, sustained road speed and active five-star pursuits. Ordinary movement alone awards nothing. A fresh career has $65,000 and the original four vehicles owned. Cash, purchases, upgrades and resprays persist in browser storage. Private browsing may not retain progress.
 
-Helicopter systems: J gear, I engine, K searchlight, O hover hold, B rescue hoist, N navigation lights, P rotor brake. Switches are clickable in FPV. The AS350 has fixed skids; rescue variants have retractable wheels. Flight maps show fictional gameplay airspace, with red violations and altitude limits. These are not official aviation boundaries.
+Helicopter systems: J gear, I engine, K searchlight, O hover hold, B rescue hoist, N navigation lights, P rotor brake. Switches are physical dashboard controls: hover to see the label, click to toggle. No floating aircraft buttons. The AS350 has fixed skids; rescue variants have retractable wheels. Flight maps show fictional gameplay airspace, with red violations and altitude limits. These are not official aviation boundaries.
 
 Admin requires a private key configured on your relay. Room hosts are ordinary players. The owner panel sets money/wanted levels and triggers supported player actions; the console also provides gifts, bans, time/weather and server settings. See [hosting and owner setup](docs/NETLIFY-MULTIPLAYER.md).
 
@@ -34,7 +34,7 @@ Attribution: © OpenStreetMap contributors (ODbL 1.0); terrain © Commonwealth o
 
 GitHub Pages hosts the game at the link above. Repository Settings → Pages should use branch `codex/sunshine-coast-game`, `/ (root)`. The default branch is already configured; `.nojekyll` keeps deployment static.
 
-**GitHub Pages and Netlify cannot run the persistent WebSocket relay.** With a configured relay, selecting DRIVE / LAUNCH automatically enters a public room; share the configured site or invite to play together. Without a relay, the hosted client remains solo. [Netlify import and relay deployment instructions](docs/NETLIFY-MULTIPLAYER.md) explain the account steps. The included `netlify.toml` builds a deployable static site. No Netlify site or internet relay has been deployed from this workspace.
+**GitHub Pages and Netlify cannot run the persistent WebSocket relay.** With a configured relay, selecting DRIVE / LAUNCH automatically enters a public room; share the configured site or invite to play together. Without a relay, V9 waits at a clear connection gate. [Netlify import and relay deployment instructions](docs/NETLIFY-MULTIPLAYER.md) explain the account steps. The included `netlify.toml` builds a deployable static site. No Netlify site or internet relay has been deployed from this workspace.
 
 Local run: `node server/relay.cjs`. The server serves the game and automatically selects itself as relay. Defaults to eight players per public room; the verified owner may set 2–16. Public rooms survive the first visitor leaving, and use WebSocket state coalescing, interpolation, remote collisions and server time/weather. Private rooms and optional PeerJS/direct WebRTC remain, but public relay mode is the recommended path.
 
@@ -66,9 +66,10 @@ npm run test:geography
 npm run test:fleet
 npm run test:rewards
 npm run test:v8
+npm run test:v9
 ```
 
-`CHROMIUM_EXECUTABLE_PATH` selects an existing Chromium; `/usr/bin/chromium` is detected automatically. Tests use localhost, block external requests and load the actual shipped Sunshine Coast snapshot. Geographic checks cover known roads, every locality's access, matched native DEM edges, shore/land separation, bridge decks, actual roof rays and nearby building inclusion across major centres and smaller localities, traffic/crash regressions, a five-minute simulation soak, actual keyboard rendering, responsive UI and offline download. Fleet and damage checks exercise purchasing, manual clutch/stalling, weather/lights, map lookup, mission rewards, real crashes, audio and two relay clients. V8 checks add stable Kuluin buildings, interpolated flight, actual cockpit switch picking and gear animation, FPV-only gauges, airspace escalation, specialist work, wall crush, public matching and owner-only cross-player actions. See [V8 verification](docs/V8-VERIFICATION.md).
+`CHROMIUM_EXECUTABLE_PATH` selects an existing Chromium; `/usr/bin/chromium` is detected automatically. Tests use localhost, block external requests and load the actual shipped Sunshine Coast snapshot. Geographic checks cover known roads, every locality's access, matched native DEM edges, shore/land separation, bridge decks, actual roof rays and nearby building inclusion across major centres and smaller localities, traffic/crash regressions, a five-minute simulation soak, actual keyboard rendering, responsive UI and offline download. Fleet and damage checks exercise purchasing, manual clutch/stalling, weather/lights, map lookup, mission rewards, real crashes, audio and two relay clients. V8 checks add stable Kuluin buildings, interpolated flight, actual cockpit switch picking and gear animation, FPV-only gauges, airspace escalation, specialist work, wall crush, public matching and owner-only cross-player actions. See [V9 verification](docs/V9-VERIFICATION.md).
 
 The cloud browser blocks direct `file://` navigation and usable WebRTC candidates. Verification therefore uses localhost HTTP and the relay rather than claiming those blocked paths were tested.
 

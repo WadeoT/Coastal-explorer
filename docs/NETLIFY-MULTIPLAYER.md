@@ -9,7 +9,7 @@ The repository includes Netlify configuration. You do not need to upload the 31 
 3. Keep the repository settings: build command `python3 scripts/build.py && python3 scripts/site.py`, publish directory `site`.
 4. Deploy. The site opens at the actual `https://your-assigned-name.netlify.app` URL Netlify gives you. You can rename it in Netlify.
 
-[Open Netlify import](https://app.netlify.com/start/deploy?repository=https://github.com/WadeoT/Coastal-explorer). Check the branch if the import screen asks. The static site works for solo play before a relay is configured.
+[Open Netlify import](https://app.netlify.com/start/deploy?repository=https://github.com/WadeoT/Coastal-explorer). Check the branch if the import screen asks. V9 waits in the setup lobby until its relay is configured.
 
 ## 2. Deploy the multiplayer relay
 
@@ -40,9 +40,9 @@ The free Render blueprint has no persistent disk. A process restart can preserve
 1. Copy the relay's actual HTTPS root URL from its hosting dashboard.
 2. In the Netlify site's environment variables, add **`COASTAL_RELAY_URL`** with that URL. This URL is public; it is not the owner key.
 3. Trigger a new production deploy. This embeds the public URL into the standalone HTML.
-4. Open the Netlify site, choose a vehicle and **DRIVE / LAUNCH**. Multiplayer should report a public room. A second browser on the same site joins an available room automatically.
+4. Open the Netlify site, choose a vehicle and **DRIVE / LAUNCH**. Multiplayer should report a public room. A second browser on the same site joins an available room automatically. Disconnects pause driving while the client reconnects.
 
-Share your actual Netlify site URL with friends. If you are using GitHub Pages instead, enter the HTTPS relay URL in Multiplayer and share the generated relay-configured invite. Sending the GitHub link alone, without any configured relay, does not create a server.
+Share your actual Netlify site URL with friends. If you are using GitHub Pages instead, enter the HTTPS relay URL in Multiplayer and share the generated relay-configured invite. Sending the GitHub link alone, without any configured relay, does not create a server; V9 stays at the connection gate.
 
 ## Owner testing
 

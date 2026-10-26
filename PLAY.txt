@@ -1,13 +1,15 @@
-COASTAL EXPLORER — VERSION 8 / COASTAL PURSUIT
+COASTAL EXPLORER — VERSION 9 / ONLINE LOBBY
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=8
-You should see V8 / COASTAL PURSUIT in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=9
+You should see V9 / ONLINE LOBBY in the showroom.
 
-OFFLINE
+DOWNLOAD / BUNDLED MAP
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.
 Wait for the included real map to unpack, then select a vehicle and use
-DRIVE / LAUNCH. If local HTML is blocked, use the included Mac/Windows
+DRIVE / LAUNCH. V9 waits for a multiplayer server connection before play.
+Run node server/relay.cjs to serve the game with its local relay, or use
+your hosted relay. Missing server settings show a lobby setup panel. If local HTML is blocked, use the included Mac/Windows
 launchers with Python 3, or run python3 serve.py.
 
 CONTROLS
@@ -40,8 +42,9 @@ MULTIPLAYER AND NETLIFY
 See docs/NETLIFY-MULTIPLAYER.md. Netlify imports the GitHub repo using
 netlify.toml. Its static client needs a separately hosted Node relay.
 Set public COASTAL_RELAY_URL in the Netlify build environment and redeploy.
-With that URL configured, DRIVE / LAUNCH joins a public room automatically.
-Send friends the configured site link. Without a relay, play is solo.
+With that URL configured, loading joins a public room automatically.
+DRIVE / LAUNCH waits for connection. Disconnects pause and auto-reconnect.
+Send friends the configured site link. Without a relay, V9 waits in its setup lobby.
 The relay can also serve the game itself: node server/relay.cjs.
 No Netlify site or internet relay was created in your account here.
 
@@ -62,8 +65,8 @@ Anonymous bans apply to a browser identity, not a verified person.
 
 AIRCRAFT SYSTEMS
 J gear; I engine master; K searchlight; O hover hold; B rescue hoist;
-N navigation lights; P rotor brake (landed, engine off). FPV switches
-are clickable. LifeFlight/RACQ-inspired models have retractable gear;
+N navigation lights; P rotor brake (landed, engine off). Switches are physical dashboard controls: hover for their label, click
+to toggle. The floating aircraft panel is removed. LifeFlight/RACQ-inspired models have retractable gear;
 AS350 skids are fixed. Maps turn red for game airspace violations and
 show AGL/limits. These are fictional game rules, not aviation charts.
 Oil/temperature gauges and corner readout appear only in FPV.
@@ -94,3 +97,12 @@ does not repair components. Admin repair restores fluids and damage.
 Fuel explosions and crash deformation are arcade approximations.
 V8 wall hits directionally crush the mesh and keep a fatal wreck at the
 wall instead of bouncing away. See docs/V8-RELEASE.md and verification.
+
+V9 INTERFACE
+Owner panel uses target selectors, buttons, amount presets and ban lists.
+Typed commands are optional under Advanced. Gauges have larger physical
+monitors and separate readable oil/temperature/fluid rows in FPV.
+Cyan players and red police appear on both maps; distant minimap contacts
+have edge bearings/distances. Rendering/simulation errors pause safely
+with Copy Error Report, Return to Garage and Reload buttons.
+See docs/V9-RELEASE.md and docs/V9-VERIFICATION.md.

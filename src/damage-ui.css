@@ -64,3 +64,32 @@ input::placeholder,textarea::placeholder{color:#8895aa}
 .owner-tools{border:1px solid #46516b;background:#0c121e;padding:13px;margin:12px 0}.owner-tools h3{font:700 14px sans-serif;color:#f3c56b;margin-bottom:12px}.owner-tools .shop-actions{flex-wrap:wrap}.owner-tools .source-btn{font-size:9px;padding:8px}.owner-tools button:disabled{opacity:.4;cursor:not-allowed}
 
 .aircraft-controls{display:none}@media(pointer:coarse){.aircraft-controls:not([hidden]){display:flex}}
+
+/* V9 readable instruments and button-driven owner tools. */
+.damage-readout{width:300px;padding:13px 15px;text-align:left;gap:10px}
+.damage-readout>strong{font-size:13px;letter-spacing:.4px}
+#damageNumbers{display:grid;gap:7px}
+#damageNumbers>span{display:flex;align-items:center;justify-content:space-between;gap:10px;font:13px/1.5 monospace}
+#damageNumbers b{color:#c1cbd9;font-weight:500}
+#damageNumbers strong{font:700 15px/1.5 monospace;letter-spacing:0;color:#fff}
+.airspace-readout{top:495px;font-size:12px;max-width:300px}
+.owner-tools{padding:16px}.owner-tools fieldset{min-width:0;border:1px solid #354156;border-radius:5px;padding:13px;margin:16px 0}
+.owner-tools legend{font-size:15px;font-weight:700;color:#f0c578;padding:0 7px}
+.owner-tools label{display:block;margin:9px 0;font-size:14px!important}
+.owner-tools .source-btn{font-size:12px;min-height:42px;padding:10px 12px;white-space:normal}
+.owner-tools input:not([type=checkbox]),.owner-tools select{width:100%;min-width:0;min-height:42px;background:#070c14;border:1px solid #536079;border-radius:4px;color:#f0f4fa;padding:8px;font-size:14px}
+.owner-button-grid,.owner-form-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9px}
+#ownerWanted{grid-template-columns:repeat(3,minmax(0,1fr))}
+#ownerAccessHint{padding:12px;background:#192333;color:#f2d49a;font-size:14px}
+.owner-advanced{margin-top:14px}.owner-advanced summary{cursor:pointer;padding:12px}
+#adminModal .dialog{max-width:750px}.owner-tools button:disabled{opacity:.55}
+#ownerBanList>div{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px;overflow-wrap:anywhere}
+.public-lobby{position:fixed;inset:0;z-index:10000;background:#050810e8;display:grid;place-items:center;padding:20px;color:#f2f5fb}
+.public-lobby.hidden{display:none}.public-lobby-card{width:min(560px,100%);max-height:90dvh;overflow:auto;padding:28px;background:#101722;border:1px solid #586a87;border-radius:8px}
+.public-lobby-card h2{font:700 28px/1.2 'Space Grotesk',sans-serif;margin:15px 0}.public-lobby-card p,.public-lobby-card li{font:14px/1.6 sans-serif;margin:12px 0}
+.public-lobby-card label{display:block;font-size:14px}.public-lobby-card a{display:block;color:#8bd8ff;font-size:14px;margin:14px 0}
+.public-lobby-card button{min-height:44px;padding:11px;font-size:12px}.public-lobby-card pre{font:12px/1.5 monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-height:250px;overflow:auto}
+.connection-badge{position:absolute;z-index:20;right:35px;top:96px;background:#202a3b;color:#ffd78e;border:1px solid #717e94;border-radius:4px;padding:7px 10px;font:11px/1.3 monospace;pointer-events:auto}.connection-badge.connected{color:#91ddff;border-color:#428aac}
+.cockpit-hover-label{position:fixed;z-index:8000;pointer-events:none;padding:10px 13px;background:#060b13f5;border:1px solid #dfb665;color:#fff;font:14px/1.4 sans-serif;max-width:245px;border-radius:4px}.cockpit-hover-label[hidden]{display:none}
+.map-contacts-legend{font:12px/1.5 sans-serif;color:#c3d1e4;margin:7px 0}.map-contacts-legend .players{color:#57d5ff}.map-contacts-legend .police{color:#ff7184}
+@media(max-width:700px){.damage-readout{top:175px;right:12px;width:225px;padding:10px}.damage-readout>strong{font-size:12px}#damageNumbers>span{font-size:11px}#damageNumbers strong{font-size:13px}.airspace-readout{top:408px;right:12px;font-size:11px;max-width:225px}.connection-badge{display:none}.public-lobby-card{padding:18px}.owner-tools{padding:10px}.owner-tools .source-btn{font-size:11px}.owner-form-row{grid-template-columns:1fr}}

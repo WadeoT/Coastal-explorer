@@ -1,8 +1,8 @@
-COASTAL EXPLORER — VERSION 6 / COAST & CREW
+COASTAL EXPLORER — VERSION 7 / DAMAGE + DRIVE
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=6-v8
-You should see V6 / COAST + CREW in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=7
+You should see V7 / DAMAGE + DRIVE in the showroom.
 
 OFFLINE
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.
@@ -62,3 +62,17 @@ is synthesised by default: the 4.5 L turbo-diesel V8 has eight firing
 pulses per cycle and gradual turbo spool. This is NOT a real recording.
 Settings accepts an engine audio recording
 you own, for RPM-linked playback on the selected vehicle in this tab.
+
+V7 DAMAGE AND COCKPIT GAUGES
+Bullets damage the component they strike: engine, driver, radiator, oil
+system, fuel tank or body. Engine failure removes powered acceleration.
+Oil/coolant leaks can cause delayed seizure; critical fuel damage can
+burn and explode. Direct driver hits can be fatal. Severe impacts dent
+the actual model, throw debris and can tumble or ignite the wreck.
+The cockpit monitor shows oil pressure/temperature, coolant temperature,
+fluid levels and warnings. Watch it after taking damage.
+A fatal run shows WASTED/WRECKED/DESTROYED and returns to the garage
+after about eight seconds. Choose a vehicle to respawn. Recovery alone
+does not repair components. Admin repair restores fluids and damage.
+Fuel explosions and crash deformation are arcade approximations.
+See docs/V7-RELEASE.md and docs/V7-VERIFICATION.md.

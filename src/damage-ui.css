@@ -1,0 +1,58 @@
+/* V7 interface: neutral black/charcoal, high-contrast type, amber/red warnings. */
+:root{--ink:#eef0f5;--deep:#080a0f;--mint:#f1b54b;--paper:#11141a;--muted:#939cab;--line:#ffffff19;--white:#f5f6fa;--red:#ff6458;color-scheme:dark}
+body{background:#080a0f;color:#eef0f5}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #f1b54b;outline-offset:3px}
+.brand,.brand-name,.brand-sub,.topbar,.location,.hero-title{color:#f3f4f8}
+.glass-btn,.garage-close,.source-btn,.close-btn,.map-tools button,.town-travel button{background:#0c0f15ed;color:#e9ecf3;border:1px solid #737b8c52;border-radius:4px;box-shadow:none}
+.glass-btn:hover,.source-btn:hover,.town-travel button:hover,.close-btn:hover{background:#242b37;border-color:#b5bdca}
+.glass-btn[aria-pressed=true]{border-color:#f1b54b;color:#f1b54b}
+.garage{background:linear-gradient(90deg,#05070be8,#05070b36 65%,transparent)}
+.garage-shell{border:1px solid #393f4d;border-radius:6px;background:#101319;box-shadow:0 20px 65px #0008}
+.fleet{background:#101319;color:#eef0f5}
+.fleet-head h2,.vehicle-card h3,#shopName,.dialog h2{color:#f2f4f8;font-weight:700}
+.fleet-head span,.fleet-foot,.card-top,.card-no,.vehicle-card p,.vehicle-spec,.workshop p,.dialog p,.dialog label,.settings-line,.map-legend,#controlsIntro{color:#adb6c5}
+.vehicle-card,.vehicle-card:disabled{background:#181d25;border-color:#343c49;border-radius:5px;color:#edf0f5}
+.vehicle-card:hover,.vehicle-card.selected,.vehicle-card[aria-pressed=true]{background:#222a36;border-color:#d4dbe5}
+.vehicle-spec{border-color:#ffffff18}.enter-arrow{background:#333c4c;color:#f0b54b}
+.career-bar,.workshop{background:#0b0e14;border-color:#363f4d;color:#f1f3f7}
+.career-bar strong,#garageWallet,#wallet{color:#f5f6fb}
+.career-bar span{color:#9fa9bb}
+.world-load-panel{background:#171e28;border-color:#3c485b;color:#edf1f7}.world-load-panel span{color:#aab6c9}
+.world-load-panel button,.world-banner button{background:#2a3443;border-color:#73819a;color:#f3f5fa}
+.world-banner{background:#0d1119f5;border-color:#6e788a;color:#edf0f6}
+.workshop select,.maps-key-input,.settings-line select,#qualitySelect,input[type=search],#placeSearch{background:#080c12;color:#eff2f7;border:1px solid #465164;border-radius:4px}
+input::placeholder,textarea::placeholder{color:#8895aa}
+.primary-btn,#shopDrive{background:#e9edf4;color:#11151b;font-weight:700;border:1px solid #e9edf4}
+.primary-btn:hover,#shopDrive:hover{background:#fff;color:#000}
+#shopBuy{border-color:#c28d37;color:#f4c56c}
+.upgrade-card,.upgrade,.contract-card{background:#171d27;border-color:#3a4354;color:#eff2f6}
+#upgrades button{background:#1b2330;color:#e2e8f2;border:1px solid #48566d;border-radius:3px}
+#upgrades button:hover{background:#2c384c;border-color:#b0bfd8}
+#upgrades button:disabled{background:#151b25;color:#7e8ca3;border-color:#303b4e}
+#garageNotice{color:#aab6c9}
+.attribution{background:#080c14d9;color:#c8d1e0}
+.contract-card h3,.contract-card p{color:#e6eaf1}
+.modal-backdrop{background:#03050ac9;backdrop-filter:none}
+.dialog,.map-dialog{background:#10141c;color:#edf0f7;border:1px solid #465063;border-radius:7px;box-shadow:0 24px 100px #000b}
+.dialog .control-row{border-color:#ffffff18;color:#e6ebf3}
+.control-row kbd{background:#293241;color:#f6f7fa;border:1px solid #465264}
+.recording-controls{border-color:#3e495a}.recording-controls h3{color:#eef2f8}
+.settings-line a,.settings-line button{color:#eef2f8}.settings-line input{accent-color:#f1b54b}
+.address-results button{background:#1c2532;border-color:#414e62;color:#eaf0fa}
+.address-results button:hover{background:#303d52}
+#currentAddress{background:#1a2230;color:#cbd4e5;border:1px solid #344159}
+.bigmap-wrap,.region-graphic{background:#111720;border-color:#414b5c}
+.region-graphic{filter:saturate(.35)}
+.map-head,.map-foot,.minimap,.speedbox,.wallet-hud{background:#090d14ed;border-color:#515d724d;color:#e9edf6;box-shadow:none;border-radius:5px}
+.map-head,.map-foot{background:transparent}.map-head strong,.map-foot span,.rough-location,#roughLocation{color:#b8c3d5}
+.speedbox .gear{color:#f5bf62;border-color:#8c7447}.tacho i{background:#b9c4d6}.tacho i:nth-last-child(-n+3){background:#e79d4c}
+.telemetry-foot .on,.wallet-hud small{color:#c0cada}.health-track{background:#303746}
+.activity-status,.world-clock{background:#0a0e17ed;border-color:#59657b;color:#e9eef8;border-radius:4px}
+.toast{background:#0c111bf5;color:#eef2fa;border:1px solid #6f7b92;border-left:3px solid #e8ac49;border-radius:4px;box-shadow:0 10px 36px #0008}
+#adminOutput{background:#070b12;color:#d9e4f6}.busted{background:#16050670}.busted strong{color:#ff554a}
+.extra-touch button,.touch-group button{background:#111722ed;color:#f0f4fa;border-color:#71819c}
+.damage-readout{position:absolute;right:36px;top:238px;width:264px;display:grid;gap:6px;padding:11px 13px;background:#090d15ed;border:1px solid #5a667b55;border-left:3px solid #cad2df;border-radius:4px;text-align:right}
+.damage-readout strong{font:700 10px/1.5 'Space Grotesk',sans-serif;letter-spacing:1px;color:#dce4ef}
+.damage-readout strong.critical{color:#ff986b}.damage-readout:has(.critical){border-left-color:#ff7659}
+.damage-readout span{font:10px/1.6 monospace;color:#b9c4d6;letter-spacing:.2px}
+@media(max-width:700px){.damage-readout{top:207px;right:12px;width:214px;padding:8px 10px}.damage-readout span{font-size:8px}.damage-readout strong{font-size:9px}}

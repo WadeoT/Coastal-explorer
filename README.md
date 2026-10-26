@@ -1,14 +1,16 @@
-# Coastal Explorer — Coast & Crew (V6)
+# Coastal Explorer — Damage + Drive (V7)
 
-[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=6-v8) · [Complete feature notes and limitations](docs/V6-RELEASE.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
+[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=7) · [V7 damage and interface notes](docs/V7-RELEASE.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
 
 A single-file Sunshine Coast driving/flying/boating sandbox with 16 original, simplified vehicle models, first-person and third-person views, a 3D showroom, saved purchases/modifications, deliveries and checkpoint races, a five-star police response, crash collisions, day/night, weather, lights and multiplayer support. The game is not a recreation using GTA V assets.
 
+V7 adds location-based bullet damage to the engine, driver, radiator, oil system, fuel tank and body; leaking fluids, overheating, oil-pressure loss and engine seizure; severe crash deformation/tumbling, debris, fire and explosions; visible cockpit gauges; and a black/charcoal interface. See [release behaviour](docs/V7-RELEASE.md) and [verification](docs/V7-VERIFICATION.md).
+
 ## Play and controls
 
-Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. The complete approximately 31 MB HTML includes the runtime, fonts, model geometry and real map. No key is needed. The showroom says **V6 · COAST + CREW**.
+Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. The complete approximately 31 MB HTML includes the runtime, fonts, model geometry and real map. No key is needed. The showroom says **V7 · DAMAGE + DRIVE**.
 
-Offline: extract `downloads/Coastal-Explorer-Offline-v6.zip` and open `index.html` in Chrome or Edge. If local HTML is blocked, the Mac/Windows launchers or `python3 serve.py` provide a localhost server. Detailed instructions are in [PLAY.txt](PLAY.txt).
+Offline: extract `downloads/Coastal-Explorer-Offline-v7.zip` and open `index.html` in Chrome or Edge. If local HTML is blocked, the Mac/Windows launchers or `python3 serve.py` provide a localhost server. Detailed instructions are in [PLAY.txt](PLAY.txt).
 
 WASD/arrows drive; C switches camera, G opens the showroom, M opens the map, H settings, R recovery and Escape pauses. The LandCruiser is manual: hold Shift for clutch and Q/E to change gear. L headlights, [ / ] indicators, V hazards, F counterattack. Extra controls are shown in the game for helicopter, fighter and boat. Use Activities for deliveries and races; movement alone no longer awards money. A fresh career has $65,000 and the original four vehicles owned. Cash, purchases, upgrades and resprays persist in browser storage. Private browsing may not retain progress.
 
@@ -57,6 +59,7 @@ Browser tests are optional development dependencies:
 npm ci
 npx playwright install chromium
 npm run test:audio
+npm run test:damage
 npm run test:geography
 npm run test:fleet
 ```

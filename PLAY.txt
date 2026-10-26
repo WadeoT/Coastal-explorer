@@ -1,8 +1,8 @@
-COASTAL EXPLORER — VERSION 12 / AIR RESCUE + COMBAT
+COASTAL EXPLORER — VERSION 13 / STREET PURSUIT
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=12
-You should see V12 / AIR RESCUE + COMBAT in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=13
+You should see V13 / STREET PURSUIT in the showroom.
 
 DOWNLOAD / BUNDLED MAP
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.
@@ -16,7 +16,7 @@ CONTROLS
 WASD / arrows: drive. S: brake / reverse. Space: handbrake.
 C: cockpit / third person. G: showroom, purchases and upgrades. M: map.
 R: recover. H: settings. Esc: pause. L: headlights. [ / ]: indicators.
-V: hazards. F: arcade counterattack. Speaker button: sound.
+V: hazards. F: one F18 cannon round; civilian vehicles are unarmed. Speaker button: sound.
 LandCruiser: hold Shift for clutch; Q downshift / E upshift. Starts in 1st.
 Helicopter: W/S ascend/descend; A/D yaw; arrows cyclic.
 Fighter: W/S throttle; arrows pitch/roll; A/D yaw; Shift boost; Space cannon.
@@ -180,3 +180,35 @@ the game and automatically joins that server. A free service may need
 time to wake. Netlify can use the same server through COASTAL_RELAY_URL.
 No Render or Netlify service was deployed to your account here.
 See docs/V12-RELEASE.md and docs/NETLIFY-MULTIPLAYER.md.
+
+V13 STREET PURSUIT
+Roads are wider by default, with their real OSM centre lines retained.
+Settings > Road width offers source widths, Wider streets (default)
+and Extra wide. Footpaths retain their own widths. These are game road
+widths; the original map database is unchanged.
+Ground uses finer grass/earth/gravel detail and mapped land-use colours
+for sand, woodland, farmland, residential and industrial areas.
+
+The minimap shows the road limit and a red speeding warning. Sustained
+speeding more than 5 km/h over the limit, seen by a police patrol for
+1.25 seconds, raises wanted levels. Reports have a three-second interval.
+Limits use mapped speed tags, with road-class defaults where absent.
+These are game rules, not a legal guide to real posted speed limits.
+
+Stop near pursuing police and an officer approaches your driver's door.
+Remain stopped for the arrest countdown: BUSTED, one fine and an
+eight-second return to the garage. U signals surrender and shortens
+the countdown. Driving away or breaking detection interrupts it.
+No wanted level means no arrest. The game fine is A$250 + A$250 per
+star, capped at the cash you have. Owned vehicles/upgrades remain.
+
+Cars, bikes, boats and all civilian/rescue helicopters have no guns.
+Select an owned F18 in the garage's Weapons bay to buy three levels of
+ammunition (+25% per level), cannon cooling (+30% per level) or defensive
+flare capacity (+4 per level). First levels cost A$6,000/A$9,000/A$4,000;
+higher levels cost proportionally more. Weapon levels save in the same
+career as vehicle mods. Launching applies your purchased loadout.
+
+All earlier F18 cannon, steerable ejection, gunnery challenge, thermal
+response and raised repair-deck fixes are included.
+See docs/V13-RELEASE.md and docs/V13-VERIFICATION.md.

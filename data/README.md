@@ -46,3 +46,9 @@ The 256-step terrain surface uses the original 256×256 measured DEM samples, in
 `repair-garages.json` retains 32 building-tagged OSM car-repair workshops and `police-stations.json` retains 12 mapped police station/beat buildings from the original full-map response dated 2026-10-22T23:10:04Z. Source IDs, tags and coordinates remain available under ODbL. Workshop records match existing building footprints; no footprint was moved. These are incomplete mapped lists, not complete business or station directories.
 
 Game drive-in entrances, workshop props, estimated roof heights and nine suitable rooftop helipads are fictional additions at those business locations. An H does not mean that a real mechanic has a helipad. The main compressed geographic archive is unchanged.
+
+## V13 game road widths and terrain appearance
+
+Runtime road paths retain their original `sourceWidth` and centre-line coordinates. Wider streets defaults to a 1.3 scale for paved vehicle roads; source widths can be restored in settings. Tracks receive a smaller increase, while pedestrian/cycle paths remain unchanged. Lane-count inference uses source widths. No OSM way, building or measured elevation is rewritten. Wider roads and associated estimated frontage details are gameplay presentation.
+
+Ground detail is an original procedural texture. Vertex colours use included beach/woodland classes, mapped land-use polygons, altitude and gentle deterministic variation. These are appearance estimates, not aerial imagery or a ground-cover survey.

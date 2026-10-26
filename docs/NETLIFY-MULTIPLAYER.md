@@ -17,7 +17,7 @@ The game's Multiplayer panel also includes this hosting link. If using Netlify f
 3. Keep the repository settings: build command `python3 scripts/build.py && python3 scripts/site.py`, publish directory `site`.
 4. Deploy. The site opens at the actual `https://your-assigned-name.netlify.app` URL Netlify gives you. You can rename it in Netlify.
 
-[Open Netlify import](https://app.netlify.com/start/deploy?repository=https://github.com/WadeoT/Coastal-explorer). Check the branch if the import screen asks. V12 plays locally immediately; a configured relay joins automatically in the background.
+[Open Netlify import](https://app.netlify.com/start/deploy?repository=https://github.com/WadeoT/Coastal-explorer). Check the branch if the import screen asks. V13 plays locally immediately; a configured relay joins automatically in the background.
 
 ## 2. Deploy the multiplayer relay
 
@@ -46,7 +46,7 @@ The free Render blueprint has no persistent disk. A process restart can preserve
 3. Trigger a new production deploy. This embeds the public URL into the standalone HTML.
 4. Open the Netlify site, choose a vehicle and **DRIVE / LAUNCH**. Multiplayer should report a public room. A second browser on the same site joins an available room automatically. Disconnects retry in the background and do not pause driving.
 
-Share your actual Netlify site URL with friends. If you are using GitHub Pages instead, enter the HTTPS relay URL in Multiplayer and share the generated relay-configured invite. Sending the GitHub link alone, without any configured relay, does not create a server; V12 continues in clearly labelled local play.
+Share your actual Netlify site URL with friends. If you are using GitHub Pages instead, enter the HTTPS relay URL in Multiplayer and share the generated relay-configured invite. Sending the GitHub link alone, without any configured relay, does not create a server; V13 continues in clearly labelled local play.
 
 ## Owner testing
 

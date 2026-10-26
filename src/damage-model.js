@@ -3,8 +3,8 @@
 const VehicleDamageModel=(()=>{
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
  function create(p={kind:'car'}){
-  const electric=p.kind==='bike',airCooled=electric||p.body==='kart',capacity={oil:electric?0:7.5,coolant:airCooled?0:12,fuel:electric?0:p.kind==='jet'?5000:p.kind==='heli'?450:p.kind==='boat'?120:p.body==='kart'?5:90};
-  return {components:{engine:100,radiator:100,oil:100,fuel:100,driver:100,body:100},capacity,oil:capacity.oil,coolant:capacity.coolant,fuel:capacity.fuel,coolantTemp:88,oilTemp:92,oilPressure:electric?0:1.5,engineFailed:false,driverDead:false,burning:false,exploded:false,fireTime:0,oilStarvation:0,overheatTime:0,reason:'',lastHit:null,impacts:0,electric,airCooled};
+  const electric=p.kind==='bike',airCooled=electric||p.body==='kart'||p.kind==='jet',capacity={oil:electric?0:7.5,coolant:airCooled?0:12,fuel:electric?0:p.kind==='jet'?5000:p.kind==='heli'?450:p.kind==='boat'?120:p.body==='kart'?5:90};
+  return {turbine:p.kind==='jet',thermalLoad:0,exhaustTemp:450,components:{engine:100,radiator:100,oil:100,fuel:100,driver:100,body:100},capacity,oil:capacity.oil,coolant:capacity.coolant,fuel:capacity.fuel,coolantTemp:88,oilTemp:92,oilPressure:electric?0:1.5,engineFailed:false,driverDead:false,burning:false,exploded:false,fireTime:0,oilStarvation:0,overheatTime:0,reason:'',lastHit:null,impacts:0,electric,airCooled};
  }
  function hit(d,part,amount,cause='bullet'){
   if(!d||d.exploded||!Object.hasOwn(d.components,part)||!Number.isFinite(amount)||amount<=0)return false;
@@ -16,8 +16,8 @@ const VehicleDamageModel=(()=>{
   return true;
  }
  function explode(d){if(d.exploded)return false;d.exploded=true;d.burning=true;d.engineFailed=true;d.driverDead=true;d.reason='Fuel explosion';for(const key of Object.keys(d.components))d.components[key]=0;d.fuel=0;return true;}
- function step(d,dt,{rpm=750,load=0,ambient=25}={}){
-  if(!d||!Number.isFinite(dt)||dt<=0)return;dt=Math.min(dt,.1);load=clamp(load,0,1);rpm=clamp(Number.isFinite(rpm)?rpm:0,0,12000);
+ function step(d,dt,{rpm=750,load=0,ambient=25,airspeed=0,redline=6000,boost=0}={}){
+  if(!d||!Number.isFinite(dt)||dt<=0)return;dt=Math.min(dt,.1);load=clamp(Number.isFinite(load)?load:0,0,1);airspeed=clamp(Number.isFinite(airspeed)?airspeed:0,0,350);boost=clamp(Number.isFinite(boost)?boost:0,0,1);redline=Number.isFinite(redline)&&redline>300?redline:6000;rpm=clamp(Number.isFinite(rpm)?rpm:0,0,12000);
   const c=d.components,running=!d.engineFailed&&!d.exploded&&rpm>300;
   if(d.capacity.coolant&&c.radiator<90)d.coolant=Math.max(0,d.coolant-d.capacity.coolant*(.005+(100-c.radiator)*.00055)*dt);
   if(d.capacity.oil&&c.oil<90)d.oil=Math.max(0,d.oil-d.capacity.oil*(.004+(100-c.oil)*.00045)*dt);
@@ -25,9 +25,11 @@ const VehicleDamageModel=(()=>{
   if(running&&d.capacity.fuel)d.fuel=Math.max(0,d.fuel-(.0006+load*.005)*dt);
   const oilFill=d.capacity.oil?d.oil/d.capacity.oil:1,coolFill=d.capacity.coolant?d.coolant/d.capacity.coolant:1;
   d.oilPressure=running&&d.capacity.oil?clamp(.45+rpm/650,0,5)*clamp(oilFill*1.2,0,1)*Math.pow(c.oil/100,1.7):0;
-  const target=running?88+load*10+(d.airCooled?0:(1-coolFill)*90+(1-c.radiator/100)*35):ambient;
+  d.thermalLoad+=(load-d.thermalLoad)*(1-Math.exp(-dt/1.5));const effort=d.thermalLoad,rpmHeat=clamp(rpm/redline,0,1),airflow=clamp(airspeed/45,0,1);
+  const target=running?82+effort*15+rpmHeat*8+boost*10-airflow*5+(d.airCooled?0:(1-coolFill)*90+(1-c.radiator/100)*35):ambient;
   d.coolantTemp+=(target-d.coolantTemp)*(1-Math.exp(-dt*(running?.055:.015)));
-  d.oilTemp+=((running?92+load*18+Math.max(0,d.coolantTemp-95)*.8:ambient)-d.oilTemp)*(1-Math.exp(-dt*.03));
+  d.oilTemp+=((running?88+effort*24+rpmHeat*8+boost*16-airflow*4+Math.max(0,d.coolantTemp-95)*.8:ambient)-d.oilTemp)*(1-Math.exp(-dt*.03));
+  d.exhaustTemp+=((running?320+effort*450+rpmHeat*80+boost*170:ambient)-d.exhaustTemp)*(1-Math.exp(-dt*.35));
   if(running&&d.capacity.oil&&d.oilPressure<.65)d.oilStarvation+=dt;else d.oilStarvation=Math.max(0,d.oilStarvation-dt*.4);
   if(running&&d.coolantTemp>125)d.overheatTime+=dt;else d.overheatTime=Math.max(0,d.overheatTime-dt*.3);
   if(running&&d.coolantTemp>112)c.engine=Math.max(0,c.engine-(d.coolantTemp-112)*.035*dt);

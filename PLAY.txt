@@ -1,8 +1,8 @@
-COASTAL EXPLORER — VERSION 11 / COASTAL MOTORSPORT
+COASTAL EXPLORER — VERSION 12 / AIR RESCUE + COMBAT
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=11
-You should see V11 / COASTAL MOTORSPORT in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=12
+You should see V12 / AIR RESCUE + COMBAT in the showroom.
 
 DOWNLOAD / BUNDLED MAP
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.
@@ -147,3 +147,36 @@ hoist rescues show a capsized boat on mapped water.
 Models are original simplified geometry. All 18 previews are actual
 renders of the same meshes used in play and by network players.
 See docs/V11-RELEASE.md and docs/V11-VERIFICATION.md.
+
+V12 AIR RESCUE + COMBAT
+F18: hold Space for nose-mounted cannon fire (578 rounds, heat lockout).
+The sight follows the nose, including when you look around. X ejects
+a living pilot. An automatic chute opens; WASD steers; land before G
+returns to the garage. The abandoned plane falls independently.
+Z deploys two tracking-disruption flares, with an eight-second recharge.
+Click GUNNERY RANGE for five orange drones: finish within 120 seconds
+for A$4,000 once per successful run. Firing at scenery/traffic is still
+an offence. Civilian AS350 and LifeFlight/RACQ rescue aircraft are
+unarmed: F, Space and touch controls cannot fire weapons.
+
+Temperatures rise gradually with load/RPM and cool with reduced load
+and airflow. F18 oil/exhaust heat increases with afterburner and latched
+throttle even after W is released. Its gauge reads EXHAUST TEMP rather
+than claiming a liquid coolant tank. All temperatures are game models.
+
+Workshop H pads accept a safe landing across the usable area, rather
+than demanding an exact centre point. Missing/stale touchdown records
+recover after 1.5 seconds of stable contact. Hovering or gear-up arrivals
+do not count. The prompt explains what is missing. An engine failure
+with full-looking bars is serviceable. Stop, click REPAIR and wait six
+seconds; departure cancels the timer without a charge. The old workshop
+prompt no longer stays over the vehicle garage.
+
+SHAREABLE HOSTING
+The easiest shared server is the included Render blueprint. Create a
+free Render account, import this repository on codex/sunshine-coast-game
+and deploy. Open/share the HTTPS address Render gives you: it serves
+the game and automatically joins that server. A free service may need
+time to wake. Netlify can use the same server through COASTAL_RELAY_URL.
+No Render or Netlify service was deployed to your account here.
+See docs/V12-RELEASE.md and docs/NETLIFY-MULTIPLAYER.md.

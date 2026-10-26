@@ -2,6 +2,14 @@
 
 The repository includes Netlify configuration. You do not need to upload the 32 MB HTML manually. Netlify serves the browser game; a separate Node service maintains persistent WebSocket rooms. No site or relay has been deployed to your accounts from this workspace.
 
+## Simplest: one Render address for both game and server
+
+1. Create/sign into a Render account and connect GitHub.
+2. [Deploy this blueprint](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer), selecting branch **codex/sunshine-coast-game** and the included free service.
+3. Wait for its deploy to become healthy, then open and share the actual HTTPS address Render assigns. That address serves the full game and automatically connects to its own public lobby. No Netlify build setting is needed for this option. The free service can take time to wake.
+
+The game's Multiplayer panel also includes this hosting link. If using Netlify for the frontend, continue below.
+
 ## 1. Create the Netlify site
 
 1. In Netlify, choose **Add new project → Import an existing project → GitHub**.
@@ -9,7 +17,7 @@ The repository includes Netlify configuration. You do not need to upload the 32 
 3. Keep the repository settings: build command `python3 scripts/build.py && python3 scripts/site.py`, publish directory `site`.
 4. Deploy. The site opens at the actual `https://your-assigned-name.netlify.app` URL Netlify gives you. You can rename it in Netlify.
 
-[Open Netlify import](https://app.netlify.com/start/deploy?repository=https://github.com/WadeoT/Coastal-explorer). Check the branch if the import screen asks. V11 plays locally immediately; a configured relay joins automatically in the background.
+[Open Netlify import](https://app.netlify.com/start/deploy?repository=https://github.com/WadeoT/Coastal-explorer). Check the branch if the import screen asks. V12 plays locally immediately; a configured relay joins automatically in the background.
 
 ## 2. Deploy the multiplayer relay
 
@@ -38,7 +46,7 @@ The free Render blueprint has no persistent disk. A process restart can preserve
 3. Trigger a new production deploy. This embeds the public URL into the standalone HTML.
 4. Open the Netlify site, choose a vehicle and **DRIVE / LAUNCH**. Multiplayer should report a public room. A second browser on the same site joins an available room automatically. Disconnects retry in the background and do not pause driving.
 
-Share your actual Netlify site URL with friends. If you are using GitHub Pages instead, enter the HTTPS relay URL in Multiplayer and share the generated relay-configured invite. Sending the GitHub link alone, without any configured relay, does not create a server; V11 continues in clearly labelled local play.
+Share your actual Netlify site URL with friends. If you are using GitHub Pages instead, enter the HTTPS relay URL in Multiplayer and share the generated relay-configured invite. Sending the GitHub link alone, without any configured relay, does not create a server; V12 continues in clearly labelled local play.
 
 ## Owner testing
 

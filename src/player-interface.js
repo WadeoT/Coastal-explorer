@@ -6,9 +6,9 @@ function drawPersonalDestinations(ctx,project,mini=false){const markers=[];if(pe
 function updateAtcLandingMarker(){const valid=['approved','landed'].includes(atc.status)&&atc.target&&state.elapsed<atc.clearanceUntil;if(!valid){atcLandingMesh?.dispose();atcLandingMesh=null;return;}if(atcLandingMesh&&atcLandingMesh.metadata.x===atc.target.x&&atcLandingMesh.metadata.z===atc.target.z)return;atcLandingMesh?.dispose();const h=groundAt(atc.target.x,atc.target.z,null,true)??0;atcLandingMesh=MB.CreateTorus('approved-atc-landing-marker',{diameter:12,thickness:.28,tessellation:40},scene);atcLandingMesh.position.set(atc.target.x,h+.22,atc.target.z);atcLandingMesh.material=scene.getMaterialByName('atc-approved-green')||mat('atc-approved-green','#78e9c6',.45);atcLandingMesh.isPickable=false;atcLandingMesh.metadata={x:atc.target.x,z:atc.target.z};}
 function rescueDispatchActive(){const a=activities.active;return !!a?.profession&&state.profile?.kind==='heli'&&state.profile.rescue&&['helicopter-shuttle','hinterland-medical','rescue-hoist'].some(id=>a.id.startsWith(id));}
 function rescueLandingApproved(position){const a=activities.active;return rescueDispatchActive()&&a.checkpoints.some(p=>Math.hypot(p.x-position.x,p.z-position.z)<180);}
-function aircraftTouchdown(rate,surface){
+function aircraftTouchdown(rate,surface,enforce=true){
  state.lastLanding={x:player.position.x,z:player.position.z,surface,rate:Math.abs(rate),time:state.elapsed};state.wasAirborne=false;
- if(state.mode!=='playing')return;if(atcHasClearance(player.position)||rescueLandingApproved(player.position))return;
+ if(!enforce||state.mode!=='playing')return;if(atcHasClearance(player.position)||rescueLandingApproved(player.position))return;
  const geo=groundAccessAt(player.position),zone=gameAirspace.zones.find(z=>{const p=geoToLocal(z.lat,z.lon);return Math.hypot(p.x-player.position.x,p.z-player.position.z)<z.radius;});addCrime(zone?.id==='training-zone'?450:zone?250:180,'landing without ATC approval'+(geo?' · restricted grounds':''));dangerAlert('unauthorized-landing','UNAUTHORIZED LANDING','ATC approval is required. Police response escalated.','critical','airspace');
 }
 function initializePlayerInterface(){

@@ -1,11 +1,11 @@
 {
   "name": "coastal-explorer",
-  "version": "11.0.0",
+  "version": "12.0.0",
   "private": true,
   "description": "Single-file Sunshine Coast driving game; optional browser verification",
   "scripts": {
     "test:audio": "node tests/engine-audio.cjs",
-    "test": "node tests/damage-model.cjs && node tests/engine-audio.cjs && node tests/rewards.cjs && node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs && node tests/damage-browser.cjs && node tests/v8.cjs && node tests/v9.cjs && node tests/v10.cjs && node tests/v11.cjs",
+    "test": "node tests/damage-model.cjs && node tests/engine-audio.cjs && node tests/rewards.cjs && node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs && node tests/damage-browser.cjs && node tests/v8.cjs && node tests/v9.cjs && node tests/v10.cjs && node tests/v11.cjs && node tests/thermal.cjs && node tests/v12.cjs && node tests/repair-pads.cjs",
     "test:fleet": "node tests/v6.cjs",
     "test:relay": "node tests/relay.cjs",
     "test:geography": "node tests/browser.cjs",
@@ -17,7 +17,10 @@
     "test:v9": "node tests/v9.cjs",
     "test:v10": "node tests/v10.cjs",
     "test:v11": "node tests/v11.cjs",
-    "render:vehicles": "node scripts/render-vehicles.cjs"
+    "render:vehicles": "node scripts/render-vehicles.cjs",
+    "test:thermal": "node tests/thermal.cjs",
+    "test:v12": "node tests/v12.cjs",
+    "test:pads": "node tests/repair-pads.cjs"
   },
   "devDependencies": {
     "@babylonjs/core": "9.31.3",

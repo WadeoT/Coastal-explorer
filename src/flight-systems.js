@@ -17,8 +17,8 @@ const gameAirspace={zones:[
  {id:'noosa-airfield',name:'NOOSA AIRFIELD',lat:-26.423,lon:153.067,radius:2100,ceiling:850},
  {id:'training-zone',name:'GAME TRAINING EXCLUSION',lat:-26.55,lon:153.19,radius:2000,ceiling:1400}
 ],interceptors:[],violationSeconds:0,spawnGrace:0,current:null};
-function isAircraft(){return state.profile&&['heli','jet'].includes(state.profile.kind);}
-function disposeFlightActor(root){const owned=new Set();for(const m of root.getChildMeshes())if(m.material&&!Object.values(materials).includes(m.material))owned.add(m.material);root.dispose(false,false);for(const m of owned)m.dispose(false,true);}
+function isAircraft(){return !airCombat.ejection&&state.profile&&['heli','jet'].includes(state.profile.kind);}
+function disposeFlightActor(root){const owned=new Set();for(const m of root.getChildMeshes())if(m.material&&!Object.values(materials).includes(m.material)&&![...airMaterials.values()].includes(m.material))owned.add(m.material);root.dispose(false,false);for(const m of owned)m.dispose(false,true);}
 function resetAircraftSystems(){if(policeAirUnit){disposeFlightActor(policeAirUnit.root);policeAirUnit=null;}state.lastAirspaceViolation=-100;Object.assign(atc,{status:'idle',clearanceUntil:0,target:null,message:'Request a local landing slot, or choose a landing pin on the map.'});disposeAircraftControls();for(const i of gameAirspace.interceptors)disposeFlightActor(i.root);gameAirspace.interceptors=[];gameAirspace.violationSeconds=0;gameAirspace.spawnGrace=state.elapsed+8;gameAirspace.current=null;aircraftSystems={engineOn:true,gearDown:true,navLights:true,searchlight:false,hover:false,stability:true,rotorBrake:false,hoist:0,hoistTarget:0};}
 function disposeAircraftControls(){if(!aircraftControls)return;aircraftControls.root.dispose(false,false);aircraftControls.light.dispose();aircraftControls.cable.dispose();aircraftControls.navRoot.dispose(false,false);for(const m of aircraftControls.materials)m.dispose(false,true);aircraftControls=null;}
 function aircraftAction(action){
@@ -62,7 +62,7 @@ function initialiseFlightUI(){
  const note=document.createElement('p');note.textContent='GAME AIRSPACE: airport exclusion circles, a fictional training zone, 90 m urban minimum and 900 m general ceiling. These are gameplay rules, not official aviation boundaries. Jobs may grant landing clearance.';$('mapModal').querySelector('.dialog').append(note);
 }
 function flightRuleAt(position,agl){
- const dispatch=rescueDispatchActive(),cleared=atcHasClearance(position)||rescueLandingApproved(position),clearance=[...(activities.active?.clearance||[]),...(cleared&&atc.zone?[atc.zone]:[])],landing=cleared||activities.active?.profession&&activities.active.checkpoints.some(c=>Math.hypot(position.x-c.x,position.z-c.z)<160);
+ const dispatch=rescueDispatchActive(),cleared=atcHasClearance(position)||rescueLandingApproved(position),clearance=[...(airCombat.range&&V.Distance(position,airCombat.range.origin)<2600?['sunshine-airport','caloundra-airport','noosa-airfield']:[]),...(activities.active?.clearance||[]),...(cleared&&atc.zone?[atc.zone]:[])],landing=cleared||activities.active?.profession&&activities.active.checkpoints.some(c=>Math.hypot(position.x-c.x,position.z-c.z)<160);
  for(const zone of gameAirspace.zones){const p=geoToLocal(zone.lat,zone.lon);if(Math.hypot(position.x-p.x,position.z-p.z)<zone.radius&&agl<zone.ceiling&&!clearance.includes(zone.id))return {illegal:true,label:zone.name+' · GAME NO-FLY ZONE',min:0,max:zone.ceiling,zone:zone.id};}
  if(agl>(dispatch?1200:900))return {illegal:true,label:'ABOVE GAME CEILING',min:0,max:dispatch?1200:900};
  const urban=inMappedLanduse(residentialIndex,position.x,position.z);

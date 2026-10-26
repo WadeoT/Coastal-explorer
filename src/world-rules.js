@@ -26,14 +26,14 @@ function collideMappedWorld(prevX,prevZ){
   for(const o of objects){if(!objectContact(o,at,p))continue;
    // Allow a vehicle already touching a surface to move away from it.
    if(objectContact(o,start,p)&&Math.hypot(end.x-o.x,end.z-o.z)>Math.hypot(start.x-o.x,start.z-o.z)+.02)continue;
-   player.position.copyFrom(last);const impact=solidContactResponse(o,last,velocity);if(impact.speed<3&&Math.abs(velocity.y)>3){impact.speed=Math.abs(velocity.y);impact.normal={x:-Math.sin(motion.yaw),z:Math.cos(motion.yaw)};impact.vertical=true;motion.vy=0;if(o.polygon)state.wreckSurface={height:o.baseY+o.height,polygon:o.polygon};}
+   player.position.copyFrom(last);const impact=solidContactResponse(o,last,velocity);state.lastCollision={kind:o.kind||'building',x:o.x,z:o.z,roof:o.baseY+o.height};if(impact.speed<3&&Math.abs(velocity.y)>3){impact.speed=Math.abs(velocity.y);impact.normal={x:-Math.sin(motion.yaw),z:Math.cos(motion.yaw)};impact.vertical=true;motion.vy=0;if(o.polygon)state.wreckSurface={height:o.baseY+o.height,polygon:o.polygon};}
    if(state.collisionCooldown<=0&&impact.speed>2.8){recordCrash(impact.speed,new V(impact.x,last.y+.2,impact.z),impact);state.collisionCooldown=.6;}
    return impact;
   }last=at;
  }
  // Vertical roof strikes and contact with actual generated canopies/poles.
  if(isAircraft()&&distance>.005){const lift=Math.max(.25,p.eye-p.clearance)*.4,origin=start.add(new V(0,lift,0)),dir=end.subtract(start).normalize(),ray=new Ray(origin,dir,distance+.25),hit=scene.pickWithRay(ray,m=>!!m.metadata?.openSolid&&m.isEnabled());
-  if(hit?.hit){const normal=hit.getNormal(true)||dir.scale(-1),speed=Math.max(0,-V.Dot(velocity,normal));player.position.copyFrom(start);motion.vx=motion.vz=0;motion.vy=Math.max(0,motion.vy);const impact={x:hit.pickedPoint.x,z:hit.pickedPoint.z,normal:{x:normal.x,z:normal.z},speed,solid:true,kind:'scenery'};if(state.collisionCooldown<=0&&speed>3){recordCrash(speed,hit.pickedPoint,impact);state.collisionCooldown=.6;}return impact;}
+  if(hit?.hit){const normal=hit.getNormal(true)||dir.scale(-1),speed=Math.max(0,-V.Dot(velocity,normal));player.position.copyFrom(start);motion.vx=motion.vz=0;motion.vy=Math.max(0,motion.vy);const impact={x:hit.pickedPoint.x,z:hit.pickedPoint.z,normal:{x:normal.x,z:normal.z},speed,solid:true,kind:'scenery',meshName:hit.pickedMesh?.name};state.lastCollision={kind:impact.kind,meshName:impact.meshName};if(state.collisionCooldown<=0&&speed>3){recordCrash(speed,hit.pickedPoint,impact);state.collisionCooldown=.6;}return impact;}
  }
  return null;
 }

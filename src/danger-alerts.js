@@ -11,7 +11,7 @@ function updateDangerAlerts(){const d=state.damage;if(!d)return;
  if(d.oilPressure<.7&&state.rpm>300)dangerAlert('oil-pressure','STOP ENGINE · LOW OIL PRESSURE',d.oilPressure.toFixed(1)+' bar · lubrication failure risks engine seizure.','critical','oil');
  if(d.coolantTemp>110)dangerAlert('overheat','ENGINE OVERHEATING',Math.round(d.coolantTemp)+' °C · reduce load and stop safely.','critical','coolant');
  if(d.capacity.coolant>0&&d.components.radiator<80)dangerAlert('coolant-leak','COOLANT LEAK','Radiator damage · coolant is escaping.','warning','coolant');
- if(d.components.oil<80)dangerAlert('oil-leak','OIL SYSTEM DAMAGE','Oil loss can seize the engine.','warning','oil');
+ if(d.components.oil<80)dangerAlert('oil-leak','OIL SYSTEM DAMAGE','Leak '+((d.oilLeakRate||0)*60).toFixed(2)+' L/min · repair before pressure falls.','warning','oil');
  renderDangerAlerts();
 }
 function initialiseDangerAlerts(){const box=document.createElement('section');box.id='dangerAlerts';box.setAttribute('aria-live','assertive');document.body.append(box);}

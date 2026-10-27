@@ -1,10 +1,15 @@
-V18 STREET LIFE / SURVIVING A FUEL FIRE
-Cars/boats: stop or slow below 14 km/h, press X to get out, then move at least
+Public lobby now tries a verified standard HTTPS-port (443) relay first,
+then two backups. Use the V19 link to load the updated client.
+
+V19 IMPACT & ESCAPE / PUBLIC LOBBY
+Cars/boats/helicopters: X jumps out even while moving. Speed and falls hurt
+the person; civilian helicopters have no automatic parachute. Move at least
 12 metres away. WASD moves you on foot; Shift runs. A ground fuel fire has a
-roughly nine-second warning window. The empty vehicle continues burning and
+roughly nine-second window after a fuel hit; severe hot crashes can explode
+immediately. The empty vehicle continues burning and
 can explode, but you can survive safely away from it. Do not stay beside it.
 E re-enters a nearby safe vehicle; G opens the garage once clear of police.
-Fighter X still ejects; helicopter controls are unchanged.
+Fighter X retains its separate ejection seat and automatic parachute.
 
 Ground-level scenery now focuses on the nearby neighbourhood. Look for framed
 windows, gutters, front gardens, paths, lamps, parked cars and road refuges.
@@ -56,7 +61,7 @@ COASTAL EXPLORER — VERSION 18 / STREET LIFE
 
 PLAY ONLINE
 https://wadeot.github.io/Coastal-explorer/index.html?v=18
-You should see V18 / STREET LIFE in the showroom.
+You should see V19 / IMPACT & ESCAPE in the showroom.
 
 DOWNLOAD / BUNDLED MAP
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.

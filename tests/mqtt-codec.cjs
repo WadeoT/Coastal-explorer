@@ -11,4 +11,5 @@ q.publish({hello:'test'});assert.equal(q.ws.sent.at(-1)[0],48);assert.equal(q.ws
 let before=q.ws.sent.length;q.ws.bufferedAmount=40000;q.publish({hello:'slow'});assert.equal(q.ws.sent.length,before);q.ws.bufferedAmount=0;q.publish({large:'a'.repeat(5000)});assert.equal(q.ws.sent.length,before);pass('Backpressure and packet-size caps drop excess traffic');
 assert.throws(()=>q.read(new Uint8Array([48,255,255,255,255,255])));pass('Oversized/malformed MQTT lengths fail closed');
 q.close();assert(q.closed&&q.ws.readyState===3);pass('Closing shuts down the socket and prevents automatic reconnection');
+const demo=new c.MQ('wss://public.cloud.shiftr.io','coast/test',()=>{},()=>{});demo.ws.onopen();const connect=demo.ws.sent[0];assert.equal(connect[9],194);assert(Buffer.from(connect).includes(Buffer.from('public')));demo.close();pass('Standard HTTPS-port route supplies only the documented public demo MQTT credentials');
 console.log('RESULT',JSON.stringify({passed}));

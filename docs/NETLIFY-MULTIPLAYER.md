@@ -1,3 +1,7 @@
+## V19 public connection update
+
+The default public lobby now connects to `wss://public.cloud.shiftr.io` on standard HTTPS port **443** (documented anonymous demo MQTT login `public` / `public`), with HiveMQ 8884 and EMQX 8084 as simultaneous backups. These credentials are public demo access, not an owner key. Two-client subscribe/publish/receive passed on the actual Internet in [the read-only diagnostic](https://github.com/WadeoT/Coastal-explorer/actions/runs/40447536416). The browser regression also verifies both players join when both nonstandard ports are blocked. Public test services remain best effort and are not an authoritative game server. A browser or network blocking all WebSockets still cannot connect; driving remains available locally and player counts stay honestly unknown. Everyone should load V19.
+
 > V14: public free roam now automatically uses public MQTT test relays when
 > no dedicated server URL is configured. You do not need this hosting setup
 > to try playing with a mate. Use MULTIPLAYER → CREATE FRIENDS ROOM and share

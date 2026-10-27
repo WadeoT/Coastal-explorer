@@ -1,0 +1,1 @@
+const {buildSync}=require('esbuild');buildSync({entryPoints:['src/nostr-crypto-entry.js'],outfile:'vendor/nostr-crypto.min.js',bundle:true,minify:true,format:'iife',globalName:'CoastSigning',platform:'browser',target:'es2020',legalComments:'inline'});

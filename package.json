@@ -31,6 +31,7 @@
   "devDependencies": {
     "@babylonjs/core": "9.31.3",
     "@babylonjs/loaders": "9.31.3",
+    "@noble/curves": "^2.4.0",
     "3d-tiles-renderer": "0.5.3",
     "earcut": "3.0.2",
     "esbuild": "0.25.12",

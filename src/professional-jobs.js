@@ -25,7 +25,7 @@ function availableProfessionalJobs(){
  add({id:'airshow-flyover',name:'Coastal airshow training',description:'Fighter only: fly through the marked rings at the displayed altitude, at more than 60 m/s. Mission airport clearance is included; other game airspace restrictions remain.',vehicleIds:['jet'],places:['Caloundra','Mooloolaba','Coolum Beach'],mode:'landing',flyThrough:true,reward:30000,clearance:['caloundra-airport','sunshine-airport']});
  if(id==='kart'){const race=baseContracts().find(j=>j.kind==='race');if(race)jobs.push({...race,id:'kart-trial',name:'Kart clock challenge',description:'Kart-only checkpoint time trial on the mapped road course.',vehicleIds:['kart'],reward:18000});}return jobs;
 }
-function availableContracts(){return [...localContracts(),...baseContracts().filter(j=>!['heli','jet'].includes(state.profile?.kind)),...availableProfessionalJobs()];}
+function availableContracts(){return [...districtEventContracts(),...localContracts(),...baseContracts().filter(j=>!['heli','jet'].includes(state.profile?.kind)),...availableProfessionalJobs()];}
 function updateProfessionalActivity(before,dt){
  const a=activities.active;if(!a)return;const moved=V.Distance(before,player.position);if(a.vehicleId!==state.vehicleId||moved>state.profile.top*dt*1.6+.2){cancelActivity('Vehicle changed or position jumped');return;}
  if(state.elapsed-a.started>a.timeLimit||state.health<40||state.damage?.driverDead){cancelActivity('Time expired or vehicle too damaged');toast('Job failed. Protect the vehicle and passengers.');return;}

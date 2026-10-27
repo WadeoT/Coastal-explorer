@@ -5,6 +5,9 @@ on:
       - src/public-relay.js
       - src/nostr-relay.js
       - src/multiplayer.js
+      - src/game.js
+      - src/junctions.js
+      - src/district-events.js
       - src/neighbourhood-appearance.js
       - scripts/probe-aerial-imagery.cjs
       - scripts/probe-browser-relays.cjs

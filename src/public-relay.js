@@ -6,7 +6,7 @@ class CoastMQTT {
  text(value){const s=new TextEncoder().encode(value);return new Uint8Array([s.length>>8,s.length&255,...s]);}
  packet(header,body){if(this.ws?.readyState!==1||this.ws.bufferedAmount>32000)return;let n=body.length,len=[];do{let b=n%128;n=Math.floor(n/128);len.push(b|(n?128:0));}while(n);this.ws.send(new Uint8Array([header,...len,...body]));}
  connect(){if(this.closed)return;const ws=this.ws=new WebSocket(this.url,'mqtt');ws.binaryType='arraybuffer';this.buffer=new Uint8Array();this.ready=false;
-  ws.onopen=()=>{const demo=new URL(this.url).hostname==='public.cloud.shiftr.io';this.packet(16,new Uint8Array([...this.text('MQTT'),4,demo?194:2,0,30,...this.text('coast-'+crypto.randomUUID().slice(0,23)),...(demo?[...this.text('public'),...this.text('public')]:[])]));this.handshake=setTimeout(()=>ws.close(),12000);};
+  ws.onopen=()=>{const demo=/^wss:\/\/public\.cloud\.shiftr\.io(?:\/|$)/.test(this.url);this.packet(16,new Uint8Array([...this.text('MQTT'),4,demo?194:2,0,30,...this.text('coast-'+crypto.randomUUID().slice(0,23)),...(demo?[...this.text('public'),...this.text('public')]:[])]));this.handshake=setTimeout(()=>ws.close(),12000);};
   ws.onmessage=e=>{if(ws!==this.ws||!(e.data instanceof ArrayBuffer))return;try{this.read(new Uint8Array(e.data));}catch{ws.close();}};
   ws.onerror=()=>{};ws.onclose=()=>{clearTimeout(this.handshake);clearInterval(this.ping);this.ready=false;if(!this.closed){this.onStatus();this.retry=setTimeout(()=>this.connect(),Math.min(30000,1000*2**Math.min(this.attempt++,5))+Math.random()*500);}};
   this.connectTimeout=setTimeout(()=>{if(ws.readyState===0)ws.close();},15000);

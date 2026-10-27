@@ -82,6 +82,7 @@ function recordVehicleCrash(speed,worldPoint=null,impact=null){
   state.crashFlight={time:0,vy:Math.min(4,speed*.10),roll:motion.roll,pitch:motion.pitch,rollSpeed:glancing?Math.sign(side)*Math.min(4,speed*.10):0,pitchSpeed:glancing?0:-Math.min(1.2,speed*.025)};
   motion.vx*=.65;motion.vz*=.65;motion.yaw+=side*Math.min(.5,speed*.009);
  }
+ if(state.profile.kind==='car')beginCrashStructure(exterior,state.profile,new V(local.x,local.y+state.profile.clearance,local.z),speed,impact?.normal);
  addImpactMark(local,true);
  dangerAlert('crash','IMPACT · '+Math.round(speed*3.6)+' KM/H',impact?.solid?'Solid collision · body and components damaged.':'Vehicle impact · inspect damage before continuing.','critical','body');
  if(severity>45&&state.damage.engineFailed)toast('ENGINE FAILURE · '+state.damage.reason,4000);finishDamageState();
@@ -119,7 +120,7 @@ function updateDamageGauges(){
  const g=damageGraphics,d=state.damage;if(!g||!d)return;
  const air=['heli','jet'].includes(state.profile.kind);
  const percent=key=>d.capacity[key]?Math.round(d[key]/d.capacity[key]*100):0;
- const warning=d.exploded?'FUEL EXPLOSION':d.driverDead?'DRIVER KILLED':d.burning?'FIRE — FUEL LEAK':d.engineFailed?d.reason:d.oilPressure<.7&&state.rpm>300?'LOW OIL PRESSURE':d.coolantTemp>110?'ENGINE OVERHEATING':d.capacity.coolant>0&&d.components.radiator<90?'COOLANT LEAK':d.components.oil<90?'OIL LEAK':'SYSTEMS NORMAL';
+ const warning=d.exploded?'FUEL EXPLOSION':d.driverDead?'DRIVER KILLED':d.burning?'FIRE — FUEL LEAK':d.engineFailed?d.reason:d.wheelsLost?'WHEEL / SUSPENSION FAILURE':d.oilPressure<.7&&state.rpm>300?'LOW OIL PRESSURE':d.coolantTemp>110?'ENGINE OVERHEATING':d.capacity.coolant>0&&d.components.radiator<90?'COOLANT LEAK':d.components.oil<90?'OIL LEAK':'SYSTEMS NORMAL';
  const readout=$('damageStatus')?.parentElement;if(readout){readout.hidden=groundEscape.active||!air&&warning==='SYSTEMS NORMAL';readout.classList.toggle('ground-warning',!air);$('damageNumbers').hidden=!air;}
  if($('damageStatus')){$('damageStatus').textContent=warning;$('damageStatus').classList.toggle('critical',warning!=='SYSTEMS NORMAL');const rows=!air?[]:d.electric?[['MOTOR',Math.round(d.components.engine)+'%'],['RIDER',Math.round(d.components.driver)+'%']]:[['OIL PRESSURE',d.oilPressure.toFixed(1)+' bar'],['OIL TEMP',Math.round(d.oilTemp)+' °C'],[d.turbine?'EXHAUST TEMP':d.airCooled?'ENGINE TEMP':'COOLANT TEMP',Math.round(d.turbine?d.exhaustTemp:d.coolantTemp)+' °C'],['FUEL',percent('fuel')+'%'],['OIL / COOLANT',percent('oil')+'% / '+(d.capacity.coolant?percent('coolant')+'%':'N/A')]];$('damageNumbers').replaceChildren(...rows.map(([label,value])=>{const row=document.createElement('span'),name=document.createElement('b'),reading=document.createElement('strong');name.textContent=label;reading.textContent=value;row.append(name,reading);return row;}));}
  g.lastGauge={oilPressure:d.oilPressure,coolantTemp:d.coolantTemp,oilTemp:d.oilTemp,oil:percent('oil'),coolant:percent('coolant'),fuel:percent('fuel'),warning};
@@ -131,6 +132,7 @@ function updateDamageGauges(){
 }
 function repairVehicleDamage(){
  if(!state.profile)return false;
+ if(exterior)clearCrashStructure(exterior,true);
  if(damageGraphics){for(const [mesh,positions] of damageGraphics.original)if(!mesh.isDisposed()){const normals=[];VertexData.ComputeNormals(positions,mesh.getIndices(),normals);mesh.setVerticesData('position',positions,true);mesh.setVerticesData('normal',normals,true);mesh.refreshBoundingInfo();}for(const [mat,color] of damageGraphics.originalColours)if(mat.diffuseColor)mat.diffuseColor.copyFrom(color);}
  state.damage=VehicleDamageModel.create(state.profile);state.health=100;state.driverHealth=100;state.bodyDamage=0;state.crashFlight=null;state.solidCrash=null;state.overturned=false;state.frontCrush=state.rearCrush=state.sideCrush=0;dangerState.active.clear();dangerState.last.clear();renderDangerAlerts();state.wreckSurface=null;state.rpm=state.profile.kind==='bike'?0:state.vehicleId==='ute'?750:900;if(exterior)exterior.scaling.setAll(1);createDamageGraphics();updateDamageGauges();
 }

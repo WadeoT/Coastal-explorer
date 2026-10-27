@@ -20,7 +20,7 @@ const streetLaw={witness:0,nextReport:0,excess:0,observed:false,arrest:0,surrend
 function resetStreetLaw(){streetLaw.witness=streetLaw.excess=streetLaw.arrest=streetLaw.nextReport=0;streetLaw.observed=streetLaw.surrender=false;if(streetLaw.officer)streetLaw.officer.root.dispose(false,false);streetLaw.officer=null;streetLaw.extracted=false;if($('custodyPanel'))$('custodyPanel').hidden=true;if($('roadLaw'))$('roadLaw').hidden=true;}
 function updateRoadLaw(dt,road){
  const valid=['car','bike'].includes(state.profile?.kind)&&state.grounded&&road&&road.dist<road.path.width/2+1&&state.mode==='playing'&&Multiplayer.serverSettings.policeEnabled!==false,excess=valid?state.speed*3.6-roadSpeedLimit(road.path):0;
- streetLaw.excess=Math.max(0,excess);streetLaw.observed=valid&&excess>5&&policeWitnesses(150);
+ streetLaw.excess=Math.max(0,excess);streetLaw.observed=valid&&excess>5&&(state.wanted>0||policeWitnesses(150));
  if(streetLaw.observed){streetLaw.witness+=dt;if(streetLaw.witness>=1.25&&state.elapsed>=streetLaw.nextReport){addCrime(clamp(12+excess*.5,18,45),'speeding · '+Math.round(state.speed*3.6)+' in a '+roadSpeedLimit(road.path)+' zone');streetLaw.nextReport=state.elapsed+3;}}else streetLaw.witness=Math.max(0,streetLaw.witness-dt*2);
  const label=$('roadLaw');if(label){label.hidden=!['car','bike'].includes(state.profile?.kind)||state.mode!=='playing';label.classList.toggle('speeding',excess>1);label.textContent='LIMIT '+roadSpeedLimit(road?.path)+' KM/H'+(excess>1?' · SPEEDING +'+Math.round(excess):'')+(streetLaw.observed?' · POLICE RADAR':'');}
 }

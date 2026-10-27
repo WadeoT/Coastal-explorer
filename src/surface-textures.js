@@ -1,6 +1,7 @@
 // Original procedural surfaces are embedded and generated once per material.
 // World dimensions in mesh UVs keep bricks, grass and roof ribs at useful scales.
 function makeSurfaceTexture(name,kind,size=512){
+ if($('qualitySelect')?.value==='ultra')size=kind==='paint'||kind==='metal'||kind==='rubber'?512:1024;
  const texture=new DynamicTexture(name,size,scene,true),c=texture.getContext(),pixels=c.createImageData(size,size);let seed=719;
  const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
  const grid8=Array.from({length:64},rand),grid32=Array.from({length:1024},rand),noiseAt=(u,v,grid,n)=>{const x=u*n,y=v*n,ix=Math.floor(x),iy=Math.floor(y),a=x-ix,b=y-iy,s=a*a*(3-2*a),t=b*b*(3-2*b),at=(dx,dy)=>grid[((iy+dy)%n)*n+(ix+dx)%n];return lerp(lerp(at(0,0),at(1,0),s),lerp(at(0,1),at(1,1),s),t)-.5;};

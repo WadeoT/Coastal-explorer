@@ -8,7 +8,7 @@ class CoastMQTT {
  connect(){if(this.closed)return;const ws=this.ws=new WebSocket(this.url,'mqtt');ws.binaryType='arraybuffer';this.buffer=new Uint8Array();this.ready=false;
   ws.onopen=()=>{const demo=/^wss:\/\/public\.cloud\.shiftr\.io(?:\/|$)/.test(this.url);this.packet(16,new Uint8Array([...this.text('MQTT'),4,demo?194:2,0,30,...this.text('coast-'+crypto.randomUUID().slice(0,23)),...(demo?[...this.text('public'),...this.text('public')]:[])]));this.handshake=setTimeout(()=>ws.close(),12000);};
   ws.onmessage=e=>{if(ws!==this.ws||!(e.data instanceof ArrayBuffer))return;try{this.read(new Uint8Array(e.data));}catch{ws.close();}};
-  ws.onerror=()=>{};ws.onclose=()=>{clearTimeout(this.handshake);clearInterval(this.ping);this.ready=false;if(!this.closed){this.onStatus();this.retry=setTimeout(()=>this.connect(),Math.min(30000,1000*2**Math.min(this.attempt++,5))+Math.random()*500);}};
+  ws.onerror=()=>{this.lastError='WebSocket blocked or unreachable';};ws.onclose=e=>{this.lastError='Closed '+(e?.code||1006)+(e?.reason?' · '+e.reason:' · network or browser restriction');clearTimeout(this.handshake);clearInterval(this.ping);this.ready=false;if(!this.closed){this.onStatus();this.retry=setTimeout(()=>this.connect(),Math.min(30000,1000*2**Math.min(this.attempt++,5))+Math.random()*500);}};
   this.connectTimeout=setTimeout(()=>{if(ws.readyState===0)ws.close();},15000);
  }
  read(chunk){if(this.buffer.length+chunk.length>32768)throw Error('MQTT packet too large');let bytes=new Uint8Array(this.buffer.length+chunk.length);bytes.set(this.buffer);bytes.set(chunk,this.buffer.length);let offset=0;
@@ -16,7 +16,7 @@ class CoastMQTT {
   this.buffer=new Uint8Array();
  }
  handle(header,body){const type=header>>4;if(type===2){if(body.length!==2||body[1]!==0){this.ws.close();return;}this.packet(130,new Uint8Array([0,1,...this.text(this.topic),0]));}
-  else if(type===9){if(body.length<3||body[0]!==0||body[1]!==1||body[2]!==0){this.ws.close();return;}clearTimeout(this.handshake);clearTimeout(this.connectTimeout);this.ready=true;this.attempt=0;this.lastPong=Date.now();this.ping=setInterval(()=>{if(Date.now()-this.lastPong>65000)this.ws.close();else this.packet(192,new Uint8Array());},20000);this.onStatus();}
+  else if(type===9){if(body.length<3||body[0]!==0||body[1]!==1||body[2]!==0){this.ws.close();return;}clearTimeout(this.handshake);clearTimeout(this.connectTimeout);this.ready=true;this.lastError='Connected · MQTT subscription accepted';this.attempt=0;this.lastPong=Date.now();this.ping=setInterval(()=>{if(Date.now()-this.lastPong>65000)this.ws.close();else this.packet(192,new Uint8Array());},20000);this.onStatus();}
   else if(type===13)this.lastPong=Date.now();
   else if(type===3&&!(header&7)){const n=(body[0]<<8)|body[1];if(n>body.length-2)return;const decoder=new TextDecoder();if(decoder.decode(body.slice(2,2+n))!==this.topic)return;this.onData(decoder.decode(body.slice(2+n)));}
  }
@@ -26,6 +26,7 @@ class CoastMQTT {
 class CoastPublicRoom {
  constructor(mp,room){this.mp=mp;this.room=room;this.members=new Map();this.seq=0;this.stopped=false;this.links=[];this.topic='coastal-explorer/v14/rooms/'+room;
   for(const url of PUBLIC_BROKERS)this.links.push(new CoastMQTT(url,this.topic,raw=>this.receive(raw),()=>this.status()));
+  if(typeof CoastSigning!=="undefined")for(const url of NOSTR_BROKERS)this.links.push(new CoastNostr(url,this.topic,raw=>this.receive(raw),()=>this.status()));
   this.timer=setInterval(()=>this.tick(),200);this.status();
  }
  status(){if(this.stopped)return;const mp=this.mp,connected=this.links.some(l=>l.ready),changed=mp.connected!==connected;mp.connected=connected;mp.setStatus(connected?'Connected · '+publicServerName(this.room):this.links.some(l=>l.attempt)?'Public connection unavailable · Local Play · retrying':'Joining '+publicServerName(this.room)+'…');if(connected&&changed){finishAutomaticLobby();this.tick();}}

@@ -1,6 +1,6 @@
 // Bounded arcade rigid-body approximation for ground cars. Aircraft retain their solver.
 function carCrashSupport(p,roll,pitch){
- const height=clamp(p.eye+.45,1.2,2.25),centre=height/2-p.clearance,rot=Matrix.RotationYawPitchRoll(0,pitch,roll);let min=Infinity;
+ const height=p.height||clamp(p.eye+.45,1.2,2.25),centre=height/2-p.clearance,rot=Matrix.RotationYawPitchRoll(0,pitch,roll);let min=Infinity;
  for(const x of [-p.width/2,p.width/2])for(const y of [-p.clearance,height-p.clearance])for(const z of [-p.length*.46,p.length*.46])min=Math.min(min,V.TransformCoordinates(new V(x,y,z),rot).y);
  return {floor:-min,potential:-min+V.TransformCoordinates(new V(0,centre,0),rot).y};
 }

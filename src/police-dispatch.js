@@ -7,7 +7,7 @@ function dispatchPoliceUnit(ai,preferStation=false){
 }
 function deployPoliceForWanted(){
  const desired=policeStrength(state.wanted);let units=trafficPool.filter(a=>a.isPoliceUnit);
- while(units.length<Math.max(4,desired)){const ai=createTrafficCar(trafficPool.length);ai.isPoliceUnit=true;ai.reserve=true;ai.health=100;ai.damage=VehicleDamageModel.create({kind:'car'});ai.disabledByDispatch=true;ai.root.setEnabled(false);trafficPool.push(ai);units.push(ai);}
+ while(units.length<Math.max(4,desired)){const ai=createTrafficCar(trafficPool.length,true);ai.isPoliceUnit=true;ai.reserve=true;ai.health=100;ai.damage=VehicleDamageModel.create({kind:'car'});ai.disabledByDispatch=true;ai.root.setEnabled(false);trafficPool.push(ai);units.push(ai);}
  const ordered=[...units].sort((a,b)=>{const da=a.root.isEnabled()?Math.hypot(a.root.position.x-player.position.x,a.root.position.z-player.position.z):1e9,db=b.root.isEnabled()?Math.hypot(b.root.position.x-player.position.x,b.root.position.z-player.position.z):1e9;return da-db;});
  for(const [i,ai] of ordered.entries()){ai.disabledByDispatch=!!ai.reserve&&i>=desired;setPolice(ai,true);ai.pursuing=state.wanted>0&&i<desired;if(ai.disabledByDispatch){ai.root.setEnabled(false);continue;}if(ai.pursuing&&(!ai.path||!ai.root.isEnabled()||Math.hypot(ai.root.position.x-player.position.x,ai.root.position.z-player.position.z)>5000)){dispatchPoliceUnit(ai,ai.reserve&&i%3===0);ai.speed=Math.min(ai.targetSpeed||12,18);}}
 }

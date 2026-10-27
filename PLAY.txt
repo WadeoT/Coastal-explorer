@@ -1,5 +1,14 @@
+V20 STREET IMPACT
+Play https://wadeot.github.io/Coastal-explorer/index.html?v=20&publicRoom=COAST-PUBLIC
+Check V20 in the garage. Multiplayer automatically tries five routes across
+MQTT and signed ephemeral relays. If it still fails, open Multiplayer >
+Connection diagnostics > COPY CONNECTION REPORT. This does not include keys.
+Graphics default to Maximum / Retina. Controls & settings offers Balanced
+and Low modes. Crash panels bend, parts detach, and lost wheels impair drive.
+Nearby pedestrians can be injured by cars; driving offences worsen a pursuit.
+
 Public lobby now tries a verified standard HTTPS-port (443) relay first,
-then two backups. Use the V19 link to load the updated client.
+then two backups. Use the V20 link to load the updated client.
 
 V19 IMPACT & ESCAPE / PUBLIC LOBBY
 Cars/boats/helicopters: X jumps out even while moving. Speed and falls hurt

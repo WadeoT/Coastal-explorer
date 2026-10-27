@@ -1,0 +1,19 @@
+# V20 — Street Impact
+
+Play: https://wadeot.github.io/Coastal-explorer/index.html?v=20&publicRoom=COAST-PUBLIC
+
+- Public lobby automatically adds `relay.damus.io` and `nos.lol` over HTTPS port 443, alongside the three MQTT routes. Events are signed/verified, ephemeral, room-filtered, size-limited and capped at two poses per second per signed route. A connection is reported only after the signed handshake makes a subscription round trip. Public messages still cannot invoke admin or cash handlers.
+- Real Chrome network tests from the GitHub Pages origin passed all five services. Two isolated game-browser fixtures also verify automatic signed-relay joining, presence, visible remote vehicle state, and redundant connections with all MQTT services blocked. Public test services remain best effort; browser/network-specific restrictions cannot be ruled out by CI. The optional **Multiplayer → Connection diagnostics → COPY CONNECTION REPORT** displays each route's status/close reason, browser, HTTPS and policy blocks, without query strings/keys. **OPEN FRESH V20** avoids an old cached client. No private managed backend has been deployed.
+- Maximum graphics is the default: full native device-pixel resolution within GPU limits, 4096-pixel shadows, sharper nearby surface detail. Balanced/Low remain selectable. Cars have shaped wheel openings, separate bonnets/trim and rounded LandCruiser sheet-metal/interior edges. Models remain procedural, not licensed photorealistic replacements.
+- Permanent node/beam cage deformation, damage attached to the shell, and actual breakaway bonnets, bumpers, mirrors and wheels. Parts inherit motion and fall/slide. Missing wheels impair powered travel; two missing wheels disable it. Repair restores original skin, attachment transforms and component state. The rigid-body rollover solver remains active alongside the deforming shell.
+- NPCs use varied detailed civilian registry vehicles and commercial trucks, retain permanent police identities, and receive component/skin damage, detachable parts, mass-based collisions, tumbling, fire and fuel explosions. NPC-versus-scenery handling preserves the player's velocity. Distant wrecks are recycled after leaving range; respawn clears cooldowns and damaged colours.
+- Traffic weighting uses 240 actual 2025 Sunshine Coast/Noosa census sites and measured light/heavy passage mix. Local counts are capped and use estimated hourly variation; brands and unmeasured streets are estimates. See [sources and limitations](TRAFFIC-AND-CRASH-SOURCES.md).
+- Nearby pedestrians walk beside mapped streets, animate their limbs, react physically to impacts and can be injured or killed. Player strikes report offences and worsen pursuits. NPC-caused strikes do not blame the player. Sustained driving against traffic and observed speeding during a pursuit add offences.
+
+Public multiplayer shares player/person poses and roster. NPCs, pedestrians, detailed deformation, detached parts and police/economy simulation remain local, not an authoritative shared city.
+
+The crash system is an original bounded node/beam approximation. We reviewed official ANCAP test-mode guidance but did not obtain individual vehicle structural crash curves. This release does not claim BeamNG fidelity or real-world crash prediction.
+
+## Verification
+
+New checks cover native Retina resolution, shadow size, detailed fleet, permanent deformation, physical detached parts/repair, NPC rollover, pedestrian walking/impacts, pursuit offences, exact census use, NPC/player motion isolation, momentum, NPC fire/respawn and continuous simulation. Additional checks cover cage stability, census/licence integrity, Schnorr signatures/forgery rejection, real browser networking, fallback-only two-client presence, and existing damage/thermal/rollover/exit/repair behavior.

@@ -1,6 +1,14 @@
 // Original, metre-scale game models. All exterior render paths share this registry.
-const MODEL_REVISION='11.1';
+const MODEL_REVISION='20.0';
 const MODEL_PREVIEWS=/*__MODEL_PREVIEWS__*/{};
+// Rounded sheet-metal edges, rather than hard rectangular blocks. Metres.
+function vehicleBevelBox(name,w,h,d,r=Math.min(w,h,d)*.12){
+ r=Math.min(r,w*.2,h*.2,d*.2);const half=[w/2,h/2,d/2],positions=[],indices=[],points=new Map(),at=(signs,axis)=>{const key=signs.join(',')+':'+axis;if(points.has(key))return points.get(key);const id=positions.length/3;for(let i=0;i<3;i++)positions.push(signs[i]*(half[i]-(i===axis?0:r)));points.set(key,id);return id;},triangle=(a,b,c)=>{const v=i=>new V(positions[i*3],positions[i*3+1],positions[i*3+2]),pa=v(a),pb=v(b),pc=v(c),normal=V.Cross(pb.subtract(pa),pc.subtract(pa)),centre=pa.add(pb).add(pc);if(V.Dot(normal,centre)<0)[b,c]=[c,b];indices.push(a,b,c);},quad=(a,b,c,d)=>{triangle(a,b,c);triangle(a,c,d);};
+ for(let axis=0;axis<3;axis++)for(const side of [-1,1]){const others=[0,1,2].filter(i=>i!==axis),ids=[];for(const [u,v] of [[-1,-1],[1,-1],[1,1],[-1,1]]){const signs=[0,0,0];signs[axis]=side;signs[others[0]]=u;signs[others[1]]=v;ids.push(at(signs,axis));}quad(...ids);}
+ for(let a=0;a<3;a++)for(let b=a+1;b<3;b++){const third=3-a-b;for(const sa of [-1,1])for(const sb of [-1,1]){const lo=[0,0,0],hi=[0,0,0];lo[a]=hi[a]=sa;lo[b]=hi[b]=sb;lo[third]=-1;hi[third]=1;quad(at(lo,a),at(hi,a),at(hi,b),at(lo,b));}}
+ for(const x of [-1,1])for(const y of [-1,1])for(const z of [-1,1])triangle(at([x,y,z],0),at([x,y,z],1),at([x,y,z],2));
+ const mesh=new Mesh(name,scene),vd=new VertexData(),normals=[];VertexData.ComputeNormals(positions,indices,normals,{useRightHandedSystem:true});vd.positions=positions;vd.indices=indices;vd.normals=normals;vd.uvs=[];for(let i=0;i<positions.length;i+=3)vd.uvs.push((positions[i]+half[0])/Math.max(w,.01),(positions[i+2]+half[2])/Math.max(d,.01));vd.applyToMesh(mesh,true);mesh.metadata={bevelledPanel:true};return mesh;
+}
 function modelSurface(name,points,indices,material,parent){const m=meshData(name,points.flat(),indices,material,parent);m.isPickable=false;material.backFaceCulling=false;return m;}
 function modelQuad(name,p,material,parent){return modelSurface(name,p,[0,1,2,0,2,3],material,parent);}
 function modelLoft(name,stations,material,parent,sides=16){
@@ -35,9 +43,12 @@ const ROAD_SHAPES={
 function buildRoadExterior(root,p){
  const id=p.modelId,s=ROAD_SHAPES[id];if(!s)throw Error('No road model defined for '+id);
  const paint=mat(id+'-bodywork',p.colour),glass=modelGlass(id+'-windows'),black=materials.black,alloy=mat(id+'-wheel-alloy','#abb3bd'),w=p.width/2,l=p.length,base=s.hood;
- const stations=[[-l/2,w*.83],[-l*.43,w*.97],[-p.wheelbase/2,w],[s.front,w*.99],[s.rear,w*.99],...(s.bed?[[s.rear+.03,w*.99]]:[]),[p.wheelbase/2,w*.98],[l*.44,w*.95],[l/2,w*.86]].sort((a,b)=>a[0]-b[0]),vertices=[],faces=[];
- for(const [z,half] of stations){const top=s.bed&&z>s.rear?.82:base+.04,low=s.wagon||s.bed?.32:.24;for(const [x,y] of [[-half*.88,low],[-half,low+.12],[-half,top-.10],[-half*.92,top],[half*.92,top],[half,top-.10],[half,low+.12],[half*.88,low]])vertices.push([x,y,z]);}
+ const archStations=[];for(const axle of [-p.wheelbase/2,p.wheelbase/2])for(let i=0;i<=12;i++){const z=axle+(i/12-.5)*(s.wheel+.06)*2;if(z>-l/2+.05&&z<l/2-.05)archStations.push([z,w*.99]);}
+ const stations=[...archStations,[-l/2,w*.83],[-l*.43,w*.97],[-p.wheelbase/2,w],[s.front,w*.99],[s.rear,w*.99],...(s.bed?[[s.rear+.03,w*.99]]:[]),[p.wheelbase/2,w*.98],[l*.44,w*.95],[l/2,w*.86]].sort((a,b)=>a[0]-b[0]),vertices=[],faces=[];
+ for(const [z,half] of stations){const top=s.bed&&z>s.rear?.82:base+.04,baseLow=s.wagon||s.bed?.32:.24,arch=Math.max(...[-p.wheelbase/2,p.wheelbase/2].map(z0=>{const d=Math.abs(z-z0),r=s.wheel+.055;return d<r?s.wheel+Math.sqrt(r*r-d*d):0;})),low=Math.max(baseLow,arch);for(const [x,y] of [[-half*.88,low],[-half,Math.max(low,baseLow+.12)],[-half,top-.10],[-half*.92,top],[half*.92,top],[half,top-.10],[half,Math.max(low,baseLow+.12)],[half*.88,low]])vertices.push([x,y,z]);}
  for(let j=0;j<stations.length-1;j++)for(let i=0;i<8;i++){const a=j*8+i,b=j*8+(i+1)%8,c=(j+1)*8+i,d=(j+1)*8+(i+1)%8;faces.push(a,b,c,b,d,c);}for(let i=1;i<7;i++){faces.push(0,i+1,i);const end=(stations.length-1)*8;faces.push(end,end+i,end+i+1);}modelSurface(id+'-sculpted-body',vertices,faces,paint,root);
+ const hood=modelQuad(id+'-bonnet',[[-w*.85,base+.055,-l*.45],[w*.85,base+.055,-l*.45],[w*.91,base+.08,s.front],[-w*.91,base+.08,s.front]],paint,root);hood.metadata={crashPart:'panel'};
+ for(const side of [-1,1])for(const axle of [-p.wheelbase/2,p.wheelbase/2]){const points=[];for(let i=0;i<=16;i++){const a=i/16*Math.PI;points.push([side*w*1.006,s.wheel+Math.sin(a)*(s.wheel+.065),axle+Math.cos(a)*(s.wheel+.065)]);}tube(id+'-wheel-arch-trim',points,.024,black,root);}
  const bottom=base+.035,top=s.roof-.045,roofW=w*.84,baseW=w*.94;
  modelQuad(id+'-windscreen',[[-baseW,bottom,s.front],[baseW,bottom,s.front],[roofW,top,s.roofFront],[-roofW,top,s.roofFront]],glass,root);
  modelQuad(id+'-rear-glass',[[-baseW,bottom,s.rear],[-roofW,top,s.roofRear],[roofW,top,s.roofRear],[baseW,bottom,s.rear]],glass,root);
@@ -191,6 +202,7 @@ function constructVehicle(root,p,id=p.modelId){
  if(id==='ute'){const result=buildLandCruiser79(scene,root,false);for(const m of result.root.getChildMeshes())if(m.material?.name==='79-sandstone-paint')m.material.diffuseColor=C.FromHexString(p.colour).toLinearSpace();root.metadata={vehicle:p.name,kind:'car',modelId:id,revision:MODEL_REVISION,body:'79 Series single-cab trayback',wheelCount:4};}
  else if(p.body==='kart')buildKart(root,p);else if(p.kind==='car')buildRoadExterior(root,p);else if(p.kind==='heli'){if(p.body==='rescue-helicopter')buildRescueHelicopter(root,p);else buildDetailedChopper(root,p);}
  else if(p.kind==='jet')buildFighter(root,p);else if(p.kind==='boat')buildRunabout(root,p,false);else if(p.kind==='bike')buildBicycle(root,p);else throw Error('Unknown vehicle model '+id);
+ if(p.kind==='car')for(const m of root.getChildMeshes())if(/bumper|mirror|bonnet|grille/.test(m.name))m.metadata={...m.metadata,crashPart:m.name.includes('mirror')?'mirror':'panel'};
  return root;
 }
 

@@ -5,13 +5,14 @@ on:
       - src/public-relay.js
       - src/nostr-relay.js
       - scripts/probe-browser-relays.cjs
+      - scripts/probe-hosted-game.cjs
       - .github/workflows/browser-relay-probe.yml
 permissions:
   contents: read
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -20,3 +21,4 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npx playwright install --with-deps chromium
       - run: node scripts/probe-browser-relays.cjs
+      - run: node scripts/probe-hosted-game.cjs

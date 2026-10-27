@@ -3,7 +3,7 @@
 const VehicleDamageModel=(()=>{
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
  function create(p={kind:'car'}){
-  const electric=p.kind==='bike'&&!p.combustion,airCooled=electric||p.body==='kart'||p.kind==='jet',capacity={oil:electric?0:p.kind==='bike'?3:7.5,coolant:airCooled?0:p.kind==='bike'?2:12,fuel:electric?0:p.kind==='bike'?14:p.kind==='jet'?5000:p.kind==='heli'?450:p.kind==='boat'?120:p.body==='kart'?5:90};
+  const electric=!!p.electric||p.kind==='bike'&&!p.combustion,airCooled=electric||p.body==='kart'||p.kind==='jet',capacity={oil:electric?0:p.kind==='bike'?3:7.5,coolant:airCooled?0:p.kind==='bike'?2:12,fuel:electric?0:p.kind==='bike'?14:p.kind==='jet'?5000:p.kind==='heli'?450:p.kind==='boat'?120:p.body==='kart'?5:90};
   return {wheelsLost:0,fireDelay:['car','boat'].includes(p.kind)?9:3.5,turbine:p.kind==='jet',thermalLoad:0,exhaustTemp:450,components:{engine:100,radiator:100,oil:100,fuel:100,driver:100,body:100},capacity,oil:capacity.oil,coolant:capacity.coolant,fuel:capacity.fuel,coolantTemp:88,oilTemp:92,oilPressure:electric?0:1.5,engineFailed:false,driverDead:false,burning:false,exploded:false,fireTime:0,oilStarvation:0,overheatTime:0,reason:'',lastHit:null,impacts:0,electric,airCooled};
  }
  function hit(d,part,amount,cause='bullet'){

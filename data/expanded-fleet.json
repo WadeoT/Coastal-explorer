@@ -1,0 +1,3807 @@
+{
+  "revision": 26,
+  "note": "Original procedural representations. Specifications are rounded gameplay estimates for selected variants; unresearched dimensions use body-class defaults. Model-frequency weights are estimates, not a Sunshine Coast make/model census. Official Queensland counts still control road density and light/heavy share.",
+  "trafficSource": "data/traffic-census.json",
+  "models": [
+    {
+      "id": "fleet_toyota_corolla",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "body": "h",
+      "spec": [
+        4.375,
+        1.79,
+        2.64,
+        1.46,
+        1390,
+        125,
+        190,
+        33000
+      ],
+      "manual": false,
+      "weight": 14,
+      "estimated": false
+    },
+    {
+      "id": "fleet_toyota_yaris",
+      "brand": "Toyota",
+      "model": "Yaris",
+      "body": "h",
+      "spec": [
+        3.94,
+        1.695,
+        2.55,
+        1.5,
+        1100,
+        88,
+        175,
+        25000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": false
+    },
+    {
+      "id": "fleet_toyota_camry",
+      "brand": "Toyota",
+      "model": "Camry",
+      "body": "s",
+      "spec": [
+        4.92,
+        1.84,
+        2.825,
+        1.445,
+        1640,
+        160,
+        210,
+        43000
+      ],
+      "manual": false,
+      "weight": 10,
+      "estimated": false
+    },
+    {
+      "id": "fleet_toyota_aurion",
+      "brand": "Toyota",
+      "model": "Aurion",
+      "body": "s",
+      "spec": [
+        4.892,
+        1.875,
+        2.854,
+        1.488,
+        1670,
+        160,
+        225,
+        42500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_toyota_prius",
+      "brand": "Toyota",
+      "model": "Prius",
+      "body": "h",
+      "spec": [
+        4.191,
+        1.775,
+        2.607,
+        1.474,
+        1310,
+        101,
+        191,
+        26000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_toyota_rav4",
+      "brand": "Toyota",
+      "model": "RAV4",
+      "body": "u",
+      "spec": [
+        4.6,
+        1.855,
+        2.69,
+        1.685,
+        1700,
+        163,
+        180,
+        45000
+      ],
+      "manual": false,
+      "weight": 16,
+      "estimated": false
+    },
+    {
+      "id": "fleet_toyota_kluger",
+      "brand": "Toyota",
+      "model": "Kluger",
+      "body": "u",
+      "spec": [
+        4.965,
+        1.93,
+        2.85,
+        1.755,
+        2020,
+        184,
+        180,
+        62000
+      ],
+      "manual": false,
+      "weight": 9,
+      "estimated": false
+    },
+    {
+      "id": "fleet_toyota_fortuner",
+      "brand": "Toyota",
+      "model": "Fortuner",
+      "body": "u",
+      "spec": [
+        4.509,
+        1.813,
+        2.647,
+        1.678,
+        1680,
+        125,
+        183,
+        41000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_toyota_landcruiser_300",
+      "brand": "Toyota",
+      "model": "LandCruiser 300",
+      "body": "u",
+      "spec": [
+        4.98,
+        1.98,
+        2.85,
+        1.95,
+        2500,
+        227,
+        210,
+        105000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": false
+    },
+    {
+      "id": "fleet_toyota_landcruiser_prado",
+      "brand": "Toyota",
+      "model": "LandCruiser Prado",
+      "body": "u",
+      "spec": [
+        4.925,
+        1.98,
+        2.85,
+        1.935,
+        2450,
+        150,
+        175,
+        76000
+      ],
+      "manual": false,
+      "weight": 10,
+      "estimated": false
+    },
+    {
+      "id": "fleet_toyota_c_hr",
+      "brand": "Toyota",
+      "model": "C-HR",
+      "body": "u",
+      "spec": [
+        4.576,
+        1.84,
+        2.687,
+        1.703,
+        1740,
+        132,
+        186,
+        43000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_toyota_hiace",
+      "brand": "Toyota",
+      "model": "HiAce",
+      "body": "v",
+      "spec": [
+        5.265,
+        1.95,
+        3.21,
+        1.99,
+        2290,
+        130,
+        160,
+        50000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": false
+    },
+    {
+      "id": "fleet_toyota_86",
+      "brand": "Toyota",
+      "model": "86",
+      "body": "c",
+      "spec": [
+        4.401,
+        1.81,
+        2.551,
+        1.286,
+        1410,
+        221,
+        247,
+        63000
+      ],
+      "manual": true,
+      "weight": 0.15,
+      "estimated": true
+    },
+    {
+      "id": "fleet_toyota_supra",
+      "brand": "Toyota",
+      "model": "Supra",
+      "body": "c",
+      "spec": [
+        4.38,
+        1.865,
+        2.47,
+        1.295,
+        1520,
+        285,
+        250,
+        90000
+      ],
+      "manual": true,
+      "weight": 0.15,
+      "estimated": false
+    },
+    {
+      "id": "fleet_ford_everest",
+      "brand": "Ford",
+      "model": "Everest",
+      "body": "u",
+      "spec": [
+        4.914,
+        1.923,
+        2.9,
+        1.842,
+        2450,
+        184,
+        190,
+        68000
+      ],
+      "manual": false,
+      "weight": 10,
+      "estimated": false
+    },
+    {
+      "id": "fleet_ford_escape",
+      "brand": "Ford",
+      "model": "Escape",
+      "body": "u",
+      "spec": [
+        4.579,
+        1.842,
+        2.688,
+        1.704,
+        1740,
+        133,
+        187,
+        43000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ford_territory",
+      "brand": "Ford",
+      "model": "Territory",
+      "body": "u",
+      "spec": [
+        4.786,
+        1.925,
+        2.81,
+        1.78,
+        1920,
+        154,
+        197,
+        49000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ford_focus",
+      "brand": "Ford",
+      "model": "Focus",
+      "body": "h",
+      "spec": [
+        3.988,
+        1.689,
+        2.481,
+        1.403,
+        1170,
+        84,
+        180,
+        22500
+      ],
+      "manual": true,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ford_fiesta",
+      "brand": "Ford",
+      "model": "Fiesta",
+      "body": "h",
+      "spec": [
+        4.344,
+        1.839,
+        2.702,
+        1.528,
+        1410,
+        114,
+        199,
+        29000
+      ],
+      "manual": true,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ford_falcon_ute",
+      "brand": "Ford",
+      "model": "Falcon Ute",
+      "body": "t",
+      "spec": [
+        5.11,
+        1.815,
+        3.025,
+        1.758,
+        1960,
+        129,
+        167,
+        46000
+      ],
+      "manual": true,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ford_mondeo",
+      "brand": "Ford",
+      "model": "Mondeo",
+      "body": "s",
+      "spec": [
+        4.942,
+        1.895,
+        2.883,
+        1.503,
+        1700,
+        166,
+        228,
+        43500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ford_puma",
+      "brand": "Ford",
+      "model": "Puma",
+      "body": "u",
+      "spec": [
+        4.86,
+        1.954,
+        2.853,
+        1.808,
+        1980,
+        162,
+        200,
+        51000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ford_transit",
+      "brand": "Ford",
+      "model": "Transit",
+      "body": "v",
+      "spec": [
+        5.211,
+        1.954,
+        3.107,
+        2.004,
+        2260,
+        121,
+        160,
+        48500
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ford_transit_custom",
+      "brand": "Ford",
+      "model": "Transit Custom",
+      "body": "v",
+      "spec": [
+        5.167,
+        1.938,
+        3.081,
+        1.987,
+        2220,
+        117,
+        159,
+        47000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ford_f_150",
+      "brand": "Ford",
+      "model": "F-150",
+      "body": "t",
+      "spec": [
+        5.884,
+        2.03,
+        3.694,
+        1.96,
+        2550,
+        298,
+        180,
+        110000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": false
+    },
+    {
+      "id": "fleet_mazda_mazda2",
+      "brand": "Mazda",
+      "model": "Mazda2",
+      "body": "h",
+      "spec": [
+        4.08,
+        1.695,
+        2.57,
+        1.495,
+        1100,
+        81,
+        180,
+        23000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": false
+    },
+    {
+      "id": "fleet_mazda_mazda3",
+      "brand": "Mazda",
+      "model": "Mazda3",
+      "body": "h",
+      "spec": [
+        4.46,
+        1.795,
+        2.725,
+        1.435,
+        1400,
+        114,
+        200,
+        31000
+      ],
+      "manual": false,
+      "weight": 10,
+      "estimated": false
+    },
+    {
+      "id": "fleet_mazda_mazda6",
+      "brand": "Mazda",
+      "model": "Mazda6",
+      "body": "s",
+      "spec": [
+        4.634,
+        1.776,
+        2.703,
+        1.409,
+        1480,
+        132,
+        211,
+        36000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mazda_cx_3",
+      "brand": "Mazda",
+      "model": "CX-3",
+      "body": "u",
+      "spec": [
+        4.709,
+        1.894,
+        2.765,
+        1.752,
+        1850,
+        146,
+        193,
+        46500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mazda_cx_30",
+      "brand": "Mazda",
+      "model": "CX-30",
+      "body": "u",
+      "spec": [
+        4.537,
+        1.825,
+        2.664,
+        1.688,
+        1700,
+        128,
+        184,
+        41500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mazda_cx_5",
+      "brand": "Mazda",
+      "model": "CX-5",
+      "body": "u",
+      "spec": [
+        4.575,
+        1.845,
+        2.7,
+        1.675,
+        1650,
+        140,
+        200,
+        42000
+      ],
+      "manual": false,
+      "weight": 12,
+      "estimated": false
+    },
+    {
+      "id": "fleet_mazda_cx_8",
+      "brand": "Mazda",
+      "model": "CX-8",
+      "body": "u",
+      "spec": [
+        4.766,
+        1.917,
+        2.798,
+        1.773,
+        1900,
+        152,
+        196,
+        48500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mazda_cx_9",
+      "brand": "Mazda",
+      "model": "CX-9",
+      "body": "u",
+      "spec": [
+        4.519,
+        1.817,
+        2.653,
+        1.681,
+        1690,
+        126,
+        184,
+        41000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mazda_cx_60",
+      "brand": "Mazda",
+      "model": "CX-60",
+      "body": "u",
+      "spec": [
+        4.681,
+        1.883,
+        2.748,
+        1.742,
+        1830,
+        143,
+        192,
+        46000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mazda_bt_50",
+      "brand": "Mazda",
+      "model": "BT-50",
+      "body": "t",
+      "spec": [
+        5.239,
+        1.861,
+        3.102,
+        1.802,
+        2080,
+        142,
+        172,
+        49500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mazda_mx_5",
+      "brand": "Mazda",
+      "model": "MX-5",
+      "body": "c",
+      "spec": [
+        3.915,
+        1.735,
+        2.31,
+        1.235,
+        1100,
+        135,
+        220,
+        45000
+      ],
+      "manual": true,
+      "weight": 0.15,
+      "estimated": false
+    },
+    {
+      "id": "fleet_mazda_rx_8",
+      "brand": "Mazda",
+      "model": "RX-8",
+      "body": "c",
+      "spec": [
+        4.63,
+        1.904,
+        2.685,
+        1.353,
+        1580,
+        263,
+        262,
+        73000
+      ],
+      "manual": true,
+      "weight": 0.15,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_i30",
+      "brand": "Hyundai",
+      "model": "i30",
+      "body": "h",
+      "spec": [
+        4.055,
+        1.717,
+        2.522,
+        1.426,
+        1210,
+        89,
+        183,
+        23500
+      ],
+      "manual": false,
+      "weight": 12,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_i30_sedan",
+      "brand": "Hyundai",
+      "model": "i30 Sedan",
+      "body": "s",
+      "spec": [
+        4.767,
+        1.827,
+        2.781,
+        1.45,
+        1580,
+        146,
+        218,
+        39000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_getz",
+      "brand": "Hyundai",
+      "model": "Getz",
+      "body": "h",
+      "spec": [
+        4.195,
+        1.777,
+        2.61,
+        1.475,
+        1310,
+        101,
+        191,
+        26500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_elantra",
+      "brand": "Hyundai",
+      "model": "Elantra",
+      "body": "s",
+      "spec": [
+        4.847,
+        1.858,
+        2.828,
+        1.474,
+        1630,
+        155,
+        223,
+        41000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_sonata",
+      "brand": "Hyundai",
+      "model": "Sonata",
+      "body": "s",
+      "spec": [
+        4.637,
+        1.777,
+        2.705,
+        1.41,
+        1480,
+        132,
+        211,
+        36000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_kona",
+      "brand": "Hyundai",
+      "model": "Kona",
+      "body": "u",
+      "spec": [
+        4.488,
+        1.805,
+        2.635,
+        1.67,
+        1660,
+        123,
+        182,
+        40500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_tucson",
+      "brand": "Hyundai",
+      "model": "Tucson",
+      "body": "u",
+      "spec": [
+        4.806,
+        1.933,
+        2.821,
+        1.788,
+        1930,
+        156,
+        198,
+        49500
+      ],
+      "manual": false,
+      "weight": 10,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_santa_fe",
+      "brand": "Hyundai",
+      "model": "Santa Fe",
+      "body": "u",
+      "spec": [
+        4.522,
+        1.818,
+        2.655,
+        1.682,
+        1690,
+        126,
+        184,
+        41500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_palisade",
+      "brand": "Hyundai",
+      "model": "Palisade",
+      "body": "u",
+      "spec": [
+        4.617,
+        1.857,
+        2.711,
+        1.718,
+        1770,
+        137,
+        188,
+        44000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_staria",
+      "brand": "Hyundai",
+      "model": "Staria",
+      "body": "v",
+      "spec": [
+        5.232,
+        1.962,
+        3.119,
+        2.012,
+        2280,
+        123,
+        161,
+        49000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_iload",
+      "brand": "Hyundai",
+      "model": "iLoad",
+      "body": "v",
+      "spec": [
+        5.119,
+        1.92,
+        3.052,
+        1.969,
+        2170,
+        113,
+        157,
+        46000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_hyundai_ioniq_5",
+      "brand": "Hyundai",
+      "model": "Ioniq 5",
+      "body": "u",
+      "spec": [
+        4.661,
+        1.875,
+        2.737,
+        1.734,
+        1810,
+        141,
+        191,
+        45500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_picanto",
+      "brand": "Kia",
+      "model": "Picanto",
+      "body": "h",
+      "spec": [
+        3.595,
+        1.595,
+        2.4,
+        1.485,
+        1000,
+        62,
+        160,
+        21000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": false
+    },
+    {
+      "id": "fleet_kia_rio",
+      "brand": "Kia",
+      "model": "Rio",
+      "body": "h",
+      "spec": [
+        4.236,
+        1.794,
+        2.635,
+        1.49,
+        1340,
+        105,
+        193,
+        27000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_cerato",
+      "brand": "Kia",
+      "model": "Cerato",
+      "body": "h",
+      "spec": [
+        4.218,
+        1.786,
+        2.624,
+        1.483,
+        1330,
+        103,
+        192,
+        26500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_stinger",
+      "brand": "Kia",
+      "model": "Stinger",
+      "body": "s",
+      "spec": [
+        4.844,
+        1.857,
+        2.826,
+        1.473,
+        1630,
+        155,
+        222,
+        41000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_seltos",
+      "brand": "Kia",
+      "model": "Seltos",
+      "body": "u",
+      "spec": [
+        4.842,
+        1.947,
+        2.843,
+        1.802,
+        1960,
+        160,
+        199,
+        50500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_sportage",
+      "brand": "Kia",
+      "model": "Sportage",
+      "body": "u",
+      "spec": [
+        4.622,
+        1.859,
+        2.713,
+        1.719,
+        1780,
+        137,
+        189,
+        44000
+      ],
+      "manual": false,
+      "weight": 10,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_sorento",
+      "brand": "Kia",
+      "model": "Sorento",
+      "body": "u",
+      "spec": [
+        4.58,
+        1.842,
+        2.689,
+        1.704,
+        1740,
+        133,
+        187,
+        43000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_carnival",
+      "brand": "Kia",
+      "model": "Carnival",
+      "body": "v",
+      "spec": [
+        5.155,
+        1.995,
+        3.09,
+        1.775,
+        2200,
+        148,
+        190,
+        59000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": false
+    },
+    {
+      "id": "fleet_kia_stonic",
+      "brand": "Kia",
+      "model": "Stonic",
+      "body": "u",
+      "spec": [
+        4.461,
+        1.794,
+        2.619,
+        1.66,
+        1640,
+        120,
+        181,
+        39500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_ev6",
+      "brand": "Kia",
+      "model": "EV6",
+      "body": "u",
+      "spec": [
+        4.826,
+        1.941,
+        2.833,
+        1.796,
+        1950,
+        159,
+        199,
+        50000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_ev9",
+      "brand": "Kia",
+      "model": "EV9",
+      "body": "u",
+      "spec": [
+        4.481,
+        1.802,
+        2.631,
+        1.667,
+        1660,
+        122,
+        182,
+        40000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_kia_tasman",
+      "brand": "Kia",
+      "model": "Tasman",
+      "body": "t",
+      "spec": [
+        5.359,
+        1.904,
+        3.173,
+        1.843,
+        2180,
+        154,
+        177,
+        53000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mitsubishi_triton",
+      "brand": "Mitsubishi",
+      "model": "Triton",
+      "body": "t",
+      "spec": [
+        5.32,
+        1.865,
+        3.13,
+        1.795,
+        2100,
+        150,
+        180,
+        49000
+      ],
+      "manual": false,
+      "weight": 12,
+      "estimated": false
+    },
+    {
+      "id": "fleet_mitsubishi_pajero",
+      "brand": "Mitsubishi",
+      "model": "Pajero",
+      "body": "u",
+      "spec": [
+        4.697,
+        1.889,
+        2.757,
+        1.747,
+        1840,
+        145,
+        192,
+        46500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mitsubishi_pajero_sport",
+      "brand": "Mitsubishi",
+      "model": "Pajero Sport",
+      "body": "u",
+      "spec": [
+        4.619,
+        1.857,
+        2.712,
+        1.718,
+        1770,
+        137,
+        188,
+        44000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mitsubishi_outlander",
+      "brand": "Mitsubishi",
+      "model": "Outlander",
+      "body": "u",
+      "spec": [
+        4.454,
+        1.791,
+        2.615,
+        1.657,
+        1630,
+        119,
+        180,
+        39500
+      ],
+      "manual": false,
+      "weight": 12,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mitsubishi_asx",
+      "brand": "Mitsubishi",
+      "model": "ASX",
+      "body": "u",
+      "spec": [
+        4.562,
+        1.835,
+        2.678,
+        1.697,
+        1720,
+        131,
+        186,
+        42500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mitsubishi_eclipse_cross",
+      "brand": "Mitsubishi",
+      "model": "Eclipse Cross",
+      "body": "u",
+      "spec": [
+        4.445,
+        1.788,
+        2.61,
+        1.654,
+        1630,
+        118,
+        180,
+        39000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mitsubishi_lancer",
+      "brand": "Mitsubishi",
+      "model": "Lancer",
+      "body": "s",
+      "spec": [
+        4.628,
+        1.774,
+        2.7,
+        1.408,
+        1470,
+        131,
+        211,
+        35500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mitsubishi_mirage",
+      "brand": "Mitsubishi",
+      "model": "Mirage",
+      "body": "h",
+      "spec": [
+        4.122,
+        1.746,
+        2.564,
+        1.45,
+        1260,
+        95,
+        187,
+        25000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_nissan_navara",
+      "brand": "Nissan",
+      "model": "Navara",
+      "body": "t",
+      "spec": [
+        5.166,
+        1.835,
+        3.059,
+        1.777,
+        2010,
+        135,
+        169,
+        47500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_nissan_x_trail",
+      "brand": "Nissan",
+      "model": "X-Trail",
+      "body": "u",
+      "spec": [
+        4.65,
+        1.87,
+        2.73,
+        1.73,
+        1800,
+        140,
+        190,
+        45000
+      ],
+      "manual": false,
+      "weight": 10,
+      "estimated": true
+    },
+    {
+      "id": "fleet_nissan_qashqai",
+      "brand": "Nissan",
+      "model": "Qashqai",
+      "body": "u",
+      "spec": [
+        4.565,
+        1.836,
+        2.68,
+        1.699,
+        1730,
+        131,
+        186,
+        42500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_nissan_juke",
+      "brand": "Nissan",
+      "model": "Juke",
+      "body": "u",
+      "spec": [
+        4.706,
+        1.893,
+        2.763,
+        1.751,
+        1850,
+        146,
+        193,
+        46500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_nissan_pathfinder",
+      "brand": "Nissan",
+      "model": "Pathfinder",
+      "body": "u",
+      "spec": [
+        4.662,
+        1.875,
+        2.737,
+        1.734,
+        1810,
+        141,
+        191,
+        45500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_nissan_patrol_gu",
+      "brand": "Nissan",
+      "model": "Patrol GU",
+      "body": "u",
+      "spec": [
+        4.488,
+        1.805,
+        2.635,
+        1.67,
+        1660,
+        123,
+        182,
+        40500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_nissan_pulsar",
+      "brand": "Nissan",
+      "model": "Pulsar",
+      "body": "h",
+      "spec": [
+        4.205,
+        1.78,
+        2.615,
+        1.479,
+        1320,
+        102,
+        191,
+        26500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_nissan_micra",
+      "brand": "Nissan",
+      "model": "Micra",
+      "body": "h",
+      "spec": [
+        3.82,
+        1.665,
+        2.45,
+        1.51,
+        1050,
+        56,
+        160,
+        14000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": false
+    },
+    {
+      "id": "fleet_nissan_370z",
+      "brand": "Nissan",
+      "model": "370Z",
+      "body": "c",
+      "spec": [
+        4.557,
+        1.874,
+        2.642,
+        1.331,
+        1530,
+        249,
+        257,
+        69500
+      ],
+      "manual": true,
+      "weight": 0.15,
+      "estimated": true
+    },
+    {
+      "id": "fleet_subaru_forester",
+      "brand": "Subaru",
+      "model": "Forester",
+      "body": "u",
+      "spec": [
+        4.605,
+        1.852,
+        2.703,
+        1.713,
+        1760,
+        135,
+        188,
+        43500
+      ],
+      "manual": false,
+      "weight": 9,
+      "estimated": true
+    },
+    {
+      "id": "fleet_subaru_outback",
+      "brand": "Subaru",
+      "model": "Outback",
+      "body": "w",
+      "spec": [
+        4.929,
+        1.909,
+        2.885,
+        1.546,
+        1790,
+        158,
+        220,
+        47000
+      ],
+      "manual": false,
+      "weight": 8,
+      "estimated": true
+    },
+    {
+      "id": "fleet_subaru_impreza",
+      "brand": "Subaru",
+      "model": "Impreza",
+      "body": "h",
+      "spec": [
+        4.313,
+        1.826,
+        2.683,
+        1.517,
+        1390,
+        111,
+        197,
+        28500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_subaru_xv",
+      "brand": "Subaru",
+      "model": "XV",
+      "body": "u",
+      "spec": [
+        4.471,
+        1.798,
+        2.625,
+        1.663,
+        1650,
+        121,
+        181,
+        40000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_subaru_crosstrek",
+      "brand": "Subaru",
+      "model": "Crosstrek",
+      "body": "u",
+      "spec": [
+        4.657,
+        1.873,
+        2.734,
+        1.733,
+        1810,
+        141,
+        190,
+        45000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_subaru_liberty",
+      "brand": "Subaru",
+      "model": "Liberty",
+      "body": "s",
+      "spec": [
+        4.94,
+        1.894,
+        2.881,
+        1.502,
+        1700,
+        165,
+        228,
+        43500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_subaru_brz",
+      "brand": "Subaru",
+      "model": "BRZ",
+      "body": "c",
+      "spec": [
+        4.42,
+        1.818,
+        2.563,
+        1.291,
+        1430,
+        225,
+        248,
+        63500
+      ],
+      "manual": true,
+      "weight": 0.15,
+      "estimated": true
+    },
+    {
+      "id": "fleet_subaru_levorg",
+      "brand": "Subaru",
+      "model": "Levorg",
+      "body": "w",
+      "spec": [
+        4.555,
+        1.765,
+        2.666,
+        1.429,
+        1500,
+        120,
+        200,
+        37000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_astra",
+      "brand": "Holden",
+      "model": "Astra",
+      "body": "h",
+      "spec": [
+        4.379,
+        1.854,
+        2.724,
+        1.54,
+        1440,
+        117,
+        201,
+        29500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_cruze",
+      "brand": "Holden",
+      "model": "Cruze",
+      "body": "s",
+      "spec": [
+        5.035,
+        1.93,
+        2.937,
+        1.532,
+        1770,
+        176,
+        233,
+        46000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_barina",
+      "brand": "Holden",
+      "model": "Barina",
+      "body": "h",
+      "spec": [
+        4.212,
+        1.783,
+        2.62,
+        1.481,
+        1320,
+        103,
+        192,
+        26500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_captiva",
+      "brand": "Holden",
+      "model": "Captiva",
+      "body": "u",
+      "spec": [
+        4.817,
+        1.937,
+        2.828,
+        1.792,
+        1940,
+        158,
+        198,
+        50000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_colorado",
+      "brand": "Holden",
+      "model": "Colorado",
+      "body": "t",
+      "spec": [
+        5.518,
+        1.96,
+        3.267,
+        1.898,
+        2330,
+        170,
+        183,
+        58000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_trailblazer",
+      "brand": "Holden",
+      "model": "Trailblazer",
+      "body": "u",
+      "spec": [
+        4.63,
+        1.862,
+        2.718,
+        1.723,
+        1780,
+        138,
+        189,
+        44500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_acadia",
+      "brand": "Holden",
+      "model": "Acadia",
+      "body": "u",
+      "spec": [
+        4.434,
+        1.783,
+        2.603,
+        1.65,
+        1620,
+        117,
+        179,
+        38500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_caprice",
+      "brand": "Holden",
+      "model": "Caprice",
+      "body": "s",
+      "spec": [
+        4.654,
+        1.784,
+        2.715,
+        1.416,
+        1490,
+        134,
+        212,
+        36500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_commodore_ute",
+      "brand": "Holden",
+      "model": "Commodore Ute",
+      "body": "t",
+      "spec": [
+        5.141,
+        1.826,
+        3.044,
+        1.768,
+        1990,
+        132,
+        168,
+        47000
+      ],
+      "manual": true,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_holden_monaro",
+      "brand": "Holden",
+      "model": "Monaro",
+      "body": "c",
+      "spec": [
+        4.246,
+        1.746,
+        2.462,
+        1.24,
+        1300,
+        193,
+        236,
+        56000
+      ],
+      "manual": true,
+      "weight": 0.15,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_golf",
+      "brand": "Volkswagen",
+      "model": "Golf",
+      "body": "h",
+      "spec": [
+        4.145,
+        1.755,
+        2.579,
+        1.458,
+        1280,
+        97,
+        188,
+        25500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_polo",
+      "brand": "Volkswagen",
+      "model": "Polo",
+      "body": "h",
+      "spec": [
+        4.358,
+        1.845,
+        2.71,
+        1.532,
+        1420,
+        115,
+        200,
+        29500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_passat",
+      "brand": "Volkswagen",
+      "model": "Passat",
+      "body": "w",
+      "spec": [
+        4.829,
+        1.87,
+        2.826,
+        1.515,
+        1710,
+        148,
+        214,
+        44000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_tiguan",
+      "brand": "Volkswagen",
+      "model": "Tiguan",
+      "body": "u",
+      "spec": [
+        4.641,
+        1.866,
+        2.725,
+        1.727,
+        1790,
+        139,
+        190,
+        44500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_touareg",
+      "brand": "Volkswagen",
+      "model": "Touareg",
+      "body": "u",
+      "spec": [
+        4.839,
+        1.946,
+        2.841,
+        1.8,
+        1960,
+        160,
+        199,
+        50500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_t_roc",
+      "brand": "Volkswagen",
+      "model": "T-Roc",
+      "body": "u",
+      "spec": [
+        4.516,
+        1.816,
+        2.651,
+        1.68,
+        1690,
+        126,
+        183,
+        41000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_t_cross",
+      "brand": "Volkswagen",
+      "model": "T-Cross",
+      "body": "u",
+      "spec": [
+        4.637,
+        1.865,
+        2.723,
+        1.725,
+        1790,
+        139,
+        189,
+        44500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_amarok",
+      "brand": "Volkswagen",
+      "model": "Amarok",
+      "body": "t",
+      "spec": [
+        5.309,
+        1.886,
+        3.143,
+        1.826,
+        2140,
+        149,
+        175,
+        51500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_caddy",
+      "brand": "Volkswagen",
+      "model": "Caddy",
+      "body": "v",
+      "spec": [
+        5.211,
+        1.954,
+        3.107,
+        2.004,
+        2260,
+        121,
+        160,
+        48500
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_transporter",
+      "brand": "Volkswagen",
+      "model": "Transporter",
+      "body": "v",
+      "spec": [
+        5.363,
+        2.011,
+        3.197,
+        2.063,
+        2400,
+        133,
+        166,
+        52500
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volkswagen_multivan",
+      "brand": "Volkswagen",
+      "model": "Multivan",
+      "body": "v",
+      "spec": [
+        5.254,
+        1.97,
+        3.132,
+        2.021,
+        2300,
+        124,
+        162,
+        49500
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_suzuki_swift",
+      "brand": "Suzuki",
+      "model": "Swift",
+      "body": "h",
+      "spec": [
+        3.86,
+        1.735,
+        2.45,
+        1.5,
+        980,
+        61,
+        170,
+        25000
+      ],
+      "manual": true,
+      "weight": 2.5,
+      "estimated": false
+    },
+    {
+      "id": "fleet_suzuki_vitara",
+      "brand": "Suzuki",
+      "model": "Vitara",
+      "body": "u",
+      "spec": [
+        4.566,
+        1.836,
+        2.681,
+        1.699,
+        1730,
+        131,
+        186,
+        42500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_suzuki_s_cross",
+      "brand": "Suzuki",
+      "model": "S-Cross",
+      "body": "u",
+      "spec": [
+        4.878,
+        1.962,
+        2.864,
+        1.815,
+        1990,
+        164,
+        201,
+        51500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_suzuki_baleno",
+      "brand": "Suzuki",
+      "model": "Baleno",
+      "body": "h",
+      "spec": [
+        4.124,
+        1.746,
+        2.565,
+        1.45,
+        1260,
+        95,
+        187,
+        25000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_suzuki_ignis",
+      "brand": "Suzuki",
+      "model": "Ignis",
+      "body": "h",
+      "spec": [
+        4.1,
+        1.736,
+        2.55,
+        1.442,
+        1250,
+        93,
+        186,
+        24500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_suzuki_grand_vitara",
+      "brand": "Suzuki",
+      "model": "Grand Vitara",
+      "body": "u",
+      "spec": [
+        4.491,
+        1.806,
+        2.637,
+        1.671,
+        1660,
+        123,
+        182,
+        40500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_honda_civic",
+      "brand": "Honda",
+      "model": "Civic",
+      "body": "h",
+      "spec": [
+        4.172,
+        1.767,
+        2.595,
+        1.467,
+        1290,
+        99,
+        190,
+        26000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_honda_accord",
+      "brand": "Honda",
+      "model": "Accord",
+      "body": "s",
+      "spec": [
+        4.985,
+        1.911,
+        2.908,
+        1.516,
+        1740,
+        170,
+        230,
+        44500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_honda_jazz",
+      "brand": "Honda",
+      "model": "Jazz",
+      "body": "h",
+      "spec": [
+        4.0,
+        1.695,
+        2.53,
+        1.525,
+        1100,
+        88,
+        180,
+        19000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": false
+    },
+    {
+      "id": "fleet_honda_cr_v",
+      "brand": "Honda",
+      "model": "CR-V",
+      "body": "u",
+      "spec": [
+        4.542,
+        1.827,
+        2.667,
+        1.69,
+        1710,
+        129,
+        185,
+        42000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_honda_hr_v",
+      "brand": "Honda",
+      "model": "HR-V",
+      "body": "u",
+      "spec": [
+        4.603,
+        1.851,
+        2.703,
+        1.713,
+        1760,
+        135,
+        188,
+        43500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_honda_zr_v",
+      "brand": "Honda",
+      "model": "ZR-V",
+      "body": "u",
+      "spec": [
+        4.757,
+        1.913,
+        2.793,
+        1.77,
+        1890,
+        151,
+        195,
+        48000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_honda_odyssey",
+      "brand": "Honda",
+      "model": "Odyssey",
+      "body": "v",
+      "spec": [
+        5.066,
+        1.9,
+        3.02,
+        1.948,
+        2120,
+        109,
+        155,
+        44500
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_honda_integra",
+      "brand": "Honda",
+      "model": "Integra",
+      "body": "c",
+      "spec": [
+        4.631,
+        1.905,
+        2.685,
+        1.353,
+        1580,
+        263,
+        262,
+        73000
+      ],
+      "manual": true,
+      "weight": 0.15,
+      "estimated": true
+    },
+    {
+      "id": "fleet_isuzu_d_max",
+      "brand": "Isuzu",
+      "model": "D-MAX",
+      "body": "t",
+      "spec": [
+        5.265,
+        1.87,
+        3.125,
+        1.81,
+        2050,
+        140,
+        175,
+        52000
+      ],
+      "manual": false,
+      "weight": 14,
+      "estimated": false
+    },
+    {
+      "id": "fleet_isuzu_mu_x",
+      "brand": "Isuzu",
+      "model": "MU-X",
+      "body": "u",
+      "spec": [
+        4.85,
+        1.87,
+        2.855,
+        1.825,
+        2150,
+        140,
+        180,
+        58000
+      ],
+      "manual": false,
+      "weight": 9,
+      "estimated": false
+    },
+    {
+      "id": "fleet_mg_mg3",
+      "brand": "MG",
+      "model": "MG3",
+      "body": "h",
+      "spec": [
+        3.977,
+        1.684,
+        2.474,
+        1.399,
+        1160,
+        83,
+        179,
+        22000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mg_mg4",
+      "brand": "MG",
+      "model": "MG4",
+      "body": "h",
+      "spec": [
+        4.381,
+        1.855,
+        2.725,
+        1.541,
+        1440,
+        117,
+        201,
+        30000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mg_mg5",
+      "brand": "MG",
+      "model": "MG5",
+      "body": "s",
+      "spec": [
+        4.664,
+        1.788,
+        2.721,
+        1.419,
+        1500,
+        135,
+        213,
+        36500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mg_zs",
+      "brand": "MG",
+      "model": "ZS",
+      "body": "u",
+      "spec": [
+        4.613,
+        1.855,
+        2.708,
+        1.716,
+        1770,
+        136,
+        188,
+        44000
+      ],
+      "manual": false,
+      "weight": 7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mg_hs",
+      "brand": "MG",
+      "model": "HS",
+      "body": "u",
+      "spec": [
+        4.614,
+        1.856,
+        2.709,
+        1.717,
+        1770,
+        136,
+        188,
+        44000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_gwm_haval_h6",
+      "brand": "GWM",
+      "model": "Haval H6",
+      "body": "u",
+      "spec": [
+        4.476,
+        1.8,
+        2.628,
+        1.665,
+        1650,
+        122,
+        181,
+        40000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_gwm_haval_jolion",
+      "brand": "GWM",
+      "model": "Haval Jolion",
+      "body": "u",
+      "spec": [
+        4.619,
+        1.858,
+        2.712,
+        1.719,
+        1770,
+        137,
+        188,
+        44000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_gwm_cannon",
+      "brand": "GWM",
+      "model": "Cannon",
+      "body": "t",
+      "spec": [
+        5.464,
+        1.941,
+        3.235,
+        1.88,
+        2280,
+        164,
+        181,
+        56000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_gwm_tank_300",
+      "brand": "GWM",
+      "model": "Tank 300",
+      "body": "u",
+      "spec": [
+        4.584,
+        1.843,
+        2.691,
+        1.705,
+        1740,
+        133,
+        187,
+        43000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_gwm_tank_500",
+      "brand": "GWM",
+      "model": "Tank 500",
+      "body": "u",
+      "spec": [
+        4.802,
+        1.931,
+        2.819,
+        1.786,
+        1930,
+        156,
+        197,
+        49500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_gwm_ora",
+      "brand": "GWM",
+      "model": "Ora",
+      "body": "h",
+      "spec": [
+        4.263,
+        1.805,
+        2.652,
+        1.499,
+        1360,
+        107,
+        195,
+        27500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_byd_atto_3",
+      "brand": "BYD",
+      "model": "Atto 3",
+      "body": "u",
+      "spec": [
+        4.853,
+        1.952,
+        2.849,
+        1.806,
+        1970,
+        161,
+        200,
+        51000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_byd_dolphin",
+      "brand": "BYD",
+      "model": "Dolphin",
+      "body": "h",
+      "spec": [
+        4.263,
+        1.805,
+        2.652,
+        1.499,
+        1360,
+        107,
+        195,
+        27500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_byd_seal",
+      "brand": "BYD",
+      "model": "Seal",
+      "body": "s",
+      "spec": [
+        4.735,
+        1.815,
+        2.762,
+        1.44,
+        1550,
+        143,
+        216,
+        38500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_byd_sealion_6",
+      "brand": "BYD",
+      "model": "Sealion 6",
+      "body": "u",
+      "spec": [
+        4.723,
+        1.899,
+        2.773,
+        1.757,
+        1860,
+        148,
+        194,
+        47000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_byd_shark_6",
+      "brand": "BYD",
+      "model": "Shark 6",
+      "body": "t",
+      "spec": [
+        5.368,
+        1.907,
+        3.178,
+        1.846,
+        2190,
+        155,
+        177,
+        53500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_tesla_model_3",
+      "brand": "Tesla",
+      "model": "Model 3",
+      "body": "s",
+      "spec": [
+        4.72,
+        1.85,
+        2.875,
+        1.44,
+        1765,
+        208,
+        201,
+        55000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": false
+    },
+    {
+      "id": "fleet_tesla_model_y",
+      "brand": "Tesla",
+      "model": "Model Y",
+      "body": "u",
+      "spec": [
+        4.75,
+        1.921,
+        2.89,
+        1.624,
+        1950,
+        220,
+        217,
+        60000
+      ],
+      "manual": false,
+      "weight": 6,
+      "estimated": false
+    },
+    {
+      "id": "fleet_ldv_t60",
+      "brand": "LDV",
+      "model": "T60",
+      "body": "t",
+      "spec": [
+        5.348,
+        1.9,
+        3.166,
+        1.84,
+        2170,
+        153,
+        176,
+        53000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ldv_d90",
+      "brand": "LDV",
+      "model": "D90",
+      "body": "u",
+      "spec": [
+        4.693,
+        1.887,
+        2.755,
+        1.746,
+        1840,
+        145,
+        192,
+        46000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ldv_g10",
+      "brand": "LDV",
+      "model": "G10",
+      "body": "v",
+      "spec": [
+        5.051,
+        1.894,
+        3.011,
+        1.943,
+        2110,
+        108,
+        154,
+        44000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ldv_deliver_9",
+      "brand": "LDV",
+      "model": "Deliver 9",
+      "body": "v",
+      "spec": [
+        5.103,
+        1.914,
+        3.042,
+        1.963,
+        2160,
+        112,
+        156,
+        45500
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ldv_mifa",
+      "brand": "LDV",
+      "model": "MIFA",
+      "body": "v",
+      "spec": [
+        5.42,
+        2.032,
+        3.231,
+        2.084,
+        2460,
+        138,
+        168,
+        54000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_renault_koleos",
+      "brand": "Renault",
+      "model": "Koleos",
+      "body": "u",
+      "spec": [
+        4.721,
+        1.899,
+        2.772,
+        1.756,
+        1860,
+        147,
+        193,
+        47000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_renault_megane",
+      "brand": "Renault",
+      "model": "Megane",
+      "body": "h",
+      "spec": [
+        4.24,
+        1.796,
+        2.638,
+        1.491,
+        1340,
+        105,
+        193,
+        27000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_renault_kangoo",
+      "brand": "Renault",
+      "model": "Kangoo",
+      "body": "v",
+      "spec": [
+        5.255,
+        1.97,
+        3.133,
+        2.021,
+        2300,
+        124,
+        162,
+        49500
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_renault_trafic",
+      "brand": "Renault",
+      "model": "Trafic",
+      "body": "v",
+      "spec": [
+        5.307,
+        1.99,
+        3.164,
+        2.041,
+        2350,
+        129,
+        164,
+        51000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_renault_master",
+      "brand": "Renault",
+      "model": "Master",
+      "body": "v",
+      "spec": [
+        4.95,
+        1.856,
+        2.951,
+        1.904,
+        2010,
+        100,
+        151,
+        41000
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_peugeot_308",
+      "brand": "Peugeot",
+      "model": "308",
+      "body": "h",
+      "spec": [
+        4.029,
+        1.706,
+        2.506,
+        1.417,
+        1200,
+        87,
+        182,
+        23000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_peugeot_2008",
+      "brand": "Peugeot",
+      "model": "2008",
+      "body": "u",
+      "spec": [
+        4.465,
+        1.796,
+        2.621,
+        1.661,
+        1640,
+        120,
+        181,
+        39500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_peugeot_3008",
+      "brand": "Peugeot",
+      "model": "3008",
+      "body": "u",
+      "spec": [
+        4.498,
+        1.809,
+        2.641,
+        1.674,
+        1670,
+        124,
+        183,
+        40500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_peugeot_5008",
+      "brand": "Peugeot",
+      "model": "5008",
+      "body": "u",
+      "spec": [
+        4.863,
+        1.956,
+        2.855,
+        1.809,
+        1980,
+        162,
+        200,
+        51000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_jeep_wrangler",
+      "brand": "Jeep",
+      "model": "Wrangler",
+      "body": "u",
+      "spec": [
+        4.518,
+        1.817,
+        2.653,
+        1.681,
+        1690,
+        126,
+        184,
+        41000
+      ],
+      "manual": true,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_jeep_grand_cherokee",
+      "brand": "Jeep",
+      "model": "Grand Cherokee",
+      "body": "u",
+      "spec": [
+        4.786,
+        1.925,
+        2.81,
+        1.781,
+        1920,
+        154,
+        197,
+        49000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_jeep_compass",
+      "brand": "Jeep",
+      "model": "Compass",
+      "body": "u",
+      "spec": [
+        4.788,
+        1.926,
+        2.811,
+        1.781,
+        1920,
+        155,
+        197,
+        49000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_jeep_cherokee",
+      "brand": "Jeep",
+      "model": "Cherokee",
+      "body": "u",
+      "spec": [
+        4.809,
+        1.934,
+        2.823,
+        1.789,
+        1940,
+        157,
+        198,
+        49500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_jeep_gladiator",
+      "brand": "Jeep",
+      "model": "Gladiator",
+      "body": "t",
+      "spec": [
+        5.582,
+        1.983,
+        3.305,
+        1.92,
+        2380,
+        176,
+        185,
+        59500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_skoda_octavia",
+      "brand": "Skoda",
+      "model": "Octavia",
+      "body": "w",
+      "spec": [
+        4.697,
+        1.819,
+        2.749,
+        1.473,
+        1610,
+        135,
+        207,
+        40500
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_skoda_kodiaq",
+      "brand": "Skoda",
+      "model": "Kodiaq",
+      "body": "u",
+      "spec": [
+        4.807,
+        1.933,
+        2.822,
+        1.788,
+        1930,
+        157,
+        198,
+        49500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_skoda_karoq",
+      "brand": "Skoda",
+      "model": "Karoq",
+      "body": "u",
+      "spec": [
+        4.789,
+        1.926,
+        2.811,
+        1.782,
+        1920,
+        155,
+        197,
+        49000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_skoda_superb",
+      "brand": "Skoda",
+      "model": "Superb",
+      "body": "w",
+      "spec": [
+        4.653,
+        1.802,
+        2.723,
+        1.46,
+        1580,
+        130,
+        205,
+        39500
+      ],
+      "manual": false,
+      "weight": 1.4,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volvo_xc40",
+      "brand": "Volvo",
+      "model": "XC40",
+      "body": "u",
+      "spec": [
+        4.71,
+        1.894,
+        2.765,
+        1.752,
+        1850,
+        146,
+        193,
+        89000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volvo_xc60",
+      "brand": "Volvo",
+      "model": "XC60",
+      "body": "u",
+      "spec": [
+        4.788,
+        1.926,
+        2.811,
+        1.781,
+        1920,
+        155,
+        197,
+        93000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_volvo_xc90",
+      "brand": "Volvo",
+      "model": "XC90",
+      "body": "u",
+      "spec": [
+        4.95,
+        1.923,
+        2.984,
+        1.776,
+        2100,
+        220,
+        180,
+        100000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": false
+    },
+    {
+      "id": "fleet_bmw_1_series",
+      "brand": "BMW",
+      "model": "1 Series",
+      "body": "h",
+      "spec": [
+        4.025,
+        1.704,
+        2.503,
+        1.415,
+        1190,
+        87,
+        182,
+        44000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_bmw_3_series",
+      "brand": "BMW",
+      "model": "3 Series",
+      "body": "s",
+      "spec": [
+        4.889,
+        1.874,
+        2.852,
+        1.487,
+        1670,
+        160,
+        225,
+        80000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_bmw_5_series",
+      "brand": "BMW",
+      "model": "5 Series",
+      "body": "s",
+      "spec": [
+        4.963,
+        1.868,
+        2.975,
+        1.479,
+        1750,
+        185,
+        250,
+        85000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": false
+    },
+    {
+      "id": "fleet_bmw_x1",
+      "brand": "BMW",
+      "model": "X1",
+      "body": "u",
+      "spec": [
+        4.814,
+        1.936,
+        2.826,
+        1.791,
+        1940,
+        157,
+        198,
+        94500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_bmw_x3",
+      "brand": "BMW",
+      "model": "X3",
+      "body": "u",
+      "spec": [
+        4.525,
+        1.82,
+        2.657,
+        1.684,
+        1690,
+        127,
+        184,
+        78500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_bmw_x5",
+      "brand": "BMW",
+      "model": "X5",
+      "body": "u",
+      "spec": [
+        4.739,
+        1.906,
+        2.783,
+        1.763,
+        1880,
+        149,
+        194,
+        90500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mercedes_benz_a_class",
+      "brand": "Mercedes-Benz",
+      "model": "A-Class",
+      "body": "h",
+      "spec": [
+        4.293,
+        1.818,
+        2.67,
+        1.51,
+        1380,
+        109,
+        196,
+        53500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mercedes_benz_c_class",
+      "brand": "Mercedes-Benz",
+      "model": "C-Class",
+      "body": "s",
+      "spec": [
+        5.007,
+        1.919,
+        2.92,
+        1.523,
+        1750,
+        173,
+        231,
+        86000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mercedes_benz_e_class",
+      "brand": "Mercedes-Benz",
+      "model": "E-Class",
+      "body": "s",
+      "spec": [
+        4.899,
+        1.878,
+        2.858,
+        1.49,
+        1670,
+        161,
+        225,
+        80500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mercedes_benz_gla",
+      "brand": "Mercedes-Benz",
+      "model": "GLA",
+      "body": "u",
+      "spec": [
+        4.433,
+        1.783,
+        2.602,
+        1.649,
+        1620,
+        117,
+        179,
+        73500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mercedes_benz_glc",
+      "brand": "Mercedes-Benz",
+      "model": "GLC",
+      "body": "u",
+      "spec": [
+        4.811,
+        1.935,
+        2.824,
+        1.79,
+        1940,
+        157,
+        198,
+        94500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mercedes_benz_gle",
+      "brand": "Mercedes-Benz",
+      "model": "GLE",
+      "body": "u",
+      "spec": [
+        4.924,
+        1.947,
+        2.995,
+        1.797,
+        2250,
+        200,
+        230,
+        110000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": false
+    },
+    {
+      "id": "fleet_audi_a3",
+      "brand": "Audi",
+      "model": "A3",
+      "body": "h",
+      "spec": [
+        3.975,
+        1.683,
+        2.472,
+        1.398,
+        1160,
+        83,
+        179,
+        42000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_audi_a4",
+      "brand": "Audi",
+      "model": "A4",
+      "body": "s",
+      "spec": [
+        4.617,
+        1.77,
+        2.693,
+        1.404,
+        1470,
+        130,
+        210,
+        67500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_audi_a6",
+      "brand": "Audi",
+      "model": "A6",
+      "body": "s",
+      "spec": [
+        4.753,
+        1.822,
+        2.773,
+        1.446,
+        1570,
+        145,
+        217,
+        74000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_audi_q3",
+      "brand": "Audi",
+      "model": "Q3",
+      "body": "u",
+      "spec": [
+        4.765,
+        1.916,
+        2.798,
+        1.773,
+        1900,
+        152,
+        196,
+        92000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_audi_q5",
+      "brand": "Audi",
+      "model": "Q5",
+      "body": "u",
+      "spec": [
+        4.512,
+        1.815,
+        2.649,
+        1.679,
+        1680,
+        126,
+        183,
+        78000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_audi_q7",
+      "brand": "Audi",
+      "model": "Q7",
+      "body": "u",
+      "spec": [
+        4.563,
+        1.835,
+        2.679,
+        1.698,
+        1730,
+        131,
+        186,
+        80500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_lexus_is",
+      "brand": "Lexus",
+      "model": "IS",
+      "body": "s",
+      "spec": [
+        4.81,
+        1.844,
+        2.806,
+        1.463,
+        1610,
+        151,
+        221,
+        76500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_lexus_es",
+      "brand": "Lexus",
+      "model": "ES",
+      "body": "s",
+      "spec": [
+        4.867,
+        1.866,
+        2.839,
+        1.48,
+        1650,
+        157,
+        224,
+        79000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_lexus_nx",
+      "brand": "Lexus",
+      "model": "NX",
+      "body": "u",
+      "spec": [
+        4.747,
+        1.909,
+        2.787,
+        1.766,
+        1880,
+        150,
+        195,
+        91000
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_lexus_rx",
+      "brand": "Lexus",
+      "model": "RX",
+      "body": "u",
+      "spec": [
+        4.682,
+        1.883,
+        2.749,
+        1.742,
+        1830,
+        143,
+        192,
+        87500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_lexus_ux",
+      "brand": "Lexus",
+      "model": "UX",
+      "body": "u",
+      "spec": [
+        4.489,
+        1.805,
+        2.636,
+        1.67,
+        1660,
+        123,
+        182,
+        76500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_land_rover_defender",
+      "brand": "Land Rover",
+      "model": "Defender",
+      "body": "u",
+      "spec": [
+        4.489,
+        1.805,
+        2.636,
+        1.67,
+        1660,
+        123,
+        182,
+        76500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_land_rover_discovery",
+      "brand": "Land Rover",
+      "model": "Discovery",
+      "body": "u",
+      "spec": [
+        4.54,
+        1.826,
+        2.666,
+        1.689,
+        1710,
+        128,
+        185,
+        79500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_land_rover_range_rover_sport",
+      "brand": "Land Rover",
+      "model": "Range Rover Sport",
+      "body": "u",
+      "spec": [
+        4.634,
+        1.863,
+        2.72,
+        1.724,
+        1790,
+        138,
+        189,
+        84500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mini_cooper",
+      "brand": "MINI",
+      "model": "Cooper",
+      "body": "h",
+      "spec": [
+        4.002,
+        1.695,
+        2.49,
+        1.408,
+        1180,
+        85,
+        180,
+        22500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_mini_countryman",
+      "brand": "MINI",
+      "model": "Countryman",
+      "body": "u",
+      "spec": [
+        4.697,
+        1.889,
+        2.758,
+        1.748,
+        1840,
+        145,
+        192,
+        46500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_porsche_911",
+      "brand": "Porsche",
+      "model": "911",
+      "body": "c",
+      "spec": [
+        4.52,
+        1.85,
+        2.45,
+        1.3,
+        1540,
+        283,
+        293,
+        230000
+      ],
+      "manual": false,
+      "weight": 0.15,
+      "estimated": false
+    },
+    {
+      "id": "fleet_porsche_macan",
+      "brand": "Porsche",
+      "model": "Macan",
+      "body": "u",
+      "spec": [
+        4.727,
+        1.901,
+        2.775,
+        1.759,
+        1870,
+        148,
+        194,
+        141500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_porsche_cayenne",
+      "brand": "Porsche",
+      "model": "Cayenne",
+      "body": "u",
+      "spec": [
+        4.785,
+        1.924,
+        2.809,
+        1.78,
+        1910,
+        154,
+        197,
+        146500
+      ],
+      "manual": false,
+      "weight": 0.7,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ssangyong_musso",
+      "brand": "SsangYong",
+      "model": "Musso",
+      "body": "t",
+      "spec": [
+        5.56,
+        1.975,
+        3.292,
+        1.913,
+        2360,
+        174,
+        184,
+        59000
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    },
+    {
+      "id": "fleet_ssangyong_rexton",
+      "brand": "SsangYong",
+      "model": "Rexton",
+      "body": "u",
+      "spec": [
+        4.628,
+        1.861,
+        2.717,
+        1.722,
+        1780,
+        138,
+        189,
+        44500
+      ],
+      "manual": false,
+      "weight": 2.5,
+      "estimated": true
+    }
+  ]
+}

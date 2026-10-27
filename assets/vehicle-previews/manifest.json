@@ -1,6 +1,7 @@
 {
-  "revision": "25.0",
-  "sourceSha256": "265ef3842d7bc3d82b960baa76677fa8f7196cf74471658f405d8792aada8129",
+  "revision": "26.0",
+  "catalogueSha256": "2d9fe237dbf8ab63ac509e75f29763c3566cc7b3b7109601b8b692be678e2ee2",
+  "sourceSha256": "fd75ea3c6c81e212c59483d6cc09ee9a4153043ab46a2130b8be1ff9dc3c43aa",
   "models": [
     {
       "id": "ute",
@@ -21,7 +22,7 @@
       "vertices": 12854,
       "metadata": {
         "modelId": "ute",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "79 Series single-cab trayback",
         "wheelCount": 4
       }
@@ -45,7 +46,7 @@
       "vertices": 1863,
       "metadata": {
         "modelId": "bike",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "electric bicycle",
         "wheelCount": 2
       }
@@ -69,7 +70,7 @@
       "vertices": 4644,
       "metadata": {
         "modelId": "drift",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "hatch",
         "wheelCount": 4
       }
@@ -93,7 +94,7 @@
       "vertices": 2425,
       "metadata": {
         "modelId": "heli",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "rounded AS350 rotorcraft",
         "wheelCount": 0,
         "rotorDiameter": 10.69,
@@ -120,7 +121,7 @@
       "vertices": 4712,
       "metadata": {
         "modelId": "hilux",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "ute",
         "wheelCount": 4
       }
@@ -144,7 +145,7 @@
       "vertices": 4776,
       "metadata": {
         "modelId": "ranger",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "ute",
         "wheelCount": 4
       }
@@ -168,7 +169,7 @@
       "vertices": 4608,
       "metadata": {
         "modelId": "patrol",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "suv",
         "wheelCount": 4
       }
@@ -192,7 +193,7 @@
       "vertices": 5108,
       "metadata": {
         "modelId": "jimny",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "suv",
         "wheelCount": 4
       }
@@ -216,7 +217,7 @@
       "vertices": 4572,
       "metadata": {
         "modelId": "commodore",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "sedan",
         "wheelCount": 4
       }
@@ -240,7 +241,7 @@
       "vertices": 4572,
       "metadata": {
         "modelId": "falcon",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "sedan",
         "wheelCount": 4
       }
@@ -264,7 +265,7 @@
       "vertices": 4512,
       "metadata": {
         "modelId": "mustang",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "coupe",
         "wheelCount": 4
       }
@@ -288,7 +289,7 @@
       "vertices": 5000,
       "metadata": {
         "modelId": "gtr",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "coupe",
         "wheelCount": 4
       }
@@ -312,7 +313,7 @@
       "vertices": 4692,
       "metadata": {
         "modelId": "wrx",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "sedan",
         "wheelCount": 4
       }
@@ -336,7 +337,7 @@
       "vertices": 1125,
       "metadata": {
         "modelId": "boat",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "vee-hull outboard runabout",
         "wheelCount": 0
       }
@@ -360,7 +361,7 @@
       "vertices": 1529,
       "metadata": {
         "modelId": "kart",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "open tubular go-kart",
         "wheelCount": 4
       }
@@ -384,7 +385,7 @@
       "vertices": 1830,
       "metadata": {
         "modelId": "jet",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "F/A-18-inspired twin-engine twin-tail fighter",
         "wheelCount": 3
       }
@@ -408,7 +409,7 @@
       "vertices": 4789,
       "metadata": {
         "modelId": "lifeflight",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "AW139-inspired rescue rotorcraft",
         "wheelCount": 3,
         "rotorDiameter": 13.8,
@@ -435,7 +436,7 @@
       "vertices": 4789,
       "metadata": {
         "modelId": "racq",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "AW139-inspired rescue rotorcraft",
         "wheelCount": 3,
         "rotorDiameter": 13.8,
@@ -462,7 +463,7 @@
       "vertices": 4236,
       "metadata": {
         "modelId": "trafficTruck",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "rigid commercial truck"
       }
     },
@@ -471,21 +472,21 @@
       "kind": "bike",
       "bounds": {
         "min": [
-          -0.4150000035762787,
+          -0.4150000214576721,
           -0.04249999999999998,
-          -0.9975000131130218
+          -1.0174999940395355
         ],
         "max": [
-          0.4150000035762787,
-          1.182499966621399,
+          0.4150000214576721,
+          1.1825000047683716,
           0.9975000131130218
         ]
       },
-      "meshes": 8,
-      "vertices": 4591,
+      "meshes": 14,
+      "vertices": 12193,
       "metadata": {
         "modelId": "talariaSting",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "electric dirt bike",
         "wheelCount": 2
       }
@@ -495,21 +496,21 @@
       "kind": "bike",
       "bounds": {
         "min": [
-          -0.4150000035762787,
+          -0.4150000214576721,
           -0.04249999999999998,
-          -0.9975000131130218
+          -1.0524999904632568
         ],
         "max": [
-          0.4150000035762787,
-          1.182499966621399,
-          0.9975000131130218
+          0.4150000214576721,
+          1.1825000047683716,
+          1.0324999797344208
         ]
       },
-      "meshes": 8,
-      "vertices": 4591,
+      "meshes": 14,
+      "vertices": 12193,
       "metadata": {
         "modelId": "talariaMx5",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "electric dirt bike",
         "wheelCount": 2
       }
@@ -519,21 +520,21 @@
       "kind": "bike",
       "bounds": {
         "min": [
-          -0.4150000035762787,
+          -0.4150000214576721,
           -0.04249999999999998,
-          -0.9975000131130218
+          -1.012499998807907
         ],
         "max": [
-          0.4150000035762787,
-          1.182499966621399,
-          0.9975000131130218
+          0.4150000214576721,
+          1.1825000047683716,
+          0.992499988079071
         ]
       },
-      "meshes": 8,
-      "vertices": 4591,
+      "meshes": 14,
+      "vertices": 12193,
       "metadata": {
         "modelId": "surRonLight",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "electric dirt bike",
         "wheelCount": 2
       }
@@ -543,21 +544,21 @@
       "kind": "bike",
       "bounds": {
         "min": [
-          -0.4150000035762787,
+          -0.4150000214576721,
           -0.04249999999999998,
-          -1.062500010728836
+          -1.092500011920929
         ],
         "max": [
-          0.4150000035762787,
-          1.182499966621399,
-          1.062500010728836
+          0.4150000214576721,
+          1.1825000047683716,
+          1.0725000011920929
         ]
       },
-      "meshes": 8,
-      "vertices": 4591,
+      "meshes": 14,
+      "vertices": 12201,
       "metadata": {
         "modelId": "surRonUltra",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "electric dirt bike",
         "wheelCount": 2
       }
@@ -567,21 +568,21 @@
       "kind": "bike",
       "bounds": {
         "min": [
-          -0.4150000035762787,
+          -0.4150000214576721,
           -0.04249999999999998,
-          -1.1375000286102295
+          -1.1475000190734863
         ],
         "max": [
-          0.4150000035762787,
-          1.182499966621399,
-          1.1375000286102295
+          0.4150000214576721,
+          1.1825000047683716,
+          1.1275000083446503
         ]
       },
-      "meshes": 8,
-      "vertices": 4591,
+      "meshes": 14,
+      "vertices": 12201,
       "metadata": {
         "modelId": "vargEx",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "electric dirt bike",
         "wheelCount": 2
       }
@@ -593,19 +594,19 @@
         "min": [
           -0.4150000214576721,
           -0.04249999999999998,
-          -1.0725000011920929
+          -1.1025000023841858
         ],
         "max": [
           0.4150000214576721,
           1.1825000047683716,
-          1.0725000011920929
+          1.0824999916553497
         ]
       },
-      "meshes": 10,
-      "vertices": 4302,
+      "meshes": 13,
+      "vertices": 9928,
       "metadata": {
         "modelId": "mt07",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "petrol motorcycle",
         "wheelCount": 2
       }
@@ -617,19 +618,19 @@
         "min": [
           -0.4150000214576721,
           -0.04249999999999998,
-          -1.0725000011920929
+          -1.1025000023841858
         ],
         "max": [
           0.4150000214576721,
           1.2817077789455653,
-          1.0725000011920929
+          1.0824999916553497
         ]
       },
-      "meshes": 11,
-      "vertices": 4374,
+      "meshes": 14,
+      "vertices": 10000,
       "metadata": {
         "modelId": "ninja400",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "petrol motorcycle",
         "wheelCount": 2
       }
@@ -641,19 +642,19 @@
         "min": [
           -0.4150000214576721,
           -0.04249999999999998,
-          -1.112500022649765
+          -1.142500023841858
         ],
         "max": [
           0.4150000214576721,
           1.1825000047683716,
-          1.112500022649765
+          1.1225000131130218
         ]
       },
-      "meshes": 10,
-      "vertices": 5166,
+      "meshes": 13,
+      "vertices": 11464,
       "metadata": {
         "modelId": "crf450",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "petrol motorcycle",
         "wheelCount": 2
       }
@@ -665,21 +666,4821 @@
         "min": [
           -0.4150000214576721,
           -0.04249999999999998,
-          -1.112500022649765
+          -1.142500023841858
         ],
         "max": [
           0.4150000214576721,
           1.1825000047683716,
-          1.112500022649765
+          1.1225000131130218
         ]
       },
-      "meshes": 10,
-      "vertices": 5166,
+      "meshes": 13,
+      "vertices": 11464,
       "metadata": {
         "modelId": "ktm690",
-        "revision": "25.0",
+        "revision": "26.0",
         "body": "petrol motorcycle",
         "wheelCount": 2
+      }
+    },
+    {
+      "id": "fleet_toyota_corolla",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1499999475479126,
+          -0.03200000524520874,
+          -2.2625001182556153
+        ],
+        "max": [
+          1.1499999475479126,
+          1.465999960899353,
+          2.3125000858306883
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_toyota_corolla",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_yaris",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1025000524520874,
+          -0.03200000524520874,
+          -2.0449999084472656
+        ],
+        "max": [
+          1.1025000524520874,
+          1.50600004196167,
+          2.095000114440918
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_toyota_yaris",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_camry",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1750000429153442,
+          -0.03200000524520874,
+          -2.534999917984009
+        ],
+        "max": [
+          1.1750000429153442,
+          1.4578238725662231,
+          2.584999885559082
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_toyota_camry",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_aurion",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.192499966621399,
+          -0.03200000524520874,
+          -2.520999979019165
+        ],
+        "max": [
+          1.192499966621399,
+          1.5002856254577637,
+          2.570999946594238
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_toyota_aurion",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_prius",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1425000143051147,
+          -0.03200000524520874,
+          -2.1705001106262207
+        ],
+        "max": [
+          1.1425000143051147,
+          1.4800000190734863,
+          2.220500078201294
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_toyota_prius",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_rav4",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.182499976158142,
+          -0.03700000047683716,
+          -2.3750000705718994
+        ],
+        "max": [
+          1.182499976158142,
+          1.7719999551773071,
+          2.4250000381469725
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_toyota_rav4",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_kluger",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.22,
+          -0.03700000047683716,
+          -2.5574999561309815
+        ],
+        "max": [
+          1.22,
+          1.8420000076293945,
+          2.6074999237060545
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_toyota_kluger",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_fortuner",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1614999485015869,
+          -0.03700000047683716,
+          -2.329500030517578
+        ],
+        "max": [
+          1.1614999485015869,
+          1.7649999856948853,
+          2.3794999980926512
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_toyota_fortuner",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_landcruiser_300",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.244999976158142,
+          -0.03700000047683716,
+          -2.5649998893737793
+        ],
+        "max": [
+          1.244999976158142,
+          2.0369999408721924,
+          2.6150000953674315
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_toyota_landcruiser_300",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_landcruiser_prado",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.244999976158142,
+          -0.03700000047683716,
+          -2.537499975204468
+        ],
+        "max": [
+          1.244999976158142,
+          2.0220000743865967,
+          2.587499942779541
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_toyota_landcruiser_prado",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_c_hr",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1750000429153442,
+          -0.03700000047683716,
+          -2.3629999866485596
+        ],
+        "max": [
+          1.1750000429153442,
+          1.7899999618530273,
+          2.4129999542236327
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_toyota_c_hr",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_hiace",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2299999904632568,
+          -0.03700000047683716,
+          -2.707500051498413
+        ],
+        "max": [
+          1.2299999904632568,
+          2.0769999027252197,
+          2.757500019073486
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_toyota_hiace",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_86",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.160000057220459,
+          -0.03200000524520874,
+          -2.275499891281128
+        ],
+        "max": [
+          1.160000057220459,
+          1.3005801439285278,
+          2.32550009727478
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4344,
+      "metadata": {
+        "modelId": "fleet_toyota_86",
+        "revision": "26.0",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_toyota_supra",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1874999713897705,
+          -0.03200000524520874,
+          -2.264999937057495
+        ],
+        "max": [
+          1.1874999713897705,
+          1.3095341920852661,
+          2.314999904632568
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4344,
+      "metadata": {
+        "modelId": "fleet_toyota_supra",
+        "revision": "26.0",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_everest",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.216500015258789,
+          -0.03700000047683716,
+          -2.531999897003174
+        ],
+        "max": [
+          1.216500015258789,
+          1.9290000200271606,
+          2.582000102996826
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_ford_everest",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_escape",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1759999704360962,
+          -0.03700000047683716,
+          -2.3645001163482666
+        ],
+        "max": [
+          1.1759999704360962,
+          1.7910000085830688,
+          2.4145000839233397
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_ford_escape",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_territory",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.217499942779541,
+          -0.03700000047683716,
+          -2.468000005722046
+        ],
+        "max": [
+          1.217499942779541,
+          1.8669999837875366,
+          2.517999973297119
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_ford_territory",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_focus",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.0995000314712524,
+          -0.03200000524520874,
+          -2.0690000762939453
+        ],
+        "max": [
+          1.0995000314712524,
+          1.409000039100647,
+          2.1190000438690184
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_ford_focus",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_fiesta",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1744999599456787,
+          -0.03200000524520874,
+          -2.2470000495910645
+        ],
+        "max": [
+          1.1744999599456787,
+          1.534000039100647,
+          2.2970000171661376
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_ford_fiesta",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_falcon_ute",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1624999952316284,
+          -0.03700000047683716,
+          -2.6299999465942383
+        ],
+        "max": [
+          1.1624999952316284,
+          1.778198480606079,
+          2.6799999141693114
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_ford_falcon_ute",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_mondeo",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2024999570846557,
+          -0.03200000524520874,
+          -2.5460000743865967
+        ],
+        "max": [
+          1.2024999570846557,
+          1.515194058418274,
+          2.59600004196167
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_ford_mondeo",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_puma",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2319999647140503,
+          -0.03700000047683716,
+          -2.5049999465942383
+        ],
+        "max": [
+          1.2319999647140503,
+          1.8949999809265137,
+          2.5549999141693114
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_ford_puma",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_transit",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2319999647140503,
+          -0.03700000047683716,
+          -2.6805001010894776
+        ],
+        "max": [
+          1.2319999647140503,
+          2.0910000801086426,
+          2.7305000686645506
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_ford_transit",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_transit_custom",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2239999485015869,
+          -0.03700000047683716,
+          -2.658500026702881
+        ],
+        "max": [
+          1.2239999485015869,
+          2.0739998817443848,
+          2.708499994277954
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_ford_transit_custom",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ford_f_150",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2699999523162842,
+          -0.03700000047683716,
+          -3.017000030517578
+        ],
+        "max": [
+          1.2699999523162842,
+          1.965999960899353,
+          3.0669999980926512
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_ford_f_150",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_mazda2",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1025000524520874,
+          -0.03200000524520874,
+          -2.1150000801086426
+        ],
+        "max": [
+          1.1025000524520874,
+          1.5010000467300415,
+          2.1650000476837157
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mazda_mazda2",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_mazda3",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1525000047683716,
+          -0.03200000524520874,
+          -2.3049998989105225
+        ],
+        "max": [
+          1.1525000047683716,
+          1.440999984741211,
+          2.3550001049041747
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mazda_mazda3",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_mazda6",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1429999780654907,
+          -0.03200000524520874,
+          -2.392000030517578
+        ],
+        "max": [
+          1.1429999780654907,
+          1.421798825263977,
+          2.4419999980926512
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mazda_mazda6",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_cx_3",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2019999933242798,
+          -0.03700000047683716,
+          -2.4294999351501465
+        ],
+        "max": [
+          1.2019999933242798,
+          1.8389999866485596,
+          2.4794999027252196
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mazda_cx_3",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_cx_30",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1674999904632568,
+          -0.03700000047683716,
+          -2.343499969482422
+        ],
+        "max": [
+          1.1674999904632568,
+          1.774999976158142,
+          2.393499937057495
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mazda_cx_30",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_cx_5",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1774999809265136,
+          -0.03700000047683716,
+          -2.3625000228881836
+        ],
+        "max": [
+          1.1774999809265136,
+          1.7619999647140503,
+          2.4124999904632567
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mazda_cx_5",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_cx_8",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.213499994277954,
+          -0.03700000047683716,
+          -2.458000015258789
+        ],
+        "max": [
+          1.213499994277954,
+          1.8600000143051147,
+          2.507999982833862
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mazda_cx_8",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_cx_9",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.16350004196167,
+          -0.03700000047683716,
+          -2.334499906539917
+        ],
+        "max": [
+          1.16350004196167,
+          1.7680000066757202,
+          2.384500112533569
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mazda_cx_9",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_cx_60",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1965000343322754,
+          -0.03700000047683716,
+          -2.4154999961853028
+        ],
+        "max": [
+          1.1965000343322754,
+          1.8289999961853027,
+          2.465499963760376
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mazda_cx_60",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_bt_50",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.185499997138977,
+          -0.03700000047683716,
+          -2.6945000400543213
+        ],
+        "max": [
+          1.185499997138977,
+          1.8079999685287476,
+          2.7445000076293944
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_mazda_bt_50",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_mx_5",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.122500033378601,
+          -0.03200000524520874,
+          -2.032500099182129
+        ],
+        "max": [
+          1.122500033378601,
+          1.3000000715255737,
+          2.0824999475479125
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4344,
+      "metadata": {
+        "modelId": "fleet_mazda_mx_5",
+        "revision": "26.0",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mazda_rx_8",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2069999885559082,
+          -0.03200000524520874,
+          -2.389999937057495
+        ],
+        "max": [
+          1.2069999885559082,
+          1.3672752380371094,
+          2.439999904632568
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4344,
+      "metadata": {
+        "modelId": "fleet_mazda_rx_8",
+        "revision": "26.0",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_i30",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1134999704360962,
+          -0.03200000524520874,
+          -2.102500032424927
+        ],
+        "max": [
+          1.1134999704360962,
+          1.4320000410079956,
+          2.1525
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_hyundai_i30",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_i30_sedan",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1685000371932983,
+          -0.03200000524520874,
+          -2.458499979019165
+        ],
+        "max": [
+          1.1685000371932983,
+          1.4625266790390015,
+          2.508499946594238
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_hyundai_i30_sedan",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_getz",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1434999418258667,
+          -0.03200000524520874,
+          -2.1724999656677246
+        ],
+        "max": [
+          1.1434999418258667,
+          1.4809999465942383,
+          2.2224999332427977
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_hyundai_getz",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_elantra",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1839999866485595,
+          -0.03200000524520874,
+          -2.4984999408721924
+        ],
+        "max": [
+          1.1839999866485595,
+          1.4863743782043457,
+          2.5484999084472655
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_hyundai_elantra",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_sonata",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1434999418258667,
+          -0.03200000524520874,
+          -2.393499921798706
+        ],
+        "max": [
+          1.1434999418258667,
+          1.4227914810180664,
+          2.443499889373779
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_hyundai_sonata",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_kona",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1575,
+          -0.03700000047683716,
+          -2.3190000762939453
+        ],
+        "max": [
+          1.1575,
+          1.7569999694824219,
+          2.3690000438690184
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_hyundai_kona",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_tucson",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2215000104904175,
+          -0.03700000047683716,
+          -2.4779999961853028
+        ],
+        "max": [
+          1.2215000104904175,
+          1.875,
+          2.527999963760376
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_hyundai_tucson",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_santa_fe",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1640000057220459,
+          -0.03700000047683716,
+          -2.336000036239624
+        ],
+        "max": [
+          1.1640000057220459,
+          1.7690000534057617,
+          2.386000003814697
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_hyundai_santa_fe",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_palisade",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1835000228881836,
+          -0.03700000047683716,
+          -2.3834999313354492
+        ],
+        "max": [
+          1.1835000228881836,
+          1.8049999475479126,
+          2.4334998989105223
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_hyundai_palisade",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_staria",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2360000324249267,
+          -0.03700000047683716,
+          -2.6910000553131104
+        ],
+        "max": [
+          1.2360000324249267,
+          2.0989999771118164,
+          2.7410000228881835
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_hyundai_staria",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_iload",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2150000047683716,
+          -0.03700000047683716,
+          -2.6345000972747803
+        ],
+        "max": [
+          1.2150000047683716,
+          2.055999994277954,
+          2.6845000648498534
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_hyundai_iload",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_hyundai_ioniq_5",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.192499966621399,
+          -0.03700000047683716,
+          -2.4079999923706055
+        ],
+        "max": [
+          1.192499966621399,
+          1.8209999799728394,
+          2.455499973297119
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4650,
+      "metadata": {
+        "modelId": "fleet_hyundai_ioniq_5",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_picanto",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.0524999809265136,
+          -0.03200000524520874,
+          -1.8725000133514405
+        ],
+        "max": [
+          1.0524999809265136,
+          1.4910000562667847,
+          1.9224999809265138
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_kia_picanto",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_rio",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1520000410079956,
+          -0.03200000524520874,
+          -2.1929999103546143
+        ],
+        "max": [
+          1.1520000410079956,
+          1.496000051498413,
+          2.2430001163482665
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_kia_rio",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_cerato",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1479999732971191,
+          -0.03200000524520874,
+          -2.1840000858306885
+        ],
+        "max": [
+          1.1479999732971191,
+          1.4889999628067017,
+          2.2340000534057616
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_kia_cerato",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_stinger",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1835000228881836,
+          -0.03200000524520874,
+          -2.4970000495910645
+        ],
+        "max": [
+          1.1835000228881836,
+          1.4853814840316772,
+          2.5470000171661376
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_kia_stinger",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_seltos",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2284999799728393,
+          -0.03700000047683716,
+          -2.4959998836517334
+        ],
+        "max": [
+          1.2284999799728393,
+          1.8890000581741333,
+          2.5460000896453856
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_kia_seltos",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_sportage",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1844999504089355,
+          -0.03700000047683716,
+          -2.3859999885559082
+        ],
+        "max": [
+          1.1844999504089355,
+          1.805999994277954,
+          2.4359999561309813
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_kia_sportage",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_sorento",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1759999704360962,
+          -0.03700000047683716,
+          -2.3650000801086426
+        ],
+        "max": [
+          1.1759999704360962,
+          1.7910000085830688,
+          2.4150000476837157
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_kia_sorento",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_carnival",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2525000286102295,
+          -0.03700000047683716,
+          -2.652499984741211
+        ],
+        "max": [
+          1.2525000286102295,
+          1.8619999885559082,
+          2.702499952316284
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_kia_carnival",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_stonic",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1520000410079956,
+          -0.03700000047683716,
+          -2.3055001010894776
+        ],
+        "max": [
+          1.1520000410079956,
+          1.746999979019165,
+          2.3555000686645506
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_kia_stonic",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_ev6",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2254999589920044,
+          -0.03700000047683716,
+          -2.490499973297119
+        ],
+        "max": [
+          1.2254999589920044,
+          1.8830000162124634,
+          2.5379999542236327
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4650,
+      "metadata": {
+        "modelId": "fleet_kia_ev6",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_ev9",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1559999895095825,
+          -0.03700000047683716,
+          -2.317999839782715
+        ],
+        "max": [
+          1.1559999895095825,
+          1.753999948501587,
+          2.3655000591278075
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4650,
+      "metadata": {
+        "modelId": "fleet_kia_ev9",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_kia_tasman",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2069999885559082,
+          -0.03700000047683716,
+          -2.7544999828338623
+        ],
+        "max": [
+          1.2069999885559082,
+          1.8489999771118164,
+          2.8044999504089354
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_kia_tasman",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mitsubishi_triton",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1874999713897705,
+          -0.03700000047683716,
+          -2.7349999656677246
+        ],
+        "max": [
+          1.1874999713897705,
+          1.8009999990463257,
+          2.7849999332427977
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_mitsubishi_triton",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mitsubishi_pajero",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1995000553131103,
+          -0.03700000047683716,
+          -2.4234998931884766
+        ],
+        "max": [
+          1.1995000553131103,
+          1.8339999914169312,
+          2.4735000991821288
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mitsubishi_pajero",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mitsubishi_pajero_sport",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1835000228881836,
+          -0.03700000047683716,
+          -2.3845000972747803
+        ],
+        "max": [
+          1.1835000228881836,
+          1.8049999475479126,
+          2.4345000648498534
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mitsubishi_pajero_sport",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mitsubishi_outlander",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.150500030517578,
+          -0.03700000047683716,
+          -2.3020001163482666
+        ],
+        "max": [
+          1.150500030517578,
+          1.74399995803833,
+          2.3520000839233397
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mitsubishi_outlander",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mitsubishi_asx",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1724999856948852,
+          -0.03700000047683716,
+          -2.3560000171661377
+        ],
+        "max": [
+          1.1724999856948852,
+          1.784000039100647,
+          2.405999984741211
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mitsubishi_asx",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mitsubishi_eclipse_cross",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1490000200271606,
+          -0.03700000047683716,
+          -2.2974999656677246
+        ],
+        "max": [
+          1.1490000200271606,
+          1.7410000562667847,
+          2.3474999332427977
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mitsubishi_eclipse_cross",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mitsubishi_lancer",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1420000505447387,
+          -0.03200000524520874,
+          -2.389000009536743
+        ],
+        "max": [
+          1.1420000505447387,
+          1.4208015203475952,
+          2.4389999771118163
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mitsubishi_lancer",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mitsubishi_mirage",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1279999923706054,
+          -0.03200000524520874,
+          -2.1359999885559082
+        ],
+        "max": [
+          1.1279999923706054,
+          1.4559999704360962,
+          2.1859999561309813
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mitsubishi_mirage",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_nissan_navara",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1724999856948852,
+          -0.03700000047683716,
+          -2.658000062942505
+        ],
+        "max": [
+          1.1724999856948852,
+          1.7829999923706055,
+          2.708000030517578
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_nissan_navara",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_nissan_x_trail",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1900000286102295,
+          -0.03700000047683716,
+          -2.399999927520752
+        ],
+        "max": [
+          1.1900000286102295,
+          1.8170000314712524,
+          2.449999895095825
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_nissan_x_trail",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_nissan_qashqai",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1729999494552612,
+          -0.03700000047683716,
+          -2.3574999084472656
+        ],
+        "max": [
+          1.1729999494552612,
+          1.7860000133514404,
+          2.407500114440918
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_nissan_qashqai",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_nissan_juke",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2015000295639038,
+          -0.03700000047683716,
+          -2.4280000438690186
+        ],
+        "max": [
+          1.2015000295639038,
+          1.8380000591278076,
+          2.4780000114440917
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_nissan_juke",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_nissan_pathfinder",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.192499966621399,
+          -0.03700000047683716,
+          -2.405999969482422
+        ],
+        "max": [
+          1.192499966621399,
+          1.8209999799728394,
+          2.455999937057495
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_nissan_pathfinder",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_nissan_patrol_gu",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1575,
+          -0.03700000047683716,
+          -2.3190000762939453
+        ],
+        "max": [
+          1.1575,
+          1.7569999694824219,
+          2.3690000438690184
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_nissan_patrol_gu",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_nissan_pulsar",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1449999523162842,
+          -0.03200000524520874,
+          -2.1775000801086426
+        ],
+        "max": [
+          1.1449999523162842,
+          1.4850000143051147,
+          2.2275000476837157
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_nissan_pulsar",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_nissan_micra",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.0875000071525573,
+          -0.03200000524520874,
+          -1.9849999656677246
+        ],
+        "max": [
+          1.0875000071525573,
+          1.5160000324249268,
+          2.0350000524520873
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_nissan_micra",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_nissan_370z",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.192000002861023,
+          -0.03200000524520874,
+          -2.3534999599456787
+        ],
+        "max": [
+          1.192000002861023,
+          1.3453761339187622,
+          2.403499927520752
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4344,
+      "metadata": {
+        "modelId": "fleet_nissan_370z",
+        "revision": "26.0",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_subaru_forester",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1809999656677246,
+          -0.03700000047683716,
+          -2.3774998893737793
+        ],
+        "max": [
+          1.1809999656677246,
+          1.7999999523162842,
+          2.4275000953674315
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_subaru_forester",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_subaru_outback",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2095000457763672,
+          -0.03200000524520874,
+          -2.539500068664551
+        ],
+        "max": [
+          1.2095000457763672,
+          1.6330000162124634,
+          2.589500036239624
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_subaru_outback",
+        "revision": "26.0",
+        "body": "wagon",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_subaru_impreza",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1679999542236328,
+          -0.03200000524520874,
+          -2.2314999809265137
+        ],
+        "max": [
+          1.1679999542236328,
+          1.5230000019073486,
+          2.2814999485015868
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_subaru_impreza",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_subaru_xv",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.154000015258789,
+          -0.03700000047683716,
+          -2.3104999771118164
+        ],
+        "max": [
+          1.154000015258789,
+          1.75,
+          2.3604999446868895
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_subaru_xv",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_subaru_crosstrek",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.191500039100647,
+          -0.03700000047683716,
+          -2.403499912261963
+        ],
+        "max": [
+          1.191500039100647,
+          1.8200000524520874,
+          2.453500118255615
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_subaru_crosstrek",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_subaru_liberty",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2019999933242798,
+          -0.03200000524520874,
+          -2.5449999084472656
+        ],
+        "max": [
+          1.2019999933242798,
+          1.5142031908035278,
+          2.595000114440918
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_subaru_liberty",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_subaru_brz",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1640000057220459,
+          -0.03200000524520874,
+          -2.284999917984009
+        ],
+        "max": [
+          1.1640000057220459,
+          1.3055579662322998,
+          2.334999885559082
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4344,
+      "metadata": {
+        "modelId": "fleet_subaru_brz",
+        "revision": "26.0",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_subaru_levorg",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1375000190734863,
+          -0.03200000524520874,
+          -2.352500032424927
+        ],
+        "max": [
+          1.1375000190734863,
+          1.5160000324249268,
+          2.4025
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_subaru_levorg",
+        "revision": "26.0",
+        "body": "wagon",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_astra",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.182000012397766,
+          -0.03200000524520874,
+          -2.264499973297119
+        ],
+        "max": [
+          1.182000012397766,
+          1.5460000038146973,
+          2.3144999408721922
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_holden_astra",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_cruze",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.22,
+          -0.03200000524520874,
+          -2.59250004196167
+        ],
+        "max": [
+          1.22,
+          1.5440155267715454,
+          2.642500009536743
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_holden_cruze",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_barina",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1464999628067016,
+          -0.03200000524520874,
+          -2.1810000648498535
+        ],
+        "max": [
+          1.1464999628067016,
+          1.4869999885559082,
+          2.2310000324249266
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_holden_barina",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_captiva",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.223499984741211,
+          -0.03700000047683716,
+          -2.4835000743865967
+        ],
+        "max": [
+          1.223499984741211,
+          1.878999948501587,
+          2.53350004196167
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_holden_captiva",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_colorado",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2349999856948852,
+          -0.03700000047683716,
+          -2.833999942779541
+        ],
+        "max": [
+          1.2349999856948852,
+          1.9040000438690186,
+          2.883999910354614
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_holden_colorado",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_trailblazer",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.185999960899353,
+          -0.03700000047683716,
+          -2.389999937057495
+        ],
+        "max": [
+          1.185999960899353,
+          1.809999942779541,
+          2.439999904632568
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_holden_trailblazer",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_acadia",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1464999628067016,
+          -0.03700000047683716,
+          -2.2919998874664307
+        ],
+        "max": [
+          1.1464999628067016,
+          1.7369999885559082,
+          2.342000093460083
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_holden_acadia",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_caprice",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1470000457763672,
+          -0.03200000524520874,
+          -2.402000020980835
+        ],
+        "max": [
+          1.1470000457763672,
+          1.4287480115890503,
+          2.451999988555908
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_holden_caprice",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_commodore_ute",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1679999542236328,
+          -0.03700000047683716,
+          -2.645500015258789
+        ],
+        "max": [
+          1.1679999542236328,
+          1.778239369392395,
+          2.695499982833862
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_holden_commodore_ute",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_holden_monaro",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1279999923706054,
+          -0.03200000524520874,
+          -2.1980000247955322
+        ],
+        "max": [
+          1.1279999923706054,
+          1.3000000715255737,
+          2.2479999923706053
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4344,
+      "metadata": {
+        "modelId": "fleet_holden_monaro",
+        "revision": "26.0",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_golf",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1325000238418579,
+          -0.03200000524520874,
+          -2.147500108718872
+        ],
+        "max": [
+          1.1325000238418579,
+          1.4639999866485596,
+          2.197500076293945
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_volkswagen_golf",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_polo",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1774999809265136,
+          -0.03200000524520874,
+          -2.2540000190734863
+        ],
+        "max": [
+          1.1774999809265136,
+          1.5379999876022339,
+          2.3039999866485594
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_volkswagen_polo",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_passat",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1900000286102295,
+          -0.03200000524520874,
+          -2.4895001163482666
+        ],
+        "max": [
+          1.1900000286102295,
+          1.6019999980926514,
+          2.5395000839233397
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_volkswagen_passat",
+        "revision": "26.0",
+        "body": "wagon",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_tiguan",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.188000054359436,
+          -0.03700000047683716,
+          -2.395500015258789
+        ],
+        "max": [
+          1.188000054359436,
+          1.8140000104904175,
+          2.445499982833862
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_volkswagen_tiguan",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_touareg",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2280000162124634,
+          -0.03700000047683716,
+          -2.4944999923706055
+        ],
+        "max": [
+          1.2280000162124634,
+          1.8869999647140503,
+          2.5444999599456786
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_volkswagen_touareg",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_t_roc",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1629999589920044,
+          -0.03700000047683716,
+          -2.333000015258789
+        ],
+        "max": [
+          1.1629999589920044,
+          1.7669999599456787,
+          2.382999982833862
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_volkswagen_t_roc",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_t_cross",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1874999713897705,
+          -0.03700000047683716,
+          -2.393499921798706
+        ],
+        "max": [
+          1.1874999713897705,
+          1.812000036239624,
+          2.443499889373779
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_volkswagen_t_cross",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_amarok",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1980000448226928,
+          -0.03700000047683716,
+          -2.7294998874664307
+        ],
+        "max": [
+          1.1980000448226928,
+          1.8320000171661377,
+          2.779500093460083
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_volkswagen_amarok",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_caddy",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2319999647140503,
+          -0.03700000047683716,
+          -2.6805001010894776
+        ],
+        "max": [
+          1.2319999647140503,
+          2.0910000801086426,
+          2.7305000686645506
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_volkswagen_caddy",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_transporter",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2605000448226928,
+          -0.03700000047683716,
+          -2.7565000762939453
+        ],
+        "max": [
+          1.2605000448226928,
+          2.1500000953674316,
+          2.8065000438690184
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_volkswagen_transporter",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volkswagen_multivan",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2399999809265136,
+          -0.03700000047683716,
+          -2.701999973297119
+        ],
+        "max": [
+          1.2399999809265136,
+          2.1080000400543213,
+          2.7519999408721922
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_volkswagen_multivan",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_suzuki_swift",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.122500033378601,
+          -0.03200000524520874,
+          -2.0049999465942383
+        ],
+        "max": [
+          1.122500033378601,
+          1.50600004196167,
+          2.055000033378601
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_suzuki_swift",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_suzuki_vitara",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1729999494552612,
+          -0.03700000047683716,
+          -2.3580001106262207
+        ],
+        "max": [
+          1.1729999494552612,
+          1.7860000133514404,
+          2.408000078201294
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_suzuki_vitara",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_suzuki_s_cross",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2360000324249267,
+          -0.03700000047683716,
+          -2.514000009536743
+        ],
+        "max": [
+          1.2360000324249267,
+          1.9019999504089355,
+          2.5639999771118163
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_suzuki_s_cross",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_suzuki_baleno",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1279999923706054,
+          -0.03200000524520874,
+          -2.13699991607666
+        ],
+        "max": [
+          1.1279999923706054,
+          1.4559999704360962,
+          2.1869998836517333
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_suzuki_baleno",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_suzuki_ignis",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.122999997138977,
+          -0.03200000524520874,
+          -2.1250000705718994
+        ],
+        "max": [
+          1.122999997138977,
+          1.4479999542236328,
+          2.1750000381469725
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_suzuki_ignis",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_suzuki_grand_vitara",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.157999963760376,
+          -0.03700000047683716,
+          -2.3204999675750733
+        ],
+        "max": [
+          1.157999963760376,
+          1.7580000162124634,
+          2.3704999351501463
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_suzuki_grand_vitara",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_honda_civic",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1384999465942383,
+          -0.03200000524520874,
+          -2.16100008392334
+        ],
+        "max": [
+          1.1384999465942383,
+          1.4730000495910645,
+          2.211000051498413
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_honda_civic",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_honda_accord",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2104999732971191,
+          -0.03200000524520874,
+          -2.5674999465942383
+        ],
+        "max": [
+          1.2104999732971191,
+          1.528115153312683,
+          2.6174999141693114
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_honda_accord",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_honda_jazz",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1025000524520874,
+          -0.03200000524520874,
+          -2.0750001182556153
+        ],
+        "max": [
+          1.1025000524520874,
+          1.531000018119812,
+          2.1250000858306883
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_honda_jazz",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_honda_cr_v",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1685000371932983,
+          -0.03700000047683716,
+          -2.346000026702881
+        ],
+        "max": [
+          1.1685000371932983,
+          1.7769999504089355,
+          2.395999994277954
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_honda_cr_v",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_honda_hr_v",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1805000019073486,
+          -0.03700000047683716,
+          -2.3764999618530274
+        ],
+        "max": [
+          1.1805000019073486,
+          1.7999999523162842,
+          2.4264999294281004
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_honda_hr_v",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_honda_zr_v",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2115000200271606,
+          -0.03700000047683716,
+          -2.453500102996826
+        ],
+        "max": [
+          1.2115000200271606,
+          1.8569999933242798,
+          2.5035000705718993
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_honda_zr_v",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_honda_odyssey",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2050000143051147,
+          -0.03700000047683716,
+          -2.6080001106262207
+        ],
+        "max": [
+          1.2050000143051147,
+          2.0350000858306885,
+          2.658000078201294
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_honda_odyssey",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_honda_integra",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2074999523162842,
+          -0.03200000524520874,
+          -2.390499900817871
+        ],
+        "max": [
+          1.2074999523162842,
+          1.3672761917114258,
+          2.4405001068115233
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4344,
+      "metadata": {
+        "modelId": "fleet_honda_integra",
+        "revision": "26.0",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_isuzu_d_max",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1900000286102295,
+          -0.03700000047683716,
+          -2.707500051498413
+        ],
+        "max": [
+          1.1900000286102295,
+          1.815999984741211,
+          2.757500019073486
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_isuzu_d_max",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_isuzu_mu_x",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1900000286102295,
+          -0.03700000047683716,
+          -2.5000000705718994
+        ],
+        "max": [
+          1.1900000286102295,
+          1.9119999408721924,
+          2.5500000381469725
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_isuzu_mu_x",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mg_mg3",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.0969999742507934,
+          -0.03200000524520874,
+          -2.0634999980926514
+        ],
+        "max": [
+          1.0969999742507934,
+          1.4049999713897705,
+          2.1134999656677245
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mg_mg3",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mg_mg4",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.182499976158142,
+          -0.03200000524520874,
+          -2.2679998874664307
+        ],
+        "max": [
+          1.182499976158142,
+          1.5470000505447388,
+          2.3155001068115233
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4614,
+      "metadata": {
+        "modelId": "fleet_mg_mg4",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mg_mg5",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1490000200271606,
+          -0.03200000524520874,
+          -2.406999897003174
+        ],
+        "max": [
+          1.1490000200271606,
+          1.4317280054092407,
+          2.457000102996826
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mg_mg5",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mg_zs",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.182499976158142,
+          -0.03700000047683716,
+          -2.3815000762939453
+        ],
+        "max": [
+          1.182499976158142,
+          1.8029999732971191,
+          2.4315000438690184
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mg_zs",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mg_hs",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1830000591278076,
+          -0.03700000047683716,
+          -2.3820000400543213
+        ],
+        "max": [
+          1.1830000591278076,
+          1.8040000200271606,
+          2.4320000076293944
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mg_hs",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_gwm_haval_h6",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.154999942779541,
+          -0.03700000047683716,
+          -2.3130000343322754
+        ],
+        "max": [
+          1.154999942779541,
+          1.7519999742507935,
+          2.3630000019073485
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_gwm_haval_h6",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_gwm_haval_jolion",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1839999866485595,
+          -0.03700000047683716,
+          -2.3845000972747803
+        ],
+        "max": [
+          1.1839999866485595,
+          1.805999994277954,
+          2.4345000648498534
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_gwm_haval_jolion",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_gwm_cannon",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2254999589920044,
+          -0.03700000047683716,
+          -2.8069999923706055
+        ],
+        "max": [
+          1.2254999589920044,
+          1.8860000371932983,
+          2.8569999599456786
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_gwm_cannon",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_gwm_tank_300",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1765000534057617,
+          -0.03700000047683716,
+          -2.3669999351501465
+        ],
+        "max": [
+          1.1765000534057617,
+          1.7920000553131104,
+          2.4169999027252196
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_gwm_tank_300",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_gwm_tank_500",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.220499963760376,
+          -0.03700000047683716,
+          -2.4759999027252197
+        ],
+        "max": [
+          1.220499963760376,
+          1.8730000257492065,
+          2.526000108718872
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_gwm_tank_500",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_gwm_ora",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1575,
+          -0.03200000524520874,
+          -2.2089998722076416
+        ],
+        "max": [
+          1.1575,
+          1.5049999952316284,
+          2.2565000915527342
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4614,
+      "metadata": {
+        "modelId": "fleet_gwm_ora",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_byd_atto_3",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2310000371932983,
+          -0.03700000047683716,
+          -2.503999948501587
+        ],
+        "max": [
+          1.2310000371932983,
+          1.8930000066757202,
+          2.5514999294281004
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4650,
+      "metadata": {
+        "modelId": "fleet_byd_atto_3",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_byd_dolphin",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1575,
+          -0.03200000524520874,
+          -2.2089998722076416
+        ],
+        "max": [
+          1.1575,
+          1.5049999952316284,
+          2.2565000915527342
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4614,
+      "metadata": {
+        "modelId": "fleet_byd_dolphin",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_byd_seal",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1624999952316284,
+          -0.03200000524520874,
+          -2.444999933242798
+        ],
+        "max": [
+          1.1624999952316284,
+          1.4525930881500244,
+          2.4924999141693114
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4614,
+      "metadata": {
+        "modelId": "fleet_byd_seal",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_byd_sealion_6",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2045000505447387,
+          -0.03700000047683716,
+          -2.438999891281128
+        ],
+        "max": [
+          1.2045000505447387,
+          1.843999981880188,
+          2.4865001106262206
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4650,
+      "metadata": {
+        "modelId": "fleet_byd_sealion_6",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_byd_shark_6",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2084999990463257,
+          -0.03700000047683716,
+          -2.7614998817443848
+        ],
+        "max": [
+          1.2084999990463257,
+          1.8519999980926514,
+          2.8090001010894774
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4754,
+      "metadata": {
+        "modelId": "fleet_byd_shark_6",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_tesla_model_3",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1800000381469726,
+          -0.03200000524520874,
+          -2.4375
+        ],
+        "max": [
+          1.1800000381469726,
+          1.4523793458938599,
+          2.4849999809265135
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4614,
+      "metadata": {
+        "modelId": "fleet_tesla_model_3",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_tesla_model_y",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2154999685287475,
+          -0.03700000047683716,
+          -2.4524998664855957
+        ],
+        "max": [
+          1.2154999685287475,
+          1.7109999656677246,
+          2.5000000858306883
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4650,
+      "metadata": {
+        "modelId": "fleet_tesla_model_y",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ldv_t60",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2050000143051147,
+          -0.03700000047683716,
+          -2.7489999046325684
+        ],
+        "max": [
+          1.2050000143051147,
+          1.8459999561309814,
+          2.7990001106262206
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_ldv_t60",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ldv_d90",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1985000085830688,
+          -0.03700000047683716,
+          -2.4215000381469727
+        ],
+        "max": [
+          1.1985000085830688,
+          1.8329999446868896,
+          2.4715000057220458
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_ldv_d90",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ldv_g10",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2019999933242798,
+          -0.03700000047683716,
+          -2.6004999389648438
+        ],
+        "max": [
+          1.2019999933242798,
+          2.0299999713897705,
+          2.650499906539917
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_ldv_g10",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ldv_deliver_9",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2119999837875366,
+          -0.03700000047683716,
+          -2.6264999618530274
+        ],
+        "max": [
+          1.2119999837875366,
+          2.049999952316284,
+          2.6764999294281004
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_ldv_deliver_9",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ldv_mifa",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2709999990463257,
+          -0.03700000047683716,
+          -2.784999917984009
+        ],
+        "max": [
+          1.2709999990463257,
+          2.1710000038146973,
+          2.834999885559082
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_ldv_mifa",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_renault_koleos",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2045000505447387,
+          -0.03700000047683716,
+          -2.4354999771118164
+        ],
+        "max": [
+          1.2045000505447387,
+          1.843000054359436,
+          2.4854999446868895
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_renault_koleos",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_renault_megane",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1529999685287475,
+          -0.03200000524520874,
+          -2.1950000038146973
+        ],
+        "max": [
+          1.1529999685287475,
+          1.496999979019165,
+          2.2449999713897704
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_renault_megane",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_renault_kangoo",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2399999809265136,
+          -0.03700000047683716,
+          -2.702499937057495
+        ],
+        "max": [
+          1.2399999809265136,
+          2.1080000400543213,
+          2.752499904632568
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_renault_kangoo",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_renault_trafic",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2499999713897705,
+          -0.03700000047683716,
+          -2.7284999599456787
+        ],
+        "max": [
+          1.2499999713897705,
+          2.128000020980835,
+          2.778499927520752
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_renault_trafic",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_renault_master",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1830000591278076,
+          -0.03700000047683716,
+          -2.5500000228881836
+        ],
+        "max": [
+          1.1830000591278076,
+          1.9910000562667847,
+          2.5999999904632567
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4692,
+      "metadata": {
+        "modelId": "fleet_renault_master",
+        "revision": "26.0",
+        "body": "van",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_peugeot_308",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1080000114440918,
+          -0.03200000524520874,
+          -2.089500020980835
+        ],
+        "max": [
+          1.1080000114440918,
+          1.4229999780654907,
+          2.139499988555908
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_peugeot_308",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_peugeot_2008",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1529999685287475,
+          -0.03700000047683716,
+          -2.3074999561309815
+        ],
+        "max": [
+          1.1529999685287475,
+          1.7480000257492065,
+          2.3574999237060545
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_peugeot_2008",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_peugeot_3008",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1594999742507934,
+          -0.03700000047683716,
+          -2.323999952316284
+        ],
+        "max": [
+          1.1594999742507934,
+          1.7610000371932983,
+          2.3739999198913573
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_peugeot_3008",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_peugeot_5008",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2330000114440918,
+          -0.03700000047683716,
+          -2.5065000762939453
+        ],
+        "max": [
+          1.2330000114440918,
+          1.8960000276565552,
+          2.5565000438690184
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_peugeot_5008",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_jeep_wrangler",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.16350004196167,
+          -0.03700000047683716,
+          -2.336500005722046
+        ],
+        "max": [
+          1.16350004196167,
+          1.7680000066757202,
+          2.548999881744385
+        ]
+      },
+      "meshes": 76,
+      "vertices": 5504,
+      "metadata": {
+        "modelId": "fleet_jeep_wrangler",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_jeep_grand_cherokee",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.217499942779541,
+          -0.03700000047683716,
+          -2.470500068664551
+        ],
+        "max": [
+          1.217499942779541,
+          1.8680000305175781,
+          2.6829999446868897
+        ]
+      },
+      "meshes": 76,
+      "vertices": 5504,
+      "metadata": {
+        "modelId": "fleet_jeep_grand_cherokee",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_jeep_compass",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2180000257492065,
+          -0.03700000047683716,
+          -2.471499996185303
+        ],
+        "max": [
+          1.2180000257492065,
+          1.8680000305175781,
+          2.684000110626221
+        ]
+      },
+      "meshes": 76,
+      "vertices": 5504,
+      "metadata": {
+        "modelId": "fleet_jeep_compass",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_jeep_cherokee",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2219999742507934,
+          -0.03700000047683716,
+          -2.4819999504089356
+        ],
+        "max": [
+          1.2219999742507934,
+          1.8760000467300415,
+          2.6945000648498536
+        ]
+      },
+      "meshes": 76,
+      "vertices": 5504,
+      "metadata": {
+        "modelId": "fleet_jeep_cherokee",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_jeep_gladiator",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2464999866485595,
+          -0.03700000047683716,
+          -2.8685000705718995
+        ],
+        "max": [
+          1.2464999866485595,
+          1.9259999990463257,
+          3.0809999465942384
+        ]
+      },
+      "meshes": 76,
+      "vertices": 5608,
+      "metadata": {
+        "modelId": "fleet_jeep_gladiator",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_skoda_octavia",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1644999694824218,
+          -0.03200000524520874,
+          -2.4234998931884766
+        ],
+        "max": [
+          1.1644999694824218,
+          1.559999942779541,
+          2.4735000991821288
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_skoda_octavia",
+        "revision": "26.0",
+        "body": "wagon",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_skoda_kodiaq",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2215000104904175,
+          -0.03700000047683716,
+          -2.4784999599456787
+        ],
+        "max": [
+          1.2215000104904175,
+          1.875,
+          2.528499927520752
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_skoda_kodiaq",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_skoda_karoq",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2180000257492065,
+          -0.03700000047683716,
+          -2.469499897003174
+        ],
+        "max": [
+          1.2180000257492065,
+          1.86899995803833,
+          2.519500102996826
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_skoda_karoq",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_skoda_superb",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1559999895095825,
+          -0.03200000524520874,
+          -2.401500057220459
+        ],
+        "max": [
+          1.1559999895095825,
+          1.5470000505447388,
+          2.451500024795532
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_skoda_superb",
+        "revision": "26.0",
+        "body": "wagon",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volvo_xc40",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2019999933242798,
+          -0.03700000047683716,
+          -2.4299998989105225
+        ],
+        "max": [
+          1.2019999933242798,
+          1.8389999866485596,
+          2.4800001049041747
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_volvo_xc40",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volvo_xc60",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2180000257492065,
+          -0.03700000047683716,
+          -2.468999933242798
+        ],
+        "max": [
+          1.2180000257492065,
+          1.8680000305175781,
+          2.518999900817871
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_volvo_xc60",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_volvo_xc90",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.216500015258789,
+          -0.03700000047683716,
+          -2.5500000228881836
+        ],
+        "max": [
+          1.216500015258789,
+          1.8630000352859497,
+          2.5999999904632567
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_volvo_xc90",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_bmw_1_series",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1069999647140503,
+          -0.03200000524520874,
+          -2.111000116348267
+        ],
+        "max": [
+          1.1069999647140503,
+          1.4210000038146973,
+          2.137499895095825
+        ]
+      },
+      "meshes": 67,
+      "vertices": 4812,
+      "metadata": {
+        "modelId": "fleet_bmw_1_series",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_bmw_3_series",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.192000002861023,
+          -0.03200000524520874,
+          -2.543000038146973
+        ],
+        "max": [
+          1.192000002861023,
+          1.4992926120758057,
+          2.56950005531311
+        ]
+      },
+      "meshes": 67,
+      "vertices": 4812,
+      "metadata": {
+        "modelId": "fleet_bmw_3_series",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_bmw_5_series",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.188999981880188,
+          -0.03200000524520874,
+          -2.5799999790191652
+        ],
+        "max": [
+          1.188999981880188,
+          1.4913440942764282,
+          2.6064999961853026
+        ]
+      },
+      "meshes": 67,
+      "vertices": 4812,
+      "metadata": {
+        "modelId": "fleet_bmw_5_series",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_bmw_x1",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.223000020980835,
+          -0.03700000047683716,
+          -2.5054998950958254
+        ],
+        "max": [
+          1.223000020980835,
+          1.878000020980835,
+          2.5319999122619627
+        ]
+      },
+      "meshes": 67,
+      "vertices": 4848,
+      "metadata": {
+        "modelId": "fleet_bmw_x1",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_bmw_x3",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1650000524520874,
+          -0.03700000047683716,
+          -2.361000116348267
+        ],
+        "max": [
+          1.1650000524520874,
+          1.7710000276565552,
+          2.387499895095825
+        ]
+      },
+      "meshes": 67,
+      "vertices": 4848,
+      "metadata": {
+        "modelId": "fleet_bmw_x3",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_bmw_x5",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2080000352859497,
+          -0.03700000047683716,
+          -2.467999990463257
+        ],
+        "max": [
+          1.2080000352859497,
+          1.850000023841858,
+          2.4945000076293944
+        ]
+      },
+      "meshes": 67,
+      "vertices": 4848,
+      "metadata": {
+        "modelId": "fleet_bmw_x5",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mercedes_benz_a_class",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1640000057220459,
+          -0.03200000524520874,
+          -2.221499990463257
+        ],
+        "max": [
+          1.1640000057220459,
+          1.5160000324249268,
+          2.27149995803833
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mercedes_benz_a_class",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mercedes_benz_c_class",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2145000410079956,
+          -0.03200000524520874,
+          -2.578500102996826
+        ],
+        "max": [
+          1.2145000410079956,
+          1.5350728034973145,
+          2.6285000705718993
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mercedes_benz_c_class",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mercedes_benz_e_class",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1939999771118164,
+          -0.03200000524520874,
+          -2.524499963760376
+        ],
+        "max": [
+          1.1939999771118164,
+          1.5022739171981812,
+          2.574499931335449
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4572,
+      "metadata": {
+        "modelId": "fleet_mercedes_benz_e_class",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mercedes_benz_gla",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1464999628067016,
+          -0.03700000047683716,
+          -2.2914999237060547
+        ],
+        "max": [
+          1.1464999628067016,
+          1.7359999418258667,
+          2.341499891281128
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mercedes_benz_gla",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mercedes_benz_glc",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.222500057220459,
+          -0.03700000047683716,
+          -2.4805000534057617
+        ],
+        "max": [
+          1.222500057220459,
+          1.8769999742507935,
+          2.530500020980835
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mercedes_benz_glc",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mercedes_benz_gle",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2284999799728393,
+          -0.03700000047683716,
+          -2.537000011444092
+        ],
+        "max": [
+          1.2284999799728393,
+          1.8839999437332153,
+          2.586999979019165
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_mercedes_benz_gle",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_audi_a3",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.0965000104904175,
+          -0.03200000524520874,
+          -2.0625000705718994
+        ],
+        "max": [
+          1.0965000104904175,
+          1.4040000438690186,
+          2.1125000381469725
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4617,
+      "metadata": {
+        "modelId": "fleet_audi_a3",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_audi_a4",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1399999570846557,
+          -0.03200000524520874,
+          -2.3834999313354492
+        ],
+        "max": [
+          1.1399999570846557,
+          1.4168317317962646,
+          2.4334998989105223
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4617,
+      "metadata": {
+        "modelId": "fleet_audi_a4",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_audi_a6",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1659999799728393,
+          -0.03200000524520874,
+          -2.451500009536743
+        ],
+        "max": [
+          1.1659999799728393,
+          1.458551287651062,
+          2.5014999771118163
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4617,
+      "metadata": {
+        "modelId": "fleet_audi_a6",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_audi_q3",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.213000030517578,
+          -0.03700000047683716,
+          -2.457500051498413
+        ],
+        "max": [
+          1.213000030517578,
+          1.8600000143051147,
+          2.507500019073486
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4653,
+      "metadata": {
+        "modelId": "fleet_audi_q3",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_audi_q5",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1624999952316284,
+          -0.03700000047683716,
+          -2.330999921798706
+        ],
+        "max": [
+          1.1624999952316284,
+          1.7660000324249268,
+          2.380999889373779
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4653,
+      "metadata": {
+        "modelId": "fleet_audi_q5",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_audi_q7",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1724999856948852,
+          -0.03700000047683716,
+          -2.3564999809265137
+        ],
+        "max": [
+          1.1724999856948852,
+          1.784999966621399,
+          2.4064999485015868
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4653,
+      "metadata": {
+        "modelId": "fleet_audi_q7",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_lexus_is",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1770000171661377,
+          -0.03200000524520874,
+          -2.4800000896453858
+        ],
+        "max": [
+          1.1770000171661377,
+          1.475443720817566,
+          2.530000057220459
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4617,
+      "metadata": {
+        "modelId": "fleet_lexus_is",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_lexus_es",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.188000054359436,
+          -0.03200000524520874,
+          -2.5084999313354492
+        ],
+        "max": [
+          1.188000054359436,
+          1.4923380613327026,
+          2.5584998989105223
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4617,
+      "metadata": {
+        "modelId": "fleet_lexus_es",
+        "revision": "26.0",
+        "body": "sedan",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_lexus_nx",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2095000457763672,
+          -0.03700000047683716,
+          -2.4484999885559082
+        ],
+        "max": [
+          1.2095000457763672,
+          1.8530000448226929,
+          2.4984999561309813
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4653,
+      "metadata": {
+        "modelId": "fleet_lexus_nx",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_lexus_rx",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1965000343322754,
+          -0.03700000047683716,
+          -2.4159999599456787
+        ],
+        "max": [
+          1.1965000343322754,
+          1.8289999961853027,
+          2.465999927520752
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4653,
+      "metadata": {
+        "modelId": "fleet_lexus_rx",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_lexus_ux",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1575,
+          -0.03700000047683716,
+          -2.3195000400543213
+        ],
+        "max": [
+          1.1575,
+          1.7569999694824219,
+          2.3695000076293944
+        ]
+      },
+      "meshes": 58,
+      "vertices": 4653,
+      "metadata": {
+        "modelId": "fleet_lexus_ux",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_land_rover_defender",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1575,
+          -0.03700000047683716,
+          -2.3195000400543213
+        ],
+        "max": [
+          1.1575,
+          1.7569999694824219,
+          2.534499979019165
+        ]
+      },
+      "meshes": 67,
+      "vertices": 5092,
+      "metadata": {
+        "modelId": "fleet_land_rover_defender",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_land_rover_discovery",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1679999542236328,
+          -0.03700000047683716,
+          -2.345000099182129
+        ],
+        "max": [
+          1.1679999542236328,
+          1.7760000228881836,
+          2.395000066757202
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_land_rover_discovery",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_land_rover_range_rover_sport",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1865000438690185,
+          -0.03700000047683716,
+          -2.392000030517578
+        ],
+        "max": [
+          1.1865000438690185,
+          1.8109999895095825,
+          2.4419999980926512
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_land_rover_range_rover_sport",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mini_cooper",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1025000524520874,
+          -0.03200000524520874,
+          -2.076000045776367
+        ],
+        "max": [
+          1.1025000524520874,
+          1.4140000343322754,
+          2.1260000133514403
+        ]
+      },
+      "meshes": 59,
+      "vertices": 4816,
+      "metadata": {
+        "modelId": "fleet_mini_cooper",
+        "revision": "26.0",
+        "body": "hatch",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_mini_countryman",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1995000553131103,
+          -0.03700000047683716,
+          -2.4234998931884766
+        ],
+        "max": [
+          1.1995000553131103,
+          1.8350000381469727,
+          2.4735000991821288
+        ]
+      },
+      "meshes": 59,
+      "vertices": 4852,
+      "metadata": {
+        "modelId": "fleet_mini_countryman",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_porsche_911",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.1800000381469726,
+          -0.03200000524520874,
+          -2.335000108718872
+        ],
+        "max": [
+          1.1800000381469726,
+          1.3146220445632935,
+          2.385000076293945
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4344,
+      "metadata": {
+        "modelId": "fleet_porsche_911",
+        "revision": "26.0",
+        "body": "coupe",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_porsche_macan",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2054999780654907,
+          -0.03700000047683716,
+          -2.4384999980926514
+        ],
+        "max": [
+          1.2054999780654907,
+          1.8459999561309814,
+          2.4884999656677245
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_porsche_macan",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_porsche_cayenne",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.216999979019165,
+          -0.03700000047683716,
+          -2.46750004196167
+        ],
+        "max": [
+          1.216999979019165,
+          1.8669999837875366,
+          2.517500009536743
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_porsche_cayenne",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ssangyong_musso",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.2425000381469726,
+          -0.03700000047683716,
+          -2.8550000896453858
+        ],
+        "max": [
+          1.2425000381469726,
+          1.9190000295639038,
+          2.905000057220459
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4712,
+      "metadata": {
+        "modelId": "fleet_ssangyong_musso",
+        "revision": "26.0",
+        "body": "ute",
+        "wheelCount": 4
+      }
+    },
+    {
+      "id": "fleet_ssangyong_rexton",
+      "kind": "car",
+      "bounds": {
+        "min": [
+          -1.185499997138977,
+          -0.03700000047683716,
+          -2.389000009536743
+        ],
+        "max": [
+          1.185499997138977,
+          1.809000015258789,
+          2.4389999771118163
+        ]
+      },
+      "meshes": 57,
+      "vertices": 4608,
+      "metadata": {
+        "modelId": "fleet_ssangyong_rexton",
+        "revision": "26.0",
+        "body": "suv",
+        "wheelCount": 4
       }
     }
   ]

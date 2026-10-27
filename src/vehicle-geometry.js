@@ -1,5 +1,5 @@
 // Original, metre-scale game models. All exterior render paths share this registry.
-const MODEL_REVISION='25.0';
+const MODEL_REVISION='26.0';
 const MODEL_PREVIEWS=/*__MODEL_PREVIEWS__*/{};
 // Rounded sheet-metal edges, rather than hard rectangular blocks. Metres.
 function vehicleBevelBox(name,w,h,d,r=Math.min(w,h,d)*.12){
@@ -41,7 +41,7 @@ const ROAD_SHAPES={
  wrx:{roof:1.46,front:-1.06,rear:1.30,roofFront:-.65,roofRear:.75,doors:4,hood:.86,wheel:.34,grille:'wrx',scoop:true,spoiler:.56}
 };
 function buildRoadExterior(root,p){
- const id=p.modelId,s=ROAD_SHAPES[id];if(!s)throw Error('No road model defined for '+id);
+ const id=p.modelId,s=p.roadShape||ROAD_SHAPES[id];if(!s)throw Error('No road model defined for '+id);
  const paint=mat(id+'-bodywork',p.colour),glass=modelGlass(id+'-windows'),black=materials.black,alloy=mat(id+'-wheel-alloy','#abb3bd'),w=p.width/2,l=p.length,base=s.hood;
  const archStations=[];for(const axle of [-p.wheelbase/2,p.wheelbase/2])for(let i=0;i<=12;i++){const z=axle+(i/12-.5)*(s.wheel+.06)*2;if(z>-l/2+.05&&z<l/2-.05)archStations.push([z,w*.99]);}
  const stations=[...archStations,[-l/2,w*.83],[-l*.43,w*.97],[-p.wheelbase/2,w],[s.front,w*.99],[s.rear,w*.99],...(s.bed?[[s.rear+.03,w*.99]]:[]),[p.wheelbase/2,w*.98],[l*.44,w*.95],[l/2,w*.86]].sort((a,b)=>a[0]-b[0]),vertices=[],faces=[];
@@ -202,7 +202,7 @@ function constructVehicle(root,p,id=p.modelId){
  if(id==='trafficTruck'){buildTrafficTruck(root,p);}else if(id==='ute'){const result=buildLandCruiser79(scene,root,false);for(const m of result.root.getChildMeshes())if(m.material?.name==='79-sandstone-paint')m.material.diffuseColor=C.FromHexString(p.colour).toLinearSpace();root.metadata={vehicle:p.name,kind:'car',modelId:id,revision:MODEL_REVISION,body:'79 Series single-cab trayback',wheelCount:4};}
  else if(p.body==='kart')buildKart(root,p);else if(p.kind==='car')buildRoadExterior(root,p);else if(p.kind==='heli'){if(p.body==='rescue-helicopter')buildRescueHelicopter(root,p);else buildDetailedChopper(root,p);}
  else if(p.kind==='jet')buildFighter(root,p);else if(p.kind==='boat')buildRunabout(root,p,false);else if(p.kind==='bike'){if(p.combustion)buildPetrolMotorcycle(root,p);else if(p.body==='electric-dirt-bike')buildElectricMoto(root,p);else buildBicycle(root,p);}else throw Error('Unknown vehicle model '+id);
- addVehicleCustoms(root,p,id);
+ addProductionCarDetails(root,p);addVehicleCustoms(root,p,id);
  if(p.kind==='car')for(const m of root.getChildMeshes())if(/bumper|mirror|bonnet|grille/.test(m.name)&&!m.parent?.metadata?.crashPart)m.metadata={...m.metadata,crashPart:m.name.includes('mirror')?'mirror':'panel'};
  return root;
 }

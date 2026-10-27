@@ -1,0 +1,21 @@
+// Named production cars represented by original procedural art and estimated gameplay specs.
+const EXPANDED_FLEET=/*__EXPANDED_FLEET_DATA__*/{models:[]};
+function installExpandedFleet(){
+ const bodies={h:'hatch',s:'sedan',u:'suv',w:'wagon',t:'ute',v:'van',c:'coupe'},colours=['#e5e5df','#6d7782','#2a3037','#a73736','#3b6387','#c5c4bb','#647568'];
+ for(const [i,m]of EXPANDED_FLEET.models.entries()){
+  const [length,width,wheelbase,height,mass,kw,kph,price]=m.spec,body=bodies[m.body],tall=['u','t','v'].includes(m.body),sport=m.body==='c',ev=/^(Tesla|BYD)$/.test(m.brand)||/^(MG4|Ora|EV6|EV9|Ioniq 5)$/.test(m.model),front=-wheelbase*.43,rear=m.body==='t'?wheelbase*.25:length*.43,roofFront=front+(m.body==='v'?.18:.48),roofRear=m.body==='c'?wheelbase*.20:m.body==='s'?wheelbase*.31:rear-.20;
+  profiles[m.id]={...profiles[sport?'mustang':tall?'hilux':'drift'],name:m.brand+' '+m.model,short:(m.brand+' '+m.model).toUpperCase(),modelId:m.id,brand:m.brand,kind:'car',body,price,mass,power:kw*1000,force:mass*(sport?5.2:tall?3.5:4.0),efficiency:ev?.92:.85,top:kph/3.6,reverse:8,grip:sport?18:tall?13.5:15,steer:tall?.48:.54,wheelbase,length,width,height,clearance:tall?.42:.23,eye:height-.22,drag:tall?.72:.42,brake:tall?10:12,suspension:tall?18:24,colour:colours[i%colours.length],traction:ev?'ELECTRIC DRIVE':sport?'REAR-WHEEL DRIVE':tall?'FOUR-WHEEL DRIVE':'FRONT-WHEEL DRIVE',manual:m.manual,gears:m.manual?6:0,redline:sport?7500:6500,transmission:ev?'Single-speed electric':m.manual?'6-speed manual':'Automatic',electric:ev,combustion:!ev,batteryWh:ev?65000:0,driftable:sport,trafficWeight:m.weight,estimatedModel:true,roadShape:{roof:height,front,rear,roofFront,roofRear,doors:sport?2:4,hood:m.body==='v'?1.17:tall?1.04:.83,wheel:tall?.37:.32,grille:['MINI','Jeep'].includes(m.brand)?'round':'wide',bed:m.body==='t',wagon:['u','w','v'].includes(m.body),hatch:m.body==='h',fastback:sport,spare:m.brand==='Jeep'||m.model==='Defender',van:m.body==='v',ev,brand:m.brand,fascia:i%4}};
+ }
+ for(const [id,weight]of [['hilux',18],['ranger',18],['patrol',7],['jimny',4],['drift',6],['commodore',6],['falcon',4],['wrx',2],['mustang',.5],['gtr',.15],['ute',5]])profiles[id].trafficWeight=weight;
+}
+function estimatedTrafficModel(index){const list=Object.values(profiles).filter(p=>p.kind==='car'&&p.trafficWeight>0),total=list.reduce((n,p)=>n+p.trafficWeight,0);let pick=(((index+1)*.7548776662466927)%1)*total;for(const p of list){pick-=p.trafficWeight;if(pick<0)return p.modelId;}return list.at(-1).modelId;}
+function addProductionCarDetails(root,p){const s=p.roadShape;if(!s)return;const z=-p.length/2-.06,w=p.width*.5,y=s.hood*.7,alloy=materials.metal;
+ if(s.brand==='BMW')for(const side of [-1,1]){box('kidney-grille',w*.27,.23,.035,side*w*.18,y,z,materials.black,root);for(let i=0;i<4;i++)box('kidney-grille-slat',.012,.20,.041,side*w*.18+(i-1.5)*.045,y,z-.018,alloy,root);}
+ else if(s.brand==='Jeep')for(let i=0;i<7;i++)box('seven-slot-grille',.045,.24,.035,(i-3)*.08,y,z,materials.black,root);
+ else if(s.ev){box('closed-ev-front',w*1.12,.20,.035,0,y,z,root.getChildMeshes().find(m=>m.material?.name===p.modelId+'-bodywork')?.material||alloy,root);tube('ev-running-light',[[-w*.85,s.hood+.03,z],[w*.85,s.hood+.03,z]],.012,materials.light,root);}
+ else if(s.brand==='Audi'||s.brand==='Lexus')tube('angular-grille-surround',[[-w*.53,y+.15,z],[-w*.65,y-.12,z],[w*.65,y-.12,z],[w*.53,y+.15,z],[-w*.53,y+.15,z]],.014,alloy,root);
+ if(s.van){for(const side of [-1,1]){tube('van-sliding-door-track',[[side*w*1.007,s.hood-.08,-.1],[side*w*1.007,s.hood-.08,p.length*.32]],.013,alloy,root);box('van-sliding-door-handle',.03,.035,.21,side*w*1.02,s.hood-.13,.3,alloy,root);}}
+ root.metadata={...root.metadata,representation:'original procedural approximation',productionModel:p.name};
+}
+
+function refreshTrafficVariety(ai){if(ai.isPoliceUnit||ai.disabledByHijack)return;const epoch=Math.floor((state.elapsed||0)/75);if((ai.modelEpoch??0)===epoch)return;if(ai.npcCrash||ai.health<=0)preserveTrafficWreck(ai);const old=ai.root,next=createTrafficCar(ai.index,false,ai.index+epoch*40);disposeFlightActor(old);Object.assign(ai,next,{modelEpoch:epoch,health:100});resetTrafficDamage(ai);}

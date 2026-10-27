@@ -12,12 +12,16 @@ class CoastNostr {
     if(!this.validEvent(e))return;
     if(e.id===this.probe&&e.pubkey===this.pub){this.ready=true;this.attempt=0;this.lastError='Connected · signed round-trip verified';clearTimeout(this.handshake);this.onStatus();return;}
     if(this.ready)this.onData(e.content);
-   }else if(m[0]==='OK'&&m[2]===false){this.lastError='Relay rejected handshake: '+String(m[3]).slice(0,120);ws.close();}else if(m[0]==='CLOSED'&&m[1]===this.sub){this.lastError='Relay rejected subscription: '+String(m[2]).slice(0,120);ws.close();}else if(m[0]==='NOTICE')this.lastError=String(m[1]).slice(0,120);
+   }else if(m[0]==='OK'&&m[2]===false){this.lastError='Relay rejected publish: '+String(m[3]).slice(0,120);ws.close();}else if(m[0]==='CLOSED'&&m[1]===this.sub){this.lastError='Relay rejected subscription: '+String(m[2]).slice(0,120);ws.close();}else if(m[0]==='NOTICE')this.lastError=String(m[1]).slice(0,120);
   };
   ws.onerror=()=>{this.lastError='WebSocket blocked or unreachable';};ws.onclose=e=>{if(ws!==this.ws)return;clearTimeout(this.handshake);this.ready=false;if(!this.lastError.startsWith('Relay rejected'))this.lastError='Closed '+e.code+(e.reason?' · '+e.reason:' · network, service or browser restriction');this.failed(this.lastError);};
   this.handshake=setTimeout(()=>{if(!this.ready){this.lastError='Signed handshake timed out';ws.close();}},16000);
  }
- failed(reason){this.ready=false;this.lastError=reason;if(!this.closed){this.attempt++;this.onStatus();this.retry=setTimeout(()=>this.connect(),Math.min(30000,1500*2**Math.min(this.attempt,4)));}}
- publish(value){if(!this.ready||this.ws?.readyState!==1||this.ws.bufferedAmount>16000||Date.now()-this.lastSent<500)return;const content=JSON.stringify(value);if(content.length>4096)return;this.lastSent=Date.now();this.ws.send(JSON.stringify(['EVENT',this.sign(content)]));}
+ failed(reason){this.ready=false;this.lastError=reason;if(!this.closed){this.attempt++;this.onStatus();this.retry=setTimeout(()=>this.connect(),/banned|rate.limit/i.test(reason)?120000:Math.min(30000,1500*2**Math.min(this.attempt,4)));}}
+ publish(value){
+  if(!this.ready||this.ws?.readyState!==1||this.ws.bufferedAmount>16000)return;const s=value.state,round=(v,step)=>Math.round((v||0)/step),pose=value.type==='pose'&&value.v===14?JSON.stringify([value.name,s?[s.vehicle,round(s.x,.08),round(s.y,.08),round(s.z,.08),round(s.yaw,.01),round(s.pitch,.01),round(s.roll,.01),round(s.health,1),s.indicator,s.headlights,s.ejected,s.parachute,s.gearDown,round(s.rotor,.1)]:null]):null;
+  const interval=pose&&pose===this.lastPoseKey?2500:this.url.includes('damus')?1100:550;if(Date.now()-this.lastSent<interval)return;const content=JSON.stringify(value);if(content.length>4096)return;this.lastSent=Date.now();this.lastPoseKey=pose;this.ws.send(JSON.stringify(['EVENT',this.sign(content)]));
+ }
+
  close(){this.closed=true;this.ready=false;clearTimeout(this.retry);clearTimeout(this.handshake);if(this.ws?.readyState===1)this.ws.send(JSON.stringify(['CLOSE',this.sub]));this.ws?.close();this.key.fill(0);}
 }

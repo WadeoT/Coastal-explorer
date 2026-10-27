@@ -9,7 +9,7 @@ function beginCrashStructure(root,p,point,speed,worldNormal=null,owner=null){
 }
 function detachImpactParts(s,point,speed){
  if(speed<14)return;const root=s.root,p=s.p,near=point.clone();root.computeWorldMatrix(true);
- const candidates=[...root.getChildTransformNodes().filter(n=>n.metadata?.wheel),...root.getChildMeshes().filter(m=>m.metadata?.crashPart)];let count=0;
+ const candidates=[...root.getChildTransformNodes().filter(n=>n.metadata?.wheel||n.metadata?.crashPart),...root.getChildMeshes().filter(m=>m.metadata?.crashPart)];let count=0;
  for(const part of candidates){if(part.metadata?.detached||looseVehicleParts.filter(a=>!a.expired).length>=32||count>=4)continue;part.computeWorldMatrix(true);const centre=V.TransformCoordinates(part.getAbsolutePosition(),Matrix.Invert(root.getWorldMatrix())),distance=V.Distance(centre,near),wheel=part.metadata?.wheel,threshold=wheel?28:part.metadata.crashPart==='mirror'?14:21;
   if(speed<threshold||distance>(wheel?1.5:2.1))continue;const original={parent:part.parent,position:part.position.clone(),rotation:part.rotation.clone(),quaternion:part.rotationQuaternion?.clone()||null};part.setParent(null);part.setEnabled(true);part.metadata={...part.metadata,detached:true};
   const velocity=s.owner?new V(Math.sin(s.owner.yaw)*s.owner.speed,0,-Math.cos(s.owner.yaw)*s.owner.speed):new V(motion.vx,motion.vy,motion.vz),out=V.TransformNormal(centre.clone().normalize(),root.getWorldMatrix()).normalize();velocity.addInPlace(out.scale(speed*.14));velocity.y+=Math.min(5,speed*.10);

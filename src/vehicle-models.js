@@ -76,11 +76,12 @@ function buildLandCruiser79(scene,parent,inside=false){
  box('roof-interior',1.68,.025,inside?.72:1.17,0,1.98,inside?.36:.10,seat);box('rearview-mirror',.23,.07,.035,0,1.845,-.51,black);box('rearview-glass',.205,.047,.01,0,1.845,-.486,chrome);if(!inside)box('driver-sun-visor',.36,.018,.12,.48,1.965,-.33,seat);
  for(const side of [-1,1]){box('door-card',.025,.36,1.02,side*.858,1.08,.01,seat);box('door-armrest',.065,.055,.44,side*.82,1.16,.12,dark);box('interior-door-release',.026,.035,.12,side*.832,1.27,-.24,chrome);box('window-switch',.03,.012,.055,side*.805,1.198,-.02,black);tube('seat-stitch',[[side*.47-.22,1.03,.05],[side*.47-.22,1.03,.43]],.003,steel);}
  label('radio-display','FM  101.3',.18,.038,-.10,1.21,-.56,'#adcfba','#151d20');
+ const bonnetAssembly=new Node('79-bonnet-assembly',scene);bonnetAssembly.parent=root;bonnetAssembly.position.set(0,1.22,-1.64);bonnetAssembly.metadata={crashPart:'panel'};for(const m of root.getChildMeshes())if(/^79-bonnet/.test(m.name))m.setParent(bonnetAssembly);
  const savedParent=root.parent;root.parent=null;root.computeWorldMatrix(true);
  // Merge wheel details too; steering remains independent.
  for(const wheel of wheels){const savedPosition=wheel.position.clone();wheel.parent=null;wheel.position.set(0,0,0);wheel.computeWorldMatrix(true);for(const m of wheel.getChildMeshes())m.computeWorldMatrix(true);const wheelGroups=new Map();for(const mesh of wheel.getChildMeshes()){if(!wheelGroups.has(mesh.material))wheelGroups.set(mesh.material,[]);wheelGroups.get(mesh.material).push(mesh);}for(const [m,parts] of wheelGroups)if(parts.length>1){const merged=Mesh.MergeMeshes(parts,true,true,undefined,false,false);if(merged){merged.parent=wheel;merged.material=m;merged.isPickable=false;}}wheel.parent=root;wheel.position.copyFrom(savedPosition);wheel.computeWorldMatrix(true);}
  for(const w of wheels)w.metadata={...w.metadata,wheel:true};
- for(const m of root.getChildMeshes())if(/bonnet|bumper|bullbar|mirror/.test(m.name))m.metadata={...m.metadata,crashPart:m.name.includes('mirror')?'mirror':'panel'};
+ for(const m of root.getChildMeshes())if(/bonnet|bumper|bullbar|mirror/.test(m.name)&&!m.parent?.metadata?.crashPart)m.metadata={...m.metadata,crashPart:m.name.includes('mirror')?'mirror':'panel'};
  // Merge static parts by material to keep the driving scene inexpensive.
  for(const mesh of root.getChildMeshes())mesh.computeWorldMatrix(true);
  const groups=new Map();for(const mesh of root.getChildMeshes()){if(mesh.parent!==root||!mesh.material||mesh.metadata?.crashPart)continue;const key=mesh.material;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(mesh);}

@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Read official Queensland and ANCAP references
-        run: python3 scripts/research/traffic-and-crashes.py
+        run: python3 scripts/research/traffic-rows.py

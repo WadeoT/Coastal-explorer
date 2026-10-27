@@ -1,3 +1,13 @@
+V17 IMPACT & HANDLING
+Hold W / Up to accelerate a car, bike, kart or boat. Release to coast.
+S / Down brakes or reverses. Aircraft throttle controls are unchanged.
+Offset hard crashes can roll cars onto their side or roof; wall impacts
+crush real body panels. R rights a surviving overturned car without repairing it.
+Destroyed vehicles return to the garage after the existing wreck countdown.
+Cars show damage warnings instead of routine oil/coolant displays. Aircraft
+keep their detailed instruments. Surface-attached scars and dents are repaired
+at workshops or when respawning from the garage. Textures are included offline.
+
 SIMPLE PUBLIC SERVER (V16)
 You and your mate: open MULTIPLAYER > JOIN PUBLIC SERVER under Sunshine Coast
 Public. No codes, hosting accounts or server URLs needed. Joining runs
@@ -26,11 +36,11 @@ Public test brokers have no uptime guarantee and some networks block them.
 Use nicknames; room traffic is public. Shared server admin needs a dedicated
 relay. Local admin and your career remain available. ?network=off is local-only.
 
-COASTAL EXPLORER — VERSION 16 / PUBLIC SERVER
+COASTAL EXPLORER — VERSION 17 / IMPACT & HANDLING
 
 PLAY ONLINE
-https://wadeot.github.io/Coastal-explorer/index.html?v=16
-You should see V16 / PUBLIC SERVER in the showroom.
+https://wadeot.github.io/Coastal-explorer/index.html?v=17
+You should see V17 / IMPACT & HANDLING in the showroom.
 
 DOWNLOAD / BUNDLED MAP
 Extract this ZIP into a new folder. Open index.html in Chrome or Edge.

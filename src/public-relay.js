@@ -1,6 +1,6 @@
 // Anonymous public MQTT transport. Only this game's room topic is subscribed.
 // Public test brokers provide best-effort transport, never admin authority.
-const PUBLIC_BROKERS=['wss://broker.emqx.io:8084/mqtt','wss://test.mosquitto.org:8081/mqtt'];
+const PUBLIC_BROKERS=['wss://broker.hivemq.com:8884/mqtt','wss://broker.emqx.io:8084/mqtt'];
 class CoastMQTT {
  constructor(url,topic,onData,onStatus){Object.assign(this,{url,topic,onData,onStatus,closed:false,attempt:0,buffer:new Uint8Array()});this.connect();}
  text(value){const s=new TextEncoder().encode(value);return new Uint8Array([s.length>>8,s.length&255,...s]);}

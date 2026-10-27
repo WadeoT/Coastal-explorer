@@ -41,7 +41,7 @@ function buildWorkshopGeometry(parent,centre){
  root.metadata={workshops:built};return root;
 }
 function garageRepairCost(){const d=state.damage;if(!d)return 0;const damaged=d.engineFailed||d.coolantTemp>110||d.oilTemp>125||Object.values(d.components).some(v=>v<99)||['oil','coolant','fuel'].some(k=>d.capacity[k]>0&&d[k]/d.capacity[k]<.95);if(!damaged)return 0;return Math.round(350+(100-d.components.body)*30+Object.values(d.components).reduce((sum,v)=>sum+100-v,0)*4);}
-function garageArrival(){
+function garageArrival(){if(groundEscape.active){padContact=null;return null;}
  if(!state.profile||state.mode!=='playing'||!state.damage||state.damage.driverDead||state.damage.exploded||state.damage.components.body<=0){padContact=null;return null;}
  for(const g of repairGarages){
   if(state.profile.kind==='heli'&&g.pad){const distance=Math.hypot(player.position.x-g.pad.x,player.position.z-g.pad.z),height=player.position.y-state.profile.clearance-g.pad.y;

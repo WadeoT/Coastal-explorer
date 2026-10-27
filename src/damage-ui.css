@@ -116,3 +116,5 @@ input::placeholder,textarea::placeholder{color:#8895aa}
 .road-law{position:static;display:block;margin:0;padding:7px 10px;font:11px/1.5 monospace;border-width:1px 0;max-width:100%;color:#dbe3ee}.road-law[hidden]{display:none!important}@media(max-width:700px){.road-law{position:static;font-size:10px}}
 
 .damage-readout[hidden],#damageNumbers[hidden]{display:none!important}.third-person .damage-readout.ground-warning{display:block}.damage-readout.ground-warning{width:auto;max-width:280px;border-left-color:#ff805e}
+
+.hud-minimal #footStatus{display:none!important}

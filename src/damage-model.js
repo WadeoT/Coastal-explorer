@@ -4,14 +4,14 @@ const VehicleDamageModel=(()=>{
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
  function create(p={kind:'car'}){
   const electric=p.kind==='bike',airCooled=electric||p.body==='kart'||p.kind==='jet',capacity={oil:electric?0:7.5,coolant:airCooled?0:12,fuel:electric?0:p.kind==='jet'?5000:p.kind==='heli'?450:p.kind==='boat'?120:p.body==='kart'?5:90};
-  return {turbine:p.kind==='jet',thermalLoad:0,exhaustTemp:450,components:{engine:100,radiator:100,oil:100,fuel:100,driver:100,body:100},capacity,oil:capacity.oil,coolant:capacity.coolant,fuel:capacity.fuel,coolantTemp:88,oilTemp:92,oilPressure:electric?0:1.5,engineFailed:false,driverDead:false,burning:false,exploded:false,fireTime:0,oilStarvation:0,overheatTime:0,reason:'',lastHit:null,impacts:0,electric,airCooled};
+  return {fireDelay:['car','boat'].includes(p.kind)?9:3.5,turbine:p.kind==='jet',thermalLoad:0,exhaustTemp:450,components:{engine:100,radiator:100,oil:100,fuel:100,driver:100,body:100},capacity,oil:capacity.oil,coolant:capacity.coolant,fuel:capacity.fuel,coolantTemp:88,oilTemp:92,oilPressure:electric?0:1.5,engineFailed:false,driverDead:false,burning:false,exploded:false,fireTime:0,oilStarvation:0,overheatTime:0,reason:'',lastHit:null,impacts:0,electric,airCooled};
  }
  function hit(d,part,amount,cause='bullet'){
   if(!d||d.exploded||!Object.hasOwn(d.components,part)||!Number.isFinite(amount)||amount<=0)return false;
   const c=d.components;c[part]=clamp(c[part]-amount,0,100);d.lastHit={part,cause,amount};d.impacts++;
   if(part==='engine'&&c.engine<=12){d.engineFailed=true;d.reason='Engine destroyed';}
   if(part==='driver'&&c.driver<=0){d.driverDead=true;d.reason='Driver killed';}
-  if(part==='fuel'&&d.fuel>0&&c.fuel<=40){d.burning=true;if(c.fuel<=0)d.fireTime=Math.max(d.fireTime,3.3);}
+  if(part==='fuel'&&d.fuel>0&&c.fuel<=40){d.burning=true;if(c.fuel<=0)d.fireTime=Math.max(d.fireTime,d.fireDelay>4?0:3.3);}
   if(part==='body'&&c.body<=0){d.engineFailed=true;d.reason='Vehicle wrecked';}
   return true;
  }
@@ -36,7 +36,7 @@ const VehicleDamageModel=(()=>{
   if(d.oilStarvation>7){d.engineFailed=true;d.reason='Engine seized — oil pressure lost';c.engine=0;}
   if(d.overheatTime>6||c.engine<=12){d.engineFailed=true;d.reason=d.overheatTime>6?'Engine seized — overheated':d.reason||'Engine destroyed';c.engine=0;}
   if(d.capacity.fuel&&d.fuel<=0&&!d.exploded){d.engineFailed=true;d.reason=d.reason||'Fuel exhausted';}
-  if(d.burning&&!d.exploded){d.fireTime+=dt;c.body=Math.max(0,c.body-dt*5);c.engine=Math.max(0,c.engine-dt*8);if(d.fireTime>=3.5&&d.fuel>0)explode(d);else if(d.fireTime>=3.5&&d.fuel===0)d.burning=false;}
+  if(d.burning&&!d.exploded){d.fireTime+=dt;c.body=Math.max(0,c.body-dt*5);c.engine=Math.max(0,c.engine-dt*8);if(d.fireTime>=(d.fireDelay||3.5)&&d.fuel>0)explode(d);else if(d.fireTime>=(d.fireDelay||3.5)&&d.fuel===0)d.burning=false;}
  }
  function power(d){if(!d)return 1;if(d.engineFailed||d.exploded||d.driverDead)return 0;return clamp(d.components.engine/100,.12,1)*clamp(1-(d.coolantTemp-110)/60,.25,1);}
  // Coordinates are relative to the player's chassis origin, +X driver's side,
@@ -57,7 +57,7 @@ const VehicleDamageModel=(()=>{
   if(front){hit(d,'engine',severity*.85,'crash');hit(d,'radiator',severity*1.1,'crash');if(point.y<(p.clearance||.5))hit(d,'oil',severity*.45,'crash');}
   if(rear)hit(d,'fuel',severity*.8,'crash');
   if(speed>17)hit(d,'driver',(speed-17)**1.45*.7,'crash');
-  if(speed>23&&d.capacity.fuel){d.burning=true;if(speed>34){d.components.fuel=0;d.fireTime=3.3;}}
+  if(speed>23&&d.capacity.fuel){d.burning=true;if(speed>34){d.components.fuel=0;d.fireTime=d.fireDelay>4?0:3.3;}}
   return severity;
  }
  return {create,hit,step,power,zones,rayBox,trace,crash,explode};

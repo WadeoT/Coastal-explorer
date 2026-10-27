@@ -7,7 +7,7 @@ const pause=ms=>new Promise(r=>setTimeout(r,ms));
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 try{browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
 // Protocol fixture only: these are simulated brokers, not proof of internet reachability.
-async function brokers(context){await context.routeWebSocket(/wss:\/\/(broker.emqx.io:8084|test.mosquitto.org:8081)\/mqtt/,ws=>{let topic='';const host=new URL(ws.url()).host;peers.set(ws,{host,get topic(){return topic;}});ws.onClose(()=>peers.delete(ws));ws.onMessage(raw=>{const b=Buffer.from(raw),type=b[0]>>4;let i=1,n=0,m=1,k;do{k=b[i++];n+=(k&127)*m;m*=128;}while(k&128);const body=b.subarray(i,i+n);
+async function brokers(context){await context.routeWebSocket(/wss:\/\/(broker.emqx.io:8084|broker.hivemq.com:8884|test.mosquitto.org:8081)\/mqtt/,ws=>{let topic='';const host=new URL(ws.url()).host;peers.set(ws,{host,get topic(){return topic;}});ws.onClose(()=>peers.delete(ws));ws.onMessage(raw=>{const b=Buffer.from(raw),type=b[0]>>4;let i=1,n=0,m=1,k;do{k=b[i++];n+=(k&127)*m;m*=128;}while(k&128);const body=b.subarray(i,i+n);
 if(type===1){ws.send(Buffer.from([32,2,0,0]));}
 if(type===8){const len=body.readUInt16BE(2);topic=body.subarray(4,4+len).toString();ws.send(Buffer.from([144,3,0,1,0]));if(failFirst&&host.startsWith('broker.emqx'))ws.close();}
 if(type===3){packets.push(JSON.parse(body.subarray(2+body.readUInt16BE(0)).toString()));for(const [other,p]of peers)if(other!==ws&&p.host===host&&p.topic===topic)other.send(b);}

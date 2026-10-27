@@ -15,7 +15,7 @@ const DrivingRewardModel=(()=>{
 })();
 let drivingRewards=DrivingRewardModel.fresh();
 function resetDrivingRewards(){drivingRewards=DrivingRewardModel.fresh();}
-function awardDrivingCash(amount,label){const multiplier=Multiplayer.connected?Multiplayer.serverSettings.rewardMultiplier:1;amount=Math.round(amount*multiplier);if(!Number.isFinite(amount)||amount<=0)return;economy.balance=Math.min(1e10,economy.balance+amount);saveCareer();updateWallet();toast(label+' · +'+dollars(amount),3000);}
+function awardDrivingCash(amount,label){competitionDrivingAward(amount,label);const multiplier=Multiplayer.connected?Multiplayer.serverSettings.rewardMultiplier:1;amount=Math.round(amount*multiplier);if(!Number.isFinite(amount)||amount<=0)return;economy.balance=Math.min(1e10,economy.balance+amount);saveCareer();updateWallet();toast(label+' · +'+dollars(amount),3000);}
 function updateDrivingRewards(before,dt){
  const p=state.profile;if(!p)return;const moved=V.Distance(before,player.position),forward=motion.vx*Math.sin(motion.yaw)-motion.vz*Math.cos(motion.yaw),lateral=motion.vx*Math.cos(motion.yaw)+motion.vz*Math.sin(motion.yaw),contact=state.rewardRoad;
  const validMovement=moved<=p.top*dt*1.6+.20&&Number.isFinite(moved),road=p.kind==='car'&&contact&&contact.distance<=contact.halfWidth+1&&!['track','path','footway'].includes(contact.highway),pursued=state.wanted===5&&policeWitnesses(260)&&trafficPool.some(a=>a.police&&a.pursuing&&a.health>0&&a.root.isEnabled()&&V.Distance(a.root.position,player.position)<260);

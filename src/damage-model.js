@@ -16,7 +16,7 @@ const VehicleDamageModel=(()=>{
   return true;
  }
  function explode(d){if(d.exploded)return false;d.exploded=true;d.burning=true;d.engineFailed=true;d.driverDead=true;d.reason='Fuel explosion';for(const key of Object.keys(d.components))d.components[key]=0;d.fuel=0;return true;}
- function step(d,dt,{rpm=750,load=0,ambient=25,airspeed=0,redline=6000,boost=0}={}){
+ function step(d,dt,{rpm=750,load=0,ambient=25,airspeed=0,redline=6000,boost=0,cooling=1}={}){
   if(!d||!Number.isFinite(dt)||dt<=0)return;dt=Math.min(dt,.1);load=clamp(Number.isFinite(load)?load:0,0,1);airspeed=clamp(Number.isFinite(airspeed)?airspeed:0,0,350);boost=clamp(Number.isFinite(boost)?boost:0,0,1);redline=Number.isFinite(redline)&&redline>300?redline:6000;rpm=clamp(Number.isFinite(rpm)?rpm:0,0,12000);
   const c=d.components,running=!d.engineFailed&&!d.exploded&&rpm>300;
   if(d.capacity.coolant&&c.radiator<90)d.coolant=Math.max(0,d.coolant-d.capacity.coolant*(.005+(100-c.radiator)*.00055)*dt);
@@ -27,7 +27,7 @@ const VehicleDamageModel=(()=>{
   const oilFill=d.capacity.oil?d.oil/d.capacity.oil:1,coolFill=d.capacity.coolant?d.coolant/d.capacity.coolant:1;
   d.oilPressure=running&&d.capacity.oil?clamp(.45+rpm/650,0,5)*clamp(oilFill*1.2,0,1)*(c.oil<=8?.25:1):0;
   d.thermalLoad+=(load-d.thermalLoad)*(1-Math.exp(-dt/1.5));const effort=d.thermalLoad,rpmHeat=clamp(rpm/redline,0,1),airflow=clamp(airspeed/45,0,1);
-  const target=running?82+effort*15+rpmHeat*8+boost*10-airflow*5+(d.airCooled?0:(1-coolFill)*90+(1-c.radiator/100)*35):ambient;
+  const extraCooling=clamp((Number(cooling)||1)-1,0,1)*12;const target=running?82+effort*15+rpmHeat*8+boost*10-airflow*5-extraCooling+(d.airCooled?0:(1-coolFill)*90+(1-c.radiator/100)*35):ambient;
   d.coolantTemp+=(target-d.coolantTemp)*(1-Math.exp(-dt*(running?.055:.015)));
   d.oilTemp+=((running?88+effort*24+rpmHeat*8+boost*16-airflow*4+Math.max(0,d.coolantTemp-95)*.8:ambient)-d.oilTemp)*(1-Math.exp(-dt*.03));
   d.exhaustTemp+=((running?320+effort*450+rpmHeat*80+boost*170:ambient)-d.exhaustTemp)*(1-Math.exp(-dt*.35));

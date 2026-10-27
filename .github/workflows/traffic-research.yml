@@ -14,3 +14,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Read official Queensland and ANCAP references
         run: python3 scripts/research/traffic-api.py
+
+  crash-references:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/research/crash-sources.py

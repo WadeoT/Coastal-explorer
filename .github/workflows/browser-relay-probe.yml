@@ -5,6 +5,8 @@ on:
       - src/public-relay.js
       - src/nostr-relay.js
       - src/multiplayer.js
+      - src/neighbourhood-appearance.js
+      - scripts/probe-aerial-imagery.cjs
       - scripts/probe-browser-relays.cjs
       - scripts/probe-hosted-game.cjs
       - .github/workflows/browser-relay-probe.yml
@@ -23,3 +25,4 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node scripts/probe-browser-relays.cjs
       - run: node scripts/probe-hosted-game.cjs
+      - run: node scripts/probe-aerial-imagery.cjs

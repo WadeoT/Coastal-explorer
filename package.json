@@ -1,11 +1,11 @@
 {
   "name": "coastal-explorer",
-  "version": "21.0.0",
+  "version": "22.0.0",
   "private": true,
   "description": "Single-file Sunshine Coast driving game; optional browser verification",
   "scripts": {
     "test:audio": "node tests/engine-audio.cjs",
-    "test": "node tests/damage-model.cjs && node tests/engine-audio.cjs && node tests/rewards.cjs && node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs && node tests/damage-browser.cjs && node tests/v8.cjs && node tests/v9.cjs && node tests/v10.cjs && node tests/v11.cjs && node tests/thermal.cjs && node tests/v12.cjs && node tests/repair-pads.cjs && node tests/v13.cjs && npm run test:public-relay && npm run test:tutorial && npm run test:v17 && npm run test:v18 && npm run test:v19 && npm run test:v20 && npm run test:v21",
+    "test": "node tests/damage-model.cjs && node tests/engine-audio.cjs && node tests/rewards.cjs && node tests/relay.cjs && node tests/browser.cjs && node tests/v6.cjs && node tests/damage-browser.cjs && node tests/v8.cjs && node tests/v9.cjs && node tests/v10.cjs && node tests/v11.cjs && node tests/thermal.cjs && node tests/v12.cjs && node tests/repair-pads.cjs && node tests/v13.cjs && npm run test:public-relay && npm run test:tutorial && npm run test:v17 && npm run test:v18 && npm run test:v19 && npm run test:v20 && npm run test:v21 && npm run test:v22",
     "test:fleet": "node tests/v6.cjs",
     "test:relay": "node tests/relay.cjs",
     "test:geography": "node tests/browser.cjs",
@@ -29,7 +29,8 @@
     "test:v19": "node tests/crash-outcomes.cjs && node tests/v19.cjs",
     "test:v20": "node tests/beam-crash.cjs && node tests/traffic-census.cjs && node tests/nostr-codec.cjs && node tests/v20.cjs",
     "build:signing": "node scripts/build-nostr-crypto.cjs",
-    "test:v21": "node tests/v21.cjs"
+    "test:v21": "node tests/v21.cjs",
+    "test:v22": "node tests/v22.cjs"
   },
   "devDependencies": {
     "@babylonjs/core": "9.31.3",

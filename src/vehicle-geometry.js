@@ -1,5 +1,5 @@
 // Original, metre-scale game models. All exterior render paths share this registry.
-const MODEL_REVISION='21.0';
+const MODEL_REVISION='22.0';
 const MODEL_PREVIEWS=/*__MODEL_PREVIEWS__*/{};
 // Rounded sheet-metal edges, rather than hard rectangular blocks. Metres.
 function vehicleBevelBox(name,w,h,d,r=Math.min(w,h,d)*.12){

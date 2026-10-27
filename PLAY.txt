@@ -1,5 +1,5 @@
-V21 STREETS ALIVE
-https://wadeot.github.io/Coastal-explorer/index.html?v=21&publicRoom=COAST-PUBLIC
+V22 COAST IN COLOUR
+https://wadeot.github.io/Coastal-explorer/index.html?v=22&publicRoom=COAST-PUBLIC
 On foot: WASD moves, Shift runs, E enters your nearby vehicle or hijacks the
 nearest slow NPC/parked vehicle. Theft raises wanted level. Stolen cars are
 borrowed; buying is required for permanent garage ownership. F at a local
@@ -17,7 +17,7 @@ and Low modes. Crash panels bend, parts detach, and lost wheels impair drive.
 Nearby pedestrians can be injured by cars; driving offences worsen a pursuit.
 
 Public lobby now tries a verified standard HTTPS-port (443) relay first,
-then two backups. Use the V21 link to load the updated client.
+then two backups. Use the V22 link to load the updated client.
 
 V19 IMPACT & ESCAPE / PUBLIC LOBBY
 Cars/boats/helicopters: X jumps out even while moving. Speed and falls hurt
@@ -289,3 +289,5 @@ career as vehicle mods. Launching applies your purchased loadout.
 All earlier F18 cannon, steerable ejection, gunnery challenge, thermal
 response and raised repair-deck fixes are included.
 See docs/V13-RELEASE.md and docs/V13-VERIFICATION.md.
+
+MAP: Use SATELLITE / NATURAL to change layers. Imagery needs internet; the coloured natural map works offline. Roof colours may use aerial samples where readable. Wall styles use mapped tags or inferred local finishes.

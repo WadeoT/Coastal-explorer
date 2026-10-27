@@ -13,7 +13,7 @@ function rawHomeTile(cx,cz){
   for(const [a,b] of [[-1,-1],[1,-1],[1,1],[-1,1]])points.push({x:c.x+c.dx*a*width/2+c.dz*b*depth/2,z:c.z+c.dz*a*width/2-c.dx*b*depth/2});
   if(points.some(p=>mappedWaterAt(p.x,p.z)!==null||inMappedLanduse(woodlandIndex,p.x,p.z)))continue;
   if(buildingsNear(c.x,c.z,24).some(b=>points.some(p=>pointInPolygon(p.x,p.z,b.points))||b.points.some(p=>pointInPolygon(p.x,p.z,points))))continue;
-  const xs=points.map(p=>p.x),zs=points.map(p=>p.z),tags={building:'house',height:String(deterministic(c.id+'levels')>.82?6.2:3.4+deterministic(c.id+'h')*.8),'building:colour':['#e8e2d5','#d4d8d3','#e1d3bd','#c5cccb'][Math.floor(deterministic(c.id+'colour')*4)%4],'roof:colour':['#73777a','#a89179','#a8aaa7','#8c5142'][Math.floor(deterministic(c.id+'roof')*4)%4],'roof:shape':deterministic(c.id+'shape')>.25?'hipped':'gabled',source:'Estimated frontage, deterministic world tile'};
+  const xs=points.map(p=>p.x),zs=points.map(p=>p.z),tags={building:'house',height:String(deterministic(c.id+'levels')>.82?6.2:3.4+deterministic(c.id+'h')*.8),'roof:shape':deterministic(c.id+'shape')>.25?'hipped':'gabled',source:'Estimated frontage, deterministic world tile'};
   result.push({...c,tags,points,rings:[points],estimated:true,bounds:{minX:Math.min(...xs),maxX:Math.max(...xs),minZ:Math.min(...zs),maxZ:Math.max(...zs)}});
  }
  homeRawTiles.set(key,result);return result;

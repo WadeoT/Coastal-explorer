@@ -8,10 +8,11 @@ async function buildLocalStreetDetail(root,centre,paths,addMesh,quad,cuboid,yiel
  const boxTo=(key,x,y,z,w,h,d)=>{const a=arrays[key];cuboid(a.p,a.i,x,y,z,w,h,d);};
  const oriented=(key,x,y,z,w,h,d,dx,dz)=>{const a=arrays[key],p=(sx,sy,sz)=>[x+dx*sx-dz*sz,y+sy,z+dz*sx+dx*sz],v=[p(-w/2,0,-d/2),p(w/2,0,-d/2),p(-w/2,h,-d/2),p(w/2,h,-d/2),p(-w/2,0,d/2),p(w/2,0,d/2),p(-w/2,h,d/2),p(w/2,h,d/2)];for(const ids of [[0,1,2,3],[5,4,7,6],[4,0,6,2],[1,5,3,7],[2,3,6,7]])quad(a.p,a.i,...ids.map(i=>v[i]));};
  const homes=[...buildingsNear(centre.x,centre.z,view.detail),...estimatedHomesNear(centre.x,centre.z)].filter(b=>Math.hypot((b.bounds.minX+b.bounds.maxX)/2-centre.x,(b.bounds.minZ+b.bounds.maxZ)/2-centre.z)<view.detail).slice(0,view.air?80:110);
- for(const b of homes){if(++work%10===0)await yieldBuild();const height=clamp(parseFloat(b.tags.height)||parseFloat(b.tags['building:levels'])*3||4.5,2,140);if(height>16)continue;const g=terrainHeight(b.points[0].x,b.points[0].z);if(g===null)continue;let front=null,best=Infinity;
+ for(const b of homes){if(++work%10===0)await yieldBuild();const height=clamp(parseFloat(b.tags.height)||parseFloat(b.tags['building:levels'])*3||4.5,2,140);if(height>16||mechanicByBuilding.has(b.id))continue;const heights=buildingGroundHeights(b);if(!heights)continue;const g=Math.max(...heights);let front=null,best=Infinity;
   for(let j=0;j<b.points.length;j++){const a=b.points[j],z=b.points[(j+1)%b.points.length],len=Math.hypot(z.x-a.x,z.z-a.z);if(len<3)continue;const dx=(z.x-a.x)/len,dz=(z.z-a.z)/len,mx=(a.x+z.x)/2,mz=(a.z+z.z)/2;let nx=dz,nz=-dx;if(pointInPolygon(mx+nx,mz+nz,b.points)){nx=-nx;nz=-nz;}const r=nearestRoad(mx,mz);if(r&&r.dist<best){front={a,z,len,dx,dz,nx,nz,mx,mz,road:r};best=r.dist;}
    oriented('trim',mx+nx*.10,g+height-.15,mz+nz*.10,len,.12,.13,dx,dz);
-   for(let d=1.2;d<len-.7;d+=2.7){const x=a.x+dx*d+nx*.09,y=g+1.1,zp=a.z+dz*d+nz*.09;oriented('trim',x,y,zp,1.35,.09,.09,dx,dz);oriented('trim',x,y+1.35,zp,1.35,.09,.09,dx,dz);for(const side of [-1,1])oriented('trim',x+dx*side*.65,y,zp+dz*side*.65,.08,1.4,.09,dx,dz);oriented('metal',x,y+1.45,zp,.9,.07,.55,dx,dz);}
+   for(const {left,right,bottom,top} of facadeWindowLayout(len,height,g)){const mid=(left+right)/2,x=a.x+dx*mid+nx*.09,zp=a.z+dz*mid+nz*.09;oriented('trim',x,bottom-.045,zp,1.42,.07,.07,dx,dz);oriented('trim',x,top-.025,zp,1.42,.07,.07,dx,dz);for(const side of [-1,1])oriented('trim',x+dx*side*.69,bottom-.045,zp+dz*side*.69,.07,top-bottom+.09,.07,dx,dz);oriented('metal',x,top+.12,zp,1.48,.055,.28,dx,dz);}
+
   }
   stats.houses++;if(!front||best<5||best>35||height>9)continue;const f=front,depth=clamp(best-f.road.path.width/2-2,1.5,5),cx=f.mx+f.nx*depth*.6,cz=f.mz+f.nz*depth*.6;
   const near=nearestRoad(cx,cz);if(mappedWaterAt(cx,cz)!==null||!near||near.dist<near.path.width/2+1.8)continue;const y=terrainHeight(cx,cz);if(y===null)continue;
@@ -30,6 +31,7 @@ async function buildLocalStreetDetail(root,centre,paths,addMesh,quad,cuboid,yiel
   for(let t=0;t<idx.length;t+=3){const points=idx.slice(t,t+3).map(i=>area.points[i]);if(points.some(p=>mappedWaterAt(p.x,p.z)!==null))continue;const h=points.map(p=>terrainHeight(p.x,p.z));if(h.some(v=>v===null))continue;const base=a.p.length/3;points.forEach((p,i)=>a.p.push(p.x,h[i]+.025,p.z));a.i.push(base,base+1,base+2);}stats.beaches++;
  }
  for(const [key,material]of Object.entries({trim:m.trim,garden:m.garden,fence:m.fence,concrete:openConcreteMaterial,lamp:m.lamp,metal:openPoleMaterial,sand:m.sand,sign:m.roadSign})){const a=arrays[key];await addMesh('local-'+key+'-detail',a.p,a.i,material,key==='sand',key==='concrete'||key==='fence');}
+ Object.assign(stats,await buildPropertyStreetDetail(root,centre,addMesh,quad,cuboid,yieldBuild,nextObstacles));
  Object.assign(stats,await buildNeighbourhoodRichness(root,centre,addMesh,quad,cuboid,yieldBuild,nextObstacles));
  return {stats,lamps,owned:[...owned]};
 }

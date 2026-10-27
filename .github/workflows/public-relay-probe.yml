@@ -1,0 +1,21 @@
+name: Public relay reachability
+on:
+  push:
+    paths:
+      - scripts/probe-public-relays.cjs
+      - src/public-relay.js
+      - .github/workflows/public-relay-probe.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check two-client public broker round trips
+        run: node scripts/probe-public-relays.cjs

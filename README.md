@@ -1,6 +1,6 @@
-# Coastal Explorer — Ride & Rank (V24)
+# Coastal Explorer — Living Coast (V25)
 
-[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=24) · [V24 release notes](docs/V24-RELEASE.md) · [Netlify + public multiplayer setup](docs/NETLIFY-MULTIPLAYER.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
+[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=25) · [V25 release notes](docs/V25-RELEASE.md) · [Netlify + public multiplayer setup](docs/NETLIFY-MULTIPLAYER.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
 
 A single-file Sunshine Coast driving/flying/boating sandbox with 24 original, simplified vehicle models, first-person and third-person views, a 3D showroom, saved purchases/modifications, deliveries and checkpoint races, a five-star police response, crash collisions, day/night, weather, lights and multiplayer support. The game is not a recreation using GTA V assets.
 
@@ -10,7 +10,9 @@ New players get an optional 12-step in-game tutorial once the real map is ready.
 
 V17 adds contact-aware car rollovers and sliding wrecks, deformable panels and body-attached impact scars, richer procedural ground/building/vehicle textures, and layered explosion effects. Cars and boats use hold-to-accelerate controls with coasting on release. Cars show critical warnings instead of extra oil/coolant monitors; aircraft retain their throttle behavior and instruments. See [V17 details](docs/V17-RELEASE.md).
 
-V24 adds overall/category multiplayer community leaderboards with career and server-session views, XP ranks/milestone cash, five electric dirt bikes, banked stunt combos and a freeride job. The shop now groups 24 models by brand, with separate performance/cosmetic tuning tabs and real drivetrain, mass, cooling and electric-power upgrades. Public scores are self-reported; remembered leaderboard history is browser-local. See [V24 details](docs/V24-RELEASE.md).
+V25 adds road-safe scenery placement, faster building streaming, breakable scenery, hourly world restoration, manual stalling, four petrol motorcycles, survivor/ejection improvements, custom drivers and suggestions. See [V25 details](docs/V25-RELEASE.md).
+
+V24 added overall/category multiplayer community leaderboards with career and server-session views, XP ranks/milestone cash, five electric dirt bikes, banked stunt combos and a freeride job. The shop now groups 24 models by brand, with separate performance/cosmetic tuning tabs and real drivetrain, mass, cooling and electric-power upgrades. Public scores are self-reported; remembered leaderboard history is browser-local. See [V24 details](docs/V24-RELEASE.md).
 
 V23 clips lane paint/kerbs/footpaths at real same-level junctions, reconstructs roundabout centre islands, and keeps traffic on actual connections. New neighbourhood activities include staged block sprints, two-lap club runs, Clean Cruise, parcel shifts and vehicle-specific jobs, with rotating featured pay, medals, personal bests and district ranks. Open **ACTIVITIES**, or stop at a local events board and press **F**. See [V23 details](docs/V23-RELEASE.md).
 
@@ -26,9 +28,9 @@ V18 adds a ground-level neighbourhood focus: shorter scenery range, nearby house
 
 ## Play and controls
 
-Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. Play starts immediately. Multiplayer automatically tries public MQTT relays when no dedicated server is configured; unavailable services never block driving. The status badge clearly identifies local play. The complete approximately 33 MB HTML includes the runtime, fonts, model geometry and real map. No map API key is needed. The showroom says **V24 · RIDE & RANK**.
+Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. Play starts immediately. Multiplayer automatically tries public MQTT relays when no dedicated server is configured; unavailable services never block driving. The status badge clearly identifies local play. The complete approximately 33 MB HTML includes the runtime, fonts, model geometry and real map. No map API key is needed. The showroom says **V25 · LIVING COAST**.
 
-Download: extract `downloads/Coastal-Explorer-v24.zip` and open the game via the included launcher/local server, or run `node server/relay.cjs` to serve the client and relay together. The map/runtime are bundled; Local Play works without a relay. Detailed instructions are in [PLAY.txt](PLAY.txt).
+Download: extract `downloads/Coastal-Explorer-v25.zip` and open the game via the included launcher/local server, or run `node server/relay.cjs` to serve the client and relay together. The map/runtime are bundled; Local Play works without a relay. Detailed instructions are in [PLAY.txt](PLAY.txt).
 
 WASD/arrows drive; Y toggles driving HUD information, hold left mouse to look around, C switches camera, G opens the showroom, M opens the map, H settings, R recovery and Escape pauses. The LandCruiser is manual: hold Shift for clutch and Q/E to change gear. L headlights, [ / ] indicators, V hazards, F fires one F18 cannon round; civilian vehicles are unarmed. F18: hold Space for cannon fire, X ejects, Z deploys flares; use GUNNERY RANGE for the five-target challenge. Ejection opens a chute automatically; WASD steers and G returns to the garage after landing. Extra controls are shown in the game for helicopter, fighter and boat. U signals surrender during a pursuit after landing/stopping; an officer can arrest a stopped wanted driver and charge a game fine. Use Activities for vehicle-specific jobs and races, or earn skill money through drifts, sustained road speed and active five-star pursuits. Ordinary movement alone awards nothing. A fresh career has $65,000 and the original four vehicles owned. Cash, purchases, upgrades and resprays persist in browser storage. Private browsing may not retain progress.
 

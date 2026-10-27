@@ -1,6 +1,6 @@
 {
-  "revision": "24.0",
-  "sourceSha256": "dca7ce945a6114c2c5d40340e938f1f135b6676ce847542f19355665ca6850f5",
+  "revision": "25.0",
+  "sourceSha256": "265ef3842d7bc3d82b960baa76677fa8f7196cf74471658f405d8792aada8129",
   "models": [
     {
       "id": "ute",
@@ -21,7 +21,7 @@
       "vertices": 12854,
       "metadata": {
         "modelId": "ute",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "79 Series single-cab trayback",
         "wheelCount": 4
       }
@@ -45,7 +45,7 @@
       "vertices": 1863,
       "metadata": {
         "modelId": "bike",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "electric bicycle",
         "wheelCount": 2
       }
@@ -69,7 +69,7 @@
       "vertices": 4644,
       "metadata": {
         "modelId": "drift",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "hatch",
         "wheelCount": 4
       }
@@ -93,7 +93,7 @@
       "vertices": 2425,
       "metadata": {
         "modelId": "heli",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "rounded AS350 rotorcraft",
         "wheelCount": 0,
         "rotorDiameter": 10.69,
@@ -120,7 +120,7 @@
       "vertices": 4712,
       "metadata": {
         "modelId": "hilux",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "ute",
         "wheelCount": 4
       }
@@ -144,7 +144,7 @@
       "vertices": 4776,
       "metadata": {
         "modelId": "ranger",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "ute",
         "wheelCount": 4
       }
@@ -168,7 +168,7 @@
       "vertices": 4608,
       "metadata": {
         "modelId": "patrol",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "suv",
         "wheelCount": 4
       }
@@ -192,7 +192,7 @@
       "vertices": 5108,
       "metadata": {
         "modelId": "jimny",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "suv",
         "wheelCount": 4
       }
@@ -216,7 +216,7 @@
       "vertices": 4572,
       "metadata": {
         "modelId": "commodore",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "sedan",
         "wheelCount": 4
       }
@@ -240,7 +240,7 @@
       "vertices": 4572,
       "metadata": {
         "modelId": "falcon",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "sedan",
         "wheelCount": 4
       }
@@ -264,7 +264,7 @@
       "vertices": 4512,
       "metadata": {
         "modelId": "mustang",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "coupe",
         "wheelCount": 4
       }
@@ -288,7 +288,7 @@
       "vertices": 5000,
       "metadata": {
         "modelId": "gtr",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "coupe",
         "wheelCount": 4
       }
@@ -312,7 +312,7 @@
       "vertices": 4692,
       "metadata": {
         "modelId": "wrx",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "sedan",
         "wheelCount": 4
       }
@@ -336,7 +336,7 @@
       "vertices": 1125,
       "metadata": {
         "modelId": "boat",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "vee-hull outboard runabout",
         "wheelCount": 0
       }
@@ -360,7 +360,7 @@
       "vertices": 1529,
       "metadata": {
         "modelId": "kart",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "open tubular go-kart",
         "wheelCount": 4
       }
@@ -384,7 +384,7 @@
       "vertices": 1830,
       "metadata": {
         "modelId": "jet",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "F/A-18-inspired twin-engine twin-tail fighter",
         "wheelCount": 3
       }
@@ -408,7 +408,7 @@
       "vertices": 4789,
       "metadata": {
         "modelId": "lifeflight",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "AW139-inspired rescue rotorcraft",
         "wheelCount": 3,
         "rotorDiameter": 13.8,
@@ -435,7 +435,7 @@
       "vertices": 4789,
       "metadata": {
         "modelId": "racq",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "AW139-inspired rescue rotorcraft",
         "wheelCount": 3,
         "rotorDiameter": 13.8,
@@ -462,7 +462,7 @@
       "vertices": 4236,
       "metadata": {
         "modelId": "trafficTruck",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "rigid commercial truck"
       }
     },
@@ -485,7 +485,7 @@
       "vertices": 4591,
       "metadata": {
         "modelId": "talariaSting",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "electric dirt bike",
         "wheelCount": 2
       }
@@ -509,7 +509,7 @@
       "vertices": 4591,
       "metadata": {
         "modelId": "talariaMx5",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "electric dirt bike",
         "wheelCount": 2
       }
@@ -533,7 +533,7 @@
       "vertices": 4591,
       "metadata": {
         "modelId": "surRonLight",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "electric dirt bike",
         "wheelCount": 2
       }
@@ -557,7 +557,7 @@
       "vertices": 4591,
       "metadata": {
         "modelId": "surRonUltra",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "electric dirt bike",
         "wheelCount": 2
       }
@@ -581,8 +581,104 @@
       "vertices": 4591,
       "metadata": {
         "modelId": "vargEx",
-        "revision": "24.0",
+        "revision": "25.0",
         "body": "electric dirt bike",
+        "wheelCount": 2
+      }
+    },
+    {
+      "id": "mt07",
+      "kind": "bike",
+      "bounds": {
+        "min": [
+          -0.4150000214576721,
+          -0.04249999999999998,
+          -1.0725000011920929
+        ],
+        "max": [
+          0.4150000214576721,
+          1.1825000047683716,
+          1.0725000011920929
+        ]
+      },
+      "meshes": 10,
+      "vertices": 4302,
+      "metadata": {
+        "modelId": "mt07",
+        "revision": "25.0",
+        "body": "petrol motorcycle",
+        "wheelCount": 2
+      }
+    },
+    {
+      "id": "ninja400",
+      "kind": "bike",
+      "bounds": {
+        "min": [
+          -0.4150000214576721,
+          -0.04249999999999998,
+          -1.0725000011920929
+        ],
+        "max": [
+          0.4150000214576721,
+          1.2817077789455653,
+          1.0725000011920929
+        ]
+      },
+      "meshes": 11,
+      "vertices": 4374,
+      "metadata": {
+        "modelId": "ninja400",
+        "revision": "25.0",
+        "body": "petrol motorcycle",
+        "wheelCount": 2
+      }
+    },
+    {
+      "id": "crf450",
+      "kind": "bike",
+      "bounds": {
+        "min": [
+          -0.4150000214576721,
+          -0.04249999999999998,
+          -1.112500022649765
+        ],
+        "max": [
+          0.4150000214576721,
+          1.1825000047683716,
+          1.112500022649765
+        ]
+      },
+      "meshes": 10,
+      "vertices": 5166,
+      "metadata": {
+        "modelId": "crf450",
+        "revision": "25.0",
+        "body": "petrol motorcycle",
+        "wheelCount": 2
+      }
+    },
+    {
+      "id": "ktm690",
+      "kind": "bike",
+      "bounds": {
+        "min": [
+          -0.4150000214576721,
+          -0.04249999999999998,
+          -1.112500022649765
+        ],
+        "max": [
+          0.4150000214576721,
+          1.1825000047683716,
+          1.112500022649765
+        ]
+      },
+      "meshes": 10,
+      "vertices": 5166,
+      "metadata": {
+        "modelId": "ktm690",
+        "revision": "25.0",
+        "body": "petrol motorcycle",
         "wheelCount": 2
       }
     }

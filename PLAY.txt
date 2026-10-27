@@ -1,5 +1,5 @@
-V24 COAST IN COLOUR
-https://wadeot.github.io/Coastal-explorer/index.html?v=24&publicRoom=COAST-PUBLIC
+V25 LIVING COAST
+https://wadeot.github.io/Coastal-explorer/index.html?v=25&publicRoom=COAST-PUBLIC
 On foot: WASD moves, Shift runs, E enters your nearby vehicle or hijacks the
 nearest slow NPC/parked vehicle. Theft raises wanted level. Stolen cars are
 borrowed; buying is required for permanent garage ownership. F at a local
@@ -17,7 +17,7 @@ and Low modes. Crash panels bend, parts detach, and lost wheels impair drive.
 Nearby pedestrians can be injured by cars; driving offences worsen a pursuit.
 
 Public lobby now tries a verified standard HTTPS-port (443) relay first,
-then two backups. Use the V24 link to load the updated client.
+then two backups. Use the V25 link to load the updated client.
 
 V19 IMPACT & ESCAPE / PUBLIC LOBBY
 Cars/boats/helicopters: X jumps out even while moving. Speed and falls hurt
@@ -297,3 +297,5 @@ LOCAL PLAY: Open ACTIVITIES for Block Sprint, two-lap Club Run, Clean Cruise and
 V24: LEADERBOARDS shows overall XP and races/jobs/tricks/drift/speed/pursuit categories, road speed and best combo. Public scores are community self-reports; seen-player history is saved on your browser. Career XP starts tracking in V24; your existing garage and money remain. Every 5,000 earned XP gives $1,000.
 
 ELECTRIC BIKES: Shop by Talaria, Sur-Ron or Stark. W/S ride/brake; hold V for a wheelie, B for a stoppie. Hold/release Space to hop while moving; use Z for a whip or hold Q for a full spin in the air. Safe landings bank combos; bails lose pending points. ACTIVITIES includes a local Freeride Session. Upgrades are split into PERFORMANCE and COSMETICS.
+
+V25: Four petrol motorcycles; manual variants start in neutral (Shift clutch + Q/E gears, I restart). X exits a wreck if your driver survives. YOUR DRIVER customises appearance. SUGGESTIONS saves ideas, shares with the current lobby, or opens a GitHub issue for durable delivery. World damage restores on the hour without disconnecting you. See docs/V25-RELEASE.md.

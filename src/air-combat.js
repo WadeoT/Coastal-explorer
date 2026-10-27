@@ -4,10 +4,10 @@ const airMaterials=new Map();
 function airMaterial(name,colour,glow=0){if(!airMaterials.has(name))airMaterials.set(name,mat(name,colour,glow));return airMaterials.get(name);}
 function resetAirCombat(){
  if(airCombat.ejection)disposeFlightActor(airCombat.ejection.root);
- for(const w of airCombat.wrecks)disposeFlightActor(w.root);
+ while(airCombat.wrecks.length>12)disposeFlightActor(airCombat.wrecks.shift().root);
  for(const e of airCombat.effects)e.mesh.dispose(false,!!e.ownedMaterial);
  if(airCombat.range)airCombat.range.root.dispose(false,false);
- Object.assign(airCombat,{ammo:578,heat:0,overheated:false,nextShot:0,flares:12,flareUntil:0,flareReady:0,ejection:null,wrecks:[],effects:[],range:null,lastShot:null});
+ Object.assign(airCombat,{ammo:578,heat:0,overheated:false,nextShot:0,flares:12,flareUntil:0,flareReady:0,ejection:null,wrecks:airCombat.wrecks,effects:[],range:null,lastShot:null});
 }
 const interceptorVolumes=[{min:{x:-1.25,y:.3,z:-8.5},max:{x:1.25,y:2.7,z:8.3}},{min:{x:-5.5,y:1.15,z:-1.8},max:{x:5.5,y:1.55,z:3.6}},{min:{x:-3.1,y:1.1,z:5.1},max:{x:3.1,y:1.7,z:8.2}}];
 function prepareInterceptor(i){
@@ -66,7 +66,7 @@ function stepEjectedPilot(dt){
  const turn=(keys.has('KeyD')?1:0)-(keys.has('KeyA')?1:0);motion.yaw+=turn*dt*.9;const glide=(keys.has('KeyW')?9:keys.has('KeyS')?2:5);e.velocity.x=smooth(e.velocity.x,Math.sin(motion.yaw)*glide,e.canopy?2:.15,dt);e.velocity.z=smooth(e.velocity.z,-Math.cos(motion.yaw)*glide,e.canopy?2:.15,dt);e.velocity.y=e.canopy?smooth(e.velocity.y,-5.2,3,dt):e.velocity.y-9.81*dt;
  const before=player.position.clone();player.position.addInPlace(e.velocity.scale(dt));player.position.x=clamp(player.position.x,BOUNDS.minX+10,BOUNDS.maxX-10);player.position.z=clamp(player.position.z,BOUNDS.minZ+10,BOUNDS.maxZ-10);
  let surface=groundAt(player.position.x,player.position.z,Math.max(before.y,player.position.y),true)??motion.lastSurface;const hit=scene.pickWithRay(new Ray(before.add(new V(0,1,0)),new V(0,-1,0),Math.max(3,before.y-player.position.y+2)),m=>m.isEnabled()&&m.metadata?.openSolid);if(hit?.hit)surface=Math.max(surface,hit.pickedPoint.y);motion.lastSurface=surface;
- if(player.position.y<=surface+.8){player.position.y=surface+.8;e.landed=true;state.grounded=true;e.root.metadata.canopy.setEnabled(false);const impact=Math.abs(e.velocity.y);e.velocity.setAll(0);if(impact>7){VehicleDamageModel.hit(state.damage,'driver',(impact-7)*18,'hard parachute landing');finishDamageState();}if(!state.damage.driverDead)toast(mappedWaterAt(player.position.x,player.position.z)!==null?'SPLASHDOWN · flotation active · G requests recovery':'PILOT SAFE · press G to return to garage',6000);}
+ if(player.position.y<=surface+.8){player.position.y=surface+.8;e.landed=true;state.grounded=true;e.root.metadata.canopy.setEnabled(false);const impact=Math.abs(e.velocity.y);e.velocity.setAll(0);if(impact>7){VehicleDamageModel.hit(state.damage,'driver',(impact-7)*18,'hard parachute landing');finishDamageState();}if(!state.damage.driverDead){pilotLandedOnFoot(e);return;}if(!state.damage.driverDead)toast(mappedWaterAt(player.position.x,player.position.z)!==null?'SPLASHDOWN · flotation active · G requests recovery':'PILOT SAFE · press G to return to garage',6000);}
  motion.vx=e.velocity.x;motion.vz=e.velocity.z;motion.vy=e.velocity.y;state.speed=Math.hypot(e.velocity.x,e.velocity.z);player.rotation.set(0,-motion.yaw,0);
 }
 function updateEjectionCamera(dt,snap=false){const p=player.position,desired=p.add(new V(-Math.sin(motion.yaw+cameraLook.yaw)*9,4+Math.sin(cameraLook.pitch)*5,Math.cos(motion.yaw+cameraLook.yaw)*9));camera.parent=null;camera.position.copyFrom(V.Lerp(camera.position,desired,snap?1:1-Math.exp(-dt*7)));camera.rotation.z=0;camera.upVector.set(0,1,0);camera.setTarget(p.add(new V(0,1.3,0)));}
@@ -81,7 +81,7 @@ function updateAirCombat(dt){
  airCombat.heat=Math.max(0,airCombat.heat-dt*fighterLoadout().cooling);if(airCombat.heat<.3)airCombat.overheated=false;
  for(const i of gameAirspace.interceptors){prepareInterceptor(i);if(!i.active||airCombat.ejection||state.mode!=='playing'||worldUpgrade.collisions===false)continue;const point=sweptInterceptorContact(i,state.stepStart||player.position,player.position);if(point){const velocity=new V(Math.sin(i.yaw||0)*(i.speed||0),0,-Math.cos(i.yaw||0)*(i.speed||0)),relative=new V(motion.vx,motion.vy,motion.vz).subtract(velocity).length();disableInterceptor(i,'mid-air collision');recordCrash(Math.max(12,relative*.7),point);break;}}
  for(const w of airCombat.wrecks){if(w.root.isDisposed()){w.disposed=true;continue;}w.age+=dt;if(!w.hitGround){w.velocity.y-=9.81*dt;w.root.position.addInPlace(w.velocity.scale(dt));w.root.rotation.z+=dt*.5;const h=mappedWaterAt(w.root.position.x,w.root.position.z)??terrainHeight(w.root.position.x,w.root.position.z);if(h!==null&&w.root.position.y<h+1){w.hitGround=true;w.root.position.y=h+1;w.velocity.setAll(0);impactSpark(w.root.position,'#ff7a34',8);for(const m of w.root.getChildMeshes())if(!m.metadata?.airInterceptor)m.visibility=.5;}}
-  if(w.age>25){disposeFlightActor(w.root);w.disposed=true;}}
+  if(airCombat.wrecks.length>12&&w.age>25){disposeFlightActor(w.root);w.disposed=true;}}
  airCombat.wrecks=airCombat.wrecks.filter(w=>!w.disposed);gameAirspace.interceptors=gameAirspace.interceptors.filter(i=>!i.root.isDisposed());
  for(const e of airCombat.effects){e.life-=dt;if(e.velocity){e.velocity.y-=dt*3;e.mesh.position.addInPlace(e.velocity.scale(dt));}if(e.life<=0)e.mesh.dispose(false,!!e.ownedMaterial);}airCombat.effects=airCombat.effects.filter(e=>e.life>0);
  if(airCombat.range&&state.elapsed-airCombat.range.started>120){airCombat.range.root.dispose(false,false);airCombat.range=null;toast('Gunnery time expired. Try another approach.');}

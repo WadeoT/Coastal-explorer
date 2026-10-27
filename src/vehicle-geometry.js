@@ -1,5 +1,5 @@
 // Original, metre-scale game models. All exterior render paths share this registry.
-const MODEL_REVISION='24.0';
+const MODEL_REVISION='25.0';
 const MODEL_PREVIEWS=/*__MODEL_PREVIEWS__*/{};
 // Rounded sheet-metal edges, rather than hard rectangular blocks. Metres.
 function vehicleBevelBox(name,w,h,d,r=Math.min(w,h,d)*.12){
@@ -201,7 +201,7 @@ function constructVehicle(root,p,id=p.modelId){
  exteriorRotor=null;
  if(id==='trafficTruck'){buildTrafficTruck(root,p);}else if(id==='ute'){const result=buildLandCruiser79(scene,root,false);for(const m of result.root.getChildMeshes())if(m.material?.name==='79-sandstone-paint')m.material.diffuseColor=C.FromHexString(p.colour).toLinearSpace();root.metadata={vehicle:p.name,kind:'car',modelId:id,revision:MODEL_REVISION,body:'79 Series single-cab trayback',wheelCount:4};}
  else if(p.body==='kart')buildKart(root,p);else if(p.kind==='car')buildRoadExterior(root,p);else if(p.kind==='heli'){if(p.body==='rescue-helicopter')buildRescueHelicopter(root,p);else buildDetailedChopper(root,p);}
- else if(p.kind==='jet')buildFighter(root,p);else if(p.kind==='boat')buildRunabout(root,p,false);else if(p.kind==='bike'){if(p.body==='electric-dirt-bike')buildElectricMoto(root,p);else buildBicycle(root,p);}else throw Error('Unknown vehicle model '+id);
+ else if(p.kind==='jet')buildFighter(root,p);else if(p.kind==='boat')buildRunabout(root,p,false);else if(p.kind==='bike'){if(p.combustion)buildPetrolMotorcycle(root,p);else if(p.body==='electric-dirt-bike')buildElectricMoto(root,p);else buildBicycle(root,p);}else throw Error('Unknown vehicle model '+id);
  addVehicleCustoms(root,p,id);
  if(p.kind==='car')for(const m of root.getChildMeshes())if(/bumper|mirror|bonnet|grille/.test(m.name)&&!m.parent?.metadata?.crashPart)m.metadata={...m.metadata,crashPart:m.name.includes('mirror')?'mirror':'panel'};
  return root;

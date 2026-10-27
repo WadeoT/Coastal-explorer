@@ -1,7 +1,8 @@
 const collisionCells=new Map(),restrictedCells=new Map();let collisionCount=-1,restrictionClock=0,propertyViolation=0;
 function indexCollisionObjects(){collisionCells.clear();for(const o of obstacles){const w=(o.w||o.radius||1)+2,d=(o.d||o.radius||1)+2;for(let x=Math.floor((o.x-w)/128);x<=Math.floor((o.x+w)/128);x++)for(let z=Math.floor((o.z-d)/128);z<=Math.floor((o.z+d)/128);z++){const k=x+','+z;if(!collisionCells.has(k))collisionCells.set(k,[]);collisionCells.get(k).push(o);}}collisionCount=obstacles.length;}
-function collisionObjectsNear(a,b,reach){if(collisionCount!==obstacles.length)indexCollisionObjects();const out=new Set();for(let x=Math.floor((Math.min(a.x,b.x)-reach)/128);x<=Math.floor((Math.max(a.x,b.x)+reach)/128);x++)for(let z=Math.floor((Math.min(a.z,b.z)-reach)/128);z<=Math.floor((Math.max(a.z,b.z)+reach)/128);z++)for(const o of collisionCells.get(x+','+z)||[])out.add(o);return out;}
+function collisionObjectsNear(a,b,reach){if(collisionCount!==obstacles.length)indexCollisionObjects();const out=new Set();for(let x=Math.floor((Math.min(a.x,b.x)-reach)/128);x<=Math.floor((Math.max(a.x,b.x)+reach)/128);x++)for(let z=Math.floor((Math.min(a.z,b.z)-reach)/128);z<=Math.floor((Math.max(a.z,b.z)+reach)/128);z++)for(const o of collisionCells.get(x+','+z)||[])out.add(o);return addSolidTraffic(out,a,b,reach);}
 function objectContact(o,position,p){
+ if(o.removed||o.destroyed)return false;
  const radius=Math.max(.2,p.width*.47-(state.sideCrush||0)),reach=p.length*.36,fx=Math.sin(motion.yaw),fz=-Math.cos(motion.yaw);
  if(position.y-p.clearance>o.baseY+o.height+.12||position.y+Math.max(.7,p.eye-p.clearance)<o.baseY)return false;
  for(const side of [-1,0,1]){const length=Math.max(.2,reach-(side>0?state.frontCrush||0:state.rearCrush||0)),x=position.x+fx*length*side,z=position.z+fz*length*side;
@@ -27,7 +28,7 @@ function collideMappedWorld(prevX,prevZ){
    // Allow a vehicle already touching a surface to move away from it.
    if(objectContact(o,start,p)&&Math.hypot(end.x-o.x,end.z-o.z)>Math.hypot(start.x-o.x,start.z-o.z)+.02)continue;
    player.position.copyFrom(last);const impact=solidContactResponse(o,last,velocity);state.lastCollision={kind:o.kind||'building',x:o.x,z:o.z,roof:o.baseY+o.height};if(impact.speed<3&&Math.abs(velocity.y)>3){impact.speed=Math.abs(velocity.y);impact.normal={x:-Math.sin(motion.yaw),z:Math.cos(motion.yaw)};impact.vertical=true;motion.vy=0;if(o.polygon)state.wreckSurface={height:o.baseY+o.height,polygon:o.polygon};}
-   if(state.collisionCooldown<=0&&impact.speed>2.8){recordCrash(impact.speed,new V(impact.x,last.y+.2,impact.z),impact);state.collisionCooldown=.6;}
+   if(impact.speed>2.8&&!o.ownerActor&&!o.ownerVehicle&&state.elapsed-(o.lastWorldImpact||-10)>.2){o.lastWorldImpact=state.elapsed;damageWorldObject(o,impact);if(o.removed&&o.buildingId===undefined){const factor=1-Math.min(.8,obstacleMass(o)/(p.mass+obstacleMass(o)));motion.vx=velocity.x*factor;motion.vz=velocity.z*factor;player.position.copyFrom(at);dentVehicle(bodyPoint(new V(impact.x,last.y+.2,impact.z)),.05,.45);return impact;}}if(state.collisionCooldown<=0&&impact.speed>2.8){if(o.ownerActor)recordNpcCrash(o.ownerActor,impact.speed*.6,new V(impact.x,last.y+.2,impact.z),impact.normal,'vehicle');if(o.ownerVehicle)damageParkedVehicle(o,impact);recordCrash(impact.speed,new V(impact.x,last.y+.2,impact.z),impact);state.collisionCooldown=.6;}
    return impact;
   }last=at;
  }

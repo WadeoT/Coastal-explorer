@@ -39,7 +39,7 @@ const VehicleDamageModel=(()=>{
   if(d.capacity.fuel&&d.fuel<=0&&!d.exploded){d.engineFailed=true;d.reason=d.reason||'Fuel exhausted';}
   if(d.burning&&!d.exploded){d.fireTime+=dt;c.body=Math.max(0,c.body-dt*5);c.engine=Math.max(0,c.engine-dt*8);if(d.fireTime>=(d.fireDelay||3.5)&&d.fuel>0)explode(d);else if(d.fireTime>=(d.fireDelay||3.5)&&d.fuel===0)d.burning=false;}
  }
- function power(d){if(!d)return 1;if(d.engineFailed||d.exploded||d.driverDead||d.wheelsLost>=2)return 0;return (d.wheelsLost?.38:1)*clamp(d.components.engine/100,.12,1)*clamp(1-(d.coolantTemp-110)/60,.25,1);}
+ function power(d){if(!d)return 1;if(d.engineFailed||d.exploded||d.driverDead||d.rotorFailed||d.wheelsLost>=2)return 0;return (d.wheelsLost?.38:1)*clamp(d.components.engine/100,.12,1)*clamp(1-(d.coolantTemp-110)/60,.25,1);}
  // Coordinates are relative to the player's chassis origin, +X driver's side,
  // -Z forward. Component volumes occupy the actual interior, not a random roll.
  function zones(p){

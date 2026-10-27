@@ -1,3 +1,12 @@
+V21 STREETS ALIVE
+https://wadeot.github.io/Coastal-explorer/index.html?v=21&publicRoom=COAST-PUBLIC
+On foot: WASD moves, Shift runs, E enters your nearby vehicle or hijacks the
+nearest slow NPC/parked vehicle. Theft raises wanted level. Stolen cars are
+borrowed; buying is required for permanent garage ownership. F at a local
+errand board starts a neighbourhood delivery. Helicopter rotor strikes remove
+lift; crash motion continues until ground contact settles it. Houses use real
+footprints where mapped and inferred frontages where data is missing.
+
 V20 STREET IMPACT
 Play https://wadeot.github.io/Coastal-explorer/index.html?v=20&publicRoom=COAST-PUBLIC
 Check V20 in the garage. Multiplayer automatically tries five routes across
@@ -8,7 +17,7 @@ and Low modes. Crash panels bend, parts detach, and lost wheels impair drive.
 Nearby pedestrians can be injured by cars; driving offences worsen a pursuit.
 
 Public lobby now tries a verified standard HTTPS-port (443) relay first,
-then two backups. Use the V20 link to load the updated client.
+then two backups. Use the V21 link to load the updated client.
 
 V19 IMPACT & ESCAPE / PUBLIC LOBBY
 Cars/boats/helicopters: X jumps out even while moving. Speed and falls hurt

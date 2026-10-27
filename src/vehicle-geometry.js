@@ -1,5 +1,5 @@
 // Original, metre-scale game models. All exterior render paths share this registry.
-const MODEL_REVISION='20.0';
+const MODEL_REVISION='21.0';
 const MODEL_PREVIEWS=/*__MODEL_PREVIEWS__*/{};
 // Rounded sheet-metal edges, rather than hard rectangular blocks. Metres.
 function vehicleBevelBox(name,w,h,d,r=Math.min(w,h,d)*.12){
@@ -199,7 +199,7 @@ function buildBicycle(root,p){buildLegacyBicycle(root,p);box('ebike-downtube-bat
 function buildKart(root,p){buildLegacyKart(root,p);tube('kart-rear-axle',[[-.63,.16,.59],[.63,.16,.59]],.025,materials.metal,root);root.metadata={...root.metadata,kind:'car',modelId:p.modelId,revision:MODEL_REVISION,wheelCount:4,body:'open tubular go-kart'};}
 function constructVehicle(root,p,id=p.modelId){
  exteriorRotor=null;
- if(id==='ute'){const result=buildLandCruiser79(scene,root,false);for(const m of result.root.getChildMeshes())if(m.material?.name==='79-sandstone-paint')m.material.diffuseColor=C.FromHexString(p.colour).toLinearSpace();root.metadata={vehicle:p.name,kind:'car',modelId:id,revision:MODEL_REVISION,body:'79 Series single-cab trayback',wheelCount:4};}
+ if(id==='trafficTruck'){buildTrafficTruck(root,p);}else if(id==='ute'){const result=buildLandCruiser79(scene,root,false);for(const m of result.root.getChildMeshes())if(m.material?.name==='79-sandstone-paint')m.material.diffuseColor=C.FromHexString(p.colour).toLinearSpace();root.metadata={vehicle:p.name,kind:'car',modelId:id,revision:MODEL_REVISION,body:'79 Series single-cab trayback',wheelCount:4};}
  else if(p.body==='kart')buildKart(root,p);else if(p.kind==='car')buildRoadExterior(root,p);else if(p.kind==='heli'){if(p.body==='rescue-helicopter')buildRescueHelicopter(root,p);else buildDetailedChopper(root,p);}
  else if(p.kind==='jet')buildFighter(root,p);else if(p.kind==='boat')buildRunabout(root,p,false);else if(p.kind==='bike')buildBicycle(root,p);else throw Error('Unknown vehicle model '+id);
  if(p.kind==='car')for(const m of root.getChildMeshes())if(/bumper|mirror|bonnet|grille/.test(m.name)&&!m.parent?.metadata?.crashPart)m.metadata={...m.metadata,crashPart:m.name.includes('mirror')?'mirror':'panel'};

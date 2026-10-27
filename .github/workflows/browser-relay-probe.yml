@@ -4,6 +4,7 @@ on:
     paths:
       - src/public-relay.js
       - src/nostr-relay.js
+      - src/multiplayer.js
       - scripts/probe-browser-relays.cjs
       - scripts/probe-hosted-game.cjs
       - .github/workflows/browser-relay-probe.yml

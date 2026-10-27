@@ -8,6 +8,7 @@ function updateDangerAlerts(){const d=state.damage;if(!d)return;
  if(d.components.driver<45&&d.components.driver>0)dangerAlert('driver','DRIVER CRITICALLY INJURED','Health below 45% · further hits may be fatal.','critical','driver');
  if(d.burning)dangerAlert('fire',groundEscape.active?'KEEP CLEAR OF VEHICLE FIRE':'FIRE · EXIT VEHICLE',groundEscape.active?'Stay at least 12 m from the burning vehicle.':'Slow down, press X to get out, then move 12 m away. Fuel fire may explode.','critical','fuel');
  if(d.wheelsLost)dangerAlert('wheel-failure','WHEEL / SUSPENSION FAILURE',d.wheelsLost>=2?'Multiple wheels detached · powered travel disabled.':'Wheel detached · severe handling and drive damage.','critical','body');
+ if(d.rotorFailed)dangerAlert('rotor-failure','ROTOR FAILURE','Lift unavailable · aircraft requires repair.','critical','engine');
  if(d.engineFailed)dangerAlert('engine','ENGINE FAILURE',d.reason||'Powered acceleration unavailable.','critical','engine');
  if(d.oilPressure<.7&&state.rpm>300)dangerAlert('oil-pressure','STOP ENGINE · LOW OIL PRESSURE',d.oilPressure.toFixed(1)+' bar · lubrication failure risks engine seizure.','critical','oil');
  if(d.coolantTemp>110)dangerAlert('overheat','ENGINE OVERHEATING',Math.round(d.coolantTemp)+' °C · reduce load and stop safely.','critical','coolant');

@@ -24,6 +24,7 @@ profiles.jet={name:'Coastal F/A-18 Fighter',short:'COASTAL F/A-18',kind:'jet',bo
 profiles.lifeflight={...profiles.heli,name:'LifeFlight-inspired Rescue',short:'LIFEFLIGHT · RESCUE',body:'rescue-helicopter',price:950000,mass:4500,top:85,length:13.8,width:3.1,eye:2.3,clearance:1.15,colour:'#e4e9ed',gearType:'retractable',rescue:true};
 profiles.racq={...profiles.lifeflight,name:'RACQ-inspired Rescue',short:'RACQ · RESCUE',price:1200000,colour:'#e3b92f',livery:'yellow-blue'};
 profiles.jet.gearType='retractable';profiles.kart.width=1.44;for(const [id,p] of Object.entries(profiles))p.modelId=id;
+profiles.trafficTruck={name:'Rigid Delivery Truck',short:'DELIVERY TRUCK',kind:'car',modelId:'trafficTruck',body:'truck',price:110000,mass:10000,force:17000,power:210000,efficiency:.8,top:25,reverse:5,grip:9,steer:.38,wheelbase:4.6,width:2.4,length:8.2,height:3.4,eye:2.5,clearance:.65,drag:1.2,brake:5.5,suspension:12,traction:'REAR-WHEEL DRIVE',colour:'#d9dcde'};
 const stockProfiles=Object.fromEntries(Object.entries(profiles).map(([id,p])=>[id,{...p}]));
 const CAREER_KEY='coastal-explorer-career-v5',starterVehicles=['ute','bike','drift','heli'];
 const upgradeTypes={engine:{label:'Engine',effect:'+12% power / +4% top speed per level',cost:4500},brakes:{label:'Brakes',effect:'+15% braking per level',cost:2000},tyres:{label:'Tyres',effect:'+12% road grip per level',cost:2500},suspension:{label:'Suspension',effect:'+12% suspension response per level',cost:1800}};

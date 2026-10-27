@@ -8,7 +8,7 @@ site = root / "site"
 site.mkdir(exist_ok=True)
 shutil.copyfile(root / "index.html", site / "index.html")
 (site / "downloads").mkdir(exist_ok=True)
-for name in ["Coastal-Explorer-v20.zip", "Coastal-Explorer-Developer-Prompt.txt"]:
+for name in ["Coastal-Explorer-v21.zip", "Coastal-Explorer-Developer-Prompt.txt"]:
     source = root / "downloads" / name
     if source.exists():
         shutil.copyfile(source, site / "downloads" / name)

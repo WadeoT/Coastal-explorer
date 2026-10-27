@@ -6,14 +6,14 @@ function dispatchPoliceUnit(ai,preferStation=false){
  for(let attempt=0;attempt<24;attempt++){const a=(ai.index%12)/12*TAU+attempt*.47,r=300+attempt*17;if(placeOnRoad(ai,p.x+Math.sin(a)*r,p.z+Math.cos(a)*r)){ai.dispatchSource='roaming patrol';ai.stuckTime=0;return true;}}return false;
 }
 function deployPoliceForWanted(){
- const desired=policeStrength(state.wanted);let units=trafficPool.filter(a=>a.isPoliceUnit);
+ const desired=policeStrength(state.wanted);let units=trafficPool.filter(a=>a.isPoliceUnit&&!a.disabledByHijack);
  while(units.length<Math.max(4,desired)){const ai=createTrafficCar(trafficPool.length,true);ai.isPoliceUnit=true;ai.reserve=true;ai.health=100;ai.damage=VehicleDamageModel.create({kind:'car'});ai.disabledByDispatch=true;ai.root.setEnabled(false);trafficPool.push(ai);units.push(ai);}
  const ordered=[...units].sort((a,b)=>{const da=a.root.isEnabled()?Math.hypot(a.root.position.x-player.position.x,a.root.position.z-player.position.z):1e9,db=b.root.isEnabled()?Math.hypot(b.root.position.x-player.position.x,b.root.position.z-player.position.z):1e9;return da-db;});
  for(const [i,ai] of ordered.entries()){ai.disabledByDispatch=!!ai.reserve&&i>=desired;setPolice(ai,true);ai.pursuing=state.wanted>0&&i<desired;if(ai.disabledByDispatch){ai.root.setEnabled(false);continue;}if(ai.pursuing&&(!ai.path||!ai.root.isEnabled()||Math.hypot(ai.root.position.x-player.position.x,ai.root.position.z-player.position.z)>5000)){dispatchPoliceUnit(ai,ai.reserve&&i%3===0);ai.speed=Math.min(ai.targetSpeed||12,18);}}
 }
 function maintainPolicePatrols(dt){
  nextPoliceDispatch-=dt;if(nextPoliceDispatch>0)return;nextPoliceDispatch=1;
- for(const ai of trafficPool){if(!ai.isPoliceUnit||ai.disabledByDispatch||ai.health<=0)continue;const distance=Math.hypot(ai.root.position.x-player.position.x,ai.root.position.z-player.position.z);
+ for(const ai of trafficPool){if(!ai.isPoliceUnit||ai.disabledByDispatch||ai.disabledByHijack||ai.health<=0)continue;const distance=Math.hypot(ai.root.position.x-player.position.x,ai.root.position.z-player.position.z);
   if((!ai.pursuing&&distance>1500)||(ai.pursuing&&distance>6500)||!ai.root.isEnabled()){dispatchPoliceUnit(ai,false);continue;}
   if(ai.pursuing){const moved=ai.dispatchLast?Math.hypot(ai.root.position.x-ai.dispatchLast.x,ai.root.position.z-ai.dispatchLast.z):10;ai.stuckSeconds=moved<.45?(ai.stuckSeconds||0)+1:0;ai.dispatchLast={x:ai.root.position.x,z:ai.root.position.z};
    if(ai.stuckSeconds>=3){const road=nearestRoad(ai.root.position.x,ai.root.position.z);if(road){ai.rejoinRoad={x:road.x,z:road.z};ai.yaw+=Math.PI*.55;ai.speed=3;}if(ai.stuckSeconds>12&&distance>160){dispatchPoliceUnit(ai,false);ai.stuckSeconds=0;}}

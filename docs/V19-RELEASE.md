@@ -29,6 +29,6 @@ Public multiplayer shares the on-foot person through the existing pilot model. T
 ## Verification
 
 - `tests/crash-outcomes.cjs`: leak versus rupture, instant 120 km/h wreck, soft versus rigid contact, empty fuel, temperature/fuel fire outcomes, glancing contact.
-- `tests/v19.cjs`: actual browser moving-car exit, helicopter fall injuries/fatality, boxed-in extraction and arrest, immediate wreck state.
+- `tests/v19.cjs`: actual browser moving-car exit, helicopter fall injuries/fatality, restored flight rendering on re-entry, boxed-in extraction and arrest, immediate wreck state.
 - `tests/public-relay.cjs` / `tests/mqtt-codec.cjs`: port-443-only automatic connection, public login bytes, two-player snapshots/roster/models, fallback and privileged-message rejection. These are protocol fixtures; live endpoint reachability is checked separately by GitHub CI.
 - Damage-model, thermal, component-damage browser, V17 rollover/wall/controls/textures and V18 scenery/water/fire-escape regressions.

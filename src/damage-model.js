@@ -4,18 +4,18 @@ const VehicleDamageModel=(()=>{
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
  function create(p={kind:'car'}){
   const electric=!!p.electric||p.kind==='bike'&&!p.combustion,airCooled=electric||p.body==='kart'||p.kind==='jet',capacity={oil:electric?0:p.kind==='bike'?3:7.5,coolant:airCooled?0:p.kind==='bike'?2:12,fuel:electric?0:p.kind==='bike'?14:p.kind==='jet'?5000:p.kind==='heli'?450:p.kind==='boat'?120:p.body==='kart'?5:90};
-  return {wheelsLost:0,fireDelay:['car','boat'].includes(p.kind)?9:3.5,turbine:p.kind==='jet',thermalLoad:0,exhaustTemp:450,components:{engine:100,radiator:100,oil:100,fuel:100,driver:100,body:100},capacity,oil:capacity.oil,coolant:capacity.coolant,fuel:capacity.fuel,coolantTemp:88,oilTemp:92,oilPressure:electric?0:1.5,engineFailed:false,driverDead:false,burning:false,exploded:false,fireTime:0,oilStarvation:0,overheatTime:0,reason:'',lastHit:null,impacts:0,electric,airCooled};
+  return {wheelsLost:0,fireDelay:['car','boat'].includes(p.kind)?9:3.5,turbine:p.kind==='jet',thermalLoad:0,exhaustTemp:450,components:{engine:100,radiator:100,oil:100,fuel:100,driver:100,body:100},capacity,oil:capacity.oil,coolant:capacity.coolant,fuel:capacity.fuel,coolantTemp:88,oilTemp:92,oilPressure:electric?0:1.5,engineFailed:false,driverDead:false,burning:false,exploded:false,fireTime:0,crashIgnitionRemaining:null,oilStarvation:0,overheatTime:0,reason:'',lastHit:null,impacts:0,electric,airCooled};
  }
  function hit(d,part,amount,cause='bullet'){
   if(!d||d.exploded||!Object.hasOwn(d.components,part)||!Number.isFinite(amount)||amount<=0)return false;
   const c=d.components;c[part]=clamp(c[part]-amount,0,100);d.lastHit={part,cause,amount};d.impacts++;
   if(part==='engine'&&c.engine<=12){d.engineFailed=true;d.reason='Engine destroyed';}
   if(part==='driver'&&c.driver<=0){d.driverDead=true;d.reason='Driver killed';}
-  if(part==='fuel'&&d.fuel>0&&c.fuel<=55){d.burning=true;if(c.fuel<=0)d.fireTime=Math.max(d.fireTime,d.fireDelay>4?0:3.3);}
+  if(part==='fuel'&&cause!=='crash'&&d.fuel>0&&c.fuel<=55){d.burning=true;if(c.fuel<=0)d.fireTime=Math.max(d.fireTime,d.fireDelay>4?0:3.3);}
   if(part==='body'&&c.body<=0){d.engineFailed=true;d.reason='Vehicle wrecked';}
   return true;
  }
- function explode(d){if(d.exploded)return false;d.exploded=true;d.burning=true;d.engineFailed=true;d.driverDead=true;d.reason='Fuel explosion';for(const key of Object.keys(d.components))d.components[key]=0;d.fuel=0;return true;}
+ function explode(d){if(d.exploded)return false;d.exploded=true;d.crashIgnitionRemaining=null;d.burning=true;d.engineFailed=true;d.driverDead=true;d.reason='Fuel explosion';for(const key of Object.keys(d.components))d.components[key]=0;d.fuel=0;return true;}
  function step(d,dt,{rpm=750,load=0,ambient=25,airspeed=0,redline=6000,boost=0,cooling=1}={}){
   if(!d||!Number.isFinite(dt)||dt<=0)return;dt=Math.min(dt,.1);load=clamp(Number.isFinite(load)?load:0,0,1);airspeed=clamp(Number.isFinite(airspeed)?airspeed:0,0,350);boost=clamp(Number.isFinite(boost)?boost:0,0,1);redline=Number.isFinite(redline)&&redline>300?redline:6000;rpm=clamp(Number.isFinite(rpm)?rpm:0,0,12000);
   const c=d.components,running=!d.engineFailed&&!d.exploded&&rpm>300;
@@ -24,6 +24,8 @@ const VehicleDamageModel=(()=>{
   if(d.capacity.oil&&c.oil<90){const damage=(90-c.oil)/90,breach=c.oil<=8;d.oilLeakRate=breach?(running?.30:.08):(.0004+damage*damage*.025)*(running?1:.25);d.oil=Math.max(0,d.oil-d.oilLeakRate*dt);}else d.oilLeakRate=0;
   d.fuelLeakRate=d.capacity.fuel&&c.fuel<90?.001+((90-c.fuel)/90)**2*.14:0;if(d.fuelLeakRate)d.fuel=Math.max(0,d.fuel-d.fuelLeakRate*dt);
   if(running&&d.capacity.fuel)d.fuel=Math.max(0,d.fuel-(.0006+load*.005)*dt);
+  // A crash puncture leaks visibly before retained heat/sparks ignite it.
+  if(Number.isFinite(d.crashIgnitionRemaining)){if(d.fuel<=0||c.fuel>=90||d.exploded||d.burning)d.crashIgnitionRemaining=null;else{d.crashIgnitionRemaining=Math.max(0,d.crashIgnitionRemaining-dt);if(d.crashIgnitionRemaining<=0){d.burning=true;d.fireTime=0;d.crashIgnitionRemaining=null;}}}
   const oilFill=d.capacity.oil?d.oil/d.capacity.oil:1,coolFill=d.capacity.coolant?d.coolant/d.capacity.coolant:1;
   d.oilPressure=running&&d.capacity.oil?clamp(.45+rpm/650,0,5)*clamp(oilFill*1.2,0,1)*(c.oil<=8?.25:1):0;
   d.thermalLoad+=(load-d.thermalLoad)*(1-Math.exp(-dt/1.5));const effort=d.thermalLoad,rpmHeat=clamp(rpm/redline,0,1),airflow=clamp(airspeed/45,0,1);
@@ -74,14 +76,17 @@ const VehicleDamageModel=(()=>{
   if(effective>17)hit(d,'driver',(effective-17)**1.45*.7*intrusion*clamp(.65+crush.remaining/Math.max(1,.5*(p.mass||1400)*effective*effective)*.55+crush.intrusion*.6,.65,2.5),'crash');
   // Structural failure happens at impact, independently of later fire/thermal damage.
   if(severity>=100){d.components.body=0;d.engineFailed=true;d.reason='Chassis destroyed by impact';}
-  const tankBreached=d.components.fuel<=50||effective>27||hot>.45&&d.components.fuel<75&&effective>17,ignition=front?hot>.25||effective>25:rear?effective>17:effective>24;
-  if(fuelFill>0&&tankBreached&&ignition){d.burning=true;d.fireTime=wasBurning?previousFireTime:0;
-   // Severe, hot, fuel-loaded tank impacts can detonate immediately. Others burn
-   // with a variable escape window; an empty tank never produces a fuel blast.
-   if(fuelFill>.22&&(rear&&effective>33&&hot>.32||front&&effective>36&&hot>.6)||effective>46&&fuelFill>.4)explode(d);
-   else {const delay=clamp(9-fuelFill*2-hot*3-Math.max(0,effective-22)*.12,3,9);d.fireDelay=wasBurning?Math.min(d.fireDelay,delay):delay;}
+  // Ruptured lines/tanks are commoner than immediate combustion. Direct fuel
+  // hits above retain their location weighting; severe front/right-side loads
+  // can also damage lines without pretending every bump ruptures the tank.
+  if(fuelFill>0&&effective>12&&(front||side&&point.x>=0))hit(d,'fuel',(effective-12)*(front?1.8:1.5),'crash');
+  const leaking=d.components.fuel<90,ignitionRisk=effective>18||rear&&effective>14||hot>.35&&effective>12;
+  if(fuelFill>0&&leaking){
+   if(effective>65&&hot>.85&&fuelFill>.6&&d.components.fuel<15)explode(d);
+   else if(wasBurning){d.burning=true;d.fireTime=previousFireTime;}
+   else if(ignitionRisk){const delay=clamp(10-hot*3-Math.max(0,effective-18)*.12-fuelFill,4,10);d.crashIgnitionRemaining=Math.min(Number.isFinite(d.crashIgnitionRemaining)?d.crashIgnitionRemaining:Infinity,delay);d.fireDelay=clamp(12-fuelFill*2-hot*2,7,12);}
   }
-  d.crashOutcome={absorbedKJ:Math.round(crush.absorbed/1000),cabinIntrusion:crush.intrusion,speedKph:Math.round(speed*3.6),energyKJ:Math.round(.5*(p.mass||1400)*speed*speed/1000),surface:kind,direction:rear?'rear':front?'front':'side',fuelFill,temperature:Math.max(d.coolantTemp,d.oilTemp),severity,wrecked:d.components.body<=0,ignited:d.burning,exploded:d.exploded};
+  d.crashOutcome={absorbedKJ:Math.round(crush.absorbed/1000),cabinIntrusion:crush.intrusion,speedKph:Math.round(speed*3.6),energyKJ:Math.round(.5*(p.mass||1400)*speed*speed/1000),surface:kind,direction:rear?'rear':front?'front':'side',fuelFill,temperature:Math.max(d.coolantTemp,d.oilTemp),severity,fuelLeak:fuelFill>0&&leaking,ignitionPending:Number.isFinite(d.crashIgnitionRemaining),wrecked:d.components.body<=0,ignited:d.burning,exploded:d.exploded};
   return severity;
  }
  return {create,hit,step,power,zones,rayBox,trace,crash,explode,crumpleImpact};

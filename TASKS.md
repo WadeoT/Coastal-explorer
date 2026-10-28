@@ -39,7 +39,7 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 
 - [x] Make visible dents easier to sustain and activate permanent front/rear/side crumpling at lighter impacts.
 
-- [x] Increase severe-crash fuel ignition and hot/high-energy explosion frequency, with fuel/temperature checks and a shorter crash-fire escape window.
+- [x] Prefer common crash fuel leaks followed by delayed ignition/fire; reduce instant impact explosions to exceptional hot, fuel-loaded tank failures.
 - [x] Fix the reported createTrafficCar material crash during civilian-model recycling; verify every traffic-eligible profile.
 - [x] Solid player-to-player vehicle and on-foot collisions, with impact damage.
 - [x] Player attacks damage other players and their vehicles; visible remote damage.

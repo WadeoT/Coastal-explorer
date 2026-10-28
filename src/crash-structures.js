@@ -1,6 +1,6 @@
 const crashStructures=new Map(),looseVehicleParts=[];
 function beginCrashStructure(root,p,point,speed,worldNormal=null,owner=null){
- if(!root||p.kind!=='car'||speed<7)return;root.computeWorldMatrix(true);let s=crashStructures.get(root);
+ if(!root||p.kind!=='car'||speed<4)return;root.computeWorldMatrix(true);let s=crashStructures.get(root);
  if(!s){const world=root.getWorldMatrix().clone(),inv=Matrix.Invert(world),cage=BeamCrash.create(p),skins=[];
   for(const m of root.getChildMeshes()){if(m.metadata?.damageDecal||/glass|wheel|tyre|lamp|light|gauge|instrument|steering/i.test(m.name+' '+m.material?.name))continue;const pos=m.getVerticesData('position');if(!pos||pos.length>60000)continue;m.computeWorldMatrix(true);const relative=m.getWorldMatrix().multiply(inv),inverse=Matrix.Invert(relative),base=pos.slice(),binding=[];for(let i=0;i<base.length;i+=3){const v=V.TransformCoordinates(new V(base[i],base[i+1],base[i+2]),relative);binding.push({p:v,weights:BeamCrash.weights(cage,v.asArray())});}skins.push({mesh:m,base,binding,inverse});if(root===exterior&&damageGraphics&&!damageGraphics.original.has(m))damageGraphics.original.set(m,base.slice());}
   s={root,p,cage,skins,owner,age:0,clock:0};crashStructures.set(root,s);

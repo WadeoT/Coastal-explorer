@@ -57,7 +57,7 @@ const VehicleDamageModel=(()=>{
   if(p.kind&&p.kind!=='car')return{absorbed:0,intrusion:0,remaining:.5*(p.mass||1400)*speed*speed};
   const mass=p.mass||1400,length=p.length||4.5,width=p.width||1.8;d.crumple??={front:{travel:length*.17,used:0},rear:{travel:length*.13,used:0},side:{travel:width*.12,used:0},cabin:0};
   const weights={front:Math.max(0,-point.z)/(length*.5),rear:Math.max(0,point.z)/(length*.5),side:Math.abs(point.x)/(width*.5)},total=weights.front+weights.rear+weights.side||1,energy=.5*mass*speed*speed;let absorbed=0;
-  for(const name of ['front','rear','side']){const zone=d.crumple[name],force=mass*(name==='side'?180:115),available=Math.max(0,zone.travel-zone.used)*force,taken=Math.min(available,energy*weights[name]/total);zone.used=Math.min(zone.travel,zone.used+taken/force);absorbed+=taken;}
+  for(const name of ['front','rear','side']){const zone=d.crumple[name],force=mass*(name==='side'?145:80),available=Math.max(0,zone.travel-zone.used)*force,taken=Math.min(available,energy*weights[name]/total);zone.used=Math.min(zone.travel,zone.used+taken/force);absorbed+=taken;}
   const remaining=Math.max(0,energy-absorbed),intrusion=Math.max(0,remaining-mass*65)/(mass*450);d.crumple.cabin=Math.min(1.2,d.crumple.cabin+intrusion);return{absorbed,remaining,intrusion:d.crumple.cabin};
  }
  function crash(d,p,speed,point,impact={}){

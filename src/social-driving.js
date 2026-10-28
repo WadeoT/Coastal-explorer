@@ -49,6 +49,6 @@ window.addEventListener('keydown',e=>{if(passengerRide.active&&state.mode==='pla
 function receiveRemoteDamage(remote,raw){
  if(!Array.isArray(raw)||raw.length!==6||!raw.every(Number.isFinite))return;const next=raw.map((n,i)=>clamp(n,0,i===0?100:i<4?3:1)),p=profiles[remote.vehicle],prior=remote.damageVisual||[100,0,0,0,0,0];
  if(next[0]>prior[0]+1||next.slice(1,4).some((v,i)=>v<prior[i+1]-.02))clearCrashStructure(remote.root,true);
- if(next[0]<prior[0]-12||next.slice(1,4).some((v,i)=>v>prior[i+1]+.08)){const deltas=next.slice(1,4).map((v,i)=>v-prior[i+1]),axis=['front','rear','side'][deltas.indexOf(Math.max(...deltas))],point=new V(axis==='side'?p.width/2:0,Math.min(1,p.eye*.6),axis==='rear'?p.length/2:axis==='front'?-p.length/2:0),normal=axis==='rear'?{x:0,z:-1}:axis==='side'?{x:-1,z:0}:{x:0,z:1};beginCrashStructure(remote.root,p,point,clamp(15+(100-next[0])*.25,15,45),normal);}
+ if(next[0]<prior[0]-2||next.slice(1,4).some((v,i)=>v>prior[i+1]+.025)){const deltas=next.slice(1,4).map((v,i)=>v-prior[i+1]),axis=['front','rear','side'][deltas.indexOf(Math.max(...deltas))],point=new V(axis==='side'?p.width/2:0,Math.min(1,p.eye*.6),axis==='rear'?p.length/2:axis==='front'?-p.length/2:0),normal=axis==='rear'?{x:0,z:-1}:axis==='side'?{x:-1,z:0}:{x:0,z:1};beginCrashStructure(remote.root,p,point,clamp(4+(100-next[0])*.40,4,45),normal);}
  if(remote.root.metadata.mainRotor)remote.root.metadata.mainRotor.setEnabled(!next[4]);remote.damageVisual=next;
 }

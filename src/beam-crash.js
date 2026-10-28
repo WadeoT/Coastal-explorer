@@ -6,11 +6,11 @@ const BeamCrash=(()=>{
   for(let a=0;a<nodes.length;a++)for(let b=a+1;b<nodes.length;b++){const ax=a%3,ay=Math.floor(a/3)%2,az=Math.floor(a/6),bx=b%3,by=Math.floor(b/3)%2,bz=Math.floor(b/6);if(Math.abs(ax-bx)>1||Math.abs(ay-by)>1||Math.abs(az-bz)>1)continue;const len=Math.hypot(...nodes[a].p.map((v,i)=>v-nodes[b].p[i])),mid=(nodes[a].p[2]+nodes[b].p[2])/2,cabin=mid>-p.length*.17&&mid<p.length*.18;beams.push({a,b,len,original:len,cabin,broken:false});}
   return {nodes,beams,width:p.width,length:p.length,height,time:0,active:false,energy:0,broken:0};
  }
- function impact(s,point,normal,speed){if(!Number.isFinite(speed)||speed<3)return;const nlen=Math.hypot(...normal)||1,n=normal.map(v=>v/nlen),radius=Math.min(2, .6+speed*.035);for(const node of s.nodes){const d=Math.hypot(...node.p.map((v,i)=>v-point[i])),weight=Math.max(0,1-d/radius);for(let i=0;i<3;i++){node.v[i]+=n[i]*Math.min(22,speed*.60)*weight;node.p[i]+=n[i]*Math.min(1.4,Math.max(0,speed-7)*.040)*weight;}}s.active=true;s.time=0;s.energy+=speed*speed;}
+ function impact(s,point,normal,speed){if(!Number.isFinite(speed)||speed<3)return;const nlen=Math.hypot(...normal)||1,n=normal.map(v=>v/nlen),radius=Math.min(2.2,Math.max(s.height*.5+.4,.6+speed*.035));for(const node of s.nodes){const d=Math.hypot(...node.p.map((v,i)=>v-point[i])),weight=Math.max(0,1-d/radius);for(let i=0;i<3;i++){node.v[i]+=n[i]*Math.min(22,speed*.66)*weight;node.p[i]+=n[i]*Math.min(1.4,Math.max(0,speed-3)*.055)*weight;}}s.active=true;s.time=0;s.energy+=speed*speed;}
  function step(s,dt){if(!s.active||!Number.isFinite(dt)||dt<=0)return;dt=Math.min(dt,1/30);const steps=Math.max(1,Math.ceil(dt/(1/120))),h=dt/steps;for(let k=0;k<steps;k++){
   const old=s.nodes.map(n=>n.p.slice());for(const n of s.nodes)for(let i=0;i<3;i++){n.v[i]*=Math.exp(-h*7);n.p[i]+=n.v[i]*h;}
   for(let iter=0;iter<4;iter++)for(const b of s.beams){if(b.broken)continue;const a=s.nodes[b.a],n=s.nodes[b.b],d=n.p.map((v,i)=>v-a.p[i]),len=Math.hypot(...d)||.0001,strain=(len-b.len)/b.len;
-   if(iter===0&&Math.abs(strain)>(b.cabin?.06:.025))b.len=clamp(b.len+(len-b.len)*(b.cabin?.20:.28),b.original*.40,b.original*1.65);
+   if(iter===0&&Math.abs(strain)>(b.cabin?.06:.014))b.len=clamp(b.len+(len-b.len)*(b.cabin?.20:.34),b.original*.40,b.original*1.65);
    if(Math.abs(strain)>(b.cabin?1.1:.65)&&s.energy>600){b.broken=true;s.broken++;continue;}
    const correction=(len-b.len)/len*(b.cabin?.48:.32);for(let i=0;i<3;i++){a.p[i]+=d[i]*correction*.5;n.p[i]-=d[i]*correction*.5;}
   }

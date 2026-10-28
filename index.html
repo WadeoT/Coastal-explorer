@@ -25876,7 +25876,7 @@ const VehicleDamageModel=(()=>{
   if(p.kind&&p.kind!=='car')return{absorbed:0,intrusion:0,remaining:.5*(p.mass||1400)*speed*speed};
   const mass=p.mass||1400,length=p.length||4.5,width=p.width||1.8;d.crumple??={front:{travel:length*.17,used:0},rear:{travel:length*.13,used:0},side:{travel:width*.12,used:0},cabin:0};
   const weights={front:Math.max(0,-point.z)/(length*.5),rear:Math.max(0,point.z)/(length*.5),side:Math.abs(point.x)/(width*.5)},total=weights.front+weights.rear+weights.side||1,energy=.5*mass*speed*speed;let absorbed=0;
-  for(const name of ['front','rear','side']){const zone=d.crumple[name],force=mass*(name==='side'?180:115),available=Math.max(0,zone.travel-zone.used)*force,taken=Math.min(available,energy*weights[name]/total);zone.used=Math.min(zone.travel,zone.used+taken/force);absorbed+=taken;}
+  for(const name of ['front','rear','side']){const zone=d.crumple[name],force=mass*(name==='side'?145:80),available=Math.max(0,zone.travel-zone.used)*force,taken=Math.min(available,energy*weights[name]/total);zone.used=Math.min(zone.travel,zone.used+taken/force);absorbed+=taken;}
   const remaining=Math.max(0,energy-absorbed),intrusion=Math.max(0,remaining-mass*65)/(mass*450);d.crumple.cabin=Math.min(1.2,d.crumple.cabin+intrusion);return{absorbed,remaining,intrusion:d.crumple.cabin};
  }
  function crash(d,p,speed,point,impact={}){
@@ -25984,7 +25984,7 @@ function recordVehicleCrash(speed,worldPoint=null,impact=null){
  let local=worldPoint?bodyPoint(worldPoint):new V(0,.45-state.profile.clearance,-state.profile.length*.42);
  local=new V(clamp(local.x,-state.profile.width*.53,state.profile.width*.53),clamp(local.y,-state.profile.clearance,state.profile.eye),clamp(local.z,-state.profile.length*.52,state.profile.length*.52));
  resetDrivingRewards();const severity=VehicleDamageModel.crash(state.damage,state.profile,speed,local,impact||{solid:false,kind:"vehicle"});state.lastCrashSpeed=speed;state.damageFlash=.6;if(state.damage.crumple){state.frontCrush=Math.max(state.frontCrush||0,state.damage.crumple.front.used);state.rearCrush=Math.max(state.rearCrush||0,state.damage.crumple.rear.used);state.sideCrush=Math.max(state.sideCrush||0,state.damage.crumple.side.used);}
- dentVehicle(local,Math.min(.5,speed*.014),1.0+speed*.025);spawnCrashDebris(worldBodyPoint(local),speed);
+ dentVehicle(local,Math.min(.65,.025+speed*.022),1.15+speed*.035);spawnCrashDebris(worldBodyPoint(local),speed);
  if(state.profile.kind==='heli'&&speed>=8){startHelicopterCrash(speed,local,impact);}else if(state.profile.kind==='car'&&speed>=12){if(impact?.solid&&impact.normal&&speed>17)crushVehicleAgainstSurface(local,impact.normal,speed);startCarCrash(speed,local,impact);}else if(impact?.solid&&impact.normal&&speed>17&&['car','boat','heli','jet'].includes(state.profile.kind)){const depth=crushVehicleAgainstSurface(local,impact.normal,speed);player.position.x-=impact.normal.x*depth;player.position.z-=impact.normal.z*depth;state.solidCrash=state.damage.components.body<=0||state.damage.driverDead?{x:player.position.x,z:player.position.z}:null;state.crashFlight=null;motion.vx=motion.vz=motion.vy=0;motion.suspensionVelocity=0;if(['heli','jet'].includes(state.profile.kind)){state.solidCrash=null;state.crashFlight={time:0,vy:-2,roll:motion.roll,pitch:motion.pitch,rollSpeed:.5,pitchSpeed:.3};}}else if(speed>17&&['car','heli','jet'].includes(state.profile.kind)){
   const side=local.x/(state.profile.width/2),glancing=Math.abs(side)>.65;
   state.crashFlight={time:0,vy:Math.min(4,speed*.10),roll:motion.roll,pitch:motion.pitch,rollSpeed:glancing?Math.sign(side)*Math.min(4,speed*.10):0,pitchSpeed:glancing?0:-Math.min(1.2,speed*.025)};
@@ -26068,11 +26068,11 @@ const BeamCrash=(()=>{
   for(let a=0;a<nodes.length;a++)for(let b=a+1;b<nodes.length;b++){const ax=a%3,ay=Math.floor(a/3)%2,az=Math.floor(a/6),bx=b%3,by=Math.floor(b/3)%2,bz=Math.floor(b/6);if(Math.abs(ax-bx)>1||Math.abs(ay-by)>1||Math.abs(az-bz)>1)continue;const len=Math.hypot(...nodes[a].p.map((v,i)=>v-nodes[b].p[i])),mid=(nodes[a].p[2]+nodes[b].p[2])/2,cabin=mid>-p.length*.17&&mid<p.length*.18;beams.push({a,b,len,original:len,cabin,broken:false});}
   return {nodes,beams,width:p.width,length:p.length,height,time:0,active:false,energy:0,broken:0};
  }
- function impact(s,point,normal,speed){if(!Number.isFinite(speed)||speed<3)return;const nlen=Math.hypot(...normal)||1,n=normal.map(v=>v/nlen),radius=Math.min(2, .6+speed*.035);for(const node of s.nodes){const d=Math.hypot(...node.p.map((v,i)=>v-point[i])),weight=Math.max(0,1-d/radius);for(let i=0;i<3;i++){node.v[i]+=n[i]*Math.min(22,speed*.60)*weight;node.p[i]+=n[i]*Math.min(1.4,Math.max(0,speed-7)*.040)*weight;}}s.active=true;s.time=0;s.energy+=speed*speed;}
+ function impact(s,point,normal,speed){if(!Number.isFinite(speed)||speed<3)return;const nlen=Math.hypot(...normal)||1,n=normal.map(v=>v/nlen),radius=Math.min(2.2,Math.max(s.height*.5+.4,.6+speed*.035));for(const node of s.nodes){const d=Math.hypot(...node.p.map((v,i)=>v-point[i])),weight=Math.max(0,1-d/radius);for(let i=0;i<3;i++){node.v[i]+=n[i]*Math.min(22,speed*.66)*weight;node.p[i]+=n[i]*Math.min(1.4,Math.max(0,speed-3)*.055)*weight;}}s.active=true;s.time=0;s.energy+=speed*speed;}
  function step(s,dt){if(!s.active||!Number.isFinite(dt)||dt<=0)return;dt=Math.min(dt,1/30);const steps=Math.max(1,Math.ceil(dt/(1/120))),h=dt/steps;for(let k=0;k<steps;k++){
   const old=s.nodes.map(n=>n.p.slice());for(const n of s.nodes)for(let i=0;i<3;i++){n.v[i]*=Math.exp(-h*7);n.p[i]+=n.v[i]*h;}
   for(let iter=0;iter<4;iter++)for(const b of s.beams){if(b.broken)continue;const a=s.nodes[b.a],n=s.nodes[b.b],d=n.p.map((v,i)=>v-a.p[i]),len=Math.hypot(...d)||.0001,strain=(len-b.len)/b.len;
-   if(iter===0&&Math.abs(strain)>(b.cabin?.06:.025))b.len=clamp(b.len+(len-b.len)*(b.cabin?.20:.28),b.original*.40,b.original*1.65);
+   if(iter===0&&Math.abs(strain)>(b.cabin?.06:.014))b.len=clamp(b.len+(len-b.len)*(b.cabin?.20:.34),b.original*.40,b.original*1.65);
    if(Math.abs(strain)>(b.cabin?1.1:.65)&&s.energy>600){b.broken=true;s.broken++;continue;}
    const correction=(len-b.len)/len*(b.cabin?.48:.32);for(let i=0;i<3;i++){a.p[i]+=d[i]*correction*.5;n.p[i]-=d[i]*correction*.5;}
   }
@@ -26087,7 +26087,7 @@ const BeamCrash=(()=>{
 
 const crashStructures=new Map(),looseVehicleParts=[];
 function beginCrashStructure(root,p,point,speed,worldNormal=null,owner=null){
- if(!root||p.kind!=='car'||speed<7)return;root.computeWorldMatrix(true);let s=crashStructures.get(root);
+ if(!root||p.kind!=='car'||speed<4)return;root.computeWorldMatrix(true);let s=crashStructures.get(root);
  if(!s){const world=root.getWorldMatrix().clone(),inv=Matrix.Invert(world),cage=BeamCrash.create(p),skins=[];
   for(const m of root.getChildMeshes()){if(m.metadata?.damageDecal||/glass|wheel|tyre|lamp|light|gauge|instrument|steering/i.test(m.name+' '+m.material?.name))continue;const pos=m.getVerticesData('position');if(!pos||pos.length>60000)continue;m.computeWorldMatrix(true);const relative=m.getWorldMatrix().multiply(inv),inverse=Matrix.Invert(relative),base=pos.slice(),binding=[];for(let i=0;i<base.length;i+=3){const v=V.TransformCoordinates(new V(base[i],base[i+1],base[i+2]),relative);binding.push({p:v,weights:BeamCrash.weights(cage,v.asArray())});}skins.push({mesh:m,base,binding,inverse});if(root===exterior&&damageGraphics&&!damageGraphics.original.has(m))damageGraphics.original.set(m,base.slice());}
   s={root,p,cage,skins,owner,age:0,clock:0};crashStructures.set(root,s);
@@ -28811,7 +28811,7 @@ window.addEventListener('keydown',e=>{if(passengerRide.active&&state.mode==='pla
 function receiveRemoteDamage(remote,raw){
  if(!Array.isArray(raw)||raw.length!==6||!raw.every(Number.isFinite))return;const next=raw.map((n,i)=>clamp(n,0,i===0?100:i<4?3:1)),p=profiles[remote.vehicle],prior=remote.damageVisual||[100,0,0,0,0,0];
  if(next[0]>prior[0]+1||next.slice(1,4).some((v,i)=>v<prior[i+1]-.02))clearCrashStructure(remote.root,true);
- if(next[0]<prior[0]-12||next.slice(1,4).some((v,i)=>v>prior[i+1]+.08)){const deltas=next.slice(1,4).map((v,i)=>v-prior[i+1]),axis=['front','rear','side'][deltas.indexOf(Math.max(...deltas))],point=new V(axis==='side'?p.width/2:0,Math.min(1,p.eye*.6),axis==='rear'?p.length/2:axis==='front'?-p.length/2:0),normal=axis==='rear'?{x:0,z:-1}:axis==='side'?{x:-1,z:0}:{x:0,z:1};beginCrashStructure(remote.root,p,point,clamp(15+(100-next[0])*.25,15,45),normal);}
+ if(next[0]<prior[0]-2||next.slice(1,4).some((v,i)=>v>prior[i+1]+.025)){const deltas=next.slice(1,4).map((v,i)=>v-prior[i+1]),axis=['front','rear','side'][deltas.indexOf(Math.max(...deltas))],point=new V(axis==='side'?p.width/2:0,Math.min(1,p.eye*.6),axis==='rear'?p.length/2:axis==='front'?-p.length/2:0),normal=axis==='rear'?{x:0,z:-1}:axis==='side'?{x:-1,z:0}:{x:0,z:1};beginCrashStructure(remote.root,p,point,clamp(4+(100-next[0])*.40,4,45),normal);}
  if(remote.root.metadata.mainRotor)remote.root.metadata.mainRotor.setEnabled(!next[4]);remote.damageVisual=next;
 }
 

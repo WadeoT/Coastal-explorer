@@ -37,7 +37,8 @@
     "test:v26": "node tests/v26.cjs",
     "test:v27": "node tests/v27.cjs",
     "test:v28": "node tests/v28.cjs",
-    "test:1.2.9": "node tests/v129.cjs"
+    "test:1.2.9": "node tests/fuel-fire-frequency.cjs && node tests/v129.cjs",
+    "test:fires": "node tests/fuel-fire-frequency.cjs && node tests/crash-outcomes.cjs"
   },
   "devDependencies": {
     "@babylonjs/core": "9.31.3",

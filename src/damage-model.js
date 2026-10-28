@@ -11,7 +11,7 @@ const VehicleDamageModel=(()=>{
   const c=d.components;c[part]=clamp(c[part]-amount,0,100);d.lastHit={part,cause,amount};d.impacts++;
   if(part==='engine'&&c.engine<=12){d.engineFailed=true;d.reason='Engine destroyed';}
   if(part==='driver'&&c.driver<=0){d.driverDead=true;d.reason='Driver killed';}
-  if(part==='fuel'&&d.fuel>0&&c.fuel<=40){d.burning=true;if(c.fuel<=0)d.fireTime=Math.max(d.fireTime,d.fireDelay>4?0:3.3);}
+  if(part==='fuel'&&d.fuel>0&&c.fuel<=55){d.burning=true;if(c.fuel<=0)d.fireTime=Math.max(d.fireTime,d.fireDelay>4?0:3.3);}
   if(part==='body'&&c.body<=0){d.engineFailed=true;d.reason='Vehicle wrecked';}
   return true;
  }
@@ -74,12 +74,12 @@ const VehicleDamageModel=(()=>{
   if(effective>17)hit(d,'driver',(effective-17)**1.45*.7*intrusion*clamp(.65+crush.remaining/Math.max(1,.5*(p.mass||1400)*effective*effective)*.55+crush.intrusion*.6,.65,2.5),'crash');
   // Structural failure happens at impact, independently of later fire/thermal damage.
   if(severity>=100){d.components.body=0;d.engineFailed=true;d.reason='Chassis destroyed by impact';}
-  const tankBreached=d.components.fuel<35||effective>34,ignition=front?hot>.35||effective>30:rear?effective>21:effective>29;
+  const tankBreached=d.components.fuel<=50||effective>27||hot>.45&&d.components.fuel<75&&effective>17,ignition=front?hot>.25||effective>25:rear?effective>17:effective>24;
   if(fuelFill>0&&tankBreached&&ignition){d.burning=true;d.fireTime=wasBurning?previousFireTime:0;
    // Severe, hot, fuel-loaded tank impacts can detonate immediately. Others burn
    // with a variable escape window; an empty tank never produces a fuel blast.
-   if(rear&&effective>38&&hot>.5&&fuelFill>.35)explode(d);
-   else {const delay=clamp(10-fuelFill*2-hot*3-Math.max(0,effective-28)*.10,3,10);d.fireDelay=wasBurning?Math.min(d.fireDelay,delay):delay;}
+   if(fuelFill>.22&&(rear&&effective>33&&hot>.32||front&&effective>36&&hot>.6)||effective>46&&fuelFill>.4)explode(d);
+   else {const delay=clamp(9-fuelFill*2-hot*3-Math.max(0,effective-22)*.12,3,9);d.fireDelay=wasBurning?Math.min(d.fireDelay,delay):delay;}
   }
   d.crashOutcome={absorbedKJ:Math.round(crush.absorbed/1000),cabinIntrusion:crush.intrusion,speedKph:Math.round(speed*3.6),energyKJ:Math.round(.5*(p.mass||1400)*speed*speed/1000),surface:kind,direction:rear?'rear':front?'front':'side',fuelFill,temperature:Math.max(d.coolantTemp,d.oilTemp),severity,wrecked:d.components.body<=0,ignited:d.burning,exploded:d.exploded};
   return severity;

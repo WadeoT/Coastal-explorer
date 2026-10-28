@@ -1,5 +1,5 @@
-v1.3.1 COASTAL ARCHITECTURE
-https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.1&publicRoom=COAST-PUBLIC
+v1.3.2 COASTAL LIGHT
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.2&publicRoom=COAST-PUBLIC
 On foot: WASD moves, Shift runs, E enters your nearby vehicle or hijacks the
 nearest slow NPC/parked vehicle. Theft raises wanted level. Stolen cars are
 borrowed; buying is required for permanent garage ownership. F at a local

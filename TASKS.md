@@ -63,7 +63,13 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Add batched nearby window frames and sills with bounded detail budgets.
 - [x] Verify real-map rendering and package the graphics/data bundle.
 
-## v1.3.2 — next: combat vehicles and fleet expansion
+## v1.3.2 — lighting and surface graphics
+
+- [x] Day/night/weather sky gradient and tone mapping/contrast.
+- [x] Shared surface-normal textures, stronger vehicle highlights and water relief; Low skips relief.
+- [x] Browser/screenshot verification, package and publish.
+
+## v1.3.3 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

@@ -31,3 +31,4 @@ export {decompressSync, strFromU8} from "fflate";
 export { Viewport } from '@babylonjs/core/Maths/math.viewport.js';
 export { SpotLight } from '@babylonjs/core/Lights/spotLight.js';
 export { FresnelParameters } from '@babylonjs/core/Materials/fresnelParameters.js';
+export { Layer } from '@babylonjs/core/Layers/layer.js';

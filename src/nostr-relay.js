@@ -20,7 +20,7 @@ class CoastNostr {
  failed(reason){this.ready=false;this.lastError=reason;if(!this.closed){this.attempt++;this.onStatus();this.retry=setTimeout(()=>this.connect(),/banned|rate.limit/i.test(reason)?120000:Math.min(30000,1500*2**Math.min(this.attempt,4)));}}
  publish(value){
   if(!this.ready||this.ws?.readyState!==1||this.ws.bufferedAmount>16000)return;const s=value.state,round=(v,step)=>Math.round((v||0)/step),pose=value.type==='pose'&&value.v===14?JSON.stringify([value.name,s?[s.vehicle,round(s.x,.08),round(s.y,.08),round(s.z,.08),round(s.yaw,.01),round(s.pitch,.01),round(s.roll,.01),round(s.health,1),s.indicator,s.headlights,s.ejected,s.parachute,s.gearDown,round(s.rotor,.1)]:null]):null;
-  const interval=pose&&pose===this.lastPoseKey?2500:this.url.includes('damus')?1100:550;if(Date.now()-this.lastSent<interval)return;const content=JSON.stringify(value);if(content.length>4096)return;this.lastSent=Date.now();this.lastPoseKey=pose;this.ws.send(JSON.stringify(['EVENT',this.sign(content)]));
+  const control=value.type==='owner-control'||value.type==='owner-ack',interval=control?0:pose&&pose===this.lastPoseKey?2500:this.url.includes('damus')?1100:550;if(Date.now()-this.lastSent<interval)return;const content=JSON.stringify(value);if(content.length>4096)return;this.lastSent=Date.now();this.lastPoseKey=pose;this.ws.send(JSON.stringify(['EVENT',this.sign(content)]));
  }
 
  close(){this.closed=true;this.ready=false;clearTimeout(this.retry);clearTimeout(this.handshake);if(this.ws?.readyState===1)this.ws.send(JSON.stringify(['CLOSE',this.sub]));this.ws?.close();this.key.fill(0);}

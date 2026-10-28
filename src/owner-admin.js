@@ -22,7 +22,7 @@ async function runLocalAdmin(cmd,args){
 function runAdmin(command){
  const parts=String(command).trim().split(/\s+/),cmd=(parts.shift()||'help').toLowerCase();
  if(cmd==='help')return 'Owner login is required. Player actions: action <me|all|player ID> wanted <0–5> | money <amount> | repair | damage <component> <1–100> | fire | explode | freeze | unfreeze | tp <lat> <lon> | vehicle <ID> | job <ID> | canceljob | interceptors. Commands: gift <player ID|me> <amount> | ban <player ID> [reason] | unban <ID> | kick <ID> | players | time <0–24> | weather clear/cloudy/rain/storm/fog | settings maxPlayers <2–16> | settings rewardMultiplier <0.25–5> | settings policeEnabled on/off | settings autoWeather on/off | cash <amount> | repair | give <vehicle ID> | vehicle <ID> | wanted <0–5> | tp <lat> <lon> | noclip on/off';
- if(!Multiplayer.isOwner){if(!localAdminUnlocked)return 'Owner authentication required. Enter the admin code to unlock.';return runLocalAdmin(cmd,parts);}
+ if(!Multiplayer.isOwner){if(!localAdminUnlocked)return 'Owner authentication required. Enter the admin code to unlock.';return Multiplayer.publicTransport?runCommunityAdmin(cmd,parts):runLocalAdmin(cmd,parts);}
  if(cmd==='wanted'&&parts.length>=2)return Multiplayer.requestAdmin('action',[parts[0],'wanted',parts[1]]);if(['money','cash'].includes(cmd)&&parts.length>=2)return Multiplayer.requestAdmin('action',[parts[0],'money',parts[1]]);
  if(['action','gift','ban','unban','bans','kick','players','time','weather','settings'].includes(cmd))return Multiplayer.requestAdmin(cmd,parts);
  if(['cash','repair','give','vehicle','wanted','tp','noclip'].includes(cmd))return Multiplayer.requestAdmin('client-action',[cmd,...parts]);
@@ -36,8 +36,8 @@ function receiveOwnerGift(gift){
 }
 
 const appliedOwnerActions=new Set();
-async function applyOwnerAction(data,local=false){
- if(!data||typeof data.actionId!=='string'||appliedOwnerActions.has(data.actionId)||!(local?localAdminUnlocked:Multiplayer.relayMode))return;appliedOwnerActions.add(data.actionId);if(appliedOwnerActions.size>1000)appliedOwnerActions.delete(appliedOwnerActions.values().next().value);const args=data.args||[];resetDrivingRewards();
+async function applyOwnerAction(data,local=false,verifiedPublic=false){
+ if(!data||typeof data.actionId!=='string'||appliedOwnerActions.has(data.actionId)||!(verifiedPublic|| (local?localAdminUnlocked:Multiplayer.relayMode)))return;appliedOwnerActions.add(data.actionId);if(appliedOwnerActions.size>1000)appliedOwnerActions.delete(appliedOwnerActions.values().next().value);const args=data.args||[];resetDrivingRewards();
  switch(data.action){
  case 'money':if(!Number.isInteger(Number(args[0]))||Number(args[0])<0||Number(args[0])>100000000)return;economy.balance=Number(args[0]);saveCareer();updateWallet();break;
  case 'wanted':if(!Number.isInteger(Number(args[0]))||Number(args[0])<0||Number(args[0])>5)return;state.wanted=Number(args[0]);state.heat=state.wanted?WANTED_THRESHOLDS[state.wanted-1]:0;state.fiveStarPressure=0;state.evade=0;state.adminTest=true;updatePoliceDeployment();break;
@@ -63,7 +63,7 @@ function refreshOwnerAdminUI(){
  const options=[['me','My player'],['all','All connected players'],...[...players].map(([id,name])=>[id,name+' · '+id.slice(0,8)])],signature=JSON.stringify(options);
  if(select.dataset.options!==signature){select.dataset.options=signature;select.replaceChildren(...options.map(([id,label])=>{const o=document.createElement('option');o.value=id;o.textContent=label;return o;}));if(options.some(o=>o[0]===value))select.value=value;}
  for(const b of $('adminModal').querySelectorAll('[data-owner]'))b.disabled=!adminPanelUnlocked();
- $('ownerAccessHint').textContent=adminPanelUnlocked()?'Admin unlocked · choose a target and use the buttons.':'Enter the admin code above to unlock. No server is needed for your own player.';
+ $('ownerAccessHint').textContent=adminPanelUnlocked()?communityOwnerSecret?'Owner key loaded · public grants await recipient acknowledgement.':'Local admin unlocked · import the owner key to target other public players.':'Enter the admin code above to unlock. No server is needed for your own player.';
  if($('ownerVehicle').options.length===0)for(const [id,p] of Object.entries(profiles)){const o=document.createElement('option');o.value=id;o.textContent=p.name;$('ownerVehicle').append(o);}
  const jobKey=state.vehicleId+':'+Math.floor(player.position.x/1000)+':'+Math.floor(player.position.z/1000);if($('ownerJob').dataset.jobCache!==jobKey){$('ownerJob').dataset.jobCache=jobKey;const jobs=availableContracts();$('ownerJob').replaceChildren(...jobs.map(j=>{const o=document.createElement('option');o.value=j.id;o.textContent=j.title||j.name||j.id;return o;}));}
 }
@@ -87,7 +87,7 @@ function initialiseOwnerUI(){
  for(let stars=0;stars<=5;stars++){const b=document.createElement('button');b.className='source-btn';b.dataset.owner='';b.textContent=stars===0?'CLEAR STARS':stars+' ★';b.onclick=()=>send('wanted',[stars]);$('ownerWanted').append(b);}
  for(const [label,action,args] of [['REPAIR','repair',[]],['ENGINE FAIL','damage',['engine',100]],['COOLANT LEAK','damage',['radiator',80]],['OIL LEAK','damage',['oil',80]],['RUPTURE SUMP','damage',['oil',100]],['FUEL FIRE','fire',[]],['EXPLODE','explode',[]],['FREEZE','freeze',[]],['UNFREEZE','unfreeze',[]],['INTERCEPTORS','interceptors',[]]]){const b=document.createElement('button');b.className='source-btn';b.dataset.owner='';b.textContent=label;b.onclick=()=>send(action,args);$('ownerEffects').append(b);}
  click('ownerSetMoney',()=>send('money',[$('ownerMoney').value]));
- click('ownerGiftMoney',()=>{const targets=target()==='all'?[...new Set([Multiplayer.id,...(Multiplayer.roster||[]).map(p=>p.id),...Multiplayer.remotes.keys()])]:[target()];return Promise.all(targets.map(id=>ownerPanelCommand('gift',[id,$('ownerMoney').value])));});
+ click('ownerGiftMoney',()=>{const targets=target()==='all'?[...new Set([Multiplayer.id||'me',...(Multiplayer.roster||[]).map(p=>p.id),...Multiplayer.remotes.keys()])]:[target()];return Promise.all(targets.map(id=>ownerPanelCommand('gift',[id,$('ownerMoney').value])));});
  click('ownerGrantVehicle',()=>send('vehicle',[$('ownerVehicle').value]));click('ownerDamageApply',()=>send('damage',[$('ownerComponent').value,$('ownerDamageAmount').value]));
  click('ownerBringHere',()=>{if(!state.profile)throw Error('Choose a vehicle before setting a meeting position.');const p=localToGeo(player.position.x,player.position.z);return send('tp',[p.lat,p.lon]);});
  click('ownerGoTo',()=>{const other=Multiplayer.remotes.get(target());if(!other)throw Error('Select a player currently driving.');const p=localToGeo(other.target.x,other.target.z);return ownerPanelCommand('action',['me','tp',p.lat,p.lon]);});

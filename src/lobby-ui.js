@@ -1,6 +1,6 @@
 // Play starts immediately. Multiplayer connects and retries in the background;
 // the status badge distinguishes local play from a real server connection.
-let lobbyLaunch=null,lobbyResume=false,lobbyRetry=null,lobbyAttempts=0,lobbyAutoWanted=false,lobbyHandshake=null,lobbyServerEdit=false;
+let lobbyLaunch=null,lobbyResume=false,lobbyRetry=null,lobbyAttempts=0,lobbyAutoWanted=false,lobbyHandshake=null,lobbyServerEdit=false,lobbyListSignature='';
 const lobbyTabId=(()=>{try{let id=sessionStorage.getItem('coastal-tab');if(!id)sessionStorage.setItem('coastal-tab',id=crypto.randomUUID());return id;}catch{return crypto.randomUUID();}})();
 function relaySessionKey(){return 'coastal-session:'+Multiplayer.relayOrigin;}
 function getRelaySession(origin){
@@ -19,7 +19,7 @@ function refreshAutomaticLobby(){
  $('publicLobbySetup').hidden=!!$('relayInput').value.trim()&&!lobbyServerEdit;
  $('publicLobbyAttempts').textContent=Multiplayer.connected?'Connected · '+(Multiplayer.roomId||'room'):lobbyAttempts?'Connection attempt '+lobbyAttempts+' · retries automatically':'';
  refreshPublicServerUI();
- const list=$('publicLobbyPlayers');list.replaceChildren();
+ const signature=JSON.stringify((Multiplayer.roster||[]).map(p=>[p.id,p.name,p.vehicle]));if(signature===lobbyListSignature)return;lobbyListSignature=signature;const list=$('publicLobbyPlayers');list.replaceChildren();
  for(const p of Multiplayer.roster||[]){const row=document.createElement('li');row.textContent=(p.id===Multiplayer.id?'YOU · ':'')+(p.name||'Driver')+' · '+(profiles[p.vehicle]?.short||'Choosing a vehicle');list.append(row);}
 }
 function showAutomaticLobby(){

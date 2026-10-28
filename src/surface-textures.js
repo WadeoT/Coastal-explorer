@@ -2,6 +2,7 @@
 // World dimensions in mesh UVs keep bricks, grass and roof ribs at useful scales.
 function makeSurfaceTexture(name,kind,size=512){
  if($('qualitySelect')?.value==='ultra')size=kind==='paint'||kind==='metal'||kind==='rubber'?512:1024;
+ const cacheKey=kind+':'+size;if(sharedSurfaceTextures.has(cacheKey))return sharedSurfaceTextures.get(cacheKey);
  const texture=new DynamicTexture(name,size,scene,true),c=texture.getContext(),pixels=c.createImageData(size,size);let seed=719;
  const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
  const grid8=Array.from({length:64},rand),grid32=Array.from({length:1024},rand),noiseAt=(u,v,grid,n)=>{const x=u*n,y=v*n,ix=Math.floor(x),iy=Math.floor(y),a=x-ix,b=y-iy,s=a*a*(3-2*a),t=b*b*(3-2*b),at=(dx,dy)=>grid[((iy+dy)%n)*n+(ix+dx)%n];return lerp(lerp(at(0,0),at(1,0),s),lerp(at(0,1),at(1,1),s),t)-.5;};
@@ -12,6 +13,7 @@ function makeSurfaceTexture(name,kind,size=512){
  }
  c.putImageData(pixels,0,0);
  if(kind==='ground'){
+  for(let i=0;i<85;i++){const x=rand()*size,y=rand()*size,r=4+rand()*35,g=c.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,i%3?'rgba(102,88,64,.30)':'rgba(243,230,189,.38)');g.addColorStop(1,'rgba(180,172,148,0)');c.fillStyle=g;c.fillRect(x-r,y-r,r*2,r*2);}
   for(let i=0;i<9000;i++){const x=rand()*size,y=rand()*size,len=1+rand()*5;c.strokeStyle=i%3?'rgba(120,127,94,.32)':'rgba(245,234,191,.60)';c.lineWidth=.6+rand();c.beginPath();c.moveTo(x,y);c.quadraticCurveTo(x+1,y-len*.6,x+(rand()-.5)*3,y-len);c.stroke();}
   for(let i=0;i<650;i++){const x=rand()*size,y=rand()*size;c.fillStyle=i%2?'rgba(95,86,67,.35)':'rgba(241,238,211,.7)';c.beginPath();c.ellipse(x,y,1+rand()*2,.7+rand(),rand()*TAU,0,TAU);c.fill();}
  }else if(kind==='sand'){for(let i=0;i<8500;i++){c.fillStyle=i%3?'rgba(139,117,78,.15)':'rgba(255,250,226,.65)';c.fillRect(rand()*size,rand()*size,1,1);}for(let i=0;i<70;i++){c.strokeStyle='rgba(255,250,231,.75)';c.lineWidth=1;c.beginPath();c.arc(rand()*size,rand()*size,1+rand()*2,0,Math.PI*1.5);c.stroke();}}else if(kind==='wall'){
@@ -25,7 +27,7 @@ function makeSurfaceTexture(name,kind,size=512){
  }else if(kind==='paint'){
   for(let i=0;i<700;i++){c.fillStyle=i%2?'rgba(255,255,255,.32)':'rgba(150,155,161,.18)';c.fillRect(rand()*size,rand()*size,1,1);}
  }
- texture.wrapU=texture.wrapV=1;texture.anisotropicFilteringLevel=8;texture.update(false);return texture;
+ texture.wrapU=texture.wrapV=1;texture.anisotropicFilteringLevel=8;texture.update(false);return keepSurfaceTexture(texture,cacheKey);
 }
 function vehicleSurfaceMaterial(m){
  if(!m||m.diffuseTexture)return;const n=m.name.toLowerCase();let kind=null;

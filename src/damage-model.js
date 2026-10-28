@@ -22,7 +22,7 @@ const VehicleDamageModel=(()=>{
   if(d.capacity.coolant&&c.radiator<90)d.coolant=Math.max(0,d.coolant-d.capacity.coolant*(.005+(100-c.radiator)*.00055)*dt);
   // Ordinary punctures lose litres over minutes; a destroyed sump is a separate breach.
   if(d.capacity.oil&&c.oil<90){const damage=(90-c.oil)/90,breach=c.oil<=8;d.oilLeakRate=breach?(running?.30:.08):(.0004+damage*damage*.025)*(running?1:.25);d.oil=Math.max(0,d.oil-d.oilLeakRate*dt);}else d.oilLeakRate=0;
-  if(d.capacity.fuel&&c.fuel<90)d.fuel=Math.max(0,d.fuel-d.capacity.fuel*(100-c.fuel)*.00012*dt);
+  d.fuelLeakRate=d.capacity.fuel&&c.fuel<90?.001+((90-c.fuel)/90)**2*.14:0;if(d.fuelLeakRate)d.fuel=Math.max(0,d.fuel-d.fuelLeakRate*dt);
   if(running&&d.capacity.fuel)d.fuel=Math.max(0,d.fuel-(.0006+load*.005)*dt);
   const oilFill=d.capacity.oil?d.oil/d.capacity.oil:1,coolFill=d.capacity.coolant?d.coolant/d.capacity.coolant:1;
   d.oilPressure=running&&d.capacity.oil?clamp(.45+rpm/650,0,5)*clamp(oilFill*1.2,0,1)*(c.oil<=8?.25:1):0;

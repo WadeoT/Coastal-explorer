@@ -1,5 +1,5 @@
-V26 STREET & STUNT
-https://wadeot.github.io/Coastal-explorer/index.html?v=26&publicRoom=COAST-PUBLIC
+V27 SMOOTHER COAST
+https://wadeot.github.io/Coastal-explorer/index.html?v=27&publicRoom=COAST-PUBLIC
 On foot: WASD moves, Shift runs, E enters your nearby vehicle or hijacks the
 nearest slow NPC/parked vehicle. Theft raises wanted level. Stolen cars are
 borrowed; buying is required for permanent garage ownership. F at a local
@@ -17,7 +17,7 @@ and Low modes. Crash panels bend, parts detach, and lost wheels impair drive.
 Nearby pedestrians can be injured by cars; driving offences worsen a pursuit.
 
 Public lobby now tries a verified standard HTTPS-port (443) relay first,
-then two backups. Use the V26 link to load the updated client.
+then two backups. Use the V27 link to load the updated client.
 
 V19 IMPACT & ESCAPE / PUBLIC LOBBY
 Cars/boats/helicopters: X jumps out even while moving. Speed and falls hurt
@@ -301,3 +301,5 @@ ELECTRIC BIKES: Shop by Talaria, Sur-Ron or Stark. W/S ride/brake; hold V for a 
 V25: Four petrol motorcycles; manual variants start in neutral (Shift clutch + Q/E gears, I restart). X exits a wreck if your driver survives. YOUR DRIVER customises appearance. SUGGESTIONS saves ideas, shares with the current lobby, or opens a GitHub issue for durable delivery. World damage restores on the hour without disconnecting you. See docs/V25-RELEASE.md.
 
 V26: ALL E-BIKES groups every electric bike. X wheelies; while holding a moving wheelie, K knee knockers / G hand scrape / N no-hander / J no-footer. C camera. F2 dismounts bikes. Use the GARAGE button while riding. The shop/NPC catalogue has 200 more named procedural cars (228 vehicles total); dimensions and individual model weights are estimates, while traffic volumes/heavy share still follow the official census. See docs/V26-RELEASE.md.
+
+V27: PLAY SOLO · OFFLINE in the garage disconnects and stops retrying; PUBLIC MULTIPLAYER rejoins. Balanced graphics is now the default with automatic performance scaling. Friends can see your chase police. To grant money/vehicles to others over public relays, import the separately supplied private owner-key JSON in ADMIN, choose a player and wait for the delivery acknowledgement. Never share that key or upload it to GitHub. Leaking fuel pools beneath stopped/slow vehicles and produces an early warning. See docs/V27-RELEASE.md.

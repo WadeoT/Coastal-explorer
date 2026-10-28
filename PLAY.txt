@@ -1,5 +1,5 @@
-V28 DRIVE & NAVIGATE
-https://wadeot.github.io/Coastal-explorer/index.html?v=28&publicRoom=COAST-PUBLIC
+v1.2.9 SHARED DRIVING
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.2.9&publicRoom=COAST-PUBLIC
 On foot: WASD moves, Shift runs, E enters your nearby vehicle or hijacks the
 nearest slow NPC/parked vehicle. Theft raises wanted level. Stolen cars are
 borrowed; buying is required for permanent garage ownership. F at a local
@@ -17,7 +17,7 @@ and Low modes. Crash panels bend, parts detach, and lost wheels impair drive.
 Nearby pedestrians can be injured by cars; driving offences worsen a pursuit.
 
 Public lobby now tries a verified standard HTTPS-port (443) relay first,
-then two backups. Use the V28 link to load the updated client.
+then two backups. Use the v1.2.9 link to load the updated client.
 
 V19 IMPACT & ESCAPE / PUBLIC LOBBY
 Cars/boats/helicopters: X jumps out even while moving. Speed and falls hurt
@@ -305,3 +305,6 @@ V26: ALL E-BIKES groups every electric bike. X wheelies; while holding a moving 
 V27: PLAY SOLO · OFFLINE in the garage disconnects and stops retrying; PUBLIC MULTIPLAYER rejoins. Balanced graphics is now the default with automatic performance scaling. Friends can see your chase police. To grant money/vehicles to others over public relays, import the separately supplied private owner-key JSON in ADMIN, choose a player and wait for the delivery acknowledgement. Never share that key or upload it to GitHub. Leaking fuel pools beneath stopped/slow vehicles and produces an early warning. See docs/V27-RELEASE.md.
 
 V28: H dismounts bikes (F2 removed). X/K/G/N/J are the wheelie/trick controls; ? opens help. Fighter ATC sends you to Sunshine Coast Airport runway 13/31 with an approach column, runway target and top heading compass. Private waypoints have sky columns and distance labels. Cars now consume finite front/rear/side crush travel. See docs/V28-RELEASE.md and TASKS.md for this bundle and pending requests.
+
+
+v1.2.9: On foot, E beside a friend’s car boards a free passenger seat; C changes camera and X exits. Moving exits can injure you. Player cars and walkers collide, F18 cannon hits damage other players’ components, and crash deformation/repairs are visible to friends. Both friends need the current build. Best-effort public relays remain peer-simulated. See docs/v1.2.9-RELEASE.md and docs/VERSION-HISTORY.md.

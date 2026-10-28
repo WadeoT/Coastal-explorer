@@ -1,0 +1,64 @@
+SUNSHINE COAST BUILDING DATA — CONTINUE THE EXISTING PILOT
+
+You are collecting source-backed architectural data for Coastal Explorer, a browser driving game representing Queensland’s Sunshine Coast. Continue and improve the existing sunshine_coast_architecture_100_buildings pilot ZIP; do not replace real data with invented houses. Your output must be usable by a developer without manually investigating every record.
+
+GOAL AND COVERAGE
+Cover the whole game region: Caloundra to Noosa, coastal suburbs and the hinterland, including Mudjimba, Marcoola, Bli Bli, Buderim, Nambour, Palmwoods, Woombye, Eumundi, Maleny and Montville. Include smaller named localities, not only major towns. Use the game’s supplied boundary if available; otherwise use this collection envelope: latitude -26.95 to -26.25, longitude 152.65 to 153.30. This envelope is a collection boundary, not a claim that every point is Sunshine Coast local-government territory.
+
+Prioritise a continuous, detailed neighbourhood in Mudjimba first. Enrich the original 100 buildings, then expand in adjoining blocks. Deliver useful incremental tiles rather than promising every house while returning scattered examples. Include houses, units, apartments, shops, workshops, industrial buildings and other mapped structures. Use official locality boundaries where available; record which source defined coverage.
+
+FIRST INSPECT THE PILOT
+Read its buildings.jsonl, schema.json, architectural-families.json, sources.csv and report.md. Preserve existing stable IDs, footprint geometry, provenance and field names. Audit the previous results rather than trusting the report. The pilot contains real footprints, but many roof, wall, colour and façade attributes are unknown. Filling those gaps with evidence is more valuable than another list of mostly empty footprints. Report clearly which attributes you actually improved.
+
+SOURCE RULES
+Use OpenStreetMap, openly licensed council/Queensland building footprints, terrain/LiDAR and orthophotography, or photographs whose reuse permits the intended game use. Record the exact dataset URL, publisher, edition/date, licence and required attribution. Respect access limits and dataset terms. Do not scrape or redistribute Google Street View/Maps imagery or derived datasets where terms do not permit this use; do not bypass restrictions. Do not claim access to imagery you cannot inspect. Do not include identifying residents, faces, number plates or private interior information.
+
+Distinguish four cases: directly observed, source-provided, estimated and unknown. Use the existing schema’s status enum; document any mapping needed. An aerial roof view can support a roof observation, but does not prove a hidden front wall, fence or window. An architectural template is a renderer fallback, not an observed individual house. Never fill unknowns with convincing-looking guesses and label them verified.
+
+PER-BUILDING INFORMATION
+Keep the original JSONL schema for compatible records, including id, osm_way_id, area_sample, latitude, longitude, footprint, footprint_area_m2, geometry_provenance, family_id, attributes, source_measurements, source_evidence, facades, validation_status and synthetic. Use osm:way:<id> for existing OSM-way records. Keep them linked to their original OSM IDs.
+
+Collect the following wherever the evidence supports it, using the pilot’s existing attribute names:
+- Building type and storey count.
+- Wall/eaves height and total roof height ABOVE LOCAL GROUND, in metres.
+- Roof shape: hip, gable, flat, skillion or a supported combination; pitch, ridge orientation, overhang and roof material/colour.
+- Wall material and primary/secondary façade colours, preferably sRGB hex values.
+- Front-facing direction, frontage/entry position, street setback and nearest named road.
+- Garage/carport position and size; balconies/verandas, awnings and raised/Queenslander construction.
+- Visible door/window patterns, approximate dimensions and locations; distinguish observed frontages from unobserved sides.
+
+For each attribute retain value, status, confidence, source_ids, observed_at, method and note as defined by the pilot schema. Use null with unknown status and empty evidence when unsupported. Confidence is an assessment, not a guarantee.
+
+ADDITIONAL STREET-LEVEL DETAIL
+Deliver compatible supplementary GeoJSON/JSONL for observed fences and gates, driveways, paths, retaining walls, garden/lawn areas, trees/hedges, street lights and signs. Link each feature to a building or street ID. Provide geometry, dimensions when known, material/colour, source references and uncertainty. Do not place decorative features on road carriageways. Record actual geometry if available; do not invent precise locations for unseen features.
+
+COORDINATES AND HEIGHTS
+Use EPSG:4326 GeoJSON with [longitude, latitude] coordinates. Polygon rings must be closed and non-self-intersecting; retain holes and multipolygon parts where applicable. Supply metre-based dimensions and clockwise bearings from true north.
+
+Do not confuse absolute LiDAR elevation with building height. If deriving height, calculate an appropriate roof elevation minus a matched terrain elevation, document CRS/vertical datum, sampling, resolution and uncertainty, and reject mismatched or weak samples. Keep raw elevations separately in source_measurements. Do not write a 40 m sea-level roof elevation as a 40 m tall house. A matching address alone does not prove that a measurement belongs to the same footprint.
+
+DEDUPLICATION AND IDS
+Match existing OSM IDs first; then use spatial overlap/centroids with a documented tolerance. Do not duplicate a house when combining OSM and council footprints, confuse one building with an entire parcel, or treat an address point as a footprint. Keep source IDs and a matching report. The game may encode existing OSM IDs as w<way-id>:<part>; normalise that form when comparing. For non-OSM or multipart features use a documented source-qualified ID in an extension dataset; do not fabricate an osm_way_id just to satisfy the old schema.
+
+OUTPUT PACKAGE
+Return actual downloadable ZIP files, not only instructions or sample code. Structure:
+  README.md — scope, how to consume the files, limitations, schema versions.
+  schema.json — preserved compatible pilot schema.
+  buildings.jsonl — one compatible building per line, including original IDs.
+  extensions/schema.json and extensions/buildings.jsonl — only if non-OSM/multipart/new fields need an extension; explain joins.
+  architectural-families.json — reusable fallback templates clearly labelled as templates.
+  features/ — supplementary street-level GeoJSON/JSONL.
+  sources.csv — source IDs, exact URLs, publisher, licence, attribution, source date and retrieval date.
+  coverage.geojson — tile/locality boundaries actually searched, with counts and gaps.
+  manifest.json — tile names, bounding boxes, building counts, file sizes and checksums.
+  report.md — validation, matching, improved fields, missing areas and known uncertainties.
+  images/ — OPTIONAL, only reusable evidence images with source IDs/licence; name by building ID and view.
+
+Use roughly 0.01-degree tiles or a documented equivalent, with a master index and no duplicates across tile boundaries. Tile by centroid while retaining the complete footprint. Keep the first review ZIP small: 20 neighbouring houses with meaningful appearance data, then the enriched original 100 and subsequent regional batches. If you cannot obtain visual evidence, return the reliable geometry/attributes you can obtain and explicitly report the missing visual fields.
+
+If supplying optional GLB models, use metre units, Y-up, a ground-level local origin and a separate georeferencing transform; provide sensible LODs, shared materials, low draw counts and simple collision meshes. Keep geospatial source data separately. Do not spend effort generating thousands of heavy bespoke models before the developer validates the first small block.
+
+VALIDATION AND HONEST COVERAGE REPORT
+Validate every JSONL line against the appropriate schema, coordinate bounds, unique IDs, closed polygons, units, source references and confidence/status consistency. Check invalid/self-intersecting footprints, zero areas, negative heights, impossible storeys and duplicate structures. Report how many buildings have evidence-backed roof shape, wall material, colours, height, storeys, frontage and fences; do not count null fields as completed data.
+
+For each tile/locality, report searched area, mapped structures found, delivered records, enrichment counts, skipped structures and reason, sources/date, remaining gaps and whether coverage is partial. Do not claim every real house is represented just because all OSM footprints were fetched: unmapped buildings and stale data must be acknowledged. Include a change list from the 100-building pilot. Final delivery should clearly separate reliable measured/observed inputs from rendering fallbacks.

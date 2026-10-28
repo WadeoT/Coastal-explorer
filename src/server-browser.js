@@ -17,7 +17,7 @@ function refreshPublicServerUI(){
  const list=$('roomPlayers');list.replaceChildren();
  if(!players.length){const row=document.createElement('p');row.textContent='Player list unavailable until the server connects.';list.append(row);return;}
  for(const p of players){const row=document.createElement('div');row.className='online-player-row';row.dataset.playerId=p.id;const text=document.createElement('span'),r=mp.remotes.get(p.id),distance=r&&state.profile?Math.hypot(r.target.x-player.position.x,r.target.z-player.position.z):null;
-  text.textContent=(p.id===mp.id?'YOU · ':'● ')+(p.name||'Driver')+' · '+(r?.ejected?'ON FOOT / PILOT':profiles[p.vehicle]?.short||'In garage / choosing a vehicle')+(distance===null?'':' · '+(distance>=1000?(distance/1000).toFixed(1)+' km away':Math.round(distance)+' m away'));row.append(text);
+  text.textContent=(p.id===mp.id?'YOU · ':'● ')+(p.name||'Driver')+' · '+(r?.target.passenger?'PASSENGER':r?.ejected?'ON FOOT / PILOT':profiles[p.vehicle]?.short||'In garage / choosing a vehicle')+(distance===null?'':' · '+(distance>=1000?(distance/1000).toFixed(1)+' km away':Math.round(distance)+' m away'));row.append(text);
   if(r){const locate=document.createElement('button');locate.className='source-btn';locate.textContent='FIND ON MAP';locate.onclick=()=>{const current=mp.remotes.get(p.id);if(!current)return;mapView.x=current.target.x;mapView.z=current.target.z;mapView.zoom=2;mapView.selection={x:current.target.x,z:current.target.z};if(state.profile)setPersonalWaypoint(mapView.selection,(current.target.name||'Player')+' · last marked position');openModal('mapModal');drawBigMap();};row.append(locate);}list.append(row);
  }
 }

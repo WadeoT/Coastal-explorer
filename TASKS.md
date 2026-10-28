@@ -1,5 +1,7 @@
 # Coastal Explorer — active delivery backlog
 
+Version naming: planned V29 is v1.2.9, followed by v1.3.0 and v1.3.1. Older published V-number links remain valid. See [version history](docs/VERSION-HISTORY.md).
+
 Requests accumulate here. Work is ordered by dependencies and published in tested version bundles. Publishing one bundle does not close unfinished requests in later bundles.
 
 ## V27 — published (admin, streaming and baseline performance)
@@ -12,7 +14,7 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Compact previews reduced the client from roughly 46.7 MB to 33.6 MB.
 - [x] Gradual visible fuel pooling and a pre-fire warning.
 
-## V28 — verified: smooth driving, controls and crumple zones
+## V28 — published: smooth driving, controls and crumple zones
 
 - [x] Saved selectable graphics/performance presets and individual workload controls, including Battery Saver.
 - [x] Profile and reduce model draw calls; batch wheel geometry while preserving suspension/detachment.
@@ -31,19 +33,20 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Stronger visible dents from front, rear and angled impacts; bound active deformation CPU cost.
 - [x] Light-blue fuel pools and trails from moving vehicles.
 - [x] Cap unnecessary rendering work for battery/CPU savings; keep quality/render-distance options.
-- [ ] Package, publish and verify deployment.
+- [x] Package, publish and verify deployment.
 
-## V29 — next: shared driving and PvP
+## v1.2.9 — verified bundle: shared driving, PvP and traffic crash fix
 
-- [ ] Solid player-to-player vehicle and on-foot collisions, with impact damage.
-- [ ] Player attacks damage other players and their vehicles; visible remote damage.
-- [ ] Board a friend's car as a passenger and move with the driver.
-- [ ] Correct passenger cameras/avatars; leave moving vehicles with injury risk.
-- [ ] Handle driver disconnect/death and prevent passenger/driver self-collisions.
-- [ ] Bound/rate-limit/validate community combat messages; document client-authority limitations.
-- [ ] Two-client collision, damage, passenger and disconnect tests; publish verified bundle.
+- [x] Fix the reported createTrafficCar material crash during civilian-model recycling; verify every traffic-eligible profile.
+- [x] Solid player-to-player vehicle and on-foot collisions, with impact damage.
+- [x] Player attacks damage other players and their vehicles; visible remote damage.
+- [x] Board a friend's car as a passenger and move with the driver.
+- [x] Correct passenger cameras/avatars; leave moving vehicles with injury risk.
+- [x] Handle driver disconnect/death and prevent passenger/driver self-collisions.
+- [x] Bound/rate-limit/validate community combat messages; document client-authority limitations.
+- [x] Two-client collision, damage, passenger and disconnect tests; publish verified bundle.
 
-## V30 — next: combat vehicles and fleet expansion
+## v1.3.0 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.
@@ -51,6 +54,9 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [ ] Another 200 named production models/generations in shop and weighted NPC selection; render actual previews.
 - [ ] Preserve measured Queensland road-volume/heavy shares; label individual model frequencies and specs as estimates.
 - [ ] More aircraft/vehicle breakup, detachable pieces and stronger crash damage presentation.
+- [ ] Place regional airfields/runways at verified real coordinates, with mapped aprons and spawn points.
+- [ ] Park usable unarmed light aircraft (including a Cessna-style plane) at airfields; on-foot entry/hijack and takeoff.
+- [ ] Add multiple propeller aircraft profiles to shop and NPC traffic, with appropriate propulsion, controls, prices and tutorial help.
 - [ ] Keep the larger catalogue inactive until needed; optimise models, textures and render distance.
 - [ ] Update tutorial/help for all new features; publish tested bundle.
 
@@ -62,7 +68,7 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 
 Performance targets are measured improvements and smoother frame times, not an unverified promise of 200% higher FPS or manufacturer-calibrated crash simulation.
 
-## V31 — uploaded building pilot
+## v1.3.1 — uploaded building pilot
 
 - [ ] Validate the uploaded 100-building ZIP as data; do not run its bundled scripts.
 - [ ] Audit footprint IDs, source/licence metadata and observed-versus-unknown attributes.

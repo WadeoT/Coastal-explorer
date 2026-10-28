@@ -1,3 +1,11 @@
+// Builders use different mesh names, and batching replaces their original meshes.
+// Select a paint surface after batching; never require one historical body name.
+function trafficPaintSurface(root,profile){
+ const meshes=root.getChildMeshes().filter(m=>!m.isDisposed()),painted=m=>m.material?.diffuseColor&&!Object.values(materials).includes(m.material)&&!/(glass|glazing|rubber|tyre|wheel|chrome|lamp|light|rider)/i.test(m.material.name);
+ let body=meshes.find(m=>painted(m)&&/bodywork|79-sandstone-paint|vehicle-paint|kart-paint/.test(m.material.name))||meshes.find(m=>painted(m)&&/paint|body|cab/.test(m.material.name))||meshes.find(painted);
+ if(!body){const paint=mat('traffic-fallback-body-paint',profile.colour||'#a0a4a8');body=box('traffic-fallback-body',profile.width*.9,.5,profile.length*.8,0,.8,0,paint,root);}
+ return {body,bodyMat:body.material};
+}
 const trafficRoutes={revision:-1,nodes:new Map()};
 function indexTrafficRoutes(source=roads){for(const path of source)path.trafficLinks=[];if(source===roads&&roadTopology.routeNodes){trafficRoutes.nodes=roadTopology.routeNodes;}else{trafficRoutes.nodes=new Map();for(const path of source){if(path.walking)continue;for(let i=0;i<path.points.length;i++){const key=roadNodeKey(path.points[i],roadLevel(path));if(!trafficRoutes.nodes.has(key))trafficRoutes.nodes.set(key,[]);trafficRoutes.nodes.get(key).push({path,index:i,d:path.lengths[i],key});}}}for(const raw of trafficRoutes.nodes.values()){const refs=(Array.isArray(raw)?raw:raw.refs||[]).filter(r=>!r.path.walking);if(new Set(refs.map(r=>r.path)).size>1)for(const r of refs)r.path.trafficLinks.push(r);}trafficRoutes.revision=roadTopology.revision;}
 function routeOptions(path,node){const raw=trafficRoutes.nodes.get(node.key),refs=Array.isArray(raw)?raw:raw?.refs||[];return refs.filter(r=>!r.path.walking).flatMap(r=>r.path===path?[]:[1,-1].filter(direction=>!(r.path.oneway&&direction<0)&&!(direction===1&&r.index===r.path.points.length-1)&&!(direction===-1&&r.index===0)).map(direction=>({...r,direction,d:r.d+direction*.2})));}

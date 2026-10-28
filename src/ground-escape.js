@@ -1,6 +1,7 @@
 // A living driver can leave moving vehicles; inherited velocity and falls injure the person.
 const groundEscape={active:false,health:100,pilot:null,vehicleMatrix:null,vehiclePosition:null,vehicleRotation:null,blastChecked:false,swimming:false};
 function startGroundEscape(options={}){
+ if(passengerRide.active)return leaveFriendVehicle();
  if(groundEscape.active)return enterNearbyVehicle();
  if(!state.profile||!['car','bike','boat','heli'].includes(state.profile.kind)||!['playing','wrecked'].includes(state.mode)||state.damage?.driverDead)return false;
  if(state.profile.kind==='heli')disposeFlightVisuals();
@@ -11,6 +12,7 @@ function startGroundEscape(options={}){
  state.crashFlight=state.solidCrash=null;state.mode='playing';state.bustedTime=0;state.overturned=false;state.rpm=0;state.accumulator=0;keys.clear();cancelActivity('Left vehicle');resetDrivingRewards();$('busted').classList.add('hidden');dangerState.active.delete('fire');dangerState.last.delete('fire');player.position.copyFrom(spot);player.rotation.set(0,-motion.yaw,0);motion.vx=motion.vy=motion.vz=0;collider.scaling.set(.32,1,.13);collider.position.y=.75;cameraMode='third-person';state.cameraMode=cameraMode;document.body.classList.add('third-person');$('cameraButton').textContent='FIRST PERSON · C';AudioSystem.stop();$('driveHint').textContent='WASD MOVE · SHIFT RUN · E ENTER / HIJACK · F LOCAL ERRANDS · C CAMERA';$('world').focus();updateGroundEscapeCamera(0,true);toast(options.forced?'OFFICER PULLED YOU OUT · move away to resist or wait to surrender':exitSpeed>4||groundEscape.airborne?'JUMPED OUT · momentum and falls can injure or kill you · no parachute in civilian helicopters':'OUT OF VEHICLE · WASD · keep 12 m clear of fire · E enter · G garage',7000);return true;
 }
 function stopGroundEscape(restorePosition=true){
+ passengerRide.active=false;passengerRide.driver=null;
  if(!groundEscape.active)return;groundEscape.active=false;groundEscape.pilot?.dispose(false,false);groundEscape.pilot=null;
  exterior?.setParent(player);if(exterior){exterior.position.set(0,-state.profile.clearance,0);exterior.rotation.setAll(0);}if(vehicleSystems?.root){vehicleSystems.root.setParent(player);vehicleSystems.root.position.setAll(0);vehicleSystems.root.rotation.setAll(0);}
  if(restorePosition){player.position.copyFrom(groundEscape.vehiclePosition);player.rotation.copyFrom(groundEscape.vehicleRotation);motion.pitch=player.rotation.x;motion.roll=player.rotation.z;motion.yaw=-player.rotation.y;}if($('footStatus'))$('footStatus').hidden=true;
@@ -49,6 +51,7 @@ function stepAbandonedVehicle(dt){if(groundEscape.ejectedPlane)return;
  const delta=next.subtract(before);g.vehiclePosition.copyFrom(next);exterior.position.addInPlace(delta);if(vehicleSystems?.root)vehicleSystems.root.position.addInPlace(delta);g.vehicleMatrix=Matrix.Compose(new V(1,1,1),Coastal.Quaternion.FromEulerAngles(g.vehicleRotation.x,g.vehicleRotation.y,g.vehicleRotation.z),next);
 }
 function updateGroundEscapeCamera(dt,snap=false){
+ if(passengerRide.active){passengerCamera(dt,snap);return;}
  const p=player.position,yaw=motion.yaw+cameraLook.yaw,first=cameraMode==='cockpit',desired=first?p.add(new V(0,1.6,0)):p.add(new V(-Math.sin(yaw)*5,2.7+Math.sin(cameraLook.pitch)*3,Math.cos(yaw)*5));if(!first){const ground=groundAt(desired.x,desired.z,p.y,true);if(ground!==null)desired.y=Math.max(desired.y,ground+.65);clipChaseCamera(p.add(new V(0,1.35,0)),desired);}camera.parent=null;camera.position.copyFrom(V.Lerp(camera.position,desired,snap?1:1-Math.exp(-dt*10)));camera.rotation.z=0;camera.upVector.set(0,1,0);camera.setTarget(p.add(new V(Math.sin(yaw)*(first?6:1),first?1.6-cameraLook.pitch:1.1,-Math.cos(yaw)*(first?6:1))));
 }
 function initialiseGroundEscape(){

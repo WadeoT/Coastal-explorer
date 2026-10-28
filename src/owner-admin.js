@@ -47,7 +47,7 @@ async function applyOwnerAction(data,local=false,verifiedPublic=false){
  case 'explode':if(state.damage){VehicleDamageModel.explode(state.damage);updateVehicleDamage(1/60);}break;
  case 'freeze':state.inputFrozen=true;keys.clear();motion.vx=motion.vz=motion.vy=0;break;
  case 'unfreeze':state.inputFrozen=false;break;
- case 'tp':if(state.profile){state.wanted=0;state.heat=0;await teleportTo(Number(args[0]),Number(args[1]));}break;
+ case 'tp':if(state.profile){state.wanted=0;state.heat=0;{const p=geoToLocal(Number(args[0]),Number(args[1]));await teleportTo(p.x,p.z);}}break;
  case 'vehicle':if(profiles[args[0]]){if(!economy.owned.includes(args[0]))economy.owned.push(args[0]);saveCareer();selectVehicle(args[0]);}break;
  case 'job':{const job=availableContracts().find(j=>j.id===args[0]);if(job){state.wanted=0;await startActivity(job);}else toast('That job is not compatible with the current vehicle.');break;}
  case 'canceljob':cancelActivity('Owner cancelled job');break;

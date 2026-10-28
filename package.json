@@ -1,6 +1,6 @@
 {
   "name": "coastal-explorer",
-  "version": "1.2.9",
+  "version": "1.3.0",
   "private": true,
   "description": "Single-file Sunshine Coast driving game; optional browser verification",
   "scripts": {
@@ -39,7 +39,9 @@
     "test:v28": "node tests/v28.cjs",
     "test:1.2.9": "node tests/fuel-fire-frequency.cjs && node tests/v129.cjs && npm run test:crumple",
     "test:fires": "node tests/fuel-fire-frequency.cjs && node tests/crash-outcomes.cjs",
-    "test:crumple": "node tests/beam-crash.cjs && node tests/crumple-sensitivity.cjs"
+    "test:crumple": "node tests/beam-crash.cjs && node tests/crumple-sensitivity.cjs",
+    "test:1.3.0": "node tests/performance-v130.cjs",
+    "profile": "node scripts/profile-v130.cjs"
   },
   "devDependencies": {
     "@babylonjs/core": "9.31.3",

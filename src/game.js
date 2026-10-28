@@ -91,6 +91,7 @@ let materials={};
 /*__TRAFFIC_UPGRADE__*/
 /*__FLIGHT_NAVIGATION__*/
 /*__GARAGE_SPAWN__*/
+/*__PERFORMANCE_V130__*/
 /*__GRAPHICS_SETTINGS__*/
 /*__ACTION_UPGRADE__*/
 /*__SOCIAL_DRIVING__*/
@@ -512,7 +513,7 @@ function updateHUD(){updateFlightNavigation();$('garageButton').querySelector('.
 function drawArrow(ctx,x,y,yaw,size,colour){ctx.save();ctx.translate(x,y);ctx.rotate(yaw);ctx.fillStyle=colour;ctx.strokeStyle='#18382b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,-size);ctx.lineTo(size*.68,size*.8);ctx.lineTo(0,size*.36);ctx.lineTo(-size*.68,size*.8);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();}
 function drawMinimap(){const canvas=$('minimapCanvas'),ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height,scale=.38,px=player.position.x,pz=player.position.z;ctx.fillStyle='#11151c';ctx.fillRect(0,0,w,h);const project=p=>({x:w/2+(p.x-px)*scale,y:h/2+(p.z-pz)*scale});
  ctx.strokeStyle='#818b9b18';ctx.lineWidth=1;const grid=100*scale,ox=((-px*scale)%grid+grid)%grid,oz=((-pz*scale)%grid+grid)%grid;for(let x=ox;x<w;x+=grid){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}for(let y=oz;y<h;y+=grid){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
- drawNaturalMap(ctx,project,{minX:px-w/scale/2,maxX:px+w/scale/2,minZ:pz-h/scale/2,maxZ:pz+h/scale/2});drawGameAirspace(ctx,project);ctx.lineCap='round';for(const road of roadsNear(px,pz,Math.max(w,h)/scale/2)){ctx.beginPath();road.points.forEach((p,i)=>{const q=project(p);i?ctx.lineTo(q.x,q.y):ctx.moveTo(q.x,q.y);});ctx.strokeStyle=road.motorway?'#c2b48d':'#7b879b';ctx.lineWidth=road.motorway?5:3;ctx.stroke();}
+ drawMinimapBase(ctx,w,h,scale,px,pz);drawGameAirspace(ctx,project);
  for(const ai of trafficPool){if(ai.police||!ai.root.isEnabled())continue;const p=project(ai.root.position);if(p.x<0||p.y<0||p.x>w||p.y>h)continue;ctx.fillStyle=ai.police?'#ee8d78':'#a9bd96';ctx.beginPath();ctx.arc(p.x,p.y,ai.police?4:2.5,0,TAU);ctx.fill();}drawDistrictRoute(ctx,project,true);for(const marker of activityMapMarkers()){const q=project(marker),dx=q.x-w/2,dy=q.y-h/2,fit=Math.max(1,Math.abs(dx)/(w/2-12),Math.abs(dy)/(h/2-12)),x=w/2+dx/fit,y=h/2+dy/fit;if(fit>1)drawArrow(ctx,x,y,Math.atan2(dx,-dy),7,'#f0c548');else{ctx.fillStyle='#f0c548';ctx.beginPath();ctx.arc(x,y,5,0,TAU);ctx.fill();}}drawPersonalDestinations(ctx,project,true);drawWorkshopMarkers(ctx,project,true);drawMapContacts(ctx,project,true);ctx.fillStyle='#bbec9b22';ctx.beginPath();ctx.arc(w/2,h/2,19,0,TAU);ctx.fill();drawArrow(ctx,w/2,h/2,motion.yaw,11,'#ffffff');drawImageryAttribution(ctx,true);}
 function renderArtwork(){for(const card of document.querySelectorAll('.vehicle-card[data-vehicle]')){const art=card.querySelector('.vehicle-art'),p=profiles[card.dataset.vehicle];if(art&&p)art.innerHTML=catalogueArt(p);}}
 

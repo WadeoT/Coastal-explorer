@@ -1,6 +1,6 @@
 # Coastal Explorer — active delivery backlog
 
-Version naming: planned V29 is v1.2.9, followed by v1.3.0 and v1.3.1. Older published V-number links remain valid. See [version history](docs/VERSION-HISTORY.md).
+Version naming: planned V29 is v1.2.9, with subsequent bundles using the same dotted format. Older published V-number links remain valid. See [version history](docs/VERSION-HISTORY.md).
 
 Requests accumulate here. Work is ordered by dependencies and published in tested version bundles. Publishing one bundle does not close unfinished requests in later bundles.
 
@@ -49,7 +49,14 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Bound/rate-limit/validate community combat messages; document client-authority limitations.
 - [x] Two-client collision, damage, passenger and disconnect tests; publish verified bundle.
 
-## v1.3.0 — next: combat vehicles and fleet expansion
+## v1.3.0 — performance bundle
+
+- [x] Profile the existing real-map simulation and map drawing.
+- [x] Cache static minimap geography/roads in one bounded overscan canvas; retain live contacts, airspace, jobs and waypoint markers.
+- [x] Spatially index natural-map areas for local views, preserving complete regional coverage.
+- [x] Invalidate on movement, imagery updates, resize and expiry; verify performance and publish.
+
+## v1.3.1 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.
@@ -71,7 +78,7 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 
 Performance targets are measured improvements and smoother frame times, not an unverified promise of 200% higher FPS or manufacturer-calibrated crash simulation.
 
-## v1.3.1 — uploaded building pilot
+## v1.3.2 — uploaded building pilot
 
 - [ ] Validate the uploaded 100-building ZIP as data; do not run its bundled scripts.
 - [ ] Audit footprint IDs, source/licence metadata and observed-versus-unknown attributes.

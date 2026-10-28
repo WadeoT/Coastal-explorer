@@ -35,9 +35,10 @@ function finishAutomaticLobby(){
  else if(lobbyResume&&state.profile){lobbyResume=false;state.mode='playing';state.accumulator=0;resetFlightInterpolation();AudioSystem.resume();$('world').focus();}
  refreshAutomaticLobby();
 }
-function launchFromLobby(type){
+async function launchFromLobby(type){
+ if(garageSpawn.busy)return;
  if(!state.worldReady||!profiles[type]||!economy.owned.includes(type))return;
- lobbyLaunch=null;lobbyResume=false;$('publicLobby').classList.add('hidden');selectVehicle(type);
+ lobbyLaunch=null;lobbyResume=false;$('publicLobby').classList.add('hidden');selectVehicle(type);if(garageSpawn.choice){const ok=await applyGarageSpawn(type);if(!ok){state.worldReady=true;openGarage();return;}}
  if($('relayInput').value.trim()){lobbyAutoWanted=true;Multiplayer.autoJoin();}
  else Multiplayer.autoJoin();
 }

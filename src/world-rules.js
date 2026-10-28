@@ -3,6 +3,8 @@ function indexCollisionObjects(){collisionCells.clear();for(const o of obstacles
 function collisionObjectsNear(a,b,reach){if(collisionCount!==obstacles.length)indexCollisionObjects();const out=new Set();for(let x=Math.floor((Math.min(a.x,b.x)-reach)/128);x<=Math.floor((Math.max(a.x,b.x)+reach)/128);x++)for(let z=Math.floor((Math.min(a.z,b.z)-reach)/128);z<=Math.floor((Math.max(a.z,b.z)+reach)/128);z++)for(const o of collisionCells.get(x+','+z)||[])out.add(o);return addSolidTraffic(out,a,b,reach);}
 function objectContact(o,position,p){
  if(o.removed||o.destroyed)return false;
+ // A low raised island is a wheel/foot support surface, not an enclosing body wall.
+ if(o.kind==='roundabout-island'&&o.height<=.28&&(!p.kind||['car','bike'].includes(p.kind)))return false;
  const radius=Math.max(.2,p.width*.47-(state.sideCrush||0)),reach=p.length*.36,fx=Math.sin(motion.yaw),fz=-Math.cos(motion.yaw);
  if(position.y-p.clearance>o.baseY+o.height+.12||position.y+Math.max(.7,p.eye-p.clearance)<o.baseY)return false;
  for(const side of [-1,0,1]){const length=Math.max(.2,reach-(side>0?state.frontCrush||0:state.rearCrush||0)),x=position.x+fx*length*side,z=position.z+fz*length*side;

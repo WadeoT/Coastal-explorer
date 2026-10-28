@@ -8,7 +8,8 @@ function installExpandedFleet(){
  }
  for(const [id,weight]of [['hilux',18],['ranger',18],['patrol',7],['jimny',4],['drift',6],['commodore',6],['falcon',4],['wrx',2],['mustang',.5],['gtr',.15],['ute',5]])profiles[id].trafficWeight=weight;
 }
-function estimatedTrafficModel(index){const list=Object.values(profiles).filter(p=>p.kind==='car'&&p.trafficWeight>0),total=list.reduce((n,p)=>n+p.trafficWeight,0);let pick=(((index+1)*.7548776662466927)%1)*total;for(const p of list){pick-=p.trafficWeight;if(pick<0)return p.modelId;}return list.at(-1).modelId;}
+let weightedTrafficCache=null;
+function estimatedTrafficModel(index){if(!weightedTrafficCache){let total=0;const entries=Object.values(profiles).filter(p=>p.kind==='car'&&p.trafficWeight>0).map(p=>({id:p.modelId,end:total+=p.trafficWeight}));weightedTrafficCache={entries,total};}const {entries,total}=weightedTrafficCache,pick=(((index+1)*.7548776662466927)%1)*total;let lo=0,hi=entries.length-1;while(lo<hi){const mid=(lo+hi)>>1;if(entries[mid].end>pick)hi=mid;else lo=mid+1;}return entries[lo].id;}
 function addProductionCarDetails(root,p){const s=p.roadShape;if(!s)return;const z=-p.length/2-.06,w=p.width*.5,y=s.hood*.7,alloy=materials.metal;
  if(s.brand==='BMW')for(const side of [-1,1]){box('kidney-grille',w*.27,.23,.035,side*w*.18,y,z,materials.black,root);for(let i=0;i<4;i++)box('kidney-grille-slat',.012,.20,.041,side*w*.18+(i-1.5)*.045,y,z-.018,alloy,root);}
  else if(s.brand==='Jeep')for(let i=0;i<7;i++)box('seven-slot-grille',.045,.24,.035,(i-3)*.08,y,z,materials.black,root);

@@ -1,6 +1,6 @@
-# Coastal Explorer — Smoother Coast (V27)
+# Coastal Explorer — Drive & Navigate (V28)
 
-[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=27) · [V27 release notes](docs/V27-RELEASE.md) · [Netlify + public multiplayer setup](docs/NETLIFY-MULTIPLAYER.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
+[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=28) · [V28 release notes](docs/V28-RELEASE.md) · [Netlify + public multiplayer setup](docs/NETLIFY-MULTIPLAYER.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
 
 A single-file Sunshine Coast driving/flying/boating sandbox with 24 original, simplified vehicle models, first-person and third-person views, a 3D showroom, saved purchases/modifications, deliveries and checkpoint races, a five-star police response, crash collisions, day/night, weather, lights and multiplayer support. The game is not a recreation using GTA V assets.
 
@@ -10,7 +10,9 @@ New players get an optional 12-step in-game tutorial once the real map is ready.
 
 V17 adds contact-aware car rollovers and sliding wrecks, deformable panels and body-attached impact scars, richer procedural ground/building/vehicle textures, and layered explosion effects. Cars and boats use hold-to-accelerate controls with coasting on release. Cars show critical warnings instead of extra oil/coolant monitors; aircraft retain their throttle behavior and instruments. See [V17 details](docs/V17-RELEASE.md).
 
-V27 adds complete scenery swaps, shared GPU textures, adaptive Balanced graphics, compact previews, explicit solo/offline play, visible friends’ police chases, authenticated public owner grants and fuel-leak pools. See [V27 details](docs/V27-RELEASE.md).
+V28 adds lower model draw costs, roundabout exit routing, smooth suspension, H bike dismount, crumple zones, walking camera fixes and real-airport fighter navigation with a heading compass/waypoint columns. See [V28 details](docs/V28-RELEASE.md) and [delivery backlog](TASKS.md).
+
+V27 added complete scenery swaps, shared GPU textures, adaptive Balanced graphics, compact previews, explicit solo/offline play, visible friends’ police chases, authenticated public owner grants and fuel-leak pools. See [V27 details](docs/V27-RELEASE.md).
 
 V26 added an ALL E-BIKES tab, animated X/K/G/N/J stunt controls, more detailed dirt e-bikes and 200 additional procedural cars for the shop and estimated NPC mix (228 vehicles total). The official census still controls volume/heavy share; individual model weights and vehicle specifications are estimates. See [V26 details](docs/V26-RELEASE.md).
 
@@ -32,9 +34,9 @@ V18 adds a ground-level neighbourhood focus: shorter scenery range, nearby house
 
 ## Play and controls
 
-Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. Play starts immediately. Multiplayer automatically tries public MQTT relays when no dedicated server is configured; unavailable services never block driving. The status badge clearly identifies local play. The complete approximately 34 MB HTML includes the runtime, fonts, model geometry and real map. No map API key is needed. The showroom says **V27 · SMOOTHER COAST**.
+Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. Play starts immediately. Multiplayer automatically tries public MQTT relays when no dedicated server is configured; unavailable services never block driving. The status badge clearly identifies local play. The complete approximately 34 MB HTML includes the runtime, fonts, model geometry and real map. No map API key is needed. The showroom says **V28 · DRIVE & NAVIGATE**.
 
-Download: extract `downloads/Coastal-Explorer-v27.zip` and open the game via the included launcher/local server, or run `node server/relay.cjs` to serve the client and relay together. The map/runtime are bundled; Local Play works without a relay. Detailed instructions are in [PLAY.txt](PLAY.txt).
+Download: extract `downloads/Coastal-Explorer-v28.zip` and open the game via the included launcher/local server, or run `node server/relay.cjs` to serve the client and relay together. The map/runtime are bundled; Local Play works without a relay. Detailed instructions are in [PLAY.txt](PLAY.txt).
 
 WASD/arrows drive; Y toggles driving HUD information, hold left mouse to look around, C switches camera, G opens the showroom, M opens the map, H settings, R recovery and Escape pauses. The LandCruiser is manual: hold Shift for clutch and Q/E to change gear. L headlights, [ / ] indicators, V hazards, F fires one F18 cannon round; civilian vehicles are unarmed. F18: hold Space for cannon fire, X ejects, Z deploys flares; use GUNNERY RANGE for the five-target challenge. Ejection opens a chute automatically; WASD steers and G returns to the garage after landing. Extra controls are shown in the game for helicopter, fighter and boat. U signals surrender during a pursuit after landing/stopping; an officer can arrest a stopped wanted driver and charge a game fine. Use Activities for vehicle-specific jobs and races, or earn skill money through drifts, sustained road speed and active five-star pursuits. Ordinary movement alone awards nothing. A fresh career has $65,000 and the original four vehicles owned. Cash, purchases, upgrades and resprays persist in browser storage. Private browsing may not retain progress.
 

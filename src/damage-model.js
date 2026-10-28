@@ -53,17 +53,25 @@ const VehicleDamageModel=(()=>{
  function trace(p,origin,dir,range=1000){return zones(p).map(b=>({part:b.part,t:rayBox(origin,dir,b,range)})).filter(h=>h.t!==null).sort((a,b)=>a.t-b.t);}
  // speed is the contact-normal delta-V supplied by collision detection: a scrape
  // at motorway speed differs from stopping head-on. Surface factors are arcade values.
+ function crumpleImpact(d,p,speed,point){
+  if(p.kind&&p.kind!=='car')return{absorbed:0,intrusion:0,remaining:.5*(p.mass||1400)*speed*speed};
+  const mass=p.mass||1400,length=p.length||4.5,width=p.width||1.8;d.crumple??={front:{travel:length*.17,used:0},rear:{travel:length*.13,used:0},side:{travel:width*.12,used:0},cabin:0};
+  const weights={front:Math.max(0,-point.z)/(length*.5),rear:Math.max(0,point.z)/(length*.5),side:Math.abs(point.x)/(width*.5)},total=weights.front+weights.rear+weights.side||1,energy=.5*mass*speed*speed;let absorbed=0;
+  for(const name of ['front','rear','side']){const zone=d.crumple[name],force=mass*(name==='side'?180:115),available=Math.max(0,zone.travel-zone.used)*force,taken=Math.min(available,energy*weights[name]/total);zone.used=Math.min(zone.travel,zone.used+taken/force);absorbed+=taken;}
+  const remaining=Math.max(0,energy-absorbed),intrusion=Math.max(0,remaining-mass*65)/(mass*450);d.crumple.cabin=Math.min(1.2,d.crumple.cabin+intrusion);return{absorbed,remaining,intrusion:d.crumple.cabin};
+ }
  function crash(d,p,speed,point,impact={}){
   if(!Number.isFinite(speed)||speed<3||d.exploded)return 0;
   const wasBurning=d.burning,previousFireTime=d.fireTime,rigid=impact.solid!==false,kind=impact.kind||'building',surface=/sand|grass|soil|terrain/.test(kind)?.72:/hedge|vegetation/.test(kind)?.45:rigid?1:.78;
   const effective=speed*Math.sqrt(surface),severity=clamp((effective-3)**1.4*1.15,0,180),front=point.z<-p.length*.12,rear=point.z>p.length*.18,side=Math.abs(point.x)>p.width*.32;
+  const crush=crumpleImpact(d,p,effective,point);
   const fuelFill=d.capacity.fuel?clamp(d.fuel/d.capacity.fuel,0,1):0,hot=clamp((Math.max(d.coolantTemp,d.oilTemp)-95)/60,0,1);
   hit(d,'body',severity,'crash');
   if(front){hit(d,'engine',severity*.85,'crash');hit(d,'radiator',severity*1.1,'crash');if(point.y<(p.clearance||.5))hit(d,'oil',severity*.45,'crash');}
   if(rear)hit(d,'fuel',severity*.8,'crash');
   if(side&&Math.sign(point.x)<0)hit(d,'fuel',severity*.25,'crash');
   const intrusion=side?1.25:front?1:.75;
-  if(effective>17)hit(d,'driver',(effective-17)**1.45*.7*intrusion,'crash');
+  if(effective>17)hit(d,'driver',(effective-17)**1.45*.7*intrusion*clamp(.65+crush.remaining/Math.max(1,.5*(p.mass||1400)*effective*effective)*.55+crush.intrusion*.6,.65,2.5),'crash');
   // Structural failure happens at impact, independently of later fire/thermal damage.
   if(severity>=100){d.components.body=0;d.engineFailed=true;d.reason='Chassis destroyed by impact';}
   const tankBreached=d.components.fuel<35||effective>34,ignition=front?hot>.35||effective>30:rear?effective>21:effective>29;
@@ -73,8 +81,8 @@ const VehicleDamageModel=(()=>{
    if(rear&&effective>38&&hot>.5&&fuelFill>.35)explode(d);
    else {const delay=clamp(10-fuelFill*2-hot*3-Math.max(0,effective-28)*.10,3,10);d.fireDelay=wasBurning?Math.min(d.fireDelay,delay):delay;}
   }
-  d.crashOutcome={speedKph:Math.round(speed*3.6),energyKJ:Math.round(.5*(p.mass||1400)*speed*speed/1000),surface:kind,direction:rear?'rear':front?'front':'side',fuelFill,temperature:Math.max(d.coolantTemp,d.oilTemp),severity,wrecked:d.components.body<=0,ignited:d.burning,exploded:d.exploded};
+  d.crashOutcome={absorbedKJ:Math.round(crush.absorbed/1000),cabinIntrusion:crush.intrusion,speedKph:Math.round(speed*3.6),energyKJ:Math.round(.5*(p.mass||1400)*speed*speed/1000),surface:kind,direction:rear?'rear':front?'front':'side',fuelFill,temperature:Math.max(d.coolantTemp,d.oilTemp),severity,wrecked:d.components.body<=0,ignited:d.burning,exploded:d.exploded};
   return severity;
  }
- return {create,hit,step,power,zones,rayBox,trace,crash,explode};
+ return {create,hit,step,power,zones,rayBox,trace,crash,explode,crumpleImpact};
 })();

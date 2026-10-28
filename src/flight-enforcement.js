@@ -1,7 +1,8 @@
 const atc={status:'idle',target:null,requestedAt:0,decisionAt:0,clearanceUntil:0,holds:0,message:'Select a map landing pin, or request a landing below your aircraft.'};
 let policeAirUnit=null;
-function atcHasClearance(position){if(!['approved','landed'].includes(atc.status)||state.elapsed>atc.clearanceUntil||!atc.target)return false;const t=atc.target;return Math.hypot(position.x-t.x,position.z-t.z)<220;}
+function atcHasClearance(position){if(airportClearanceAt(position))return true;if(!['approved','landed'].includes(atc.status)||state.elapsed>atc.clearanceUntil||!atc.target)return false;const t=atc.target;return Math.hypot(position.x-t.x,position.z-t.z)<220;}
 function landingAssessment(target){
+ if(target?.airport==='YBSU'&&state.profile?.kind==='jet'){if(state.wanted>=3)return{ok:false,reason:'Runway clearance refused during a high-priority pursuit.'};if(worldUpgrade.weather==='storm')return{ok:false,reason:'Hold · severe storm runway restriction.'};return{ok:true,busy:[...Multiplayer.remotes.values()].some(r=>Math.hypot(r.target.x-target.x,r.target.z-target.z)<500&&r.target.y<250),zone:'sunshine-airport',reason:'Sunshine Coast Airport runway slot approved.'};}
  const servicePad=repairPadAt(target.x,target.z),h=servicePad?.pad.y??terrainHeight(target.x,target.z);if(h===null)return {ok:false,reason:'Terrain not available at this location.'};
  if(mappedWaterAt(target.x,target.z)!==null)return {ok:false,reason:'Water landing refused for this aircraft.'};
  if(!servicePad&&buildingsNear(target.x,target.z,20).some(b=>pointInPolygon(target.x,target.z,b.points)))return {ok:false,reason:'No approved rooftop pad at this building.'};
@@ -19,15 +20,15 @@ function landingAssessment(target){
 function requestLandingClearance(){
  if(!isAircraft()||state.mode!=='playing'){toast('Choose an aircraft and resume flight to contact ATC.');return false;}
  if(['queued','reviewing','holding'].includes(atc.status)){toast('ATC is still processing your request.');return false;}
- const pin=mapView.selection,target=pin?{x:pin.x,z:pin.z}:{x:player.position.x,z:player.position.z};
- Object.assign(atc,{status:'queued',target,requestedAt:state.elapsed,decisionAt:state.elapsed+2,clearanceUntil:0,holds:0,message:'Request transmitted · waiting for ATC acknowledgement.'});updateAtcUI();return true;
+ const pin=mapView.selection,target=state.profile.kind==='jet'?runwayLandingTarget():pin?{x:pin.x,z:pin.z}:{x:player.position.x,z:player.position.z};if(target.airport==='YBSU'){setPersonalWaypoint(target.approach||target,'SUNSHINE COAST AIRPORT · APPROACH');}
+ Object.assign(atc,{status:'queued',onFinal:false,target,requestedAt:state.elapsed,decisionAt:state.elapsed+2,clearanceUntil:0,holds:0,message:'Request transmitted · waiting for ATC acknowledgement.'});updateAtcUI();return true;
 }
 function updateAtc(dt){
  if(atc.status==='queued'&&state.elapsed>=atc.decisionAt){atc.status='reviewing';atc.decisionAt=state.elapsed+6;atc.message='ATC reviewing site, airspace, weather, traffic and access.';}
  else if(['reviewing','holding'].includes(atc.status)&&state.elapsed>=atc.decisionAt){const result=landingAssessment(atc.target);
   if(result.ok&&result.busy&&atc.holds<2){atc.status='holding';atc.holds++;atc.decisionAt=state.elapsed+8;atc.message='Hold outside the landing area · conflicting aircraft traffic.';}
   else if(!result.ok||result.busy){atc.status='denied';atc.message=result.busy?'Landing refused · traffic did not clear.':result.reason;dangerAlert('atc-denied','ATC · LANDING DENIED',atc.message,'warning','airspace');}
-  else{atc.status='approved';atc.clearanceUntil=state.elapsed+120;atc.zone=result.zone;atc.message='Cleared at the selected site · 220 m radius · valid 120 seconds.';toast('ATC · LANDING CLEARED',5000);}
+  else{atc.status='approved';atc.clearanceUntil=state.elapsed+(atc.target.airport==='YBSU'?600:120);atc.zone=result.zone;atc.message=atc.target.airport==='YBSU'?'Cleared to Sunshine Coast Airport · runway '+atc.target.runway+' · heading '+Math.round(atc.target.heading)+'° true · follow the approach column.':'Cleared at the selected site · 220 m radius · valid 120 seconds.';toast('ATC · LANDING CLEARED',5000);}
  }
  if(['approved','landed'].includes(atc.status)&&state.elapsed>atc.clearanceUntil){atc.status='expired';atc.message='Landing clearance expired · request a new slot.';}
  if(atc.status==='approved'&&atcHasClearance(player.position)&&state.grounded&&player.position.y-motion.lastSurface-state.profile.clearance<2&&state.speed<2){atc.status='landed';atc.message='Landing complete · local clearance remains until its expiry.';}

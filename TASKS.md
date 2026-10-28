@@ -56,7 +56,14 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Spatially index natural-map areas for local views, preserving complete regional coverage.
 - [x] Invalidate on movement, imagery updates, resize and expiry; verify performance and publish.
 
-## v1.3.1 — next: combat vehicles and fleet expansion
+## v1.3.1 — graphics and supplied architecture pilot
+
+- [x] Validate and integrate the supplied 100 source-backed building records without duplicates.
+- [x] Preserve observed storeys, unknown visual attributes and source attribution; never use raw roof elevations as heights.
+- [x] Add batched nearby window frames and sills with bounded detail budgets.
+- [x] Verify real-map rendering and package the graphics/data bundle.
+
+## v1.3.2 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.
@@ -78,9 +85,6 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 
 Performance targets are measured improvements and smoother frame times, not an unverified promise of 200% higher FPS or manufacturer-calibrated crash simulation.
 
-## v1.3.2 — uploaded building pilot
+## Further architecture data
 
-- [ ] Validate the uploaded 100-building ZIP as data; do not run its bundled scripts.
-- [ ] Audit footprint IDs, source/licence metadata and observed-versus-unknown attributes.
-- [ ] Integrate reliable footprints/attributes with matching and de-duplication; retain unknown visual features as defaults.
-- [ ] Test coverage/performance and publish the architectural-data bundle.
+- [ ] Integrate further licensed images, materials and surveyed façade details when supplied.

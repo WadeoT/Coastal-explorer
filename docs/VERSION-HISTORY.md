@@ -4,7 +4,8 @@ Releases now use the dotted format requested for this game. The bundle previousl
 
 | Version | State | Main changes |
 | --- | --- | --- |
-| [v1.3.0](v1.3.0-RELEASE.md) | Current | Cached minimap geography, spatial map queries and measured CPU savings |
+| [v1.3.1](v1.3.1-RELEASE.md) | Current | Source-backed architecture pilot, nearby window frames/sills and neutral glass |
+| [v1.3.0](v1.3.0-RELEASE.md) | Published | Cached minimap geography, spatial map queries and measured CPU savings |
 | [v1.2.9](v1.2.9-RELEASE.md) | Published | Player collisions, component combat damage, passenger seats, easier dents/crumpling, shared deformation and repair |
 | [V28](V28-RELEASE.md) | Published legacy label | Graphics/performance settings, smoother suspension, roundabout fixes, crumple zones, garage spawn and fighter navigation |
 | [V27](V27-RELEASE.md) | Published legacy label | Signed owner grants, solo play, visible friends' police, streaming and texture optimisation |

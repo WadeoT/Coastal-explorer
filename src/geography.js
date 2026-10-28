@@ -4,6 +4,7 @@ const mappedBuildings=[],buildingIndex=new Map(),allPlaces=[];
 let surfaceModel=null;const mappedWaterPolygons=[];
 function decodeMapBytes(encoded){const raw=atob(encoded),bytes=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);return bytes;}
 function loadGeography(pack){
+ applyArchitecturePilot(pack);
  surfaceModel=pack.surfaces||null;mappedWaterPolygons.length=0;for(const encoded of surfaceModel?.mapWater||[]){const rings=encoded.map(flat=>{const a=[];for(let i=0;i<flat.length;i+=2)a.push({x:flat[i]/100,z:flat[i+1]/100});return a;}),xs=rings[0].map(p=>p.x),zs=rings[0].map(p=>p.z);mappedWaterPolygons.push({rings,bounds:{minX:Math.min(...xs),maxX:Math.max(...xs),minZ:Math.min(...zs),maxZ:Math.max(...zs)}});}mappedBuildings.length=0;buildingIndex.clear();allPlaces.length=0;
  for(const row of pack.buildings||[]){const [id,tags,encodedRings]=row,rings=encodedRings.map(flat=>{const points=[];for(let i=0;i<flat.length;i+=2)points.push(geoToLocal(flat[i]/1e6,flat[i+1]/1e6));if(points.length>1&&Math.hypot(points[0].x-points.at(-1).x,points[0].z-points.at(-1).z)<.01)points.pop();return points;});if(rings[0].length<3)continue;
   const points=rings[0],xs=points.map(p=>p.x),zs=points.map(p=>p.z),bounds={minX:Math.min(...xs),maxX:Math.max(...xs),minZ:Math.min(...zs),maxZ:Math.max(...zs)},building={id,tags,rings,points,bounds};mappedBuildings.push(building);

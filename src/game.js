@@ -31,6 +31,7 @@ function toast(message,ms=3800){$('toast').textContent=message;$('toast').classL
 function later(fn,ms){const id=setTimeout(()=>{timers.delete(id);fn();},ms);timers.add(id);return id;}
 function mat(name,hex,emissive=0,alpha=1){const m=new StandardMaterial(name,scene);m.diffuseColor=C.FromHexString(hex);m.specularColor=new C(.13,.15,.12);if(emissive)m.emissiveColor=m.diffuseColor.scale(emissive);m.alpha=alpha;return m;}
 let materials={};
+/*__ARCHITECTURE_UPGRADE__*/
 /*__GEOGRAPHY__*/
 /*__VEHICLE_MODELS__*/
 /*__EXPANDED_FLEET__*/
@@ -168,7 +169,7 @@ function initialiseOpenWorld(){openRoot=new Node('real-sunshine-coast',scene);op
  openRoadMaterial=mat('mapped-asphalt','#ffffff');openRoadMaterial.diffuseTexture=surfaceTexture('rough-asphalt',[66,69,71],12);openRoadMaterial.specularColor=C.Black();openRoadMaterial.backFaceCulling=false;
  openPaintMaterial=mat('lane-markings','#e5e4dc');openPaintMaterial.backFaceCulling=false;openPaintMaterial.zOffset=-3;openPaintMaterial.zOffsetUnits=-2;openRoadMaterial.zOffset=-1;openRoofMaterial=mat('mapped-building-roofs','#ffffff');openWallMaterial=mat('mapped-building-walls','#ffffff');openWallMaterial.diffuseTexture=detailTexture('brick-and-cladding','wall');openRoofMaterial.diffuseTexture=detailTexture('corrugated-roof','roof');openWaterMaterial=mat('mapped-water','#527f89',.05);openForestMaterial=mat('mapped-woodland','#4f6049');openForestMaterial.diffuseTexture=openTerrainMaterial.diffuseTexture;
  openTrackMaterial=mat('mapped-unsealed-tracks','#827c65');openTrackMaterial.backFaceCulling=false;openTrackMaterial.diffuseTexture=surfaceTexture('unsealed-grain',[214,209,194],16);
- openConcreteMaterial=mat('mapped-footpaths-and-kerbs','#b9b8ae');openConcreteMaterial.backFaceCulling=false;openConcreteMaterial.diffuseTexture=surfaceTexture('concrete-grit',[225,223,216],25);openConcreteMaterial.specularColor=C.Black();openConcreteMaterial.zOffset=-2;openWindowMaterial=mat('estimated-building-glass','#425560');openWindowMaterial.specularColor=new C(.5,.55,.6);openWindowMaterial.backFaceCulling=false;openWindowMaterial.zOffset=-4;openWindowMaterial.zOffsetUnits=-3;openBarkMaterial=mat('mapped-tree-trunks','#68533f');openLeafMaterial=mat('mapped-tree-canopies','#53654a');openPoleMaterial=mat('mapped-road-furniture','#4a4e4c');openSignalMaterial=mat('traffic-signal-lenses','#dd3f30',.7);
+ openConcreteMaterial=mat('mapped-footpaths-and-kerbs','#b9b8ae');openConcreteMaterial.backFaceCulling=false;openConcreteMaterial.diffuseTexture=surfaceTexture('concrete-grit',[225,223,216],25);openConcreteMaterial.specularColor=C.Black();openConcreteMaterial.zOffset=-2;openWindowMaterial=mat('estimated-building-glass','#344956');openWindowMaterial.specularColor=new C(.5,.55,.6);openWindowMaterial.backFaceCulling=false;openWindowMaterial.zOffset=-4;openWindowMaterial.zOffsetUnits=-3;openBarkMaterial=mat('mapped-tree-trunks','#68533f');openLeafMaterial=mat('mapped-tree-canopies','#53654a');openPoleMaterial=mat('mapped-road-furniture','#4a4e4c');openSignalMaterial=mat('traffic-signal-lenses','#dd3f30',.7);
  for(const m of [openRoofMaterial,openWallMaterial,openWaterMaterial,openForestMaterial])m.backFaceCulling=false;
  enableVehicles(false);$('mapDisclaimer').textContent='Real OpenStreetMap roads and footprints · Measured elevation · Caloundra–Noosa and the hinterland';$('terrainInfo').textContent='Real OpenStreetMap geometry and public measured elevation. Simplified 3D rendering with estimated building heights where unmapped. Google photorealistic terrain is optional.';
  $('placeSearch').addEventListener('input',renderPlaceSearch);loadBundledMap().then(()=>loadOpenDestination(activeDestination,true)).catch(error=>{setWorldStatus(error.message,true);$('retryWorld').hidden=false;});
@@ -256,6 +257,7 @@ async function buildOpenGeometryNow(){
  await addMesh('actual-road-surfaces',roadPos,roadIdx,openRoadMaterial,true);await addMesh('mapped-unsealed-tracks',trackPos,trackIdx,openTrackMaterial,true);await addMesh('mapped-footpaths-and-tagged-sidewalks',walkPos,walkIdx,openConcreteMaterial,true);
  await buildJunctionSurfaces(nextRoot,centre,view,addMesh,yieldBuild,nextObstacles);
  await prepareEstimatedHomes(centre.x,centre.z,yieldBuild);
+ const facadeTrimPos=[],facadeTrimIdx=[];let facadeTrimCount=0;
  for(const e of [...buildingsNear(centre.x,centre.z,view.buildings),...estimatedHomesNear(centre.x,centre.z)]){
   if(busy())await yieldBuild();const polygon=e.points,rings=e.rings,distance=Math.hypot((e.bounds.minX+e.bounds.maxX)/2-centre.x,(e.bounds.minZ+e.bounds.maxZ)/2-centre.z),heights=buildingGroundHeights(e);if(!heights)continue;
   const appearance=houseAppearance(e),batchKey=appearance.wallKind+'/'+appearance.roofKind;
@@ -265,7 +267,7 @@ async function buildOpenGeometryNow(){
   for(let ringIndex=0;ringIndex<rings.length;ringIndex++){const ring=rings[ringIndex];if(ringIndex)holes.push(flat.length/2);const orientation=(Math.sign(ring.reduce((sum,a,i)=>{const b=ring[(i+1)%ring.length];return sum+a.x*b.z-b.x*a.z;},0))||1)*(ringIndex?-1:1);
    for(let i=0;i<ring.length;i++){const a=ring[i],b=ring[(i+1)%ring.length],ha=terrainHeight(a.x,a.z)??baseY,hb=terrainHeight(b.x,b.z)??baseY,length=Math.hypot(b.x-a.x,b.z-a.z);addWorkshopWall(e,i,ringIndex,a,b,ha,hb,roofY,wallPos,wallIdx,quad);flat.push(a.x,a.z);
     if(distance<1200&&length>2.5&&!(mechanicByBuilding.has(e.id)&&i===mechanicByBuilding.get(e.id).edge.index)){const dx=(b.x-a.x)/length,dz=(b.z-a.z)/length,nx=dz*orientation*.045,nz=-dx*orientation*.045;
-     for(const {left,right,bottom,top} of facadeWindowLayout(length,height,baseY)){quad(glassPos,glassIdx,[a.x+dx*left+nx,bottom,a.z+dz*left+nz],[a.x+dx*right+nx,bottom,a.z+dz*right+nz],[a.x+dx*left+nx,top,a.z+dz*left+nz],[a.x+dx*right+nx,top,a.z+dz*right+nz]);}
+     for(const {left,right,bottom,top} of facadeWindowLayout(length,height,baseY)){if(distance<($('qualitySelect').value==='low'?120:240)&&facadeTrimCount++<($('qualitySelect').value==='low'?24:100))addFacadeRelief(a,b,bottom,top,left,right,orientation,facadeTrimPos,facadeTrimIdx);quad(glassPos,glassIdx,[a.x+dx*left+nx,bottom,a.z+dz*left+nz],[a.x+dx*right+nx,bottom,a.z+dz*right+nz],[a.x+dx*left+nx,top,a.z+dz*left+nz],[a.x+dx*right+nx,top,a.z+dz*right+nz]);}
     }
    }
   }
@@ -274,6 +276,7 @@ async function buildOpenGeometryNow(){
   const wallColour=C.FromHexString(appearance.wall),roofColour=C.FromHexString(appearance.roof);for(let i=wallStart;i<wallPos.length/3;i++)wallColours.push(wallColour.r,wallColour.g,wallColour.b,1);for(let i=roofStart;i<roofPos.length/3;i++)roofColours.push(roofColour.r,roofColour.g,roofColour.b,1);
   const {minX,maxX,minZ,maxZ}=e.bounds;nextObstacles.push({buildingId:e.id,x:(minX+maxX)/2,z:(minZ+maxZ)/2,w:(maxX-minX)/2,d:(maxZ-minZ)/2,height:height+baseY-Math.min(...heights),baseY:Math.min(...heights),polygon,holes:rings.slice(1),garageBay:mechanicByBuilding.get(e.id)?.bay,bayCeiling:baseY+(mechanicByBuilding.get(e.id)?.doorHeight||0)});renderedBuildingIds.push(e.id);
  }
+ await addMesh('nearby-window-frames-and-sills',facadeTrimPos,facadeTrimIdx,scene.getMaterialByName('facade-neutral-trim')||mat('facade-neutral-trim','#d2d0c5'));
  for(const b of houseBatches.values()){await addMesh('mapped-building-walls-'+b.wallKind+'-'+b.roofKind,b.wallPos,b.wallIdx,houseSurfaceMaterial(b.wallKind),false,true,b.wallColours);await addMesh('mapped-building-roofs-'+b.wallKind+'-'+b.roofKind,b.roofPos,b.roofIdx,houseSurfaceMaterial(b.roofKind),false,true,b.roofColours);}applyHouseSurfaceUVs(nextRoot);queueAerialRoofColours(centre);await addMesh('estimated-facade-windows-and-doors',glassPos,glassIdx,openWindowMaterial);if(generation!==geometryGeneration)throw cancelledBuild;if(shouldPublishEarlyCore(centre,view))publishSceneryCore(nextRoot,nextSurfaces,nextObstacles,renderedBuildingIds,centre,view);
  let treeCount=0;const paintedCrossings=[];
  for(const e of osmPoints.values()){

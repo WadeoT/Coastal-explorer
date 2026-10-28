@@ -1,0 +1,1097 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/sunshine-coast-architecture/pilot/schema.json",
+  "title": "Sunshine Coast Georeferenced Architecture Pilot v1",
+  "description": "One source-backed building per JSONL line. Absence of evidence is null, not a fabricated value. Any encoded building geometry requires actual source extraction.",
+  "type": "object",
+  "required": [
+    "id",
+    "osm_way_id",
+    "area_sample",
+    "latitude",
+    "longitude",
+    "footprint",
+    "footprint_area_m2",
+    "geometry_provenance",
+    "family_id",
+    "attributes",
+    "source_measurements",
+    "source_evidence",
+    "facades",
+    "validation_status",
+    "synthetic"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^osm:way:[0-9]+$",
+      "description": "Stable namespace and OSM way ID. OSM ID may be deleted/replaced following edits."
+    },
+    "osm_way_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "area_sample": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Footprint planar centroid latitude (decimal degrees WGS84)."
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Footprint planar centroid longitude (decimal degrees WGS84)."
+    },
+    "footprint": {
+      "type": "object",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Polygon"
+        },
+        "coordinates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 4,
+            "items": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number",
+                  "minimum": -180,
+                  "maximum": 180
+                },
+                {
+                  "type": "number",
+                  "minimum": -90,
+                  "maximum": 90
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        }
+      },
+      "description": "GeoJSON Polygon in [longitude,latitude] EPSG:4326; each ring must be closed; holes permitted."
+    },
+    "footprint_area_m2": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Approx planar area calculated from OSM boundary, square metres; not survey grade."
+    },
+    "geometry_provenance": {
+      "$ref": "#/$defs/attribute"
+    },
+    "family_id": {
+      "type": "string",
+      "enum": [
+        "family-unclassified",
+        "family-house-gable",
+        "family-house-hip",
+        "family-house-flat",
+        "family-house-skillion",
+        "family-house-complex",
+        "family-duplex",
+        "family-apartments",
+        "family-commercial",
+        "family-industrial"
+      ]
+    },
+    "attributes": {
+      "type": "object",
+      "required": [
+        "storey_count",
+        "wall_height_m",
+        "total_roof_height_m",
+        "roof_ridge_orientation_deg",
+        "roof_pitch_deg",
+        "roof_overhang_m",
+        "front_facing_direction_deg",
+        "building_type",
+        "roof_type",
+        "roof_material",
+        "wall_material",
+        "wall_primary_colour_hex",
+        "wall_secondary_colour_hex",
+        "roof_colour_hex",
+        "frontage_road",
+        "nearest_named_road",
+        "garage_carport",
+        "driveway",
+        "verandahs",
+        "balconies",
+        "raised_floors",
+        "stairs",
+        "extensions",
+        "windows_by_facade",
+        "doors_by_facade",
+        "fence",
+        "garden_layout",
+        "major_trees",
+        "hedges",
+        "ground_cover"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "storey_count": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "wall_height_m": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0
+                }
+              }
+            }
+          ],
+          "description": "Metric in metres."
+        },
+        "total_roof_height_m": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0
+                }
+              }
+            }
+          ],
+          "description": "Metric in metres."
+        },
+        "roof_ridge_orientation_deg": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 360
+                }
+              }
+            }
+          ],
+          "description": "Azimuth clockwise from true north in degrees."
+        },
+        "roof_pitch_deg": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 90
+                }
+              }
+            }
+          ],
+          "description": "Azimuth clockwise from true north in degrees."
+        },
+        "roof_overhang_m": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0
+                }
+              }
+            }
+          ],
+          "description": "Metric in metres."
+        },
+        "front_facing_direction_deg": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "maximum": 360
+                }
+              }
+            }
+          ],
+          "description": "Azimuth clockwise from true north in degrees."
+        },
+        "building_type": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "house",
+                    "duplex",
+                    "apartments",
+                    "shop",
+                    "office",
+                    "industrial",
+                    "other",
+                    null
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "roof_type": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "gable",
+                    "hip",
+                    "flat",
+                    "skillion",
+                    "complex",
+                    null
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "roof_material": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "wall_material": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "wall_primary_colour_hex": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^#[0-9A-Fa-f]{6}$"
+                }
+              }
+            }
+          ],
+          "description": "Colour as #RRGGBB."
+        },
+        "wall_secondary_colour_hex": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^#[0-9A-Fa-f]{6}$"
+                }
+              }
+            }
+          ],
+          "description": "Colour as #RRGGBB."
+        },
+        "roof_colour_hex": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^#[0-9A-Fa-f]{6}$"
+                }
+              }
+            }
+          ],
+          "description": "Colour as #RRGGBB."
+        },
+        "frontage_road": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "nearest_named_road": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "garage_carport": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "If observed, value object e.g. {\"kind\":\"garage|carport\",\"position\":\"north|south|east|west|attached|detached|unknown\"}; else null."
+        },
+        "driveway": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "If observed, object {\"position\":\"...\",\"width_m\":number|null}; else null."
+        },
+        "verandahs": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "balconies": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "raised_floors": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "stairs": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "extensions": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Unverified details must remain unknown, null."
+        },
+        "windows_by_facade": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "If observed, object keyed front/rear/left/right with arrays of normalized [u,v,width,height] in [0,1]; facade orientations require true facade mapping. Null means unobserved."
+        },
+        "doors_by_facade": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "If observed, object keyed front/rear/left/right with arrays of normalized [u,v,width,height] in [0,1]; null means unobserved."
+        },
+        "fence": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Observed features may provide {\"kind\":string,\"height_m\":number|null,\"colour_hex\":\"#RRGGBB\"|null,\"positions\":array}; unknown -> null."
+        },
+        "garden_layout": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Observed semantic regions, optionally polygons; source-backed only."
+        },
+        "major_trees": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Observed tree objects with geospatial point, species if known, or crown geometry; unknown -> null."
+        },
+        "hedges": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Observed hedge layout with line coordinates and height; unknown -> null."
+        },
+        "ground_cover": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/attribute"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "object",
+                    "array",
+                    "string",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
+          ],
+          "description": "Observed material types and polygon locations; unknown -> null."
+        }
+      }
+    },
+    "source_measurements": {
+      "type": "object",
+      "required": [
+        "osm_tags_relevant",
+        "council_lidar"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "osm_tags_relevant": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "council_lidar": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Raw matched SCC LiDAR fields; not automatically transformed into above-ground height."
+        }
+      }
+    },
+    "source_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "source_id",
+          "url",
+          "observation_date",
+          "role"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "observation_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "facades": {
+      "type": "object",
+      "required": [
+        "front",
+        "rear",
+        "left",
+        "right"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "front": {
+          "$ref": "#/$defs/facade"
+        },
+        "rear": {
+          "$ref": "#/$defs/facade"
+        },
+        "left": {
+          "$ref": "#/$defs/facade"
+        },
+        "right": {
+          "$ref": "#/$defs/facade"
+        }
+      }
+    },
+    "validation_status": {
+      "enum": [
+        "verified_osm_footprint_only"
+      ]
+    },
+    "synthetic": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "attribute": {
+      "type": "object",
+      "required": [
+        "value",
+        "status",
+        "confidence",
+        "source_ids",
+        "observed_at",
+        "method",
+        "note"
+      ],
+      "properties": {
+        "value": {},
+        "status": {
+          "enum": [
+            "observed",
+            "estimated",
+            "unknown"
+          ]
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "osm",
+              "scc_2022",
+              "qld_buildings",
+              "noosa_open_data",
+              "qimagery"
+            ]
+          }
+        },
+        "observed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "Date of dataset observation/access, NOT necessarily imagery or original source capture."
+        },
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "unknown"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "confidence": {
+                "type": "null"
+              },
+              "source_ids": {
+                "maxItems": 0
+              },
+              "observed_at": {
+                "type": "null"
+              },
+              "method": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "observed",
+                  "estimated"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "confidence": {
+                "type": "number"
+              },
+              "source_ids": {
+                "minItems": 1
+              },
+              "observed_at": {
+                "type": "string"
+              },
+              "method": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "facade": {
+      "type": "object",
+      "required": [
+        "visibility",
+        "windows",
+        "doors",
+        "comment"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "visibility": {
+          "enum": [
+            "visible",
+            "partially_visible",
+            "hidden",
+            "unknown"
+          ]
+        },
+        "windows": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            ],
+            "minItems": 4,
+            "maxItems": 4,
+            "items": false
+          }
+        },
+        "doors": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            ],
+            "minItems": 4,
+            "maxItems": 4,
+            "items": false
+          }
+        },
+        "comment": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "x-units": {
+    "latitude": "degrees_north",
+    "longitude": "degrees_east",
+    "footprint": "GeoJSON EPSG:4326 [lon,lat]",
+    "footprint_area_m2": "square_metres",
+    "storey_count": "levels",
+    "wall_height_m": "metres_above_local_ground",
+    "total_roof_height_m": "metres_above_local_ground",
+    "roof_ridge_orientation_deg": "0-180 degrees clockwise from true north (undirected axis)",
+    "roof_pitch_deg": "degrees",
+    "roof_overhang_m": "metres",
+    "front_facing_direction_deg": "0-360 degrees clockwise from true north",
+    "driveway.width_m": "metres",
+    "fence.height_m": "metres",
+    "facade.openings": "normalized 0..1 coordinates [u,v,width,height], origin bottom-left looking at facade"
+  },
+  "x-geometry-conventions": "OpenStreetMap footprint polygon [longitude,latitude]. Centroid computed in local planar approximation. Normalized facade rectangles assume verified facade side, not geometric bounding box alone.",
+  "x-provenance-conventions": "status=observed means explicitly source-tagged (not field-surveyed) or direct polygon geometry; estimated means deterministic inference, not a verified facade fact; unknown must have null value and no confidence or source IDs.",
+  "x-licence-warning": "OSM-derived data are ODbL 1.0; separately sourced governmental data maintain their respective licence/attribution. Verify share-alike and attribution requirements for public releases."
+}

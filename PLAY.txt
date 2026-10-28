@@ -1,5 +1,8 @@
-v1.3.3 IMPACT & IDENTITY
-https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.3&publicRoom=COAST-PUBLIC
+v1.3.4 LIVING COAST
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.4&publicRoom=COAST-PUBLIC
+H opens settings: Ocean conditions follows weather or selects calm, moderate
+or rough seas. Vegetation density, clouds and animated water can be reduced
+for performance. Boats still respond to swell when visual waves are disabled.
 On foot: WASD moves, Shift runs, E enters your nearby vehicle or hijacks the
 nearest slow NPC/parked vehicle. Theft raises wanted level. Stolen cars are
 borrowed; buying is required for permanent garage ownership. F at a local

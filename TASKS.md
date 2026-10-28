@@ -77,7 +77,15 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Borrowed vehicles bypass career paint/tuning; share bounded paint/tuning snapshots with peers.
 - [x] Browser and public-lobby regression checks; publish.
 
-## v1.3.4 — next: combat vehicles and fleet expansion
+## v1.3.4 — living coast environment
+
+- [x] More varied rounded foliage, grass and destructible scrub with road/building/workshop exclusions.
+- [x] Expanded drifting clouds, weather-dependent colour/coverage and quality controls.
+- [x] Calm/moderate/rough sea states with wind, swell, foam and boat response; sheltered-water damping.
+- [x] Verify real-map environment in Chromium and analytic wave/geometry checks.
+- [x] Package and publish the tested bundle.
+
+## v1.3.5 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

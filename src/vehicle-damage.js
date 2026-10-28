@@ -82,7 +82,7 @@ function recordVehicleCrash(speed,worldPoint=null,impact=null){
   state.crashFlight={time:0,vy:Math.min(4,speed*.10),roll:motion.roll,pitch:motion.pitch,rollSpeed:glancing?Math.sign(side)*Math.min(4,speed*.10):0,pitchSpeed:glancing?0:-Math.min(1.2,speed*.025)};
   motion.vx*=.65;motion.vz*=.65;motion.yaw+=side*Math.min(.5,speed*.009);
  }
- if(state.profile.kind==='car')beginCrashStructure(exterior,state.profile,new V(local.x,local.y+state.profile.clearance,local.z),speed,impact?.normal);
+ if(['car','bike','boat','heli','jet'].includes(state.profile.kind))beginCrashStructure(exterior,state.profile,new V(local.x,local.y+state.profile.clearance,local.z),speed,impact?.normal);
  addImpactMark(local,true);
  dangerAlert('crash','IMPACT · '+Math.round(speed*3.6)+' KM/H',impact?.solid?'Solid collision · body and components damaged.':'Vehicle impact · inspect damage before continuing.','critical','body');
  if(severity>45&&state.damage.engineFailed)toast('ENGINE FAILURE · '+state.damage.reason,4000);finishDamageState();

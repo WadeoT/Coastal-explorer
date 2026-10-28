@@ -203,7 +203,7 @@ function constructVehicle(root,p,id=p.modelId){
  else if(p.body==='kart')buildKart(root,p);else if(p.kind==='car')buildRoadExterior(root,p);else if(p.kind==='heli'){if(p.body==='rescue-helicopter')buildRescueHelicopter(root,p);else buildDetailedChopper(root,p);}
  else if(p.kind==='jet')buildFighter(root,p);else if(p.kind==='boat')buildRunabout(root,p,false);else if(p.kind==='bike'){if(p.combustion)buildPetrolMotorcycle(root,p);else if(p.body==='electric-dirt-bike')buildElectricMoto(root,p);else buildBicycle(root,p);}else throw Error('Unknown vehicle model '+id);
  addProductionCarDetails(root,p);addVehicleCustoms(root,p,id);
- if(p.kind==='car')for(const m of root.getChildMeshes())if(/bumper|mirror|bonnet|grille/.test(m.name)&&!m.parent?.metadata?.crashPart)m.metadata={...m.metadata,crashPart:m.name.includes('mirror')?'mirror':'panel'};
+ if(['car','bike','boat','heli','jet'].includes(p.kind))for(const m of root.getChildMeshes())if(/bumper|mirror|bonnet|grille|tail-fin|tailplane|wing|skid/.test(m.name)&&!m.parent?.metadata?.crashPart)m.metadata={...m.metadata,crashPart:m.name.includes('mirror')?'mirror':'panel'};
  return root;
 }
 

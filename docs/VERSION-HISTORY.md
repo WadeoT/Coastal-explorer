@@ -4,7 +4,8 @@ Releases now use the dotted format requested for this game. The bundle previousl
 
 | Version | State | Main changes |
 | --- | --- | --- |
-| [v1.3.2](v1.3.2-RELEASE.md) | Current | Sky gradient, tone mapping, shared surface relief and richer highlights |
+| [v1.3.3](v1.3.3-RELEASE.md) | Current | Persistent impact folds, fair pileup updates and hijack appearance preservation |
+| [v1.3.2](v1.3.2-RELEASE.md) | Published | Sky gradient, tone mapping, shared surface relief and richer highlights |
 | [v1.3.1](v1.3.1-RELEASE.md) | Published | Source-backed architecture pilot, nearby window frames/sills and neutral glass |
 | [v1.3.0](v1.3.0-RELEASE.md) | Published | Cached minimap geography, spatial map queries and measured CPU savings |
 | [v1.2.9](v1.2.9-RELEASE.md) | Published | Player collisions, component combat damage, passenger seats, easier dents/crumpling, shared deformation and repair |

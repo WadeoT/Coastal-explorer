@@ -69,7 +69,15 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Shared surface-normal textures, stronger vehicle highlights and water relief; Low skips relief.
 - [x] Browser/screenshot verification, package and publish.
 
-## v1.3.3 — next: combat vehicles and fleet expansion
+## v1.3.3 — impact deformation and hijack identity
+
+- [x] Persistent local crease offsets alongside the bounded node/beam solver, across all vehicle classes.
+- [x] Fair deformation scheduling for multi-vehicle pileups within the existing four-cage CPU budget.
+- [x] Hijacked exteriors preserve source geometry/paint/modifications and damaged bodywork.
+- [x] Borrowed vehicles bypass career paint/tuning; share bounded paint/tuning snapshots with peers.
+- [x] Browser and public-lobby regression checks; publish.
+
+## v1.3.4 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

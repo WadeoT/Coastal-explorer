@@ -1,5 +1,7 @@
-v1.3.8 LIFE MODEL COLLECTION
-https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.8&publicRoom=COAST-PUBLIC
+v1.3.9 QTOPO TERRAIN
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.9&publicRoom=COAST-PUBLIC
+Press M and click QTOPO to view the uploaded topographic map. Physical terrain
+matches its 38 marked spot heights; other elevations retain the existing DEM.
 The Life Model tab contains the nine uploaded vehicles. The Land Cruiser J50
 and Hyundai i20 remain starter vehicles; other models use shop purchases.
 MODEL CREDITS lists sources and available licence details. Low graphics uses

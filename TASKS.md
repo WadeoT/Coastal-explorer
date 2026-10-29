@@ -124,10 +124,10 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 ## v1.3.9 — QTopo elevation reference
 
 - [x] Read the uploaded georeferenced A1 Queensland QTopo PDF (1:100,000, GDA2020 MGA Zone 56).
-- [ ] Extract actual contour/spot-height controls and retain map coverage/provenance.
-- [ ] Validate the existing DEM against those controls; apply justified smooth elevation corrections with coast/road continuity.
-- [ ] Expose the QTopo reference in the map and document interpolation/coverage limits.
-- [ ] Verify motorway/shoreline/building/flight elevation regressions; publish.
+- [x] Extract all 38 named spot-height controls and retain the georeferenced sheet, coverage, attribution and source hash.
+- [x] Validate the existing DEM against those controls; apply smooth local corrections with coast/road continuity.
+- [x] Expose the offline QTopo reference in the map and document interpolation/coverage limits.
+- [x] Verify all 38 physical control heights, coastline/tile seams, source-map rendering, motorway driving and house/suspension regressions; publish.
 
 ## v1.4.0 — next: combat vehicles and fleet expansion
 
@@ -142,6 +142,10 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [ ] Add multiple propeller aircraft profiles to shop and NPC traffic, with appropriate propulsion, controls, prices and tutorial help.
 - [ ] Keep the larger catalogue inactive until needed; optimise models, textures and render distance.
 - [ ] Update tutorial/help for all new features; publish tested bundle.
+
+## Further QTopo reconstruction
+
+- [ ] Trace and validate full contour geometry or acquire a licensed georeferenced DEM matching the sheet; spot-height calibration does not reconstruct all contours.
 
 ## Asset/data inputs (do not block bug fixes)
 

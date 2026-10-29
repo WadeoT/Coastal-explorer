@@ -1,0 +1,13 @@
+# Regional airfields
+
+`runtime.json` contains **17 runway centre lines across 10 mapped airfields**, two Caloundra aprons and five Caloundra taxiway segments. Geometry comes from OpenStreetMap, queried on 29 October 2026; raw records and their export timestamp are retained in `osm-source.json`. Names, identifiers, airport coordinates and operational-type labels come from OurAirports; the regional source records are in `ourairports-source.json`.
+
+Attribution: **© OpenStreetMap contributors**, [ODbL 1.0](https://www.openstreetmap.org/copyright); **OurAirports**, public-domain data from https://github.com/davidmegginson/ourairports-data. These records are game inputs and are unsuitable for real-world flight planning.
+
+Included: Sunshine Coast, Caloundra, Noosa, Gympie, Kilcoy, Archer Falls, Greenfield/Cootharaba, Tinbeerwah, Teewah and one unnamed rural airstrip. Teewah is labelled restricted because the OurAirports record is closed; Tinbeerwah is private, and the unnamed strip has unknown access. Those three do not spawn free civilian aircraft or receive automatic landing approvals. Physical mapped runway geometry is still shown. Places with airport coordinates but no corroborated mapped runway are not given invented strips. A displaced-threshold sub-way is excluded from duplicate runway rendering.
+
+New strips follow the same triangulated terrain used for collision and scenery. Tagged widths and surfaces are retained; missing runway widths use an **estimated 18 m**, missing taxiway widths use **7 m**, and untagged surface colours are visual estimates. Source runway reference strings are preserved, including any inconsistencies in the data. The existing Sunshine Coast main runway retains its separately sourced OurAirports thresholds and level deck.
+
+Parking positions are **gameplay placements**, not observations of real parked planes. Caloundra uses its mapped apron; other airfields use a clear area beside the mapped runway. Two unarmed aircraft stream near an eligible airfield and leave the scene at distance. Their geometry is original procedural art approximating Cessna 172, Piper PA-28 and Beechcraft Baron; it is not a supplied manufacturer mesh. Performance, fuel capacity and prices are gameplay estimates. Cessna/Piper gear stays fixed; the Baron has retractable tricycle gear (J). Aircraft use a propeller/piston flight model rather than fighter thrust or weapons.
+
+Rebuild the normalised data with `python3 scripts/import-airfields.py`. The importer uses only checked-in source records and never guesses unprovided runway endpoints. Build and verify with `npm run build` and `npm run test:1.4.0`.

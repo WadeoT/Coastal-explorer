@@ -1,0 +1,31 @@
+name: Package game download
+on:
+  push:
+    tags:
+      - 'v*'
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify version tag and package the checked-in game
+        run: |
+          COAST_VERSION="$(python3 -c 'import json; print(json.load(open("data/version.json"))["version"])')"
+          test "$GITHUB_REF_NAME" = "v$COAST_VERSION"
+          python3 scripts/package.py
+          python3 - <<'PYNOTES'
+          import os, re
+          from pathlib import Path
+          tag = os.environ['GITHUB_REF_NAME']
+          notes = Path('docs', tag + '-RELEASE.md').read_text()
+          notes = re.sub(r'\]\((\.\./[^)]+)\)', lambda m: '](https://github.com/WadeoT/Coastal-explorer/blob/' + tag + '/' + m[1][3:] + ')', notes)
+          Path('/tmp/coastal-release-notes.md').write_text(notes)
+          PYNOTES
+      - name: Publish the verified download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "downloads/Coastal-Explorer-${GITHUB_REF_NAME}.zip" --verify-tag --title "Coastal Explorer ${GITHUB_REF_NAME}" --notes-file /tmp/coastal-release-notes.md

@@ -129,7 +129,15 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Expose the offline QTopo reference in the map and document interpolation/coverage limits.
 - [x] Verify all 38 physical control heights, coastline/tile seams, source-map rendering, motorway driving and house/suspension regressions; publish.
 
-## v1.4.0 — next: combat vehicles and fleet expansion
+## v1.4.0 — regional aviation
+
+- [x] Place 17 mapped runway lines across 10 airfields, plus Caloundra apron/taxiways; retain OSM/OurAirports sources and access limitations.
+- [x] Unarmed Cessna 172, Piper PA-28 and Beechcraft Baron profiles, fixed Cessna/Piper gear, retractable Baron gear, propeller animation, cabins, piston flight handling, warning gauges and source-based previews.
+- [x] Stream parked NPC aircraft near eligible airfields; allow solid collisions and on-foot hijack/exit, with hourly replacement.
+- [x] Airport map markers, garage airfield choices and local runway ATC; preserve the fighter Sunshine Coast Airport destination.
+- [x] Verify takeoff, held throttle, landing restrictions, fuel/engine damage geometry and parked-plane hijack; update tutorial and publish.
+
+## v1.4.1 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.
@@ -137,9 +145,6 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [ ] Another 200 named production models/generations in shop and weighted NPC selection; render actual previews.
 - [ ] Preserve measured Queensland road-volume/heavy shares; label individual model frequencies and specs as estimates.
 - [ ] More aircraft/vehicle breakup, detachable pieces and stronger crash damage presentation.
-- [ ] Place regional airfields/runways at verified real coordinates, with mapped aprons and spawn points.
-- [ ] Park usable unarmed light aircraft (including a Cessna-style plane) at airfields; on-foot entry/hijack and takeoff.
-- [ ] Add multiple propeller aircraft profiles to shop and NPC traffic, with appropriate propulsion, controls, prices and tutorial help.
 - [ ] Keep the larger catalogue inactive until needed; optimise models, textures and render distance.
 - [ ] Update tutorial/help for all new features; publish tested bundle.
 
@@ -151,7 +156,7 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 
 - [x] Supplied a structured building-data collection prompt, including stable footprint IDs, architectural attributes, confidence and source licences.
 - [x] Requested licensed low-poly GLB/glTF models: LandCruiser 79, AW139, Sur-Ron/Talaria, H2R, Ducati Panigale, with separate breakable parts.
-- [ ] Incorporate supplied licensed assets/data when available, starting with a small validated sample.
+- [x] Integrate the supplied 100 architecture records and nine vehicle assets; retain available source and licence details.
 
 Performance targets are measured improvements and smoother frame times, not an unverified promise of 200% higher FPS or manufacturer-calibrated crash simulation.
 

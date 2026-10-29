@@ -3,8 +3,8 @@
 const VehicleDamageModel=(()=>{
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
  function create(p={kind:'car'}){
-  const electric=!!p.electric||p.kind==='bike'&&!p.combustion,airCooled=electric||p.body==='kart'||p.kind==='jet',capacity={oil:electric?0:p.kind==='bike'?3:7.5,coolant:airCooled?0:p.kind==='bike'?2:12,fuel:electric?0:p.kind==='bike'?14:p.kind==='jet'?5000:p.kind==='heli'?450:p.kind==='boat'?120:p.body==='kart'?5:90};
-  return {wheelsLost:0,fireDelay:['car','boat'].includes(p.kind)?9:3.5,turbine:p.kind==='jet',thermalLoad:0,exhaustTemp:450,components:{engine:100,radiator:100,oil:100,fuel:100,driver:100,body:100},capacity,oil:capacity.oil,coolant:capacity.coolant,fuel:capacity.fuel,coolantTemp:88,oilTemp:92,oilPressure:electric?0:1.5,engineFailed:false,driverDead:false,burning:false,exploded:false,fireTime:0,crashIgnitionRemaining:null,oilStarvation:0,overheatTime:0,reason:'',lastHit:null,impacts:0,electric,airCooled};
+  const electric=!!p.electric||p.kind==='bike'&&!p.combustion,airCooled=electric||p.body==='kart'||p.kind==='jet',capacity={oil:electric?0:p.kind==='bike'?3:7.5,coolant:airCooled?0:p.kind==='bike'?2:12,fuel:electric?0:p.kind==='bike'?14:p.propeller?(p.fuelCapacity||172):p.kind==='jet'?5000:p.kind==='heli'?450:p.kind==='boat'?120:p.body==='kart'?5:90};
+  return {wheelsLost:0,fireDelay:['car','boat'].includes(p.kind)?9:3.5,turbine:p.kind==='jet'&&!p.propeller,thermalLoad:0,exhaustTemp:450,components:{engine:100,radiator:100,oil:100,fuel:100,driver:100,body:100},capacity,oil:capacity.oil,coolant:capacity.coolant,fuel:capacity.fuel,coolantTemp:88,oilTemp:92,oilPressure:electric?0:1.5,engineFailed:false,driverDead:false,burning:false,exploded:false,fireTime:0,crashIgnitionRemaining:null,oilStarvation:0,overheatTime:0,reason:'',lastHit:null,impacts:0,electric,airCooled};
  }
  function hit(d,part,amount,cause='bullet'){
   if(!d||d.exploded||!Object.hasOwn(d.components,part)||!Number.isFinite(amount)||amount<=0)return false;
@@ -48,7 +48,8 @@ const VehicleDamageModel=(()=>{
   const w=p.width,l=p.length,c=p.clearance||0,h=p.kind==='heli'?1.5:1.15;
   const box=(part,x,y,z,sx,sy,sz)=>({part,min:{x:x-sx/2,y:y-c-sy/2,z:z-sz/2},max:{x:x+sx/2,y:y-c+sy/2,z:z+sz/2}});
   if(p.kind==='bike')return [box('driver',0,1.2,0,.5,1,.6),box('engine',0,.5,.2,.3,.4,.5)];
-  const rearEngine=p.body==='kart'||p.kind==='boat'||p.kind==='heli'||p.kind==='jet',ez=rearEngine?l*.28:-l*.30,ey=p.kind==='heli'?2:.70;
+  if(p.propeller){const scale=l/8.28,wingY=(p.highWing?2.18:1.05)*scale,out=[box('driver',-.28*scale,1.65*scale,0,.44*scale,.7*scale,.6*scale),box('fuel',-2.1*scale,wingY,-.15*scale,1.8*scale,.20*scale,.65*scale),box('fuel',2.1*scale,wingY,-.15*scale,1.8*scale,.20*scale,.65*scale)];for(const x of p.twin?[-1.8,1.8]:[0]){out.push(box('engine',x*scale,1.30*scale,(p.twin?-1.8:-2.95)*scale,.65*scale,.6*scale,.95*scale),box('oil',x*scale,1.06*scale,(p.twin?-1.8:-2.95)*scale,.50*scale,.15*scale,.65*scale));}return out;}
+  const rearEngine=p.body==='kart'||p.kind==='boat'||p.kind==='heli'||p.kind==='jet'&&!p.propeller,ez=rearEngine?l*.28:-l*.30,ey=p.kind==='heli'?2:.70;
   return [box('driver',p.body==='kart'?0:w*.23,h,-l*.06,w*.27,.70,l*.14),box('oil',0,ey-.30,ez,w*.45,.23,l*.18),box('radiator',0,ey,rearEngine?ez-l*.13:-l*.48,w*.75,.60,.16),box('engine',0,ey,ez,w*.66,.48,l*.25),box('fuel',-w*.22,.38,l*.27,w*.47,.45,l*.20)];
  }
  function rayBox(origin,dir,b,maxDistance=1000){let near=0,far=maxDistance;for(const axis of ['x','y','z']){if(Math.abs(dir[axis])<1e-8){if(origin[axis]<b.min[axis]||origin[axis]>b.max[axis])return null;}else{let a=(b.min[axis]-origin[axis])/dir[axis],c=(b.max[axis]-origin[axis])/dir[axis];if(a>c)[a,c]=[c,a];near=Math.max(near,a);far=Math.min(far,c);if(near>far)return null;}}return near;}

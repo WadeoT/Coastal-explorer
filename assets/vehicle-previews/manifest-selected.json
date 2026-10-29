@@ -1,0 +1,73 @@
+{
+  "revision": "26.0",
+  "catalogueSha256": "2d9fe237dbf8ab63ac509e75f29763c3566cc7b3b7109601b8b692be678e2ee2",
+  "sourceSha256": "214400d17997cc0743ba89d8614f6285f4126b41cb5d246ce9b96b3b01d1dfb1",
+  "models": [
+    {
+      "id": "cessna172",
+      "kind": "jet",
+      "bounds": {
+        "min": [
+          -5.509999809265136,
+          -5.364418048658948e-9,
+          -3.9800000190734863
+        ],
+        "max": [
+          5.509999809265136,
+          3,
+          3.7
+        ]
+      },
+      "meshes": 25,
+      "vertices": 2120,
+      "metadata": {
+        "modelId": "cessna172",
+        "wheelCount": 3
+      }
+    },
+    {
+      "id": "piperPa28",
+      "kind": "jet",
+      "bounds": {
+        "min": [
+          -4.608695327043534,
+          -1.0132789607375514e-8,
+          -3.3934782664477825
+        ],
+        "max": [
+          4.608695327043534,
+          2.6086955666542053,
+          3.21739119887352
+        ]
+      },
+      "meshes": 25,
+      "vertices": 2084,
+      "metadata": {
+        "modelId": "piperPa28",
+        "wheelCount": 3
+      }
+    },
+    {
+      "id": "beechBaron",
+      "kind": "jet",
+      "bounds": {
+        "min": [
+          -5.775978801250457,
+          -2.0265579214751028e-8,
+          -4.579844348079095
+        ],
+        "max": [
+          5.775978801250457,
+          3.2934783697128296,
+          4.218277689020219
+        ]
+      },
+      "meshes": 26,
+      "vertices": 2238,
+      "metadata": {
+        "modelId": "beechBaron",
+        "wheelCount": 3
+      }
+    }
+  ]
+}

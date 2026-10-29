@@ -4,7 +4,8 @@ Releases now use the dotted format requested for this game. The bundle previousl
 
 | Version | State | Main changes |
 | --- | --- | --- |
-| [v1.3.4](v1.3.4-RELEASE.md) | Current | Shaded foliage, natural-area scrub, weather-sensitive clouds and ocean conditions |
+| [v1.3.5](v1.3.5-RELEASE.md) | Current | Loading-stage progress, map-ready dismissal and visible recovery controls |
+| [v1.3.4](v1.3.4-RELEASE.md) | Published | Shaded foliage, natural-area scrub, weather-sensitive clouds and ocean conditions |
 | [v1.3.3](v1.3.3-RELEASE.md) | Published | Persistent impact folds, fair pileup updates and hijack appearance preservation |
 | [v1.3.2](v1.3.2-RELEASE.md) | Published | Sky gradient, tone mapping, shared surface relief and richer highlights |
 | [v1.3.1](v1.3.1-RELEASE.md) | Published | Source-backed architecture pilot, nearby window frames/sills and neutral glass |

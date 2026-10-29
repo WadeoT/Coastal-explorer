@@ -85,7 +85,15 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Verify real-map environment in Chromium and analytic wave/geometry checks.
 - [x] Package and publish the tested bundle.
 
-## v1.3.5 — next: combat vehicles and fleet expansion
+## v1.3.5 — startup recovery hotfix
+
+- [x] Tie loading-screen dismissal to successful map/showroom loading instead of all scene resources.
+- [x] Show current map-building stage and expose startup/map errors above the overlay.
+- [x] Recovery buttons after 25 seconds: reload or low graphics, retaining career data.
+- [x] Yield during map feature decoding to let progress/recovery UI update.
+- [x] Verify actual loading UI, map-failure path and low-graphics recovery; package and publish.
+
+## v1.3.6 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

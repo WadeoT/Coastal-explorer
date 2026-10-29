@@ -5,6 +5,8 @@ on:
       - src/public-relay.js
       - src/nostr-relay.js
       - src/multiplayer.js
+      - src/startup.js
+      - src/shell.html
       - src/game.js
       - src/junctions.js
       - src/district-events.js

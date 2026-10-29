@@ -9,6 +9,7 @@ except ImportError:
 
 root = Path(__file__).resolve().parents[1]
 html = (root / "src/shell.html").read_text()
+html = html.replace("/*__STARTUP__*/", (root / "src/startup.js").read_text())
 fonts = []
 for family, name in [("DM Sans", "dm-sans"), ("Space Grotesk", "space-grotesk")]:
     encoded = base64.b64encode((root / f"vendor/fonts/{name}.woff2").read_bytes()).decode()

@@ -137,7 +137,19 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Airport map markers, garage airfield choices and local runway ATC; preserve the fighter Sunshine Coast Airport destination.
 - [x] Verify takeoff, held throttle, landing restrictions, fuel/engine damage geometry and parked-plane hijack; update tutorial and publish.
 
-## v1.4.1 — next: combat vehicles and fleet expansion
+## v1.4.1 — driving stability and imported models
+
+- [x] Fix the reported invalid typed-array crash: retain matching colour/position counts during panel refinement and repair stale channels before geometry reads/clones.
+- [x] Persistent, batched mapped-building shells ahead of fast ground vehicles; progressively build richer local detail without overlapping duplicate skins.
+- [x] Walking camera follows travel direction by default, with held-mouse free look and release recentering.
+- [x] More visible imported-model crumpling, affected-vertex updates, reusable GPU buffers and idle deformation shutdown.
+- [x] Rebuild imported hijacks at player detail, preserve appearance/damage, show the main body and rebind suspension to live wheels.
+- [x] Source-material glass/alpha corrections, bounded sky reflections, source lamp illumination and real imported interiors.
+- [x] Per-model eye/seat alignment and stable cockpit height; scale and seat the Porsche driver below the roof.
+- [x] Cars enter water, flood/sink and lose engine power; escape/swimming/air/drowning, continuing abandoned/NPC sinking and underwater recovery restrictions.
+- [x] Verify crash/repair/hijack buffers, all nine imports, walking direction, building shells and real mapped water outcomes; update tutorial and publish.
+
+## v1.4.2 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

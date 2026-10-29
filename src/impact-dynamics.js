@@ -20,7 +20,7 @@ function stepCarCrash(dt){
   f.time+=step;const x=player.position.x,z=player.position.z;
   player.position.x=clamp(x+motion.vx*step,BOUNDS.minX+5,BOUNDS.maxX-5);player.position.z=clamp(z+motion.vz*step,BOUNDS.minZ+5,BOUNDS.maxZ-5);
   f.vy-=9.81*step;player.position.y+=f.vy*step;f.roll+=f.rollSpeed*step;f.pitch+=f.pitchSpeed*step;motion.yaw+=f.yawSpeed*step;
-  const ground=groundAt(player.position.x,player.position.z,player.position.y,true)??motion.lastSurface,support=carCrashSupport(p,f.roll,f.pitch),floor=ground+support.floor;motion.lastSurface=ground;
+  const water=mappedWaterAt(player.position.x,player.position.z);if(water!==null&&(terrainHeight(player.position.x,player.position.z)??water)<=water+.04&&player.position.y-p.clearance<water+.3){beginVehicleSubmersion(water);stepVehicleSubmersion(step);return;}const ground=groundAt(player.position.x,player.position.z,player.position.y,true)??motion.lastSurface,support=carCrashSupport(p,f.roll,f.pitch),floor=ground+support.floor;motion.lastSurface=ground;
   if(player.position.y<=floor+.02){
    const impact=Math.max(0,-f.vy);player.position.y=floor;f.vy=impact>1.5?impact*.11:0;
    const eps=.015,rollGradient=(carCrashSupport(p,f.roll+eps,f.pitch).potential-carCrashSupport(p,f.roll-eps,f.pitch).potential)/(2*eps),pitchGradient=(carCrashSupport(p,f.roll,f.pitch+eps).potential-carCrashSupport(p,f.roll,f.pitch-eps).potential)/(2*eps);
@@ -40,13 +40,13 @@ function stepCarCrash(dt){
 function refineDamagePanels(root){
  for(const m of root.getChildMeshes()){
   if(m.metadata?.deformableSkin||m.metadata?.lifeModel)continue;const name=m.name+' '+m.material?.name;if(!/paint|bodywork|alloy-tray/i.test(name)||/glass|wheel|tyre|instrument/i.test(name))continue;
-  const pos=m.getVerticesData('position'),idx=m.getIndices(),uv=m.getVerticesData('uv');if(!pos||!idx||idx.length>12000||pos.length>24000)continue;
-  const out=[],outUV=[],indices=[];
+  repairMeshVertexChannels(m);const pos=m.getVerticesData('position'),idx=m.getIndices(),uv=m.getVerticesData('uv'),colours=meshColourData(m);if(!pos||!idx||idx.length>12000||pos.length>24000)continue;
+  const out=[],outUV=[],outColours=[],indices=[];
   for(let t=0;t<idx.length;t+=3){const a=idx[t],b=idx[t+1],d=idx[t+2],v=i=>new V(pos[i*3],pos[i*3+1],pos[i*3+2]),n=clamp(Math.ceil(Math.max(V.Distance(v(a),v(b)),V.Distance(v(a),v(d)),V.Distance(v(b),v(d)))/.55),1,3),grid=[];
-   for(let row=0;row<=n;row++){grid[row]=[];for(let col=0;col<=n-row;col++){const u=row/n,w=col/n,weights=[1-u-w,u,w],ids=[a,b,d];grid[row][col]=out.length/3;for(let axis=0;axis<3;axis++)out.push(ids.reduce((s,id,i)=>s+pos[id*3+axis]*weights[i],0));if(uv)for(let axis=0;axis<2;axis++)outUV.push(ids.reduce((s,id,i)=>s+uv[id*2+axis]*weights[i],0));}}
+   for(let row=0;row<=n;row++){grid[row]=[];for(let col=0;col<=n-row;col++){const u=row/n,w=col/n,weights=[1-u-w,u,w],ids=[a,b,d];grid[row][col]=out.length/3;for(let axis=0;axis<3;axis++)out.push(ids.reduce((s,id,i)=>s+pos[id*3+axis]*weights[i],0));if(uv)for(let axis=0;axis<2;axis++)outUV.push(ids.reduce((s,id,i)=>s+uv[id*2+axis]*weights[i],0));if(colours)for(let axis=0;axis<4;axis++)outColours.push(ids.reduce((s,id,i)=>s+colours[id*4+axis]*weights[i],0));}}
    for(let row=0;row<n;row++)for(let col=0;col<n-row;col++){indices.push(grid[row][col],grid[row+1][col],grid[row][col+1]);if(col<n-row-1)indices.push(grid[row+1][col],grid[row+1][col+1],grid[row][col+1]);}
   }
-  const normals=[];VertexData.ComputeNormals(out,indices,normals);m.setVerticesData('position',out,true);m.setVerticesData('normal',normals,true);if(uv)m.setVerticesData('uv',outUV,true);m.setIndices(indices);m.refreshBoundingInfo();m.metadata={...m.metadata,deformableSkin:true};
+  const normals=[];VertexData.ComputeNormals(out,indices,normals,{useRightHandedSystem:true});if(colours)m.setVerticesData('color',outColours,true);m.setVerticesData('position',out,true);m.setVerticesData('normal',normals,true);if(uv)m.setVerticesData('uv',outUV,true);m.setIndices(indices);m.refreshBoundingInfo();m.metadata={...m.metadata,deformableSkin:true};
  }
 }
 function impactDecalMaterial(large){

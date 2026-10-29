@@ -1,5 +1,11 @@
-v1.4.0 REGIONAL AVIATION
-https://wadeot.github.io/Coastal-explorer/index.html?v=1.4.0&publicRoom=COAST-PUBLIC
+v1.4.1 DRIVING STABILITY
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.4.1&publicRoom=COAST-PUBLIC
+Buildings now preload as lightweight shells ahead of fast cars, then gain local detail.
+Walking cameras face your travel direction; hold mouse to look, release to recenter.
+Imported cars use high-detail player bodies, clearer glass and source interiors.
+Cars flood and sink in water. X exits (H on bikes); swim up and toward shore
+before your air runs out. Recovery is blocked until you leave the submerged car.
+
 AIRCRAFT adds Cessna, Piper and Beechcraft light planes. W/S sets throttle;
 arrows pitch/roll; A/D rudder; Space wheel brakes; T ATC; X exit on foot.
 The Baron uses J for landing gear. Cessna/Piper gear stays fixed.
@@ -9,8 +15,8 @@ Press M and click QTOPO to view the uploaded topographic map. Physical terrain
 matches its 38 marked spot heights; other elevations retain the existing DEM.
 The Life Model tab contains the nine uploaded vehicles. The Land Cruiser J50
 and Hyundai i20 remain starter vehicles; other models use shop purchases.
-MODEL CREDITS lists sources and available licence details. Low graphics uses
-lower-detail geometry. Imported cars use their modelled interiors in FPV.
+MODEL CREDITS lists sources and available licence details. NPCs and remote
+players use lower-detail geometry; your imported car retains its full interior in FPV.
 Startup shows its current stage. If loading is slow, recovery buttons appear
 after 25 seconds. START WITH LOW GRAPHICS preserves your saved career.
 In solo play, major crashes briefly slow down. H/settings → Slow-motion

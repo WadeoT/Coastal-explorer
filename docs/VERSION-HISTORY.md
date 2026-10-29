@@ -4,7 +4,8 @@ Releases now use the dotted format requested for this game. The bundle previousl
 
 | Version | State | Main changes |
 | --- | --- | --- |
-| [v1.4.0](v1.4.0-RELEASE.md) | Current | Real regional runways, three light aircraft, parked-plane hijacking and runway ATC |
+| [v1.4.1](v1.4.1-RELEASE.md) | Current | Crash-buffer and missing-body fixes, building prefetch, imported cockpits/materials, walking follow and sinking cars |
+| [v1.4.0](v1.4.0-RELEASE.md) | Published | Real regional runways, three light aircraft, parked-plane hijacking and runway ATC |
 | [v1.3.9](v1.3.9-RELEASE.md) | Published | QTopo spot-height corrections and offline georeferenced topographic map |
 | [v1.3.8](v1.3.8-RELEASE.md) | Published | Nine imported Life Model vehicles, interiors, source previews and model credits |
 | [v1.3.7](v1.3.7-RELEASE.md) | Published | Motorway bridge grades, suspension crash fix and footprint-following house detail |

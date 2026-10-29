@@ -1,0 +1,35 @@
+// Fast, persistent footprint shells cover the next neighbourhood while richer
+// scenery builds. Covered triangles are removed, so two house skins never fight.
+const buildingPrefetch={cells:new Map(),queue:[],job:null,clock:1,core:null,richIds:new Set(),collision:new Map(),generation:0,stats:{built:0,vertices:0,maxSliceMs:0}};
+function maskPrefetchedCell(cell){
+ for(const part of cell.parts){const indices=[];for(const range of part.ranges)if(!buildingPrefetch.richIds.has(range.id))for(let i=range.start;i<range.end;i++)indices.push(part.indices[i]);part.mesh.setIndices(indices);part.mesh.setEnabled(indices.length>0);}
+}
+function refreshPrefetchCoverage(){if(buildingPrefetch.core===geometryRoot)return;buildingPrefetch.core=geometryRoot;buildingPrefetch.richIds=new Set(geometryRoot?.metadata?.buildingIds||[]);for(const cell of buildingPrefetch.cells.values())maskPrefetchedCell(cell);}
+function removePrefetchedCell(key){const cell=buildingPrefetch.cells.get(key);if(!cell)return;cell.root?.dispose(false,false);for(const k of cell.collisionKeys||[]){const remaining=buildingPrefetch.collision.get(k)?.filter(o=>o.prefetchCell!==key)||[];if(remaining.length)buildingPrefetch.collision.set(k,remaining);else buildingPrefetch.collision.delete(k);}buildingPrefetch.cells.delete(key);}
+function resetBuildingPrefetch(){buildingPrefetch.generation++;buildingPrefetch.queue=[];for(const key of [...buildingPrefetch.cells.keys()])removePrefetchedCell(key);buildingPrefetch.core=null;}
+async function buildPrefetchedCell(key){
+ const generation=buildingPrefetch.generation,[cx,cz]=key.split(',').map(Number),objects=[],walls={p:[],i:[],c:[],ranges:[]},roofs={p:[],i:[],c:[],ranges:[]};let started=performance.now();
+ const candidates=[...(buildingIndex.get(key)||[]),...(homeTileCache.get(Math.floor(cx/2)+','+Math.floor(cz/2))||[])].filter(e=>Math.floor((e.bounds.minX+e.bounds.maxX)/1024)===cx&&Math.floor((e.bounds.minZ+e.bounds.maxZ)/1024)===cz);
+ function quad(a,vertices,colour){const base=a.p.length/3;for(const v of vertices){a.p.push(...v);a.c.push(colour.r,colour.g,colour.b,1);}a.i.push(base,base+1,base+2,base,base+2,base+3);}
+ for(const e of candidates){
+  if(performance.now()-started>3){buildingPrefetch.stats.maxSliceMs=Math.max(buildingPrefetch.stats.maxSliceMs,performance.now()-started);await new Promise(requestAnimationFrame);started=performance.now();if(generation!==buildingPrefetch.generation)return;}
+  const heights=buildingGroundHeights(e);if(!heights)continue;const base=Math.max(...heights),height=mappedBuildingHeight(e),top=base+height,appearance=houseAppearance(e),wall=C.FromHexString(appearance.wall),roof=C.FromHexString(appearance.roof),flat=[],holes=[],wallStart=walls.i.length,roofStart=roofs.i.length;
+  for(const [ri,ring]of e.rings.entries()){if(ri)holes.push(flat.length/2);for(let i=0;i<ring.length;i++){const a=ring[i],b=ring[(i+1)%ring.length];flat.push(a.x,a.z);quad(walls,[[a.x,terrainHeight(a.x,a.z)??base,a.z],[b.x,terrainHeight(b.x,b.z)??base,b.z],[b.x,top,b.z],[a.x,top,a.z]],wall);}}
+  const first=roofs.p.length/3;for(let i=0;i<flat.length;i+=2){roofs.p.push(flat[i],top,flat[i+1]);roofs.c.push(roof.r,roof.g,roof.b,1);}roofs.i.push(...triangulateGroundRings(flat,holes).map(i=>i+first));walls.ranges.push({id:e.id,start:wallStart,end:walls.i.length});roofs.ranges.push({id:e.id,start:roofStart,end:roofs.i.length});
+  const b=e.bounds,garage=mechanicByBuilding.get(e.id);objects.push({buildingId:e.id,x:(b.minX+b.maxX)/2,z:(b.minZ+b.maxZ)/2,w:(b.maxX-b.minX)/2,d:(b.maxZ-b.minZ)/2,height:top-Math.min(...heights),baseY:Math.min(...heights),polygon:e.points,holes:e.rings.slice(1),garageBay:garage?.bay,bayCeiling:base+(garage?.doorHeight||0),prefetchCell:key});
+ }
+ if(generation!==buildingPrefetch.generation)return;const root=new Node('prefetched-building-cell-'+key,scene);root.parent=openRoot;const parts=[];
+ for(const [label,a,material]of [['walls',walls,openWallMaterial],['roofs',roofs,openRoofMaterial]])if(a.i.length){const mesh=meshData('mapped-building-prefetch-'+label+'-'+key,a.p,a.i,material,root,a.c);mesh.isPickable=true;mesh.metadata={openSolid:true,prefetchedBuildings:true};mesh.freezeWorldMatrix();parts.push({mesh,indices:a.i,ranges:a.ranges});buildingPrefetch.stats.vertices+=a.p.length/3;}
+ const cell={key,root,parts,objects,collisionKeys:new Set()};buildingPrefetch.cells.set(key,cell);for(const o of objects){for(let x=Math.floor((o.x-o.w-2)/128);x<=Math.floor((o.x+o.w+2)/128);x++)for(let z=Math.floor((o.z-o.d-2)/128);z<=Math.floor((o.z+o.d+2)/128);z++){const k=x+','+z;cell.collisionKeys.add(k);if(!buildingPrefetch.collision.has(k))buildingPrefetch.collision.set(k,[]);buildingPrefetch.collision.get(k).push(o);}}
+ maskPrefetchedCell(cell);for(const record of worldLife.damage.values())applyWorldDamageRecord(record,root,objects);buildingPrefetch.stats.built++;
+}
+function pumpBuildingPrefetch(){if(!buildingPrefetch.job&&buildingPrefetch.queue.length){const key=buildingPrefetch.queue.shift();if(buildingPrefetch.cells.has(key))return;buildingPrefetch.job=buildPrefetchedCell(key).catch(error=>console.error('Building prefetch failed',error)).finally(()=>buildingPrefetch.job=null);}}
+function updateBuildingPrefetch(dt){
+ if(!state.worldReady||!state.profile||state.liveReady||!['playing','wrecked'].includes(state.mode))return;refreshPrefetchCoverage();if(!isAircraft())pumpBuildingPrefetch();buildingPrefetch.clock+=dt;if(buildingPrefetch.clock<.3)return;buildingPrefetch.clock=0;if(isAircraft())return;
+ const view=localViewProfile(),speed=Math.hypot(motion.vx,motion.vz),reserve=clamp(260+speed*5,260,700),radius=view.buildings+reserve,look=Math.min(4,Math.max(0,speed/8)),centre={x:player.position.x+motion.vx*look,z:player.position.z+motion.vz*look};
+ for(const key of [...buildingPrefetch.cells.keys()]){const [x,z]=key.split(',').map(Number);if(Math.hypot(x*512+256-player.position.x,z*512+256-player.position.z)>radius+1150)removePrefetchedCell(key);}
+ const desired=[];for(let x=Math.floor((centre.x-radius)/512);x<=Math.floor((centre.x+radius)/512);x++)for(let z=Math.floor((centre.z-radius)/512);z<=Math.floor((centre.z+radius)/512);z++){const key=x+','+z,d=Math.hypot(x*512+256-centre.x,z*512+256-centre.z);if(d>radius+360||buildingPrefetch.cells.has(key))continue;if(!buildingIndex.has(key)&&!homeTileCache.has(Math.floor(x/2)+','+Math.floor(z/2)))continue;desired.push({key,d:Math.hypot(x*512+256-player.position.x,z*512+256-player.position.z)});}buildingPrefetch.queue=desired.sort((a,b)=>a.d-b.d).slice(0,64).map(v=>v.key);
+ pumpBuildingPrefetch();
+}
+function addPrefetchedBuildingContacts(out,a,b,reach){for(let x=Math.floor((Math.min(a.x,b.x)-reach)/128);x<=Math.floor((Math.max(a.x,b.x)+reach)/128);x++)for(let z=Math.floor((Math.min(a.z,b.z)-reach)/128);z<=Math.floor((Math.max(a.z,b.z)+reach)/128);z++)for(const o of buildingPrefetch.collision.get(x+','+z)||[])if(!buildingPrefetch.richIds.has(o.buildingId))out.add(o);return out;}
+function applyPrefetchWorldDamage(record){for(const cell of buildingPrefetch.cells.values())if(cell.objects.some(o=>worldObjectKey(o)===record.key))applyWorldDamageRecord(record,cell.root,cell.objects);}

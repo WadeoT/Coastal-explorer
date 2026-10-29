@@ -1,6 +1,6 @@
 const collisionCells=new Map(),restrictedCells=new Map();let collisionCount=-1,restrictionClock=0,propertyViolation=0;
 function indexCollisionObjects(){collisionCells.clear();for(const o of obstacles){const w=(o.w||o.radius||1)+2,d=(o.d||o.radius||1)+2;for(let x=Math.floor((o.x-w)/128);x<=Math.floor((o.x+w)/128);x++)for(let z=Math.floor((o.z-d)/128);z<=Math.floor((o.z+d)/128);z++){const k=x+','+z;if(!collisionCells.has(k))collisionCells.set(k,[]);collisionCells.get(k).push(o);}}collisionCount=obstacles.length;}
-function collisionObjectsNear(a,b,reach){if(collisionCount!==obstacles.length)indexCollisionObjects();const out=new Set();for(let x=Math.floor((Math.min(a.x,b.x)-reach)/128);x<=Math.floor((Math.max(a.x,b.x)+reach)/128);x++)for(let z=Math.floor((Math.min(a.z,b.z)-reach)/128);z<=Math.floor((Math.max(a.z,b.z)+reach)/128);z++)for(const o of collisionCells.get(x+','+z)||[])out.add(o);return addSolidTraffic(out,a,b,reach);}
+function collisionObjectsNear(a,b,reach){if(collisionCount!==obstacles.length)indexCollisionObjects();const out=new Set();for(let x=Math.floor((Math.min(a.x,b.x)-reach)/128);x<=Math.floor((Math.max(a.x,b.x)+reach)/128);x++)for(let z=Math.floor((Math.min(a.z,b.z)-reach)/128);z<=Math.floor((Math.max(a.z,b.z)+reach)/128);z++)for(const o of collisionCells.get(x+','+z)||[])out.add(o);addPrefetchedBuildingContacts(out,a,b,reach);return addSolidTraffic(out,a,b,reach);}
 function objectContact(o,position,p){
  if(o.removed||o.destroyed)return false;
  // A low raised island is a wheel/foot support surface, not an enclosing body wall.

@@ -1,6 +1,6 @@
-# Coastal Explorer — Startup Recovery (v1.3.5)
+# Coastal Explorer — Visible Impact (v1.3.6)
 
-[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.5) · [v1.3.5 release notes](docs/v1.3.5-RELEASE.md) · [Version history](docs/VERSION-HISTORY.md) · [Netlify + public multiplayer setup](docs/NETLIFY-MULTIPLAYER.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
+[Play the hosted game](https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.6) · [v1.3.6 release notes](docs/v1.3.6-RELEASE.md) · [Version history](docs/VERSION-HISTORY.md) · [Netlify + public multiplayer setup](docs/NETLIFY-MULTIPLAYER.md) · [Deploy the multiplayer relay to Render](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2FWadeoT%2FCoastal-explorer)
 
 A single-file Sunshine Coast driving/flying/boating sandbox with 24 original, simplified vehicle models, first-person and third-person views, a 3D showroom, saved purchases/modifications, deliveries and checkpoint races, a five-star police response, crash collisions, day/night, weather, lights and multiplayer support. The game is not a recreation using GTA V assets.
 
@@ -9,6 +9,8 @@ V13 widens game roads while keeping their real centre lines, adds richer ground 
 New players get an optional 12-step in-game tutorial once the real map is ready. It reacts to driving, braking, switching cameras, opening the map and visiting activities/the garage, with instructions for the current vehicle. It saves progress separately from your career. Skip it anytime or replay through **H → NEW PLAYER TUTORIAL / REPLAY**. See [V15 release notes](docs/V15-RELEASE.md).
 
 V17 adds contact-aware car rollovers and sliding wrecks, deformable panels and body-attached impact scars, richer procedural ground/building/vehicle textures, and layered explosion effects. Cars and boats use hold-to-accelerate controls with coasting on release. Cars show critical warnings instead of extra oil/coolant monitors; aircraft retain their throttle behavior and instruments. See [V17 details](docs/V17-RELEASE.md).
+
+v1.3.6 strengthens body folds, attached impact shading and part detachment on NPC/player crashes. Walking mouse look can rotate continuously, follows movement and has proper first-person pitch. Motorway/trunk width estimates include shoulders and opposing lanes for two-way roads, including narrow-tagged Sunshine Motorway sections approaching Coolum. See [changes and checks](docs/v1.3.6-RELEASE.md).
 
 v1.3.4 adds rounded shaded foliage, more natural-area scrub, weather-sensitive clouds and calm/moderate/rough ocean swell. Ocean conditions affect foam, water colour and boat motion. Choose **H → Ocean conditions** to follow weather or select a sea state. Vegetation density, clouds and animated water remain adjustable. See [Living Coast details](docs/v1.3.4-RELEASE.md).
 
@@ -40,9 +42,9 @@ V18 adds a ground-level neighbourhood focus: shorter scenery range, nearby house
 
 ## Play and controls
 
-Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. Play starts immediately. Multiplayer automatically tries public MQTT relays when no dedicated server is configured; unavailable services never block driving. The status badge clearly identifies local play. The complete approximately 34 MB HTML includes the runtime, fonts, model geometry and real map. No map API key is needed. The showroom says **v1.3.5 · STARTUP RECOVERY**.
+Open the hosted link, wait for **OFFLINE MAP READY**, then select a vehicle and **DRIVE / LAUNCH**. Play starts immediately. Multiplayer automatically tries public MQTT relays when no dedicated server is configured; unavailable services never block driving. The status badge clearly identifies local play. The complete approximately 34 MB HTML includes the runtime, fonts, model geometry and real map. No map API key is needed. The showroom says **v1.3.6 · VISIBLE IMPACT**.
 
-Download: extract `downloads/Coastal-Explorer-v1.3.5.zip` and open the game via the included launcher/local server, or run `node server/relay.cjs` to serve the client and relay together. The map/runtime are bundled; Local Play works without a relay. Detailed instructions are in [PLAY.txt](PLAY.txt).
+Download: extract `downloads/Coastal-Explorer-v1.3.6.zip` and open the game via the included launcher/local server, or run `node server/relay.cjs` to serve the client and relay together. The map/runtime are bundled; Local Play works without a relay. Detailed instructions are in [PLAY.txt](PLAY.txt).
 
 WASD/arrows drive; Y toggles driving HUD information, hold left mouse to look around, C switches camera, G opens the showroom, M opens the map, H settings, R recovery and Escape pauses. The LandCruiser is manual: hold Shift for clutch and Q/E to change gear. L headlights, [ / ] indicators, V hazards, F fires one F18 cannon round; civilian vehicles are unarmed. F18: hold Space for cannon fire, X ejects, Z deploys flares; use GUNNERY RANGE for the five-target challenge. Ejection opens a chute automatically; WASD steers and G returns to the garage after landing. Extra controls are shown in the game for helicopter, fighter and boat. U signals surrender during a pursuit after landing/stopping; an officer can arrest a stopped wanted driver and charge a game fine. Use Activities for vehicle-specific jobs and races, or earn skill money through drifts, sustained road speed and active five-star pursuits. Ordinary movement alone awards nothing. A fresh career has $65,000 and the original four vehicles owned. Cash, purchases, upgrades and resprays persist in browser storage. Private browsing may not retain progress.
 

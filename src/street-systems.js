@@ -1,6 +1,14 @@
 // Game road widths and appearance retain the original OSM centre lines and DEM.
 const streetSettings={roadScale:1.3};
 const terrainUseIndex=new Map(),terrainUseCache=new Map();
+// Width is an estimate unless OSM supplies a width. Two-way highways must fit opposing lanes.
+function roadSourceWidth(tags,walking=false){
+ const explicit=Number.parseFloat(tags.width);if(Number.isFinite(explicit)&&explicit>0)return clamp(explicit,walking?.6:2,60);
+ if(walking)return 2;if(tags.highway==='track')return 3.5;
+ const oneway=['yes','1','-1'].includes(tags.oneway)||tags.junction==='roundabout',major=/^(motorway|trunk)(?:_link)?$/.test(tags.highway),lanes=Math.max(oneway?1:2,Number.parseInt(tags.lanes)||(tags.junction==='roundabout'?1:2));
+ if(major){const shoulder=tags.highway.endsWith('_link')?.8:tags.highway==='motorway'?2:1.2;return clamp(lanes*3.5+shoulder*2,5,36);}
+ return clamp((Number.parseInt(tags.lanes)||(tags.junction==='roundabout'?1:2))*3.2,4.5,24);
+}
 function gameRoadWidth(tags,source,walking=false){if(walking||streetSettings.roadScale===1)return source;if(tags.highway==='track')return source*(streetSettings.roadScale===1.5?1.2:1.12);return clamp(source*streetSettings.roadScale,3.5,36);}
 function setRoadWidthScale(scale){if(![1,1.3,1.5].includes(scale))return false;streetSettings.roadScale=scale;for(const p of roads)p.width=gameRoadWidth(p.tags,p.sourceWidth||p.width);indexRoadJunctions();clearEstimatedHomesCache();rebuildOpenGeometry().catch(e=>toast(e.message));return true;}
 function indexTerrainUses(){terrainUseIndex.clear();terrainUseCache.clear();for(const a of landFeatures){if(!a.tags.landuse&&!/^(wood|scrub|grassland|wetland|beach|heath)$/.test(a.tags.natural||'')&&!/^(park|golf_course|recreation_ground)$/.test(a.tags.leisure||''))continue;for(let x=Math.floor(a.bounds.minX/512);x<=Math.floor(a.bounds.maxX/512);x++)for(let z=Math.floor(a.bounds.minZ/512);z<=Math.floor(a.bounds.maxZ/512);z++){const key=x+','+z;if(!terrainUseIndex.has(key))terrainUseIndex.set(key,[]);terrainUseIndex.get(key).push(a);}}}

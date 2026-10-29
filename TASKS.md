@@ -93,7 +93,15 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Yield during map feature decoding to let progress/recovery UI update.
 - [x] Verify actual loading UI, map-failure path and low-graphics recovery; package and publish.
 
-## v1.3.6 — next: combat vehicles and fleet expansion
+## v1.3.6 — visible impact and road/camera corrections
+
+- [x] Exaggerated persistent folds and surface-attached impact shading for player/NPC vehicles, with earlier part detachment.
+- [x] Independent geometry and full mesh/colour repair; retain bounded damage update and debris budgets.
+- [x] Walking camera follows the player, resets vehicle camera state on exit, continuous orbit mouse look and proper first-person pitch.
+- [x] Include shoulders and two opposing lanes in motorway/trunk width estimates; verify narrow-tagged Sunshine Motorway sections near Coolum.
+- [x] Verify collision/camera/road regressions, package and publish.
+
+## v1.3.7 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

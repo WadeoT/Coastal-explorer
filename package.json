@@ -1,6 +1,6 @@
 {
   "name": "coastal-explorer",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "private": true,
   "description": "Single-file Sunshine Coast driving game; optional browser verification",
   "scripts": {
@@ -54,7 +54,8 @@
     "build:life-models": "python3 scripts/pack-life-models.py assets/life-models/converted && node scripts/build-life-lods.cjs",
     "test:1.3.9": "node tests/qtopo.cjs && node tests/motorway-hotfix.cjs",
     "test:1.4.0": "node tests/regional-aviation.cjs && node tests/damage-model.cjs",
-    "test:1.4.1": "node tests/stability-v141.cjs && node tests/life-models.cjs && node tests/crash-identity.cjs && node tests/damage-model.cjs"
+    "test:1.4.1": "node tests/stability-v141.cjs && node tests/life-models.cjs && node tests/crash-identity.cjs && node tests/damage-model.cjs",
+    "test:1.4.2": "node tests/vegetation-habitats.cjs && node tests/airport-bushland.cjs && node tests/regional-aviation.cjs && node tests/coastal-climate.cjs"
   },
   "devDependencies": {
     "@babylonjs/core": "9.31.3",

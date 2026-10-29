@@ -1,8 +1,8 @@
-const atc={status:'idle',target:null,requestedAt:0,decisionAt:0,clearanceUntil:0,holds:0,message:'Select a map landing pin, or request a landing below your aircraft.'};
+const atc={purpose:'landing',status:'idle',target:null,requestedAt:0,decisionAt:0,clearanceUntil:0,holds:0,message:'Select a map landing pin, or request a landing below your aircraft.'};
 let policeAirUnit=null;
-function atcHasClearance(position){if(airportClearanceAt(position))return true;if(!['approved','landed'].includes(atc.status)||state.elapsed>atc.clearanceUntil||!atc.target)return false;const t=atc.target;return Math.hypot(position.x-t.x,position.z-t.z)<220;}
+function atcHasClearance(position){if(departureClearanceAt(position)||airportClearanceAt(position))return true;if(!['approved','landed'].includes(atc.status)||state.elapsed>atc.clearanceUntil||!atc.target)return false;const t=atc.target;return Math.hypot(position.x-t.x,position.z-t.z)<220;}
 function landingAssessment(target){
- if(target?.regional){const f=regionalAviation.fields.find(f=>f.id===target.airport);if(!f||f.restricted||state.wanted>=3||worldUpgrade.weather==='storm')return{ok:false,reason:'Airfield unavailable: access, pursuit or storm restriction.'};return{ok:true,busy:[...Multiplayer.remotes.values()].some(r=>Math.hypot(r.target.x-target.x,r.target.z-target.z)<200&&r.target.y-(terrainHeight(target.x,target.z)||0)<150),zone:target.airport,reason:f.name+' runway slot approved.'};}
+ if(target?.regional){const f=regionalAviation.fields.find(f=>f.id===target.airport);if(!f||f.restricted||state.wanted>=3||worldUpgrade.weather==='storm')return{ok:false,reason:'Airfield unavailable: access, pursuit or storm restriction.'};return{ok:true,busy:[...Multiplayer.remotes.values()].some(r=>Math.hypot(r.target.x-target.x,r.target.z-target.z)<200&&r.target.y-(terrainHeight(target.x,target.z)||0)<150),zone:airfieldGameZone(target.airport),reason:f.name+' runway slot approved.'};}
  if(target?.airport==='YBSU'&&state.profile?.kind==='jet'){if(state.wanted>=3)return{ok:false,reason:'Runway clearance refused during a high-priority pursuit.'};if(worldUpgrade.weather==='storm')return{ok:false,reason:'Hold · severe storm runway restriction.'};return{ok:true,busy:[...Multiplayer.remotes.values()].some(r=>Math.hypot(r.target.x-target.x,r.target.z-target.z)<500&&r.target.y<250),zone:'sunshine-airport',reason:'Sunshine Coast Airport runway slot approved.'};}
  const servicePad=repairPadAt(target.x,target.z),h=servicePad?.pad.y??terrainHeight(target.x,target.z);if(h===null)return {ok:false,reason:'Terrain not available at this location.'};
  if(mappedWaterAt(target.x,target.z)!==null)return {ok:false,reason:'Water landing refused for this aircraft.'};
@@ -18,25 +18,46 @@ function landingAssessment(target){
  const busy=[...Multiplayer.remotes.values()].some(r=>Math.hypot(r.target.x-target.x,r.target.z-target.z)<300&&r.target.y-h<250);
  return {ok:true,busy,zone:zone?.id||null,reason:zone?'Airport operations approved a local landing slot.':'Visual landing site approved after terrain and access checks.'};
 }
+function airfieldGameZone(id){return ({YBSU:'sunshine-airport',YCDR:'caloundra-airport',YNSH:'noosa-airfield'})[id]||id;}
+function aircraftOnGround(){return !!state.profile&&!!state.grounded&&player.position.y-motion.lastSurface-state.profile.clearance<3;}
+function departureClearanceAt(position){
+ if(atc.purpose!=='takeoff'||!['approved','departing'].includes(atc.status)||state.elapsed>atc.clearanceUntil||!atc.target)return false;const zone=gameAirspace.zones.find(z=>z.id===atc.zone);if(zone){const p=geoToLocal(zone.lat,zone.lon);return Math.hypot(position.x-p.x,position.z-p.z)<zone.radius+250;}const t=atc.departureOrigin||atc.target;return Math.hypot(position.x-t.x,position.z-t.z)<2500;
+}
+function takeoffAssessment(target){
+ const result=landingAssessment(target);if(!result.ok)return result;
+ if(target.airport){const field=regionalAviation.fields.find(f=>f.id===target.airport);if(field&&Math.hypot(player.position.x-field.x,player.position.z-field.z)>4500)return{ok:false,reason:'Taxi to the departure airport before requesting takeoff.'};}
+ const r=target.airport==='YBSU'?flightNav.runway:regionalAviation.runways.find(r=>r.osmId===target.osmRunway);let busy=!r&&!!result.busy;
+ if(r)for(const remote of Multiplayer.remotes.values()){const p=profiles[remote.vehicle],t=remote.target;if(!p||!['heli','jet'].includes(p.kind)||remote.ejected||t.passenger)continue;const along=(t.x-r.a.x)*r.dx+(t.z-r.a.z)*r.dz,across=Math.abs((t.x-r.a.x)*r.dz-(t.z-r.a.z)*r.dx),h=terrainHeight(t.x,t.z)||0;if(along> -500&&along<r.length+500&&across<Math.max(65,r.width/2+35)&&t.y-h<180){busy=true;break;}}
+ return{...result,busy,reason:'Departure checks complete.'};
+}
+function requestTakeoffClearance(){
+ if(!isAircraft()||state.mode!=='playing'||!aircraftOnGround()){toast('Stop on the ground to request takeoff clearance.');return false;}if(['queued','reviewing','holding'].includes(atc.status)){toast('ATC is still processing your request.');return false;}
+ let target;if(state.profile.propeller)target=regionalLandingTarget();else if(state.profile.kind==='jet')target=runwayLandingTarget();else target={x:player.position.x,z:player.position.z,label:'HELICOPTER DEPARTURE'};
+ const origin={x:player.position.x,z:player.position.z};Object.assign(atc,{purpose:'takeoff',status:'queued',target,departureOrigin:origin,onFinal:false,requestedAt:state.elapsed,decisionAt:state.elapsed+2,clearanceUntil:0,holds:0,message:'Takeoff request transmitted · hold position for clearance.'});if(target.airport)setPersonalWaypoint(target,(target.label||'AIRPORT')+' · TAXI TO RUNWAY '+target.runway);$('atcPanel').hidden=false;updateAtcUI();return true;
+}
+function requestAtcClearance(){return aircraftOnGround()?requestTakeoffClearance():requestLandingClearance();}
 function requestLandingClearance(){
  if(!isAircraft()||state.mode!=='playing'){toast('Choose an aircraft and resume flight to contact ATC.');return false;}
  if(['queued','reviewing','holding'].includes(atc.status)){toast('ATC is still processing your request.');return false;}
  const pin=mapView.selection,target=state.profile.propeller?regionalLandingTarget():state.profile.kind==='jet'?runwayLandingTarget():pin?{x:pin.x,z:pin.z}:{x:player.position.x,z:player.position.z};if(target.regional){setPersonalWaypoint(target.approach,target.label+' · APPROACH');}else if(target.airport==='YBSU'){setPersonalWaypoint(target.approach||target,'SUNSHINE COAST AIRPORT · APPROACH');}
- Object.assign(atc,{status:'queued',onFinal:false,target,requestedAt:state.elapsed,decisionAt:state.elapsed+2,clearanceUntil:0,holds:0,message:'Request transmitted · waiting for ATC acknowledgement.'});updateAtcUI();return true;
+ Object.assign(atc,{purpose:'landing',status:'queued',onFinal:false,target,requestedAt:state.elapsed,decisionAt:state.elapsed+2,clearanceUntil:0,holds:0,message:'Request transmitted · waiting for ATC acknowledgement.'});updateAtcUI();return true;
 }
 function updateAtc(dt){
  if(atc.status==='queued'&&state.elapsed>=atc.decisionAt){atc.status='reviewing';atc.decisionAt=state.elapsed+6;atc.message='ATC reviewing site, airspace, weather, traffic and access.';}
- else if(['reviewing','holding'].includes(atc.status)&&state.elapsed>=atc.decisionAt){const result=landingAssessment(atc.target);
-  if(result.ok&&result.busy&&atc.holds<2){atc.status='holding';atc.holds++;atc.decisionAt=state.elapsed+8;atc.message='Hold outside the landing area · conflicting aircraft traffic.';}
-  else if(!result.ok||result.busy){atc.status='denied';atc.message=result.busy?'Landing refused · traffic did not clear.':result.reason;dangerAlert('atc-denied','ATC · LANDING DENIED',atc.message,'warning','airspace');}
+ else if(['reviewing','holding'].includes(atc.status)&&state.elapsed>=atc.decisionAt){const departure=atc.purpose==='takeoff',result=departure?takeoffAssessment(atc.target):landingAssessment(atc.target);
+  if(result.ok&&result.busy&&atc.holds<2){atc.status='holding';atc.holds++;atc.decisionAt=state.elapsed+8;atc.message=departure?'HOLD POSITION · departure runway occupied.':'Hold outside the landing area · conflicting aircraft traffic.';}
+  else if(!result.ok||result.busy){atc.status='denied';atc.message=result.busy?(departure?'Takeoff refused · runway traffic did not clear.':'Landing refused · traffic did not clear.'):result.reason;dangerAlert('atc-denied',departure?'ATC · TAKEOFF DENIED':'ATC · LANDING DENIED',atc.message,'warning','airspace');}
+  else if(departure){atc.status='approved';atc.zone=result.zone;atc.clearanceUntil=state.elapsed+300;atc.message=atc.target.airport?'CLEARED FOR TAKEOFF · runway '+atc.target.runway+' · heading '+Math.round(atc.target.heading)+'° · 5 minute departure slot.':'CLEARED FOR TAKEOFF · local helicopter departure · 5 minute slot.';if(atc.target.airport){const h=atc.target.heading*RAD;setPersonalWaypoint({x:atc.target.x+Math.sin(h)*2200,z:atc.target.z-Math.cos(h)*2200},'DEPARTURE · '+Math.round(atc.target.heading)+'°');}toast('ATC · TAKEOFF CLEARED',5000);}
   else{atc.status='approved';atc.clearanceUntil=state.elapsed+(atc.target.airport==='YBSU'||atc.target.regional?600:120);atc.zone=result.zone;atc.message=atc.target.regional?'Cleared to '+atc.target.label+' · runway '+atc.target.runway+' · heading '+Math.round(atc.target.heading)+'° · follow the approach column.':atc.target.airport==='YBSU'?'Cleared to Sunshine Coast Airport · runway '+atc.target.runway+' · heading '+Math.round(atc.target.heading)+'° true · follow the approach column.':'Cleared at the selected site · 220 m radius · valid 120 seconds.';toast('ATC · LANDING CLEARED',5000);}
  }
- if(['approved','landed'].includes(atc.status)&&state.elapsed>atc.clearanceUntil){atc.status='expired';atc.message='Landing clearance expired · request a new slot.';}
- if(atc.status==='approved'&&atcHasClearance(player.position)&&state.grounded&&player.position.y-motion.lastSurface-state.profile.clearance<2&&state.speed<2){atc.status='landed';atc.message='Landing complete · local clearance remains until its expiry.';}
+ if(['approved','landed','departing'].includes(atc.status)&&state.elapsed>atc.clearanceUntil){atc.status='expired';atc.message=(atc.purpose==='takeoff'?'Takeoff':'Landing')+' clearance expired · request a new slot.';}
+ if(atc.purpose==='takeoff'&&atc.status==='approved'&&!aircraftOnGround()&&player.position.y-motion.lastSurface-state.profile.clearance>8){atc.status='departing';atc.message='DEPARTURE IN PROGRESS · remain in the cleared airport corridor.';}
+ if(atc.purpose==='takeoff'&&atc.status==='departing'&&!departureClearanceAt(player.position)){atc.status='departed';atc.message='Departure complete · contact ATC again for landing.';}
+ if(atc.purpose!=='takeoff'&&atc.status==='approved'&&atcHasClearance(player.position)&&state.grounded&&player.position.y-motion.lastSurface-state.profile.clearance<2&&state.speed<2){atc.status='landed';atc.message='Landing complete · local clearance remains until its expiry.';}
  updateAtcUI();
 }
-function updateAtcUI(){const box=$('atcPanel');if(!box)return;$('atcCompact').hidden=!isAircraft();if(!isAircraft())box.hidden=true;$('atcStatus').textContent=atc.status.toUpperCase()+' · '+atc.message;$('atcRequest').disabled=['queued','reviewing','holding'].includes(atc.status);}
-function initialiseAtc(){const box=document.createElement('section');box.id='atcPanel';box.hidden=true;box.innerHTML='<button id="atcRequest" class="source-btn">REQUEST LANDING CLEARANCE</button><span id="atcStatus"></span>';document.body.append(box);$('atcRequest').onclick=requestLandingClearance;const compact=document.createElement('button');compact.id='atcCompact';compact.className='source-btn';compact.textContent='ATC';compact.hidden=true;compact.title='Air traffic control · T';compact.onclick=()=>{box.hidden=!box.hidden;updateAtcUI();};document.body.append(compact);}
+function updateAtcUI(){const box=$('atcPanel');if(!box)return;$('atcCompact').hidden=!isAircraft();if(!isAircraft())box.hidden=true;$('atcStatus').textContent=atc.status.toUpperCase()+' · '+atc.message;$('atcRequest').textContent=aircraftOnGround()?'REQUEST TAKEOFF CLEARANCE':'REQUEST LANDING CLEARANCE';$('atcRequest').disabled=['queued','reviewing','holding'].includes(atc.status);}
+function initialiseAtc(){const box=document.createElement('section');box.id='atcPanel';box.hidden=true;box.innerHTML='<button id="atcRequest" class="source-btn">REQUEST LANDING CLEARANCE</button><span id="atcStatus"></span>';document.body.append(box);$('atcRequest').onclick=requestAtcClearance;const compact=document.createElement('button');compact.id='atcCompact';compact.className='source-btn';compact.textContent='ATC';compact.hidden=true;compact.title='Air traffic control · T';compact.onclick=()=>{box.hidden=!box.hidden;updateAtcUI();};document.body.append(compact);}
 
 function canFireNoseGun(forward,delta){const distance=delta.length();return distance>25&&distance<900&&V.Dot(forward.normalize(),delta.scale(1/distance))>=Math.cos(4*RAD);}
 function fireInterceptorNose(i){

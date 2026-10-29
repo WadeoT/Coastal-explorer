@@ -149,7 +149,17 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Cars enter water, flood/sink and lose engine power; escape/swimming/air/drowning, continuing abandoned/NPC sinking and underwater recovery restrictions.
 - [x] Verify crash/repair/hijack buffers, all nine imports, walking direction, building shells and real mapped water outcomes; update tutorial and publish.
 
-## v1.4.2 — next: combat vehicles and fleet expansion
+## v1.4.2 — airport parking, takeoff and mapped bushland
+
+- [x] Retrieve and retain actual Sunshine Coast Airport aprons/taxiways; place two usable aircraft on the GA STH apron near the southern hangars.
+- [x] Stream by distance to parking, avoiding the airport-centre cutoff; validate footprints, terrain, buildings and water, and preserve aircraft across scenery rebuilds.
+- [x] Live parked-plane map arrows and a direct PARKED PLANES garage spawn; verify on-foot boarding at YBSU.
+- [x] Context-sensitive T/button takeoff/landing requests, queued review, runway traffic holds, refusals, five-minute departure slots, expiry and completion.
+- [x] Correct regional airport clearance IDs so approved taxi/departure is recognised by game airspace rules.
+- [x] Denser mapped forest canopy, layered scrub/heath/mangrove growth, sparse grass/developed sites, clear roads/airfield surfaces and bounded scalable geometry.
+- [x] Verify actual airport spawn/stream/board, ATC controls/airspace/holds/storms/expiry and mapped vegetation density/exclusions; update help and publish.
+
+## v1.4.3 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

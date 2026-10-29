@@ -1,5 +1,13 @@
-v1.4.1 DRIVING STABILITY
-https://wadeot.github.io/Coastal-explorer/index.html?v=1.4.1&publicRoom=COAST-PUBLIC
+v1.4.2 AIRPORT AND BUSHLAND
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.4.2&publicRoom=COAST-PUBLIC
+Garage spawn: SUNSHINE COAST · PARKED PLANES places you beside the GA STH
+apron aircraft near the southern hangars. X exits your car; E boards a plane.
+Blue plane arrows on both maps show parked aircraft.
+T requests TAKEOFF on the ground and LANDING in flight. Wait for ATC review;
+hold position for runway traffic, then follow the approved runway/heading.
+Mapped forests have denser canopy and undergrowth; scrub and heath stay low.
+Vegetation detail in H/settings reduces the density for performance.
+
 Buildings now preload as lightweight shells ahead of fast cars, then gain local detail.
 Walking cameras face your travel direction; hold mouse to look, release to recenter.
 Imported cars use high-detail player bodies, clearer glass and source interiors.

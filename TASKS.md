@@ -101,7 +101,17 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Include shoulders and two opposing lanes in motorway/trunk width estimates; verify narrow-tagged Sunshine Motorway sections near Coolum.
 - [x] Verify collision/camera/road regressions, package and publish.
 
-## v1.3.7 — next: combat vehicles and fleet expansion
+## v1.3.7 — motorway, suspension and mapped local detail
+
+- [x] Remove guessed bridge arches on the Sunshine Motorway; retain measured abutment grades.
+- [x] Fix the reported null suspensionBase error; tolerate missing/detached/disposed wheel records.
+- [x] Keep mapped tree trunks out of widened game road corridors.
+- [x] Pitched roofs following nearby concave house footprints, street-facing entrances on rectangular homes and sensible inferred one-storey eaves heights.
+- [x] Finer land-cover cache cells preserve smaller mapped landscape patches.
+- [x] Optional severe-crash slow motion in solo mode, saved setting and real-time recovery; multiplayer remains at normal speed.
+- [x] Verify southbound motorway drive, suspension reproduction and house/land-cover/cinematic regressions; package and publish.
+
+## v1.3.8 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

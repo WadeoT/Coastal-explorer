@@ -1,7 +1,7 @@
 let renderingSuspended=false;
 function renderGameFrame(dt){
  if(renderingSuspended)return;let phase='simulation';
- try{tick(dt);phase='render';if(state.mode!=='loading-map'||state.worldReady)scene.render();}
+ try{tick(crashSimulationDelta(dt));phase='render';if(state.mode!=='loading-map'||state.worldReady)scene.render();}
  catch(error){console.error(error);reportRuntimeError(error,phase);}
 }
 function reportRuntimeError(error,phase='simulation'){

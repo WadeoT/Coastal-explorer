@@ -37,9 +37,10 @@ function drapePolygon(points,lift,positions,indices,heightOverride){
  }
 }
 
-function bridgeDeck(path){if(path.bridgeProfile)return path.bridgeProfile;const a=path.points[0],b=path.points.at(-1),mid=samplePath(path,path.length/2,1,0),start=terrainHeight(a.x,a.z)??0,end=terrainHeight(b.x,b.z)??0,water=mappedWaterAt(mid.x,mid.z),floor=water??terrainHeight(mid.x,mid.z)??0,tagged=parseFloat(path.tags.ele),rise=Number.isFinite(tagged)?Math.max(0,tagged-(start+end)/2):Math.max(0,floor+(water===null?4.5:3)-(start+end)/2);
- const sample=d=>lerp(start,end,d/path.length)+Math.sin(Math.PI*d/path.length)*rise;
- return path.bridgeProfile=d=>{d=clamp(d,0,path.length);const lo=Math.floor(d/12)*12,hi=Math.min(path.length,lo+12);return hi>lo?lerp(sample(lo),sample(hi),(d-lo)/(hi-lo)):end;};
+// Abutment elevations define the deck grade. A guessed sinusoidal clearance
+// arch turned short, flat Sunshine Motorway bridges into launch ramps.
+function bridgeDeck(path){if(path.bridgeProfile)return path.bridgeProfile;const a=path.points[0],b=path.points.at(-1),tagged=parseFloat(path.tags.ele),start=terrainHeight(a.x,a.z)??(Number.isFinite(tagged)?tagged:0),end=terrainHeight(b.x,b.z)??start;
+ return path.bridgeProfile=d=>lerp(start,end,clamp(d/Math.max(.01,path.length),0,1));
 }
 
 function polygonEdgeDistance(x,z,points){let best=Infinity;for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length],dx=b.x-a.x,dz=b.z-a.z,t=clamp(((x-a.x)*dx+(z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);best=Math.min(best,Math.hypot(x-a.x-dx*t,z-a.z-dz*t));}return best;}

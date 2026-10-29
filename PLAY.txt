@@ -1,7 +1,9 @@
-v1.3.6 VISIBLE IMPACT
-https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.6&publicRoom=COAST-PUBLIC
+v1.3.7 SMOOTH ROADS & LOCAL DETAIL
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.7&publicRoom=COAST-PUBLIC
 Startup shows its current stage. If loading is slow, recovery buttons appear
 after 25 seconds. START WITH LOW GRAPHICS preserves your saved career.
+In solo play, major crashes briefly slow down. H/settings → Slow-motion
+crashes toggles this effect. Public multiplayer stays at normal speed.
 H opens settings: Ocean conditions follows weather or selects calm, moderate
 or rough seas. Vegetation density, clouds and animated water can be reduced
 for performance. Boats still respond to swell when visual waves are disabled.

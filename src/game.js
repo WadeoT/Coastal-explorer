@@ -31,6 +31,7 @@ function toast(message,ms=3800){$('toast').textContent=message;$('toast').classL
 function later(fn,ms){const id=setTimeout(()=>{timers.delete(id);fn();},ms);timers.add(id);return id;}
 function mat(name,hex,emissive=0,alpha=1){const m=new StandardMaterial(name,scene);m.diffuseColor=C.FromHexString(hex);m.specularColor=new C(.13,.15,.12);if(emissive)m.emissiveColor=m.diffuseColor.scale(emissive);m.alpha=alpha;return m;}
 let materials={};
+/*__LIFE_MODELS__*/
 /*__CRASH_CINEMATIC__*/
 /*__COASTAL_CLIMATE__*/
 /*__HIJACK_IDENTITY__*/
@@ -424,7 +425,9 @@ function instrumentScreen(parent,x,y,z,w,h){const plane=MB.CreatePlane('cockpit-
 function makeWheel(x,y,z,size){steeringNode=new Node('steering-wheel',scene);steeringNode.parent=cockpit;steeringNode.position.set(x,y,z);const rim=MB.CreateTorus('steering-rim',{diameter:size,thickness:.035,tessellation:40},scene);rim.rotation.x=Math.PI/2;rim.material=materials.black;rim.parent=steeringNode;rim.isPickable=false;for(let i=0;i<3;i++){const a=(i*120-30)*RAD;tube('wheel-spoke',[[0,0,0],[Math.cos(a)*size*.45,Math.sin(a)*size*.45,0]],.016,materials.metal,steeringNode);}box('wheel-centre',.15,.105,.06,0,0,0,materials.dark,steeringNode);cylinder('steering-column',.055,.35,x,y-.16,z+.12,materials.black,cockpit).rotation.x=-.8;}
 function buildCockpit(type){disposeVehicleGraphics();steeringNode=cyclicNode=collectiveNode=rotor=null;cockpit=new Node(type+'-cockpit',scene);cockpit.parent=player;const p=profiles[type],e=p.eye-p.clearance;
  camera.parent=player;camera.position.set(p.kind==='car'?.49:0,e,.12);camera.rotation.set(-.015,0,0);camera.fov=(innerWidth<600?1.4:p.kind==='heli'?1.25:p.kind==='bike'?1.23:1.15);document.body.classList.toggle('helicopter',p.kind==='heli');document.body.classList.toggle('ground-car',p.kind==='car');
- if(type==='ute'){
+ if(p.lifeModel&&p.kind==='car'){
+ // The uploaded exterior includes its actual seats and dashboard.
+ }else if(type==='ute'){
  const model=buildLandCruiser79(scene,cockpit,true);model.root.position.y=-p.clearance;for(const mesh of model.root.getChildMeshes())if(mesh.material?.name==='79-sandstone-paint')mesh.material.diffuseColor=C.FromHexString(p.colour).toLinearSpace();steeringNode=model.steering;instrumentScreen(model.root,.49,1.417,-.848,.537,.205);camera.rotation.x=.035;
  }else if(p.kind==='car'&&p.body!=='kart'){
  buildCarCockpit(p,e);

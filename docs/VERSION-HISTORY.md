@@ -4,7 +4,8 @@ Releases now use the dotted format requested for this game. The bundle previousl
 
 | Version | State | Main changes |
 | --- | --- | --- |
-| [v1.3.7](v1.3.7-RELEASE.md) | Current | Motorway bridge grades, suspension crash fix and footprint-following house detail |
+| [v1.3.8](v1.3.8-RELEASE.md) | Current | Nine imported Life Model vehicles, interiors, source previews and model credits |
+| [v1.3.7](v1.3.7-RELEASE.md) | Published | Motorway bridge grades, suspension crash fix and footprint-following house detail |
 | [v1.3.6](v1.3.6-RELEASE.md) | Published | Stronger NPC/player crash deformation, walking camera and motorway widths |
 | [v1.3.5](v1.3.5-RELEASE.md) | Published | Loading-stage progress, map-ready dismissal and visible recovery controls |
 | [v1.3.4](v1.3.4-RELEASE.md) | Published | Shaded foliage, natural-area scrub, weather-sensitive clouds and ocean conditions |

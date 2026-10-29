@@ -1,5 +1,9 @@
-v1.3.7 SMOOTH ROADS & LOCAL DETAIL
-https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.7&publicRoom=COAST-PUBLIC
+v1.3.8 LIFE MODEL COLLECTION
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.3.8&publicRoom=COAST-PUBLIC
+The Life Model tab contains the nine uploaded vehicles. The Land Cruiser J50
+and Hyundai i20 remain starter vehicles; other models use shop purchases.
+MODEL CREDITS lists sources and available licence details. Low graphics uses
+lower-detail geometry. Imported cars use their modelled interiors in FPV.
 Startup shows its current stage. If loading is slow, recovery buttons appear
 after 25 seconds. START WITH LOW GRAPHICS preserves your saved career.
 In solo play, major crashes briefly slow down. H/settings → Slow-motion

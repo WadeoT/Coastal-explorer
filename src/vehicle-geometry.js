@@ -199,6 +199,7 @@ function buildBicycle(root,p){buildLegacyBicycle(root,p);box('ebike-downtube-bat
 function buildKart(root,p){buildLegacyKart(root,p);tube('kart-rear-axle',[[-.63,.16,.59],[.63,.16,.59]],.025,materials.metal,root);root.metadata={...root.metadata,kind:'car',modelId:p.modelId,revision:MODEL_REVISION,wheelCount:4,body:'open tubular go-kart'};}
 function constructVehicle(root,p,id=p.modelId){
  exteriorRotor=null;
+ if(p.lifeModel&&buildLifeModel(root,p,id)){addVehicleCustoms(root,p,id);return root;}
  if(id==='trafficTruck'){buildTrafficTruck(root,p);}else if(id==='ute'){const result=buildLandCruiser79(scene,root,false);for(const m of result.root.getChildMeshes())if(m.material?.name==='79-sandstone-paint')m.material.diffuseColor=C.FromHexString(p.colour).toLinearSpace();root.metadata={vehicle:p.name,kind:'car',modelId:id,revision:MODEL_REVISION,body:'79 Series single-cab trayback',wheelCount:4};}
  else if(p.body==='kart')buildKart(root,p);else if(p.kind==='car')buildRoadExterior(root,p);else if(p.kind==='heli'){if(p.body==='rescue-helicopter')buildRescueHelicopter(root,p);else buildDetailedChopper(root,p);}
  else if(p.kind==='jet')buildFighter(root,p);else if(p.kind==='boat')buildRunabout(root,p,false);else if(p.kind==='bike'){if(p.combustion)buildPetrolMotorcycle(root,p);else if(p.body==='electric-dirt-bike')buildElectricMoto(root,p);else buildBicycle(root,p);}else throw Error('Unknown vehicle model '+id);

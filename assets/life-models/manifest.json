@@ -1,0 +1,70 @@
+{
+  "models": [
+    {
+      "key": "cruiser",
+      "title": "Toyota Land Cruiser J50 (1975)",
+      "author": "Nieve5677",
+      "authorUrl": "https://sketchfab.com/iori308408",
+      "source": "https://sketchfab.com/3d-models/toyota-land-cruiser-j501975-5dfa809650cf4491922a44118ec50dc8",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "key": "i20",
+      "title": "Hyundai i20 (2010)",
+      "author": "Nieve5677",
+      "authorUrl": "https://sketchfab.com/iori308408",
+      "source": "https://sketchfab.com/3d-models/hyundai-i20-2010-e71dd7d6b29245ca9d17ea1fd44edea7",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "key": "bmw",
+      "title": "BMW M3 Competition Touring G81",
+      "author": "Black Snow",
+      "authorUrl": "https://sketchfab.com/BlackSnow02",
+      "source": "https://sketchfab.com/3d-models/bmw-m3-competition-tourning-g81-e2a4d608b2034e639c7eb6a2ef8dbfa1",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "key": "jeep",
+      "title": "Jeep Gladiator (2020)",
+      "author": "Ddiaz Design",
+      "authorUrl": "https://sketchfab.com/ddiaz-design",
+      "source": "https://sketchfab.com/3d-models/2020-jeep-gladiator-98bc399af1e948eda5db6d75c5bb649d",
+      "license": "CC-BY-NC-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    },
+    {
+      "key": "hilux",
+      "title": "Toyota Hilux (replacement file labelled 2022)",
+      "source": "https://sketchfab.com/3d-models/toyota-hilux-revo-prerunner-2021-04ae6d8e07e84f55a9e1d7e3261be171",
+      "note": "Source link supplied with the original 2021 ZIP; replacement USDZ labelled 2022. Creator/licence not embedded in supplied replacement."
+    },
+    {
+      "key": "hornet",
+      "title": "Boeing F/A-18E/F Super Hornet",
+      "source": "https://sketchfab.com/3d-models/boeing-fa-18ef-super-hornet-f71e9fea01e24fea9b1b380161d21d38",
+      "note": "Creator/licence not included in supplied archive; source link supplied by user."
+    },
+    {
+      "key": "patrol",
+      "title": "Nissan Patrol Y60",
+      "author": "Mihai Candrea (credited by source filename)",
+      "note": "Original page/licence not included in supplied archive."
+    },
+    {
+      "key": "porsche",
+      "title": "Porsche 911 GT3 RS \u00b7 Carrera Tribute (2023)",
+      "note": "Original page/creator/licence not included in supplied archive."
+    },
+    {
+      "key": "rescue",
+      "title": "ADAC Rescue Helicopter",
+      "note": "Supplied GLB has geometry and a plain material, with no image textures or source licence/creator metadata."
+    }
+  ],
+  "changes": "Game adaptations: simplified geometry, metre-scale axis alignment, wheel/rotor groups, converted materials, lower detail meshes and rendered preview images.",
+  "licensing": "Per-model licences apply to their adapted model data and previews. Jeep adaptations remain CC-BY-NC-SA-4.0. No blanket licence is claimed for assets with missing source terms."
+}

@@ -111,7 +111,25 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Optional severe-crash slow motion in solo mode, saved setting and real-time recovery; multiplayer remains at normal speed.
 - [x] Verify southbound motorway drive, suspension reproduction and house/land-cover/cinematic regressions; package and publish.
 
-## v1.3.8 — next: combat vehicles and fleet expansion
+## v1.3.8 — Life Model collection
+
+- [x] Import all nine supplied vehicle assets, including replacement GLB/USDZ/G81 files.
+- [x] Default Life Model tab; replace matching existing models and retain other garage inventory.
+- [x] Metre-scale orientation, source materials/textures, wheel groups, animated rescue rotor, retractable fighter gear and car interiors.
+- [x] Bounded mesh chunks, shared texture cache, typed geometry and lower-detail NPC/remote/Low instances.
+- [x] Preserve imported colours through deformation/repair; skip legacy subdivision on already-detailed skins.
+- [x] Actual-model thumbnails and creator/source/per-asset licence credits.
+- [x] Package and publish the verified model bundle.
+
+## v1.3.9 — QTopo elevation reference
+
+- [x] Read the uploaded georeferenced A1 Queensland QTopo PDF (1:100,000, GDA2020 MGA Zone 56).
+- [ ] Extract actual contour/spot-height controls and retain map coverage/provenance.
+- [ ] Validate the existing DEM against those controls; apply justified smooth elevation corrections with coast/road continuity.
+- [ ] Expose the QTopo reference in the map and document interpolation/coverage limits.
+- [ ] Verify motorway/shoreline/building/flight elevation regressions; publish.
+
+## v1.4.0 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

@@ -39,7 +39,7 @@ function stepCarCrash(dt){
 }
 function refineDamagePanels(root){
  for(const m of root.getChildMeshes()){
-  if(m.metadata?.deformableSkin)continue;const name=m.name+' '+m.material?.name;if(!/paint|bodywork|alloy-tray/i.test(name)||/glass|wheel|tyre|instrument/i.test(name))continue;
+  if(m.metadata?.deformableSkin||m.metadata?.lifeModel)continue;const name=m.name+' '+m.material?.name;if(!/paint|bodywork|alloy-tray/i.test(name)||/glass|wheel|tyre|instrument/i.test(name))continue;
   const pos=m.getVerticesData('position'),idx=m.getIndices(),uv=m.getVerticesData('uv');if(!pos||!idx||idx.length>12000||pos.length>24000)continue;
   const out=[],outUV=[],indices=[];
   for(let t=0;t<idx.length;t+=3){const a=idx[t],b=idx[t+1],d=idx[t+2],v=i=>new V(pos[i*3],pos[i*3+1],pos[i*3+2]),n=clamp(Math.ceil(Math.max(V.Distance(v(a),v(b)),V.Distance(v(a),v(d)),V.Distance(v(b),v(d)))/.55),1,3),grid=[];

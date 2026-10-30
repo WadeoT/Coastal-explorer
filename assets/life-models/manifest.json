@@ -65,6 +65,6 @@
       "note": "Supplied GLB has geometry and a plain material, with no image textures or source licence/creator metadata."
     }
   ],
-  "changes": "Game adaptations: simplified geometry, metre-scale axis alignment, wheel/rotor groups, converted materials, lower detail meshes and rendered preview images.",
+  "changes": "Game adaptations: simplified geometry, metre-scale axis alignment, wheel/rotor groups, converted materials, lower detail meshes and rendered preview images. Later repairs: material-role corrections, duplicate/degenerate face removal, more detailed rescue geometry, complete rotor grouping and an inferred yellow rescue finish; the supplied rescue asset has no authored image textures.",
   "licensing": "Per-model licences apply to their adapted model data and previews. Jeep adaptations remain CC-BY-NC-SA-4.0. No blanket licence is claimed for assets with missing source terms."
 }

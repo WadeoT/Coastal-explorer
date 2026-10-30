@@ -172,7 +172,18 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Name recipients in action results and retain existing owner authentication, server moderation and signed public controls.
 - [x] Verify two-browser player routing, vehicle changes, on-foot actions, lobby presence, grants, repair, disconnects and owner regressions; publish.
 
-## v1.4.4 — next: combat vehicles and fleet expansion
+## v1.4.4 — vehicle model repair
+
+- [x] Distinct paint, window, lamp, mirror, rubber, metal and interior finishes on imported models.
+- [x] Correct BMW main-paint identification for garage customisation; retain authored textured liveries.
+- [x] Remove degenerate and identical same-facing triangles while retaining deliberate reverse-facing shells.
+- [x] Higher-detail rescue body, inferred yellow rescue finish and complete rotating blade assembly.
+- [x] Smooth rescue normals with a 40-degree crease limit and weld identical attributes (167,969 to 44,888 high-mesh vertices).
+- [x] Keep rescue remote/distant geometry around 8,000 triangles.
+- [x] Refresh all nine shop preview images from the actual repaired models.
+- [x] Verify all nine imported models, deformation/repair, wheel suspension, rotor/gear animation and asset buffer integrity.
+
+## v1.4.5 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

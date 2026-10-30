@@ -4,7 +4,8 @@ Releases now use the dotted format requested for this game. The bundle previousl
 
 | Version | State | Main changes |
 | --- | --- | --- |
-| [v1.4.3](v1.4.3-RELEASE.md) | Current | Street challenges and near-miss rewards, cinematic lighting/materials, smooth foliage and stable player-name admin targeting |
+| [v1.4.4](v1.4.4-RELEASE.md) | Current | Imported surface roles, BMW repainting, duplicate-face cleanup and more detailed rescue geometry with a complete moving rotor |
+| [v1.4.3](v1.4.3-RELEASE.md) | Published | Street challenges and near-miss rewards, cinematic lighting/materials, smooth foliage and stable player-name admin targeting |
 | [v1.4.2](v1.4.2-RELEASE.md) | Published | Mapped GA apron parking, live plane markers, takeoff ATC and denser source-mapped bushland |
 | [v1.4.1](v1.4.1-RELEASE.md) | Published | Crash-buffer and missing-body fixes, building prefetch, imported cockpits/materials, walking follow and sinking cars |
 | [v1.4.0](v1.4.0-RELEASE.md) | Published | Real regional runways, three light aircraft, parked-plane hijacking and runway ATC |

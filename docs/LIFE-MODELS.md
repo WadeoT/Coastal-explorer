@@ -1,6 +1,6 @@
 # Life Model sources and licences
 
-Nine user-supplied models are adapted separately from the game code. Changes: metre-scale alignment, simplified geometry, runtime material conversion, wheel/rotor/gear groups, lower-detail meshes and preview renders.
+Nine user-supplied models are adapted separately from the game code. v1.4.4 repairs material roles and duplicate faces; the rescue model uses a higher-detail near mesh and a small remote mesh. Its yellow paint/window regions are inferred from geometry because the source has no authored image textures; these are not an exact original ADAC livery. Changes: metre-scale alignment, simplified geometry, runtime material conversion, wheel/rotor/gear groups, lower-detail meshes and preview renders.
 
 Per-model terms apply to the adapted `assets/life-models/<key>.json.gz` data, its embedded copy in index.html and corresponding preview. The Jeep adaptation and preview remain CC-BY-NC-SA-4.0; no commercial-use permission or blanket game-code licence is claimed for that asset.
 

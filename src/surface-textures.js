@@ -30,7 +30,7 @@ function makeSurfaceTexture(name,kind,size=512){
  texture.wrapU=texture.wrapV=1;texture.anisotropicFilteringLevel=8;texture.update(false);return keepSurfaceTexture(texture,cacheKey);
 }
 function vehicleSurfaceMaterial(m){
- if(!m||m.diffuseTexture)return;const n=m.name.toLowerCase();let kind=null;
+ if(!m||m.diffuseTexture||m.metadata?.lifeModel)return;const n=m.name.toLowerCase();let kind=null;
  if(/paint|bodywork|cockpit-body|pastel-commuter/.test(n))kind='paint';else if(/alloy-tray|brushed|steel-rims|chrome/.test(n))kind='metal';else if(/rubber|tyre/.test(n))kind='rubber';
  if(!kind)return;m.diffuseTexture=makeSurfaceTexture('vehicle-'+kind+'-'+m.uniqueId,kind,256);m.specularPower=kind==='paint'?96:kind==='metal'?64:8;if(kind==='paint')m.specularColor=new C(.42,.44,.46);
 }

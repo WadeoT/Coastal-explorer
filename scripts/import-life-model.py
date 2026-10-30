@@ -8,7 +8,7 @@ else:
  if path.lower().endswith('.fbx'):bpy.ops.import_scene.fbx(filepath=path,use_custom_normals=True)
  elif path.lower().endswith('.obj'):bpy.ops.wm.obj_import(filepath=path)
  else:bpy.ops.import_scene.gltf(filepath=path)
-config={'patrol':(4.24,'-Y',28000),'porsche':(4.572,'-Y',50000),'hornet':(18.31,'-X',32000),'rescue':(12.2,'+X',32000),'cruiser':(4.675,'-Zup-Y',56000),'i20':(3.94,'-Zup-Y',50000),'jeep':(5.537,'-Y',50000),'bmw':(4.794,'-Y',50000),'hilux':(5.325,'-Y',50000)}[key]
+config={'patrol':(4.24,'-Y',28000),'porsche':(4.572,'-Y',50000),'hornet':(18.31,'-X',32000),'rescue':(12.2,'+X',56000),'cruiser':(4.675,'-Zup-Y',56000),'i20':(3.94,'-Zup-Y',50000),'jeep':(5.537,'-Y',50000),'bmw':(4.794,'-Y',50000),'hilux':(5.325,'-Y',50000)}[key]
 meshes=[o for o in bpy.data.objects if o.type=='MESH' and len(o.data.polygons) and 'colider' not in o.name.lower() and 'collider' not in o.name.lower()]
 for o in meshes:
  if o.modifiers:

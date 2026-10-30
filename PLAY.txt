@@ -1,5 +1,11 @@
-v1.4.3 STREET SESSIONS
-https://wadeot.github.io/Coastal-explorer/index.html?v=1.4.3&publicRoom=COAST-PUBLIC
+v1.4.4 VEHICLE MODEL REPAIR
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.4.4&publicRoom=COAST-PUBLIC
+Use the LIFE MODEL tab for the nine imported vehicles.
+Paint, windows, lamp lenses, mirrors, tyres and interiors have distinct finishes.
+The BMW body now repaints correctly in the garage.
+The rescue helicopter has a more detailed body, inferred yellow finish and
+complete spinning rotor; remote/distant versions keep lower geometry detail.
+
 ACTIVITIES: Overtake Rush (5 close passes / 90 seconds), Drift Session
 (800 points / 120 seconds), Clean Getaway (escape 2 stars / 180 seconds).
 Close moving traffic passes build near-miss cash combos; bank after 4 seconds.

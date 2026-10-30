@@ -35,3 +35,5 @@ export { Layer } from '@babylonjs/core/Layers/layer.js';
 
 export { Texture } from '@babylonjs/core/Materials/Textures/texture.js';
 export { RawCubeTexture } from '@babylonjs/core/Materials/Textures/rawCubeTexture.js';
+
+export { ColorCurves } from '@babylonjs/core/Materials/colorCurves.js';

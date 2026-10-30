@@ -1,5 +1,16 @@
-v1.4.2 AIRPORT AND BUSHLAND
-https://wadeot.github.io/Coastal-explorer/index.html?v=1.4.2&publicRoom=COAST-PUBLIC
+v1.4.3 STREET SESSIONS
+https://wadeot.github.io/Coastal-explorer/index.html?v=1.4.3&publicRoom=COAST-PUBLIC
+ACTIVITIES: Overtake Rush (5 close passes / 90 seconds), Drift Session
+(800 points / 120 seconds), Clean Getaway (escape 2 stars / 180 seconds).
+Close moving traffic passes build near-miss cash combos; bank after 4 seconds.
+Crashing loses the pending combo and ends overtake/drift sessions.
+H -> Graphics: Cinematic lighting / surface detail; switch off if preferred.
+
+ADMIN: select the PLAYER NAME at the top. Money, wanted and control buttons
+apply to that person. Vehicle effects follow their current vehicle.
+Giving a different model is under Give this player a new vehicle.
+A disconnected selection stays unavailable until you choose someone else.
+
 Garage spawn: SUNSHINE COAST · PARKED PLANES places you beside the GA STH
 apron aircraft near the southern hangars. X exits your car; E boards a plane.
 Blue plane arrows on both maps show parked aircraft.

@@ -159,7 +159,20 @@ Requests accumulate here. Work is ordered by dependencies and published in teste
 - [x] Denser mapped forest canopy, layered scrub/heath/mangrove growth, sparse grass/developed sites, clear roads/airfield surfaces and bounded scalable geometry.
 - [x] Verify actual airport spawn/stream/board, ATC controls/airspace/holds/storms/expiry and mapped vegetation density/exclusions; update help and publish.
 
-## v1.4.3 — next: combat vehicles and fleet expansion
+## v1.4.3 — Street Sessions, graphics and player-first admin
+
+- [x] Three timed vehicle-specific street challenges, near-miss combos and saved career payouts.
+- [x] Crash/teleport/admin-test exclusions, cooldowns and compact challenge progress HUD.
+- [x] Warmer daylight, sun/moon discs, wet asphalt, shared paint/glass reflections and toggleable cinematic lighting.
+- [x] Smooth foliage normals with shared vertices: 80% fewer vertices, unchanged triangle count.
+- [x] Prominent player-name selector and selected-player/status summary, with vehicle names kept out of the identity choices.
+- [x] Preserve the selected player ID through vehicle-node replacement, walking and lobby/garage presence.
+- [x] Retain disconnected targets as unavailable; disable their action buttons and reject stale submissions instead of redirecting them to the owner.
+- [x] Separate player freeze controls from current-vehicle effects; move the model catalogue into an explicit Give this player a new vehicle disclosure.
+- [x] Name recipients in action results and retain existing owner authentication, server moderation and signed public controls.
+- [x] Verify two-browser player routing, vehicle changes, on-foot actions, lobby presence, grants, repair, disconnects and owner regressions; publish.
+
+## v1.4.4 — next: combat vehicles and fleet expansion
 
 - [ ] Tank with aimable turret, finite shells/reload, physical projectiles and destructive blast effects.
 - [ ] Verify shells damage actual buildings, obstacles and vehicles.

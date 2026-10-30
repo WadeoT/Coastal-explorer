@@ -19,7 +19,7 @@ function refreshAutomaticLobby(){
  $('publicLobbySetup').hidden=!!$('relayInput').value.trim()&&!lobbyServerEdit;
  $('publicLobbyAttempts').textContent=Multiplayer.connected?'Connected · '+(Multiplayer.roomId||'room'):lobbyAttempts?'Connection attempt '+lobbyAttempts+' · retries automatically':'';
  refreshPublicServerUI();
- const signature=JSON.stringify((Multiplayer.roster||[]).map(p=>[p.id,p.name,p.vehicle]));if(signature===lobbyListSignature)return;lobbyListSignature=signature;const list=$('publicLobbyPlayers');list.replaceChildren();
+ const signature=JSON.stringify((Multiplayer.roster||[]).map(p=>[p.id,p.name,p.vehicle]));if(signature===lobbyListSignature)return;lobbyListSignature=signature;refreshOwnerAdminUI();const list=$('publicLobbyPlayers');list.replaceChildren();
  for(const p of Multiplayer.roster||[]){const row=document.createElement('li');row.textContent=(p.id===Multiplayer.id?'YOU · ':'')+(p.name||'Driver')+' · '+(profiles[p.vehicle]?.short||'Choosing a vehicle');list.append(row);}
 }
 function showAutomaticLobby(){

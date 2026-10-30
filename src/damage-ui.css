@@ -118,3 +118,9 @@ input::placeholder,textarea::placeholder{color:#8895aa}
 .damage-readout[hidden],#damageNumbers[hidden]{display:none!important}.third-person .damage-readout.ground-warning{display:block}.damage-readout.ground-warning{width:auto;max-width:280px;border-left-color:#ff805e}
 
 .hud-minimal #footStatus{display:none!important}
+
+.owner-player-picker{background:#11151d;border:2px solid #7aa9e8!important}.owner-player-picker legend{color:#b8d4ff}.owner-player-picker strong{display:block;font-size:18px;color:#f4f6fa;margin:12px 0 6px}.owner-player-picker p{margin:6px 0!important;font-size:12px!important;line-height:1.5}#ownerSelectedPlayerState{color:#b8c7db}#ownerVehicleGrant{margin-top:18px;border-top:1px solid #354156;padding-top:13px}#ownerVehicleGrant summary{cursor:pointer;font-size:14px;font-weight:700;color:#d6e3f5;min-height:32px}
+
+#communityOwnerSetup{margin:12px 0}#communityOwnerSetup>summary{cursor:pointer;font-size:13px;color:#b8c7db;min-height:28px}
+
+.street-session-menu{border:1px solid #6983a9;border-radius:8px;background:linear-gradient(135deg,#171e2b,#101319);padding:18px;margin:14px 0 22px}.street-session-menu>h3{letter-spacing:2px;color:#d7e7ff}.street-session-menu>div{border-top:1px solid #334155;padding:15px 0}.street-session-menu p{font-size:13px!important;line-height:1.5}.street-session-hud{position:absolute;left:35px;top:425px;width:255px;background:#0b0e15ed;border-left:3px solid #85b6ff;padding:12px 15px;display:grid;gap:7px;font:12px monospace}.street-session-hud strong{color:#c9e1ff;letter-spacing:1px}.street-session-hud small{color:#f3d990}.street-session-hud[hidden],.hud-minimal #streetSessionHUD{display:none!important}@media(max-width:700px){.street-session-hud{left:12px;top:auto;bottom:195px;width:205px;padding:9px}}
